@@ -1,0 +1,1856 @@
+[
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "subprocess",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "Popen",
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "isExtraImport": true,
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "TimeoutExpired",
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "isExtraImport": true,
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "pathlib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Final",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Iterable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Callable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Iterable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Final",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Final",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Final",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Final",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Iterator",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "cv2",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "cv2",
+        "description": "cv2",
+        "detail": "cv2",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "pyautogui",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pyautogui",
+        "description": "pyautogui",
+        "detail": "pyautogui",
+        "documentation": {}
+    },
+    {
+        "label": "setup_logger",
+        "importPath": "utils.logger",
+        "description": "utils.logger",
+        "isExtraImport": true,
+        "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "setup_logger",
+        "importPath": "utils.logger",
+        "description": "utils.logger",
+        "isExtraImport": true,
+        "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "setup_logger",
+        "importPath": "utils.logger",
+        "description": "utils.logger",
+        "isExtraImport": true,
+        "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "setup_logger",
+        "importPath": "utils.logger",
+        "description": "utils.logger",
+        "isExtraImport": true,
+        "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "setup_logger",
+        "importPath": "utils.logger",
+        "description": "utils.logger",
+        "isExtraImport": true,
+        "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "setup_logger",
+        "importPath": "utils.logger",
+        "description": "utils.logger",
+        "isExtraImport": true,
+        "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "setup_logger",
+        "importPath": "utils.logger",
+        "description": "utils.logger",
+        "isExtraImport": true,
+        "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "setup_logger",
+        "importPath": "utils.logger",
+        "description": "utils.logger",
+        "isExtraImport": true,
+        "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "setup_logger",
+        "importPath": "utils.logger",
+        "description": "utils.logger",
+        "isExtraImport": true,
+        "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "setup_logger",
+        "importPath": "utils.logger",
+        "description": "utils.logger",
+        "isExtraImport": true,
+        "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "setup_logger",
+        "importPath": "utils.logger",
+        "description": "utils.logger",
+        "isExtraImport": true,
+        "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "setup_logger",
+        "importPath": "utils.logger",
+        "description": "utils.logger",
+        "isExtraImport": true,
+        "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "prepare",
+        "importPath": "utils.profile_manager",
+        "description": "utils.profile_manager",
+        "isExtraImport": true,
+        "detail": "utils.profile_manager",
+        "documentation": {}
+    },
+    {
+        "label": "prepare",
+        "importPath": "utils.profile_manager",
+        "description": "utils.profile_manager",
+        "isExtraImport": true,
+        "detail": "utils.profile_manager",
+        "documentation": {}
+    },
+    {
+        "label": "contextmanager",
+        "importPath": "contextlib",
+        "description": "contextlib",
+        "isExtraImport": true,
+        "detail": "contextlib",
+        "documentation": {}
+    },
+    {
+        "label": "contextmanager",
+        "importPath": "contextlib",
+        "description": "contextlib",
+        "isExtraImport": true,
+        "detail": "contextlib",
+        "documentation": {}
+    },
+    {
+        "label": "functools",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "functools",
+        "description": "functools",
+        "detail": "functools",
+        "documentation": {}
+    },
+    {
+        "label": "signal",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "signal",
+        "description": "signal",
+        "detail": "signal",
+        "documentation": {}
+    },
+    {
+        "label": "threading",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "threading",
+        "description": "threading",
+        "detail": "threading",
+        "documentation": {}
+    },
+    {
+        "label": "deque",
+        "importPath": "collections",
+        "description": "collections",
+        "isExtraImport": true,
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "chrome_session",
+        "importPath": "core.gui_driver",
+        "description": "core.gui_driver",
+        "isExtraImport": true,
+        "detail": "core.gui_driver",
+        "documentation": {}
+    },
+    {
+        "label": "SlotFinder",
+        "importPath": "core.slot_finder",
+        "description": "core.slot_finder",
+        "isExtraImport": true,
+        "detail": "core.slot_finder",
+        "documentation": {}
+    },
+    {
+        "label": "SlotFinder",
+        "importPath": "core.slot_finder",
+        "description": "core.slot_finder",
+        "isExtraImport": true,
+        "detail": "core.slot_finder",
+        "documentation": {}
+    },
+    {
+        "label": "ChangeEvent",
+        "importPath": "io.config_watcher",
+        "description": "io.config_watcher",
+        "isExtraImport": true,
+        "detail": "io.config_watcher",
+        "documentation": {}
+    },
+    {
+        "label": "ChangeKind",
+        "importPath": "io.config_watcher",
+        "description": "io.config_watcher",
+        "isExtraImport": true,
+        "detail": "io.config_watcher",
+        "documentation": {}
+    },
+    {
+        "label": "ConfigWatcher",
+        "importPath": "io.config_watcher",
+        "description": "io.config_watcher",
+        "isExtraImport": true,
+        "detail": "io.config_watcher",
+        "documentation": {}
+    },
+    {
+        "label": "ConfigWatcher",
+        "importPath": "io.config_watcher",
+        "description": "io.config_watcher",
+        "isExtraImport": true,
+        "detail": "io.config_watcher",
+        "documentation": {}
+    },
+    {
+        "label": "ChangeEvent",
+        "importPath": "io.config_watcher",
+        "description": "io.config_watcher",
+        "isExtraImport": true,
+        "detail": "io.config_watcher",
+        "documentation": {}
+    },
+    {
+        "label": "ConfigWatcher",
+        "importPath": "io.config_watcher",
+        "description": "io.config_watcher",
+        "isExtraImport": true,
+        "detail": "io.config_watcher",
+        "documentation": {}
+    },
+    {
+        "label": "ChangeKind",
+        "importPath": "io.config_watcher",
+        "description": "io.config_watcher",
+        "isExtraImport": true,
+        "detail": "io.config_watcher",
+        "documentation": {}
+    },
+    {
+        "label": "UserConfig",
+        "importPath": "io.yaml_loader",
+        "description": "io.yaml_loader",
+        "isExtraImport": true,
+        "detail": "io.yaml_loader",
+        "documentation": {}
+    },
+    {
+        "label": "YAMLLoader",
+        "importPath": "io.yaml_loader",
+        "description": "io.yaml_loader",
+        "isExtraImport": true,
+        "detail": "io.yaml_loader",
+        "documentation": {}
+    },
+    {
+        "label": "ConfigError",
+        "importPath": "io.yaml_loader",
+        "description": "io.yaml_loader",
+        "isExtraImport": true,
+        "detail": "io.yaml_loader",
+        "documentation": {}
+    },
+    {
+        "label": "UserConfig",
+        "importPath": "io.yaml_loader",
+        "description": "io.yaml_loader",
+        "isExtraImport": true,
+        "detail": "io.yaml_loader",
+        "documentation": {}
+    },
+    {
+        "label": "YAMLLoader",
+        "importPath": "io.yaml_loader",
+        "description": "io.yaml_loader",
+        "isExtraImport": true,
+        "detail": "io.yaml_loader",
+        "documentation": {}
+    },
+    {
+        "label": "ConfigError",
+        "importPath": "io.yaml_loader",
+        "description": "io.yaml_loader",
+        "isExtraImport": true,
+        "detail": "io.yaml_loader",
+        "documentation": {}
+    },
+    {
+        "label": "ControlServer",
+        "importPath": "server.tcp_server",
+        "description": "server.tcp_server",
+        "isExtraImport": true,
+        "detail": "server.tcp_server",
+        "documentation": {}
+    },
+    {
+        "label": "PAUSE_EVT",
+        "importPath": "server.tcp_server",
+        "description": "server.tcp_server",
+        "isExtraImport": true,
+        "detail": "server.tcp_server",
+        "documentation": {}
+    },
+    {
+        "label": "STOP_EVT",
+        "importPath": "server.tcp_server",
+        "description": "server.tcp_server",
+        "isExtraImport": true,
+        "detail": "server.tcp_server",
+        "documentation": {}
+    },
+    {
+        "label": "ControlServer",
+        "importPath": "server.tcp_server",
+        "description": "server.tcp_server",
+        "isExtraImport": true,
+        "detail": "server.tcp_server",
+        "documentation": {}
+    },
+    {
+        "label": "PAUSE_EVT",
+        "importPath": "server.tcp_server",
+        "description": "server.tcp_server",
+        "isExtraImport": true,
+        "detail": "server.tcp_server",
+        "documentation": {}
+    },
+    {
+        "label": "STOP_EVT",
+        "importPath": "server.tcp_server",
+        "description": "server.tcp_server",
+        "isExtraImport": true,
+        "detail": "server.tcp_server",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "datetime",
+        "description": "datetime",
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "gui_driver",
+        "importPath": "core",
+        "description": "core",
+        "isExtraImport": true,
+        "detail": "core",
+        "documentation": {}
+    },
+    {
+        "label": "html_log",
+        "importPath": "io.html_logger",
+        "description": "io.html_logger",
+        "isExtraImport": true,
+        "detail": "io.html_logger",
+        "documentation": {}
+    },
+    {
+        "label": "html_log",
+        "importPath": "io.html_logger",
+        "description": "io.html_logger",
+        "isExtraImport": true,
+        "detail": "io.html_logger",
+        "documentation": {}
+    },
+    {
+        "label": "dataclass",
+        "importPath": "dataclasses",
+        "description": "dataclasses",
+        "isExtraImport": true,
+        "detail": "dataclasses",
+        "documentation": {}
+    },
+    {
+        "label": "dataclass",
+        "importPath": "dataclasses",
+        "description": "dataclasses",
+        "isExtraImport": true,
+        "detail": "dataclasses",
+        "documentation": {}
+    },
+    {
+        "label": "field",
+        "importPath": "dataclasses",
+        "description": "dataclasses",
+        "isExtraImport": true,
+        "detail": "dataclasses",
+        "documentation": {}
+    },
+    {
+        "label": "Enum",
+        "importPath": "enum",
+        "description": "enum",
+        "isExtraImport": true,
+        "detail": "enum",
+        "documentation": {}
+    },
+    {
+        "label": "auto",
+        "importPath": "enum",
+        "description": "enum",
+        "isExtraImport": true,
+        "detail": "enum",
+        "documentation": {}
+    },
+    {
+        "label": "Queue",
+        "importPath": "queue",
+        "description": "queue",
+        "isExtraImport": true,
+        "detail": "queue",
+        "documentation": {}
+    },
+    {
+        "label": "Empty",
+        "importPath": "queue",
+        "description": "queue",
+        "isExtraImport": true,
+        "detail": "queue",
+        "documentation": {}
+    },
+    {
+        "label": "FileSystemEventHandler",
+        "importPath": "watchdog.events",
+        "description": "watchdog.events",
+        "isExtraImport": true,
+        "detail": "watchdog.events",
+        "documentation": {}
+    },
+    {
+        "label": "FileSystemEvent",
+        "importPath": "watchdog.events",
+        "description": "watchdog.events",
+        "isExtraImport": true,
+        "detail": "watchdog.events",
+        "documentation": {}
+    },
+    {
+        "label": "Observer",
+        "importPath": "watchdog.observers",
+        "description": "watchdog.observers",
+        "isExtraImport": true,
+        "detail": "watchdog.observers",
+        "documentation": {}
+    },
+    {
+        "label": "shutil",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shutil",
+        "description": "shutil",
+        "detail": "shutil",
+        "documentation": {}
+    },
+    {
+        "label": "yaml",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "yaml",
+        "description": "yaml",
+        "detail": "yaml",
+        "documentation": {}
+    },
+    {
+        "label": "Fernet",
+        "importPath": "cryptography.fernet",
+        "description": "cryptography.fernet",
+        "isExtraImport": true,
+        "detail": "cryptography.fernet",
+        "documentation": {}
+    },
+    {
+        "label": "InvalidToken",
+        "importPath": "cryptography.fernet",
+        "description": "cryptography.fernet",
+        "isExtraImport": true,
+        "detail": "cryptography.fernet",
+        "documentation": {}
+    },
+    {
+        "label": "Fernet",
+        "importPath": "cryptography.fernet",
+        "description": "cryptography.fernet",
+        "isExtraImport": true,
+        "detail": "cryptography.fernet",
+        "documentation": {}
+    },
+    {
+        "label": "Fernet",
+        "importPath": "cryptography.fernet",
+        "description": "cryptography.fernet",
+        "isExtraImport": true,
+        "detail": "cryptography.fernet",
+        "documentation": {}
+    },
+    {
+        "label": "InvalidToken",
+        "importPath": "cryptography.fernet",
+        "description": "cryptography.fernet",
+        "isExtraImport": true,
+        "detail": "cryptography.fernet",
+        "documentation": {}
+    },
+    {
+        "label": "socketserver",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "socketserver",
+        "description": "socketserver",
+        "detail": "socketserver",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "tempfile",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tempfile",
+        "description": "tempfile",
+        "detail": "tempfile",
+        "documentation": {}
+    },
+    {
+        "label": "unittest",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "unittest",
+        "description": "unittest",
+        "detail": "unittest",
+        "documentation": {}
+    },
+    {
+        "label": "dedent",
+        "importPath": "textwrap",
+        "description": "textwrap",
+        "isExtraImport": true,
+        "detail": "textwrap",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "encrypt",
+        "importPath": "utils.crypto_utils",
+        "description": "utils.crypto_utils",
+        "isExtraImport": true,
+        "detail": "utils.crypto_utils",
+        "documentation": {}
+    },
+    {
+        "label": "decrypt",
+        "importPath": "utils.crypto_utils",
+        "description": "utils.crypto_utils",
+        "isExtraImport": true,
+        "detail": "utils.crypto_utils",
+        "documentation": {}
+    },
+    {
+        "label": "generate_key",
+        "importPath": "utils.crypto_utils",
+        "description": "utils.crypto_utils",
+        "isExtraImport": true,
+        "detail": "utils.crypto_utils",
+        "documentation": {}
+    },
+    {
+        "label": "ArgumentParser",
+        "importPath": "argparse",
+        "description": "argparse",
+        "isExtraImport": true,
+        "detail": "argparse",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "RotatingFileHandler",
+        "importPath": "logging.handlers",
+        "description": "logging.handlers",
+        "isExtraImport": true,
+        "detail": "logging.handlers",
+        "documentation": {}
+    },
+    {
+        "label": "runpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "runpy",
+        "description": "runpy",
+        "detail": "runpy",
+        "documentation": {}
+    },
+    {
+        "label": "site",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "site",
+        "description": "site",
+        "detail": "site",
+        "documentation": {}
+    },
+    {
+        "label": "launch_chrome",
+        "kind": 2,
+        "importPath": "core.gui_driver",
+        "description": "core.gui_driver",
+        "peekOfCode": "def launch_chrome(profile_dir: Path, url: str = \"https://e-consul.gov.ua/\") -> subprocess.Popen:  # noqa: D401\n    \"\"\"Запустить Chrome в fullscreen с заданным профилем.\n    Returns\n    -------\n    subprocess.Popen\n        Дескриптор процесса Chrome.\n    \"\"\"\n    chrome_path = _detect_chrome()\n    cmd = [\n        str(chrome_path),",
+        "detail": "core.gui_driver",
+        "documentation": {}
+    },
+    {
+        "label": "click_image",
+        "kind": 2,
+        "importPath": "core.gui_driver",
+        "description": "core.gui_driver",
+        "peekOfCode": "def click_image(name: str, timeout: float = 8.0, confidence: float = 0.9) -> bool:\n    \"\"\"Найти PNG‑шаблон на экране и кликнуть центр. Возврат True/False.\"\"\"\n    path = TEMPLATE_DIR / name\n    if not path.exists():\n        raise FileNotFoundError(path)\n    deadline = time.perf_counter() + timeout\n    while time.perf_counter() < deadline:\n        pos = _locate(path, confidence)\n        if pos:\n            _human_move_and_click(*pos)",
+        "detail": "core.gui_driver",
+        "documentation": {}
+    },
+    {
+        "label": "type_text",
+        "kind": 2,
+        "importPath": "core.gui_driver",
+        "description": "core.gui_driver",
+        "peekOfCode": "def type_text(text: str, interval: tuple[float, float] = (0.05, 0.12)) -> None:\n    \"\"\"Печатать строку с небольшим случайным интервалом между символами.\"\"\"\n    for ch in text:\n        pag.typewrite(ch)\n        time.sleep(random.uniform(*interval))\ndef take_screenshot() -> Path:\n    \"\"\"Сохранить PNG скрин в tmp‑dir, вернуть Path.\"\"\"\n    import tempfile, datetime as dt\n    ts = dt.datetime.utcnow().isoformat().replace(\":\", \"-\")\n    path = Path(tempfile.gettempdir()) / f\"scr_{ts}.png\"",
+        "detail": "core.gui_driver",
+        "documentation": {}
+    },
+    {
+        "label": "take_screenshot",
+        "kind": 2,
+        "importPath": "core.gui_driver",
+        "description": "core.gui_driver",
+        "peekOfCode": "def take_screenshot() -> Path:\n    \"\"\"Сохранить PNG скрин в tmp‑dir, вернуть Path.\"\"\"\n    import tempfile, datetime as dt\n    ts = dt.datetime.utcnow().isoformat().replace(\":\", \"-\")\n    path = Path(tempfile.gettempdir()) / f\"scr_{ts}.png\"\n    pag.screenshot(str(path))\n    return path\n# ---------------------------------------------------------------------------\n# Internal helpers\n# ---------------------------------------------------------------------------",
+        "detail": "core.gui_driver",
+        "documentation": {}
+    },
+    {
+        "label": "chrome_session",
+        "kind": 2,
+        "importPath": "core.gui_driver",
+        "description": "core.gui_driver",
+        "peekOfCode": "def chrome_session(user_alias: str, url: str = \"https://e-consul.gov.ua/\") -> Iterator[Popen]:\n    \"\"\"Context manager: copy profile → launch chrome → yield Popen → kill & cleanup.\"\"\"\n    with prepare_profile(user_alias) as prof_dir:\n        proc = launch_chrome(prof_dir, url)\n        try:\n            yield proc\n        finally:\n            proc.terminate()\n            try:\n                proc.wait(timeout=5)",
+        "detail": "core.gui_driver",
+        "documentation": {}
+    },
+    {
+        "label": "LOGGER",
+        "kind": 5,
+        "importPath": "core.gui_driver",
+        "description": "core.gui_driver",
+        "peekOfCode": "LOGGER = setup_logger(__name__)\n# Disable PyAutoGUI failsafe?  Better keep it true and document \"move mouse to top‑left\".\npag.FAILSAFE = True\n# ---------------------------------------------------------------------------\n# Constants\n# ---------------------------------------------------------------------------\nSCREEN_W, SCREEN_H = pag.size()\nTARGET_RES: Final[Tuple[int, int]] = (1920, 1080)\nif (SCREEN_W, SCREEN_H) != TARGET_RES:\n    LOGGER.warning(",
+        "detail": "core.gui_driver",
+        "documentation": {}
+    },
+    {
+        "label": "pag.FAILSAFE",
+        "kind": 5,
+        "importPath": "core.gui_driver",
+        "description": "core.gui_driver",
+        "peekOfCode": "pag.FAILSAFE = True\n# ---------------------------------------------------------------------------\n# Constants\n# ---------------------------------------------------------------------------\nSCREEN_W, SCREEN_H = pag.size()\nTARGET_RES: Final[Tuple[int, int]] = (1920, 1080)\nif (SCREEN_W, SCREEN_H) != TARGET_RES:\n    LOGGER.warning(\n        \"Монитор имеет %sx%s, ТЗ требует 1920x1080 – координаты могут не совпасть.\",\n        SCREEN_W,",
+        "detail": "core.gui_driver",
+        "documentation": {}
+    },
+    {
+        "label": "load_template",
+        "kind": 2,
+        "importPath": "core.image_lib",
+        "description": "core.image_lib",
+        "peekOfCode": "def load_template(name: str, scale: float = 1.0) -> np.ndarray:\n    \"\"\"Return cached template by filename inside *assets* dir, optionally scaled.\"\"\"\n    path = TEMPLATE_DIR / name\n    img = _read_png(path)\n    if scale != 1.0:\n        h, w = img.shape[:2]\n        img = cv2.resize(img, (int(w * scale), int(h * scale)), interpolation=cv2.INTER_LINEAR)\n    return img\n# ---------------------------------------------------------------------------\n# Public API",
+        "detail": "core.image_lib",
+        "documentation": {}
+    },
+    {
+        "label": "locate_on_screen",
+        "kind": 2,
+        "importPath": "core.image_lib",
+        "description": "core.image_lib",
+        "peekOfCode": "def locate_on_screen(\n    template_name: str,\n    confidence: float = 0.9,\n    roi: tuple[int, int, int, int] | None = None,\n    scales: Iterable[float] | None = None,\n) -> tuple[int, int] | None:\n    \"\"\"Locate *template_name* on current screen.\n    Parameters\n    ----------\n    template_name : str",
+        "detail": "core.image_lib",
+        "documentation": {}
+    },
+    {
+        "label": "LOGGER",
+        "kind": 5,
+        "importPath": "core.image_lib",
+        "description": "core.image_lib",
+        "peekOfCode": "LOGGER = setup_logger(__name__)\n# Root folder for PNG templates (injected from settings or default \"assets\")\nTEMPLATE_DIR = Path(__file__).resolve().parent.parent / \"assets\"\n__all__ = [\n    \"locate_on_screen\",\n    \"load_template\",\n]\n# ---------------------------------------------------------------------------\n# Internal cache helpers\n# ---------------------------------------------------------------------------",
+        "detail": "core.image_lib",
+        "documentation": {}
+    },
+    {
+        "label": "TEMPLATE_DIR",
+        "kind": 5,
+        "importPath": "core.image_lib",
+        "description": "core.image_lib",
+        "peekOfCode": "TEMPLATE_DIR = Path(__file__).resolve().parent.parent / \"assets\"\n__all__ = [\n    \"locate_on_screen\",\n    \"load_template\",\n]\n# ---------------------------------------------------------------------------\n# Internal cache helpers\n# ---------------------------------------------------------------------------\n@functools.lru_cache(maxsize=128)\ndef _read_png(path: Path) -> np.ndarray:",
+        "detail": "core.image_lib",
+        "documentation": {}
+    },
+    {
+        "label": "__all__",
+        "kind": 5,
+        "importPath": "core.image_lib",
+        "description": "core.image_lib",
+        "peekOfCode": "__all__ = [\n    \"locate_on_screen\",\n    \"load_template\",\n]\n# ---------------------------------------------------------------------------\n# Internal cache helpers\n# ---------------------------------------------------------------------------\n@functools.lru_cache(maxsize=128)\ndef _read_png(path: Path) -> np.ndarray:\n    \"\"\"Read PNG file as BGR numpy array and cache the result.\"\"\"",
+        "detail": "core.image_lib",
+        "documentation": {}
+    },
+    {
+        "label": "UserQueue",
+        "kind": 6,
+        "importPath": "core.manager",
+        "description": "core.manager",
+        "peekOfCode": "class UserQueue:\n    \"\"\"Thread‑safe deque with alias → config mapping.\"\"\"\n    def __init__(self, initial: list[UserConfig]):\n        self._dq: deque[UserConfig] = deque(initial)\n        self._map: Dict[str, UserConfig] = {u.alias: u for u in initial}\n        self._lock = threading.Lock()\n    # ---------------------------------------------------------------\n    def pop_left(self) -> Optional[UserConfig]:\n        with self._lock:\n            return self._dq.popleft() if self._dq else None",
+        "detail": "core.manager",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "core.manager",
+        "description": "core.manager",
+        "peekOfCode": "def main() -> None:  # noqa: C901 – main can be lengthy\n    settings_file = Path(__file__).resolve().parent.parent / \"settings.yaml\"\n    with settings_file.open(\"rt\", encoding=\"utf-8\") as fh:\n        import yaml\n        settings = yaml.safe_load(fh) or {}\n    users_dir = Path(settings.get(\"users_dir\", \"users_cfg\")).expanduser().resolve()\n    keys_base = Path(settings.get(\"keys_dir\", \"keys\")).expanduser().resolve()\n    try:\n        loader = YAMLLoader(users_dir, keys_base)\n        queue = UserQueue(loader.load())",
+        "detail": "core.manager",
+        "documentation": {}
+    },
+    {
+        "label": "LOGGER",
+        "kind": 5,
+        "importPath": "core.manager",
+        "description": "core.manager",
+        "peekOfCode": "LOGGER = setup_logger(__name__)\n# ---------------------------------------------------------------------------\n# Helper container – thread‑safe queue wrapper\n# ---------------------------------------------------------------------------\nclass UserQueue:\n    \"\"\"Thread‑safe deque with alias → config mapping.\"\"\"\n    def __init__(self, initial: list[UserConfig]):\n        self._dq: deque[UserConfig] = deque(initial)\n        self._map: Dict[str, UserConfig] = {u.alias: u for u in initial}\n        self._lock = threading.Lock()",
+        "detail": "core.manager",
+        "documentation": {}
+    },
+    {
+        "label": "SlotFinder",
+        "kind": 6,
+        "importPath": "core.slot_finder",
+        "description": "core.slot_finder",
+        "peekOfCode": "class SlotFinder:\n    \"\"\"Encapsulates wizard navigation and calendar scanning.\"\"\"\n    def __init__(self, fast_delay: float = 0.4, slow_delay: float = 1.2):\n        self.fast = fast_delay  # small waits between field fills\n        self.slow = slow_delay  # waits for page loads\n    # ------------------------------------------------------------------\n    def work(self, user: UserConfig) -> bool:  # noqa: C901 (complexity OK here)\n        \"\"\"Return *True* if slot booked, else *False* (user remains).\"\"\"\n        LOGGER.info(\"Start SlotFinder for %s\", user.alias)\n        try:",
+        "detail": "core.slot_finder",
+        "documentation": {}
+    },
+    {
+        "label": "ok",
+        "kind": 5,
+        "importPath": "core.slot_finder",
+        "description": "core.slot_finder",
+        "peekOfCode": "ok = SlotFinder().work(user_cfg)\n```\n* Возвращает **True**, если слот успешно забронирован – user «исчерпан».\n* Возвращает **False**, если пройти все даты/консульства не удалось – user\n  остаётся в очереди и будет повторно обработан позже.\n> **Важно**: реализация deliberately упрощена – многие координаты и имена PNG\n> шаблонов нужно будет донастроить после первого «полёвого» запуска.\n\"\"\"\nfrom __future__ import annotations\nimport datetime as _dt",
+        "detail": "core.slot_finder",
+        "documentation": {}
+    },
+    {
+        "label": "LOGGER",
+        "kind": 5,
+        "importPath": "core.slot_finder",
+        "description": "core.slot_finder",
+        "peekOfCode": "LOGGER = setup_logger(__name__)\n# ---------------------------------------------------------------------------\n# Constants – names of PNG templates (must exist in assets/)\n# ---------------------------------------------------------------------------\nBTN_PERSONAL_KEY = \"btn_personal_key.png\"\nFIELD_KEY_PATH = \"field_key_path.png\"\nFIELD_KEY_PASS = \"field_key_pass.png\"\nBTN_LOGIN = \"btn_login.png\"\nWELCOME_BANNER = \"banner_welcome.png\"\nBTN_VISIT = \"btn_visit.png\"  # «Запис на візит»",
+        "detail": "core.slot_finder",
+        "documentation": {}
+    },
+    {
+        "label": "BTN_PERSONAL_KEY",
+        "kind": 5,
+        "importPath": "core.slot_finder",
+        "description": "core.slot_finder",
+        "peekOfCode": "BTN_PERSONAL_KEY = \"btn_personal_key.png\"\nFIELD_KEY_PATH = \"field_key_path.png\"\nFIELD_KEY_PASS = \"field_key_pass.png\"\nBTN_LOGIN = \"btn_login.png\"\nWELCOME_BANNER = \"banner_welcome.png\"\nBTN_VISIT = \"btn_visit.png\"  # «Запис на візит»\nBTN_BOOK = \"btn_book.png\"    # «Записатись на візит»\n# --- wizard steps -----------------------------------------------------------\n# шаблоны полей; будут уточняться в runtime\nFIELD_BIRTHDATE = \"field_birthdate.png\"",
+        "detail": "core.slot_finder",
+        "documentation": {}
+    },
+    {
+        "label": "FIELD_KEY_PATH",
+        "kind": 5,
+        "importPath": "core.slot_finder",
+        "description": "core.slot_finder",
+        "peekOfCode": "FIELD_KEY_PATH = \"field_key_path.png\"\nFIELD_KEY_PASS = \"field_key_pass.png\"\nBTN_LOGIN = \"btn_login.png\"\nWELCOME_BANNER = \"banner_welcome.png\"\nBTN_VISIT = \"btn_visit.png\"  # «Запис на візит»\nBTN_BOOK = \"btn_book.png\"    # «Записатись на візит»\n# --- wizard steps -----------------------------------------------------------\n# шаблоны полей; будут уточняться в runtime\nFIELD_BIRTHDATE = \"field_birthdate.png\"\nFIELD_GENDER = \"field_gender.png\"",
+        "detail": "core.slot_finder",
+        "documentation": {}
+    },
+    {
+        "label": "FIELD_KEY_PASS",
+        "kind": 5,
+        "importPath": "core.slot_finder",
+        "description": "core.slot_finder",
+        "peekOfCode": "FIELD_KEY_PASS = \"field_key_pass.png\"\nBTN_LOGIN = \"btn_login.png\"\nWELCOME_BANNER = \"banner_welcome.png\"\nBTN_VISIT = \"btn_visit.png\"  # «Запис на візит»\nBTN_BOOK = \"btn_book.png\"    # «Записатись на візит»\n# --- wizard steps -----------------------------------------------------------\n# шаблоны полей; будут уточняться в runtime\nFIELD_BIRTHDATE = \"field_birthdate.png\"\nFIELD_GENDER = \"field_gender.png\"\nFIELD_COUNTRY = \"field_country.png\"",
+        "detail": "core.slot_finder",
+        "documentation": {}
+    },
+    {
+        "label": "BTN_LOGIN",
+        "kind": 5,
+        "importPath": "core.slot_finder",
+        "description": "core.slot_finder",
+        "peekOfCode": "BTN_LOGIN = \"btn_login.png\"\nWELCOME_BANNER = \"banner_welcome.png\"\nBTN_VISIT = \"btn_visit.png\"  # «Запис на візит»\nBTN_BOOK = \"btn_book.png\"    # «Записатись на візит»\n# --- wizard steps -----------------------------------------------------------\n# шаблоны полей; будут уточняться в runtime\nFIELD_BIRTHDATE = \"field_birthdate.png\"\nFIELD_GENDER = \"field_gender.png\"\nFIELD_COUNTRY = \"field_country.png\"\nFIELD_CONSULATE = \"field_consulate.png\"",
+        "detail": "core.slot_finder",
+        "documentation": {}
+    },
+    {
+        "label": "WELCOME_BANNER",
+        "kind": 5,
+        "importPath": "core.slot_finder",
+        "description": "core.slot_finder",
+        "peekOfCode": "WELCOME_BANNER = \"banner_welcome.png\"\nBTN_VISIT = \"btn_visit.png\"  # «Запис на візит»\nBTN_BOOK = \"btn_book.png\"    # «Записатись на візит»\n# --- wizard steps -----------------------------------------------------------\n# шаблоны полей; будут уточняться в runtime\nFIELD_BIRTHDATE = \"field_birthdate.png\"\nFIELD_GENDER = \"field_gender.png\"\nFIELD_COUNTRY = \"field_country.png\"\nFIELD_CONSULATE = \"field_consulate.png\"\nFIELD_SERVICE = \"field_service.png\"",
+        "detail": "core.slot_finder",
+        "documentation": {}
+    },
+    {
+        "label": "BTN_VISIT",
+        "kind": 5,
+        "importPath": "core.slot_finder",
+        "description": "core.slot_finder",
+        "peekOfCode": "BTN_VISIT = \"btn_visit.png\"  # «Запис на візит»\nBTN_BOOK = \"btn_book.png\"    # «Записатись на візит»\n# --- wizard steps -----------------------------------------------------------\n# шаблоны полей; будут уточняться в runtime\nFIELD_BIRTHDATE = \"field_birthdate.png\"\nFIELD_GENDER = \"field_gender.png\"\nFIELD_COUNTRY = \"field_country.png\"\nFIELD_CONSULATE = \"field_consulate.png\"\nFIELD_SERVICE = \"field_service.png\"\nFIELD_PERSON_NAME = \"field_person_name.png\"",
+        "detail": "core.slot_finder",
+        "documentation": {}
+    },
+    {
+        "label": "BTN_BOOK",
+        "kind": 5,
+        "importPath": "core.slot_finder",
+        "description": "core.slot_finder",
+        "peekOfCode": "BTN_BOOK = \"btn_book.png\"    # «Записатись на візит»\n# --- wizard steps -----------------------------------------------------------\n# шаблоны полей; будут уточняться в runtime\nFIELD_BIRTHDATE = \"field_birthdate.png\"\nFIELD_GENDER = \"field_gender.png\"\nFIELD_COUNTRY = \"field_country.png\"\nFIELD_CONSULATE = \"field_consulate.png\"\nFIELD_SERVICE = \"field_service.png\"\nFIELD_PERSON_NAME = \"field_person_name.png\"\nBTN_NEXT = \"btn_next.png\"",
+        "detail": "core.slot_finder",
+        "documentation": {}
+    },
+    {
+        "label": "FIELD_BIRTHDATE",
+        "kind": 5,
+        "importPath": "core.slot_finder",
+        "description": "core.slot_finder",
+        "peekOfCode": "FIELD_BIRTHDATE = \"field_birthdate.png\"\nFIELD_GENDER = \"field_gender.png\"\nFIELD_COUNTRY = \"field_country.png\"\nFIELD_CONSULATE = \"field_consulate.png\"\nFIELD_SERVICE = \"field_service.png\"\nFIELD_PERSON_NAME = \"field_person_name.png\"\nBTN_NEXT = \"btn_next.png\"\n# --- calendar ---------------------------------------------------------------\nBTN_MODE_DAY = \"btn_mode_day.png\"\nLBL_NO_SLOTS_DAY = \"lbl_no_slots_day.png\"",
+        "detail": "core.slot_finder",
+        "documentation": {}
+    },
+    {
+        "label": "FIELD_GENDER",
+        "kind": 5,
+        "importPath": "core.slot_finder",
+        "description": "core.slot_finder",
+        "peekOfCode": "FIELD_GENDER = \"field_gender.png\"\nFIELD_COUNTRY = \"field_country.png\"\nFIELD_CONSULATE = \"field_consulate.png\"\nFIELD_SERVICE = \"field_service.png\"\nFIELD_PERSON_NAME = \"field_person_name.png\"\nBTN_NEXT = \"btn_next.png\"\n# --- calendar ---------------------------------------------------------------\nBTN_MODE_DAY = \"btn_mode_day.png\"\nLBL_NO_SLOTS_DAY = \"lbl_no_slots_day.png\"\nLBL_NO_SLOTS_ALL = \"lbl_no_slots_all.png\"",
+        "detail": "core.slot_finder",
+        "documentation": {}
+    },
+    {
+        "label": "FIELD_COUNTRY",
+        "kind": 5,
+        "importPath": "core.slot_finder",
+        "description": "core.slot_finder",
+        "peekOfCode": "FIELD_COUNTRY = \"field_country.png\"\nFIELD_CONSULATE = \"field_consulate.png\"\nFIELD_SERVICE = \"field_service.png\"\nFIELD_PERSON_NAME = \"field_person_name.png\"\nBTN_NEXT = \"btn_next.png\"\n# --- calendar ---------------------------------------------------------------\nBTN_MODE_DAY = \"btn_mode_day.png\"\nLBL_NO_SLOTS_DAY = \"lbl_no_slots_day.png\"\nLBL_NO_SLOTS_ALL = \"lbl_no_slots_all.png\"\nBTN_NEXT_DAY = \"btn_next_day.png\"",
+        "detail": "core.slot_finder",
+        "documentation": {}
+    },
+    {
+        "label": "FIELD_CONSULATE",
+        "kind": 5,
+        "importPath": "core.slot_finder",
+        "description": "core.slot_finder",
+        "peekOfCode": "FIELD_CONSULATE = \"field_consulate.png\"\nFIELD_SERVICE = \"field_service.png\"\nFIELD_PERSON_NAME = \"field_person_name.png\"\nBTN_NEXT = \"btn_next.png\"\n# --- calendar ---------------------------------------------------------------\nBTN_MODE_DAY = \"btn_mode_day.png\"\nLBL_NO_SLOTS_DAY = \"lbl_no_slots_day.png\"\nLBL_NO_SLOTS_ALL = \"lbl_no_slots_all.png\"\nBTN_NEXT_DAY = \"btn_next_day.png\"\nSLOT_ANY_TIME = \"slot_any.png\"  # условный шаблон «07:40»",
+        "detail": "core.slot_finder",
+        "documentation": {}
+    },
+    {
+        "label": "FIELD_SERVICE",
+        "kind": 5,
+        "importPath": "core.slot_finder",
+        "description": "core.slot_finder",
+        "peekOfCode": "FIELD_SERVICE = \"field_service.png\"\nFIELD_PERSON_NAME = \"field_person_name.png\"\nBTN_NEXT = \"btn_next.png\"\n# --- calendar ---------------------------------------------------------------\nBTN_MODE_DAY = \"btn_mode_day.png\"\nLBL_NO_SLOTS_DAY = \"lbl_no_slots_day.png\"\nLBL_NO_SLOTS_ALL = \"lbl_no_slots_all.png\"\nBTN_NEXT_DAY = \"btn_next_day.png\"\nSLOT_ANY_TIME = \"slot_any.png\"  # условный шаблон «07:40»\n# ---------------------------------------------------------------------------",
+        "detail": "core.slot_finder",
+        "documentation": {}
+    },
+    {
+        "label": "FIELD_PERSON_NAME",
+        "kind": 5,
+        "importPath": "core.slot_finder",
+        "description": "core.slot_finder",
+        "peekOfCode": "FIELD_PERSON_NAME = \"field_person_name.png\"\nBTN_NEXT = \"btn_next.png\"\n# --- calendar ---------------------------------------------------------------\nBTN_MODE_DAY = \"btn_mode_day.png\"\nLBL_NO_SLOTS_DAY = \"lbl_no_slots_day.png\"\nLBL_NO_SLOTS_ALL = \"lbl_no_slots_all.png\"\nBTN_NEXT_DAY = \"btn_next_day.png\"\nSLOT_ANY_TIME = \"slot_any.png\"  # условный шаблон «07:40»\n# ---------------------------------------------------------------------------\n# SlotFinder implementation",
+        "detail": "core.slot_finder",
+        "documentation": {}
+    },
+    {
+        "label": "BTN_NEXT",
+        "kind": 5,
+        "importPath": "core.slot_finder",
+        "description": "core.slot_finder",
+        "peekOfCode": "BTN_NEXT = \"btn_next.png\"\n# --- calendar ---------------------------------------------------------------\nBTN_MODE_DAY = \"btn_mode_day.png\"\nLBL_NO_SLOTS_DAY = \"lbl_no_slots_day.png\"\nLBL_NO_SLOTS_ALL = \"lbl_no_slots_all.png\"\nBTN_NEXT_DAY = \"btn_next_day.png\"\nSLOT_ANY_TIME = \"slot_any.png\"  # условный шаблон «07:40»\n# ---------------------------------------------------------------------------\n# SlotFinder implementation\n# ---------------------------------------------------------------------------",
+        "detail": "core.slot_finder",
+        "documentation": {}
+    },
+    {
+        "label": "BTN_MODE_DAY",
+        "kind": 5,
+        "importPath": "core.slot_finder",
+        "description": "core.slot_finder",
+        "peekOfCode": "BTN_MODE_DAY = \"btn_mode_day.png\"\nLBL_NO_SLOTS_DAY = \"lbl_no_slots_day.png\"\nLBL_NO_SLOTS_ALL = \"lbl_no_slots_all.png\"\nBTN_NEXT_DAY = \"btn_next_day.png\"\nSLOT_ANY_TIME = \"slot_any.png\"  # условный шаблон «07:40»\n# ---------------------------------------------------------------------------\n# SlotFinder implementation\n# ---------------------------------------------------------------------------\nclass SlotFinder:\n    \"\"\"Encapsulates wizard navigation and calendar scanning.\"\"\"",
+        "detail": "core.slot_finder",
+        "documentation": {}
+    },
+    {
+        "label": "LBL_NO_SLOTS_DAY",
+        "kind": 5,
+        "importPath": "core.slot_finder",
+        "description": "core.slot_finder",
+        "peekOfCode": "LBL_NO_SLOTS_DAY = \"lbl_no_slots_day.png\"\nLBL_NO_SLOTS_ALL = \"lbl_no_slots_all.png\"\nBTN_NEXT_DAY = \"btn_next_day.png\"\nSLOT_ANY_TIME = \"slot_any.png\"  # условный шаблон «07:40»\n# ---------------------------------------------------------------------------\n# SlotFinder implementation\n# ---------------------------------------------------------------------------\nclass SlotFinder:\n    \"\"\"Encapsulates wizard navigation and calendar scanning.\"\"\"\n    def __init__(self, fast_delay: float = 0.4, slow_delay: float = 1.2):",
+        "detail": "core.slot_finder",
+        "documentation": {}
+    },
+    {
+        "label": "LBL_NO_SLOTS_ALL",
+        "kind": 5,
+        "importPath": "core.slot_finder",
+        "description": "core.slot_finder",
+        "peekOfCode": "LBL_NO_SLOTS_ALL = \"lbl_no_slots_all.png\"\nBTN_NEXT_DAY = \"btn_next_day.png\"\nSLOT_ANY_TIME = \"slot_any.png\"  # условный шаблон «07:40»\n# ---------------------------------------------------------------------------\n# SlotFinder implementation\n# ---------------------------------------------------------------------------\nclass SlotFinder:\n    \"\"\"Encapsulates wizard navigation and calendar scanning.\"\"\"\n    def __init__(self, fast_delay: float = 0.4, slow_delay: float = 1.2):\n        self.fast = fast_delay  # small waits between field fills",
+        "detail": "core.slot_finder",
+        "documentation": {}
+    },
+    {
+        "label": "BTN_NEXT_DAY",
+        "kind": 5,
+        "importPath": "core.slot_finder",
+        "description": "core.slot_finder",
+        "peekOfCode": "BTN_NEXT_DAY = \"btn_next_day.png\"\nSLOT_ANY_TIME = \"slot_any.png\"  # условный шаблон «07:40»\n# ---------------------------------------------------------------------------\n# SlotFinder implementation\n# ---------------------------------------------------------------------------\nclass SlotFinder:\n    \"\"\"Encapsulates wizard navigation and calendar scanning.\"\"\"\n    def __init__(self, fast_delay: float = 0.4, slow_delay: float = 1.2):\n        self.fast = fast_delay  # small waits between field fills\n        self.slow = slow_delay  # waits for page loads",
+        "detail": "core.slot_finder",
+        "documentation": {}
+    },
+    {
+        "label": "SLOT_ANY_TIME",
+        "kind": 5,
+        "importPath": "core.slot_finder",
+        "description": "core.slot_finder",
+        "peekOfCode": "SLOT_ANY_TIME = \"slot_any.png\"  # условный шаблон «07:40»\n# ---------------------------------------------------------------------------\n# SlotFinder implementation\n# ---------------------------------------------------------------------------\nclass SlotFinder:\n    \"\"\"Encapsulates wizard navigation and calendar scanning.\"\"\"\n    def __init__(self, fast_delay: float = 0.4, slow_delay: float = 1.2):\n        self.fast = fast_delay  # small waits between field fills\n        self.slow = slow_delay  # waits for page loads\n    # ------------------------------------------------------------------",
+        "detail": "core.slot_finder",
+        "documentation": {}
+    },
+    {
+        "label": "next_user_hook",
+        "kind": 2,
+        "importPath": "core.specialized_hooks",
+        "description": "core.specialized_hooks",
+        "peekOfCode": "def next_user_hook(alias: str) -> None:\n    msg = f\"▶ Перехід до користувача: <b>{alias}</b>\"\n    LOGGER.info(msg)\n    html_log.add(msg, level=\"info\")\ndef slot_found_hook(\n    country: str,\n    consulate: str,\n    service: str,\n    date: _dt.date,\n    time_: str,",
+        "detail": "core.specialized_hooks",
+        "documentation": {}
+    },
+    {
+        "label": "slot_found_hook",
+        "kind": 2,
+        "importPath": "core.specialized_hooks",
+        "description": "core.specialized_hooks",
+        "peekOfCode": "def slot_found_hook(\n    country: str,\n    consulate: str,\n    service: str,\n    date: _dt.date,\n    time_: str,\n    screenshot: Optional[Path] = None,\n) -> None:\n    msg = (\n        f\"‎🕓 Знайдено слот – {country} / {consulate} / {service} – \"",
+        "detail": "core.specialized_hooks",
+        "documentation": {}
+    },
+    {
+        "label": "slot_obtained_hook",
+        "kind": 2,
+        "importPath": "core.specialized_hooks",
+        "description": "core.specialized_hooks",
+        "peekOfCode": "def slot_obtained_hook(\n    alias: str,\n    date: _dt.date,\n    time_: str,\n    screenshot: Optional[Path] = None,\n) -> None:\n    msg = f\"✅ Слот заброньовано для <b>{alias}</b> – {date} {time_}\"\n    LOGGER.info(msg)\n    html_log.add(msg, level=\"success\", screenshot=screenshot)\ndef error_hook(text: str, screenshot: Optional[Path] = None) -> None:",
+        "detail": "core.specialized_hooks",
+        "documentation": {}
+    },
+    {
+        "label": "error_hook",
+        "kind": 2,
+        "importPath": "core.specialized_hooks",
+        "description": "core.specialized_hooks",
+        "peekOfCode": "def error_hook(text: str, screenshot: Optional[Path] = None) -> None:\n    msg = f\"❌ ПОМИЛКА – {text}\"\n    LOGGER.error(msg)\n    html_log.add(msg, level=\"error\", screenshot=screenshot)",
+        "detail": "core.specialized_hooks",
+        "documentation": {}
+    },
+    {
+        "label": "LOGGER",
+        "kind": 5,
+        "importPath": "core.specialized_hooks",
+        "description": "core.specialized_hooks",
+        "peekOfCode": "LOGGER = setup_logger(__name__)\n# ---------------------------------------------------------------------------\n# Helper: formatted timestamp\n# ---------------------------------------------------------------------------\ndef _ts() -> str:\n    return _dt.datetime.utcnow().strftime(\"%Y-%m-%d %H:%M:%S\")\n# ---------------------------------------------------------------------------\n# Hooks implementation\n# ---------------------------------------------------------------------------\ndef next_user_hook(alias: str) -> None:",
+        "detail": "core.specialized_hooks",
+        "documentation": {}
+    },
+    {
+        "label": "ChangeKind",
+        "kind": 6,
+        "importPath": "io.config_watcher",
+        "description": "io.config_watcher",
+        "peekOfCode": "class ChangeKind(Enum):\n    CREATED = auto()\n    MODIFIED = auto()\n    DELETED = auto()\n@dataclass(slots=True, frozen=True)\nclass ChangeEvent:\n    \"\"\"Struct passed to callbacks when YAML file changes.\"\"\"\n    path: _pl.Path\n    kind: ChangeKind\nclass _YAMLHandler(FileSystemEventHandler):",
+        "detail": "io.config_watcher",
+        "documentation": {}
+    },
+    {
+        "label": "ChangeEvent",
+        "kind": 6,
+        "importPath": "io.config_watcher",
+        "description": "io.config_watcher",
+        "peekOfCode": "class ChangeEvent:\n    \"\"\"Struct passed to callbacks when YAML file changes.\"\"\"\n    path: _pl.Path\n    kind: ChangeKind\nclass _YAMLHandler(FileSystemEventHandler):\n    \"\"\"Internal watchdog handler that pushes *only* ``*.yaml`` events to queue.\"\"\"\n    def __init__(self, queue: Queue[ChangeEvent]):\n        self._q = queue\n    # --- mapping watchdog → ChangeKind -------------------------------\n    def on_created(self, event: FileSystemEvent):",
+        "detail": "io.config_watcher",
+        "documentation": {}
+    },
+    {
+        "label": "_YAMLHandler",
+        "kind": 6,
+        "importPath": "io.config_watcher",
+        "description": "io.config_watcher",
+        "peekOfCode": "class _YAMLHandler(FileSystemEventHandler):\n    \"\"\"Internal watchdog handler that pushes *only* ``*.yaml`` events to queue.\"\"\"\n    def __init__(self, queue: Queue[ChangeEvent]):\n        self._q = queue\n    # --- mapping watchdog → ChangeKind -------------------------------\n    def on_created(self, event: FileSystemEvent):\n        self._maybe_push(event, ChangeKind.CREATED)\n    def on_modified(self, event: FileSystemEvent):\n        self._maybe_push(event, ChangeKind.MODIFIED)\n    def on_deleted(self, event: FileSystemEvent):",
+        "detail": "io.config_watcher",
+        "documentation": {}
+    },
+    {
+        "label": "ConfigWatcher",
+        "kind": 6,
+        "importPath": "io.config_watcher",
+        "description": "io.config_watcher",
+        "peekOfCode": "class ConfigWatcher(_th.Thread):\n    \"\"\"Separate thread that monitors a directory and notifies client code.\n    Parameters\n    ----------\n    users_dir : Path\n        Directory to watch (non‑recursive).\n    callback  : Callable[[ChangeEvent], None]\n        Function invoked **in this thread** for *each* change event.\n    poll_idle : float, default 0.1\n        Time (seconds) to sleep between internal queue polls.",
+        "detail": "io.config_watcher",
+        "documentation": {}
+    },
+    {
+        "label": "on_change",
+        "kind": 2,
+        "importPath": "io.config_watcher",
+        "description": "io.config_watcher",
+        "peekOfCode": "def on_change(evt: ChangeEvent):\n    log.info(\"%s %s\", evt.kind, evt.path.name)\nwatcher = ConfigWatcher(pathlib.Path(\"users_cfg\"), on_change)\nwatcher.start()\n```\nAuthor: chatGPT‑assistant, 2025‑05‑30\n\"\"\"\nfrom __future__ import annotations\nimport pathlib as _pl\nimport threading as _th",
+        "detail": "io.config_watcher",
+        "documentation": {}
+    },
+    {
+        "label": "log",
+        "kind": 5,
+        "importPath": "io.config_watcher",
+        "description": "io.config_watcher",
+        "peekOfCode": "log = setup_logger(__name__)\ndef on_change(evt: ChangeEvent):\n    log.info(\"%s %s\", evt.kind, evt.path.name)\nwatcher = ConfigWatcher(pathlib.Path(\"users_cfg\"), on_change)\nwatcher.start()\n```\nAuthor: chatGPT‑assistant, 2025‑05‑30\n\"\"\"\nfrom __future__ import annotations\nimport pathlib as _pl",
+        "detail": "io.config_watcher",
+        "documentation": {}
+    },
+    {
+        "label": "watcher",
+        "kind": 5,
+        "importPath": "io.config_watcher",
+        "description": "io.config_watcher",
+        "peekOfCode": "watcher = ConfigWatcher(pathlib.Path(\"users_cfg\"), on_change)\nwatcher.start()\n```\nAuthor: chatGPT‑assistant, 2025‑05‑30\n\"\"\"\nfrom __future__ import annotations\nimport pathlib as _pl\nimport threading as _th\nfrom dataclasses import dataclass\nfrom enum import Enum, auto",
+        "detail": "io.config_watcher",
+        "documentation": {}
+    },
+    {
+        "label": "LOGGER",
+        "kind": 5,
+        "importPath": "io.config_watcher",
+        "description": "io.config_watcher",
+        "peekOfCode": "LOGGER = setup_logger(__name__)\n__all__ = [\n    \"ChangeKind\",\n    \"ChangeEvent\",\n    \"ConfigWatcher\",\n]\nclass ChangeKind(Enum):\n    CREATED = auto()\n    MODIFIED = auto()\n    DELETED = auto()",
+        "detail": "io.config_watcher",
+        "documentation": {}
+    },
+    {
+        "label": "__all__",
+        "kind": 5,
+        "importPath": "io.config_watcher",
+        "description": "io.config_watcher",
+        "peekOfCode": "__all__ = [\n    \"ChangeKind\",\n    \"ChangeEvent\",\n    \"ConfigWatcher\",\n]\nclass ChangeKind(Enum):\n    CREATED = auto()\n    MODIFIED = auto()\n    DELETED = auto()\n@dataclass(slots=True, frozen=True)",
+        "detail": "io.config_watcher",
+        "documentation": {}
+    },
+    {
+        "label": "_HtmlLogger",
+        "kind": 6,
+        "importPath": "io.html_logger",
+        "description": "io.html_logger",
+        "peekOfCode": "class _HtmlLogger:\n    \"\"\"Internal singleton that appends HTML blocks + saves images.\"\"\"\n    _lock = threading.Lock()\n    def __init__(self) -> None:\n        ts = _dt.utcnow().strftime(\"%Y%m%dT%H%M%SZ\")\n        base_dir = Path(os.getenv(\"HTML_LOG_DIR\", \"html_log\")).expanduser().resolve()\n        base_dir.mkdir(parents=True, exist_ok=True)\n        self._img_dir = base_dir / \"img\"\n        self._img_dir.mkdir(exist_ok=True)\n        self._file = base_dir / f\"session_{ts}.html\"",
+        "detail": "io.html_logger",
+        "documentation": {}
+    },
+    {
+        "label": "LOGGER",
+        "kind": 5,
+        "importPath": "io.html_logger",
+        "description": "io.html_logger",
+        "peekOfCode": "LOGGER = setup_logger(__name__)\n__all__ = [\"html_log\"]\nclass _HtmlLogger:\n    \"\"\"Internal singleton that appends HTML blocks + saves images.\"\"\"\n    _lock = threading.Lock()\n    def __init__(self) -> None:\n        ts = _dt.utcnow().strftime(\"%Y%m%dT%H%M%SZ\")\n        base_dir = Path(os.getenv(\"HTML_LOG_DIR\", \"html_log\")).expanduser().resolve()\n        base_dir.mkdir(parents=True, exist_ok=True)\n        self._img_dir = base_dir / \"img\"",
+        "detail": "io.html_logger",
+        "documentation": {}
+    },
+    {
+        "label": "__all__",
+        "kind": 5,
+        "importPath": "io.html_logger",
+        "description": "io.html_logger",
+        "peekOfCode": "__all__ = [\"html_log\"]\nclass _HtmlLogger:\n    \"\"\"Internal singleton that appends HTML blocks + saves images.\"\"\"\n    _lock = threading.Lock()\n    def __init__(self) -> None:\n        ts = _dt.utcnow().strftime(\"%Y%m%dT%H%M%SZ\")\n        base_dir = Path(os.getenv(\"HTML_LOG_DIR\", \"html_log\")).expanduser().resolve()\n        base_dir.mkdir(parents=True, exist_ok=True)\n        self._img_dir = base_dir / \"img\"\n        self._img_dir.mkdir(exist_ok=True)",
+        "detail": "io.html_logger",
+        "documentation": {}
+    },
+    {
+        "label": "ConfigError",
+        "kind": 6,
+        "importPath": "io.yaml_loader",
+        "description": "io.yaml_loader",
+        "peekOfCode": "class ConfigError(RuntimeError):\n    \"\"\"Raised when a YAML file is syntactically correct but semantically invalid.\"\"\"\n# ---------------------------------------------------------------------------\n# Dataclass representing a single user entry\n# ---------------------------------------------------------------------------\n@dataclass(slots=True, frozen=True)\nclass UserConfig:\n    \"\"\"Typed representation of one YAML‑file record.\n    All date/time values are stored as *aware* Python objects in UTC.\n    \"\"\"",
+        "detail": "io.yaml_loader",
+        "documentation": {}
+    },
+    {
+        "label": "UserConfig",
+        "kind": 6,
+        "importPath": "io.yaml_loader",
+        "description": "io.yaml_loader",
+        "peekOfCode": "class UserConfig:\n    \"\"\"Typed representation of one YAML‑file record.\n    All date/time values are stored as *aware* Python objects in UTC.\n    \"\"\"\n    alias: str                          # derived from file name if missing\n    key_path: _pl.Path                  # absolute path to the *key* file\n    key_issuer: Optional[str]           # may be None for auto‑detect\n    key_password: str                   # decrypted plaintext password\n    birthdate: _dt.date                 # ISO‑formatted yyyy‑mm‑dd\n    gender: str                         # “Чоловіча” / “Жіноча” or raw text on the site",
+        "detail": "io.yaml_loader",
+        "documentation": {}
+    },
+    {
+        "label": "YAMLLoader",
+        "kind": 6,
+        "importPath": "io.yaml_loader",
+        "description": "io.yaml_loader",
+        "peekOfCode": "class YAMLLoader:\n    \"\"\"Scans a directory for ``*.yaml`` configs and yields :class:`UserConfig`.\"\"\"\n    REQUIRED_FIELDS = {\n        \"key_path\",\n        \"birthdate\",\n        \"gender\",\n        \"country\",\n        \"consulates\",\n        \"service\",\n    }",
+        "detail": "io.yaml_loader",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "io.yaml_loader",
+        "description": "io.yaml_loader",
+        "peekOfCode": "def main() -> None:  # pragma: no cover\n    import argparse, json, sys\n    parser = argparse.ArgumentParser(description=\"Validate and show YAML configs\")\n    parser.add_argument(\"path\", help=\"Directory containing user *.yaml files\")\n    parser.add_argument(\"--keys-base\", help=\"Base directory for relative key paths\")\n    args = parser.parse_args()\n    logging.basicConfig(level=_logging.INFO, format=\"%(levelname)s: %(message)s\")\n    try:\n        loader = YAMLLoader(_pl.Path(args.path), _pl.Path(args.keys_base) if args.keys_base else None)\n        cfgs = loader.load()",
+        "detail": "io.yaml_loader",
+        "documentation": {}
+    },
+    {
+        "label": "__all__",
+        "kind": 5,
+        "importPath": "io.yaml_loader",
+        "description": "io.yaml_loader",
+        "peekOfCode": "__all__ = [\n    \"UserConfig\",\n    \"YAMLLoader\",\n    \"ConfigError\",\n]\nLOGGER = setup_logger(__name__)\n# ---------------------------------------------------------------------------\n# Exceptions\n# ---------------------------------------------------------------------------\nclass ConfigError(RuntimeError):",
+        "detail": "io.yaml_loader",
+        "documentation": {}
+    },
+    {
+        "label": "LOGGER",
+        "kind": 5,
+        "importPath": "io.yaml_loader",
+        "description": "io.yaml_loader",
+        "peekOfCode": "LOGGER = setup_logger(__name__)\n# ---------------------------------------------------------------------------\n# Exceptions\n# ---------------------------------------------------------------------------\nclass ConfigError(RuntimeError):\n    \"\"\"Raised when a YAML file is syntactically correct but semantically invalid.\"\"\"\n# ---------------------------------------------------------------------------\n# Dataclass representing a single user entry\n# ---------------------------------------------------------------------------\n@dataclass(slots=True, frozen=True)",
+        "detail": "io.yaml_loader",
+        "documentation": {}
+    },
+    {
+        "label": "_Handler",
+        "kind": 6,
+        "importPath": "server.tcp_server",
+        "description": "server.tcp_server",
+        "peekOfCode": "class _Handler(socketserver.StreamRequestHandler):\n    \"\"\"One handler per client; processes newline‑terminated commands.\"\"\"\n    def handle(self) -> None:  # noqa: D401 – imperative style\n        addr = f\"{self.client_address[0]}:{self.client_address[1]}\"\n        LOGGER.info(\"Client connected: %s\", addr)\n        try:\n            for line in self.rfile:  # type: ignore[assignment]\n                cmd = line.decode().strip().lower()\n                if not cmd:\n                    continue",
+        "detail": "server.tcp_server",
+        "documentation": {}
+    },
+    {
+        "label": "_ThreadedTCPServer",
+        "kind": 6,
+        "importPath": "server.tcp_server",
+        "description": "server.tcp_server",
+        "peekOfCode": "class _ThreadedTCPServer(socketserver.ThreadingTCPServer):\n    allow_reuse_address = True\nclass ControlServer(threading.Thread):\n    \"\"\"Daemon thread that encapsulates the socketserver.\"\"\"\n    daemon = True\n    def __init__(self, host: str = \"0.0.0.0\", port: int = 4567):\n        super().__init__(name=\"ControlServer\")\n        self._srv = _ThreadedTCPServer((host, port), _Handler)\n    # ------------------------------------------------------------------\n    def run(self) -> None:  # pragma: no cover",
+        "detail": "server.tcp_server",
+        "documentation": {}
+    },
+    {
+        "label": "ControlServer",
+        "kind": 6,
+        "importPath": "server.tcp_server",
+        "description": "server.tcp_server",
+        "peekOfCode": "class ControlServer(threading.Thread):\n    \"\"\"Daemon thread that encapsulates the socketserver.\"\"\"\n    daemon = True\n    def __init__(self, host: str = \"0.0.0.0\", port: int = 4567):\n        super().__init__(name=\"ControlServer\")\n        self._srv = _ThreadedTCPServer((host, port), _Handler)\n    # ------------------------------------------------------------------\n    def run(self) -> None:  # pragma: no cover\n        LOGGER.info(\"TCP control server listening on %s:%d\", *self._srv.server_address)\n        with self._srv:",
+        "detail": "server.tcp_server",
+        "documentation": {}
+    },
+    {
+        "label": "srv",
+        "kind": 5,
+        "importPath": "server.tcp_server",
+        "description": "server.tcp_server",
+        "peekOfCode": "srv = ControlServer(host=\"0.0.0.0\", port=4567)\nsrv.start()\n# main loop ...\n```\nClients may use *netcat* or any simple TCP tool:\n```\n$ nc localhost 4567\npause\\n          # server replies \"PAUSED\"\\n\nresume\\n         # \"RESUMED\"\\n\nstop\\n           # \"STOPPING\" (server stays alive, but main loop will terminate)\\n```",
+        "detail": "server.tcp_server",
+        "documentation": {}
+    },
+    {
+        "label": "LOGGER",
+        "kind": 5,
+        "importPath": "server.tcp_server",
+        "description": "server.tcp_server",
+        "peekOfCode": "LOGGER = setup_logger(__name__)\n__all__ = [\n    \"ControlServer\",\n    \"STOP_EVT\",\n    \"PAUSE_EVT\",\n]\n# ---------------------------------------------------------------------------\n# Global control flags (thread‑safe Events)\n# ---------------------------------------------------------------------------\nSTOP_EVT: Final[threading.Event] = threading.Event()",
+        "detail": "server.tcp_server",
+        "documentation": {}
+    },
+    {
+        "label": "__all__",
+        "kind": 5,
+        "importPath": "server.tcp_server",
+        "description": "server.tcp_server",
+        "peekOfCode": "__all__ = [\n    \"ControlServer\",\n    \"STOP_EVT\",\n    \"PAUSE_EVT\",\n]\n# ---------------------------------------------------------------------------\n# Global control flags (thread‑safe Events)\n# ---------------------------------------------------------------------------\nSTOP_EVT: Final[threading.Event] = threading.Event()\nPAUSE_EVT: Final[threading.Event] = threading.Event()",
+        "detail": "server.tcp_server",
+        "documentation": {}
+    },
+    {
+        "label": "CryptoUtilTests",
+        "kind": 6,
+        "importPath": "tests.Tests",
+        "description": "tests.Tests",
+        "peekOfCode": "class CryptoUtilTests(unittest.TestCase):\n    def setUp(self):\n        self.key = generate_key()\n        os.environ[\"FERNET_SECRET_KEY\"] = self.key\n    def tearDown(self):\n        os.environ.pop(\"FERNET_SECRET_KEY\", None)\n    def test_encrypt_decrypt_roundtrip(self):\n        token = encrypt(\"secret123\")\n        self.assertEqual(decrypt(token), \"secret123\")\nclass YAMLLoaderTests(unittest.TestCase):",
+        "detail": "tests.Tests",
+        "documentation": {}
+    },
+    {
+        "label": "YAMLLoaderTests",
+        "kind": 6,
+        "importPath": "tests.Tests",
+        "description": "tests.Tests",
+        "peekOfCode": "class YAMLLoaderTests(unittest.TestCase):\n    def setUp(self):\n        self.tmp = Path(tempfile.mkdtemp())\n        self.keys = self.tmp / \"keys\"\n        self.keys.mkdir()\n        self.key_file = self.keys / \"demo.dat\"\n        self.key_file.write_text(\"dummy\")\n        os.environ[\"FERNET_SECRET_KEY\"] = generate_key()\n        enc_pass = encrypt(\"p@ss\")\n        (self.tmp / \"user1.yaml\").write_text(",
+        "detail": "tests.Tests",
+        "documentation": {}
+    },
+    {
+        "label": "ConfigWatcherTests",
+        "kind": 6,
+        "importPath": "tests.Tests",
+        "description": "tests.Tests",
+        "peekOfCode": "class ConfigWatcherTests(unittest.TestCase):\n    def setUp(self):\n        self.tmp = Path(tempfile.mkdtemp())\n        self.events: list[str] = []\n    def tearDown(self):\n        import shutil, time\n        time.sleep(0.1)  # allow watchdog to finish\n        shutil.rmtree(self.tmp, ignore_errors=True)\n    def test_create_modify_delete(self):\n        from io.config_watcher import ConfigWatcher",
+        "detail": "tests.Tests",
+        "documentation": {}
+    },
+    {
+        "label": "ProfileManagerTests",
+        "kind": 6,
+        "importPath": "tests.Tests",
+        "description": "tests.Tests",
+        "peekOfCode": "class ProfileManagerTests(unittest.TestCase):\n    def setUp(self):\n        # Make fake template dir\n        self.template = Path(tempfile.mkdtemp())\n        (self.template / \"First Run\").touch()\n        # Patch settings.yaml\n        settings = PROJECT_ROOT / \"settings.yaml\"\n        settings.write_text(f\"chrome_template: '{self.template}'\\n\")\n    def test_prepare_cleanup(self):\n        from utils.profile_manager import prepare as prepare_profile",
+        "detail": "tests.Tests",
+        "documentation": {}
+    },
+    {
+        "label": "PROJECT_ROOT",
+        "kind": 5,
+        "importPath": "tests.Tests",
+        "description": "tests.Tests",
+        "peekOfCode": "PROJECT_ROOT = Path(__file__).resolve().parent.parent\nsys.path.insert(0, str(PROJECT_ROOT))\nfrom io.yaml_loader import YAMLLoader, ConfigError\nfrom io.config_watcher import ConfigWatcher, ChangeKind\nfrom utils.crypto_utils import encrypt, decrypt, generate_key\nfrom utils.profile_manager import prepare as prepare_profile\nclass CryptoUtilTests(unittest.TestCase):\n    def setUp(self):\n        self.key = generate_key()\n        os.environ[\"FERNET_SECRET_KEY\"] = self.key",
+        "detail": "tests.Tests",
+        "documentation": {}
+    },
+    {
+        "label": "generate_key",
+        "kind": 2,
+        "importPath": "utils.crypto_utils",
+        "description": "utils.crypto_utils",
+        "peekOfCode": "def generate_key() -> str:\n    \"\"\"Return fresh Fernet key (URL-safe base64).\"\"\"\n    return Fernet.generate_key().decode()\ndef encrypt(plaintext: str) -> str:\n    \"\"\"Encrypt *plaintext* using key from env → Fernet token.\"\"\"\n    f = Fernet(_get_key())\n    return f.encrypt(plaintext.encode()).decode()\ndef decrypt(token: str) -> str:\n    \"\"\"Decrypt Fernet *token* → clear-text.\"\"\"\n    f = Fernet(_get_key())",
+        "detail": "utils.crypto_utils",
+        "documentation": {}
+    },
+    {
+        "label": "encrypt",
+        "kind": 2,
+        "importPath": "utils.crypto_utils",
+        "description": "utils.crypto_utils",
+        "peekOfCode": "def encrypt(plaintext: str) -> str:\n    \"\"\"Encrypt *plaintext* using key from env → Fernet token.\"\"\"\n    f = Fernet(_get_key())\n    return f.encrypt(plaintext.encode()).decode()\ndef decrypt(token: str) -> str:\n    \"\"\"Decrypt Fernet *token* → clear-text.\"\"\"\n    f = Fernet(_get_key())\n    try:\n        return f.decrypt(token.encode()).decode()\n    except InvalidToken as exc:",
+        "detail": "utils.crypto_utils",
+        "documentation": {}
+    },
+    {
+        "label": "decrypt",
+        "kind": 2,
+        "importPath": "utils.crypto_utils",
+        "description": "utils.crypto_utils",
+        "peekOfCode": "def decrypt(token: str) -> str:\n    \"\"\"Decrypt Fernet *token* → clear-text.\"\"\"\n    f = Fernet(_get_key())\n    try:\n        return f.decrypt(token.encode()).decode()\n    except InvalidToken as exc:\n        raise ValueError(\"Invalid Fernet token or wrong key\") from exc\n# --------------------------------------------------------------------------- #\n# CLI helper (python -m utils.crypto_utils ...)\n# --------------------------------------------------------------------------- #",
+        "detail": "utils.crypto_utils",
+        "documentation": {}
+    },
+    {
+        "label": "setup_logger",
+        "kind": 2,
+        "importPath": "utils.logger",
+        "description": "utils.logger",
+        "peekOfCode": "def setup_logger(name: str) -> logging.Logger:  # noqa: D401 – imperative style\n    \"\"\"Return configured ``logging.Logger`` instance shared across project.\"\"\"\n    log_level_str: str = os.getenv(\"LOG_LEVEL\", \"INFO\").upper()\n    numeric_level: int = getattr(logging, log_level_str, logging.INFO)\n    logger = logging.getLogger(name)\n    logger.setLevel(numeric_level)\n    # Clear duplicate handlers if re‑invoked\n    if logger.hasHandlers():\n        logger.handlers.clear()\n    fmt = \"%(asctime)s %(levelname)-8s [%(name)s] %(message)s\"",
+        "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "LOGGER",
+        "kind": 5,
+        "importPath": "utils.logger",
+        "description": "utils.logger",
+        "peekOfCode": "LOGGER = setup_logger(__name__)\n```\nCalling ``setup_logger(__name__)`` many times is safe – существующие хендлеры\nочищаются, повторной конфигурации не будет.\n\"\"\"\nfrom __future__ import annotations\nimport logging\nimport os\nfrom logging.handlers import RotatingFileHandler\nfrom pathlib import Path",
+        "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "__all__",
+        "kind": 5,
+        "importPath": "utils.logger",
+        "description": "utils.logger",
+        "peekOfCode": "__all__ = [\"setup_logger\"]\ndef setup_logger(name: str) -> logging.Logger:  # noqa: D401 – imperative style\n    \"\"\"Return configured ``logging.Logger`` instance shared across project.\"\"\"\n    log_level_str: str = os.getenv(\"LOG_LEVEL\", \"INFO\").upper()\n    numeric_level: int = getattr(logging, log_level_str, logging.INFO)\n    logger = logging.getLogger(name)\n    logger.setLevel(numeric_level)\n    # Clear duplicate handlers if re‑invoked\n    if logger.hasHandlers():\n        logger.handlers.clear()",
+        "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "prepare",
+        "kind": 2,
+        "importPath": "utils.profile_manager",
+        "description": "utils.profile_manager",
+        "peekOfCode": "def prepare(user_alias: str, keep_debug: bool = False) -> Iterator[Path]:\n    \"\"\"Context‑manager that copies template profile → temp dir and yields it.\n    Parameters\n    ----------\n    user_alias : str\n        Used in folder name to simplify debugging.\n    keep_debug : bool, default *False*\n        If *True*, directory is **not** removed on exit – handy when нужно\n        посмотреть, что именно сохранилось в профиле.\n    \"\"\"",
+        "detail": "utils.profile_manager",
+        "documentation": {}
+    },
+    {
+        "label": "LOGGER",
+        "kind": 5,
+        "importPath": "utils.profile_manager",
+        "description": "utils.profile_manager",
+        "peekOfCode": "LOGGER = setup_logger(__name__)\n__all__ = [\"prepare\"]\ndef _template_path() -> Path:\n    \"\"\"Return absolute path to template chrome profile from settings.yaml.\"\"\"\n    from yaml import safe_load\n    settings_file = Path(__file__).resolve().parent.parent / \"settings.yaml\"\n    if not settings_file.exists():\n        raise RuntimeError(\"settings.yaml not found – cannot locate template profile\")\n    with settings_file.open(\"rt\", encoding=\"utf-8\") as fh:\n        cfg = safe_load(fh) or {}",
+        "detail": "utils.profile_manager",
+        "documentation": {}
+    },
+    {
+        "label": "__all__",
+        "kind": 5,
+        "importPath": "utils.profile_manager",
+        "description": "utils.profile_manager",
+        "peekOfCode": "__all__ = [\"prepare\"]\ndef _template_path() -> Path:\n    \"\"\"Return absolute path to template chrome profile from settings.yaml.\"\"\"\n    from yaml import safe_load\n    settings_file = Path(__file__).resolve().parent.parent / \"settings.yaml\"\n    if not settings_file.exists():\n        raise RuntimeError(\"settings.yaml not found – cannot locate template profile\")\n    with settings_file.open(\"rt\", encoding=\"utf-8\") as fh:\n        cfg = safe_load(fh) or {}\n    t = cfg.get(\"chrome_template\")",
+        "detail": "utils.profile_manager",
+        "documentation": {}
+    },
+    {
+        "label": "bin_dir",
+        "kind": 5,
+        "importPath": "venv.Scripts.activate_this",
+        "description": "venv.Scripts.activate_this",
+        "peekOfCode": "bin_dir = os.path.dirname(abs_file)\nbase = bin_dir[: -len('Scripts') - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir, *os.environ.get(\"PATH\", \"\").split(os.pathsep)])\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = '' or os.path.basename(base)\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in '..\\\\Lib\\\\site-packages'.split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))",
+        "detail": "venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "base",
+        "kind": 5,
+        "importPath": "venv.Scripts.activate_this",
+        "description": "venv.Scripts.activate_this",
+        "peekOfCode": "base = bin_dir[: -len('Scripts') - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir, *os.environ.get(\"PATH\", \"\").split(os.pathsep)])\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = '' or os.path.basename(base)\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in '..\\\\Lib\\\\site-packages'.split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if '' else path)",
+        "detail": "venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"PATH\"]",
+        "kind": 5,
+        "importPath": "venv.Scripts.activate_this",
+        "description": "venv.Scripts.activate_this",
+        "peekOfCode": "os.environ[\"PATH\"] = os.pathsep.join([bin_dir, *os.environ.get(\"PATH\", \"\").split(os.pathsep)])\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = '' or os.path.basename(base)\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in '..\\\\Lib\\\\site-packages'.split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if '' else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix",
+        "detail": "venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"VIRTUAL_ENV\"]",
+        "kind": 5,
+        "importPath": "venv.Scripts.activate_this",
+        "description": "venv.Scripts.activate_this",
+        "peekOfCode": "os.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = '' or os.path.basename(base)\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in '..\\\\Lib\\\\site-packages'.split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if '' else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"VIRTUAL_ENV_PROMPT\"]",
+        "kind": 5,
+        "importPath": "venv.Scripts.activate_this",
+        "description": "venv.Scripts.activate_this",
+        "peekOfCode": "os.environ[\"VIRTUAL_ENV_PROMPT\"] = '' or os.path.basename(base)\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in '..\\\\Lib\\\\site-packages'.split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if '' else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "prev_length",
+        "kind": 5,
+        "importPath": "venv.Scripts.activate_this",
+        "description": "venv.Scripts.activate_this",
+        "peekOfCode": "prev_length = len(sys.path)\nfor lib in '..\\\\Lib\\\\site-packages'.split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if '' else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.path[:]",
+        "kind": 5,
+        "importPath": "venv.Scripts.activate_this",
+        "description": "venv.Scripts.activate_this",
+        "peekOfCode": "sys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.real_prefix",
+        "kind": 5,
+        "importPath": "venv.Scripts.activate_this",
+        "description": "venv.Scripts.activate_this",
+        "peekOfCode": "sys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.prefix",
+        "kind": 5,
+        "importPath": "venv.Scripts.activate_this",
+        "description": "venv.Scripts.activate_this",
+        "peekOfCode": "sys.prefix = base",
+        "detail": "venv.Scripts.activate_this",
+        "documentation": {}
+    }
+]

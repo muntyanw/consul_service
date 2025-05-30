@@ -1,0 +1,32 @@
+# Global configuration for e‑consul booking bot
+
+# ---------------------------------------------
+
+# All paths are **project‑relative** unless absolute.
+
+# Adjust to your environment before running `python manager.py`.
+
+# Directory that contains user YAML configs
+
+users\_dir: "users\_cfg"
+
+# Base directory for electronic key files (used when key\_path is relative)
+
+keys\_dir: "keys"
+
+# Template Chrome profile prepared manually once (zoom 90 %, no pop‑ups)
+
+chrome\_template: "chrome\_template/profile"
+
+# HTML log output directory (can be overridden via env HTML\_LOG\_DIR)
+
+html\_log\_dir: "html\_log"
+
+# TCP server port; change if 4567 is already occupied
+
+control\_port: 4567
+
+# Monitor resolution expected by GUI driver (for sanity check)
+
+monitor\_width: 1920
+monitor\_height: 1080
