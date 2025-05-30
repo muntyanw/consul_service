@@ -26,8 +26,8 @@ import sys
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from io.yaml_loader import YAMLLoader, ConfigError
-from io.config_watcher import ConfigWatcher, ChangeKind
+from bot_io.yaml_loader import YAMLLoader, ConfigError
+from bot_io.config_watcher import ConfigWatcher, ChangeKind
 from utils.crypto_utils import encrypt, decrypt, generate_key
 from utils.profile_manager import prepare as prepare_profile
 
@@ -101,8 +101,8 @@ class ConfigWatcherTests(unittest.TestCase):
         shutil.rmtree(self.tmp, ignore_errors=True)
 
     def test_create_modify_delete(self):
-        from io.config_watcher import ConfigWatcher
-        from io.config_watcher import ChangeEvent
+        from bot_io.config_watcher import ConfigWatcher
+        from bot_io.config_watcher import ChangeEvent
 
         def on_evt(evt: ChangeEvent):
             self.events.append(evt.kind.name)

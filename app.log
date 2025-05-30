@@ -1,0 +1,13 @@
+2025-05-30 12:51:15,946 WARNING  [core.gui_driver] Монитор имеет 3440x1440, ТЗ требует 1920x1080 – координаты могут не совпасть.
+2025-05-30 12:53:51,532 WARNING  [core.gui_driver] Монитор имеет 3440x1440, ТЗ требует 1920x1080 – координаты могут не совпасть.
+2025-05-30 13:02:07,333 WARNING  [core.gui_driver] Монитор имеет 3440x1440, ТЗ требует 1920x1080 – координаты могут не совпасть.
+2025-05-30 13:03:23,726 WARNING  [core.gui_driver] Монитор имеет 3440x1440, ТЗ требует 1920x1080 – координаты могут не совпасть.
+2025-05-30 13:07:27,792 WARNING  [core.gui_driver] Монитор имеет 3440x1440, ТЗ требует 1920x1080 – координаты могут не совпасть.
+2025-05-30 13:09:24,208 WARNING  [core.gui_driver] Монитор имеет 3440x1440, ТЗ требует 1920x1080 – координаты могут не совпасть.
+2025-05-30 13:12:02,204 WARNING  [core.gui_driver] Монитор имеет 3440x1440, ТЗ требует 1920x1080 – координаты могут не совпасть.
+2025-05-30 13:12:02,289 ERROR    [__main__] Failed to load configs: Config directory does not exist: C:\prjs\consul\users_cfg
+2025-05-30 13:20:20,460 WARNING  [core.gui_driver] Монитор имеет 3440x1440, ТЗ требует 1920x1080 – координаты могут не совпасть.
+2025-05-30 13:20:20,550 ERROR    [__main__] Failed to load configs: Config directory does not exist: C:\prjs\consul\users_cfg
+2025-05-30 13:20:40,622 WARNING  [core.gui_driver] Монитор имеет 3440x1440, ТЗ требует 1920x1080 – координаты могут не совпасть.
+2025-05-30 13:20:40,715 ERROR    [__main__] Failed to load configs: Config directory does not exist: C:\prjs\consul\users_cfg
+2025-05-30 13:23:03,691 ERROR    [__main__] Failed to load configs: Config directory does not exist: C:\prjs\consul\users_cfg

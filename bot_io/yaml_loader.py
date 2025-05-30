@@ -63,11 +63,13 @@ class UserConfig:
     surname: Optional[str]
     name: Optional[str]
     patronymic: Optional[str]           # None → «для себе» / missing patronymic
+    
+    source_file: _pl.Path = field(repr=False, compare=False)
 
     min_date: Optional[_dt.date] = None  # absolute floor date
     relative_days: Optional[int] = None  # days from *now*
 
-    source_file: _pl.Path = field(repr=False, compare=False)
+    
 
     # ---------------------------------------------------------------------
     # Helper API

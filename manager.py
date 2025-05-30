@@ -27,8 +27,8 @@ from typing import Dict, Optional
 
 from core.gui_driver import chrome_session
 from core.slot_finder import SlotFinder
-from io.config_watcher import ChangeEvent, ChangeKind, ConfigWatcher
-from io.yaml_loader import UserConfig, YAMLLoader, ConfigError
+from bot_io.config_watcher import ChangeEvent, ChangeKind, ConfigWatcher
+from bot_io.yaml_loader import UserConfig, YAMLLoader, ConfigError
 from server.tcp_server import ControlServer, PAUSE_EVT, STOP_EVT
 from utils.logger import setup_logger
 
@@ -118,7 +118,7 @@ def _install_signal_handlers():
 # ---------------------------------------------------------------------------
 
 def main() -> None:  # noqa: C901 – main can be lengthy
-    settings_file = Path(__file__).resolve().parent.parent / "settings.yaml"
+    settings_file = Path(__file__).resolve().parent / "settings.yaml"
     with settings_file.open("rt", encoding="utf-8") as fh:
         import yaml
 

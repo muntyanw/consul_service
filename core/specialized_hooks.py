@@ -26,7 +26,7 @@ import datetime as _dt
 from pathlib import Path
 from typing import Optional
 
-from io.html_logger import html_log
+from bot_io.html_logger import html_log
 from utils.logger import setup_logger
 
 LOGGER = setup_logger(__name__)

@@ -1,0 +1,12 @@
+# Runtime
+pyautogui>=0.9
+opencv-python>=4.9
+pillow>=10
+watchdog>=4
+cryptography>=42
+PyYAML>=6
+numpy>=1.24
+screeninfo
+
+# Tests / dev
+pytest>=8

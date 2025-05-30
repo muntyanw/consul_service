@@ -27,6 +27,7 @@ html_log.add("Знайдено слот", screenshot_path)
 """
 from __future__ import annotations
 
+import os
 import shutil
 import threading
 from datetime import datetime as _dt

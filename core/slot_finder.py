@@ -28,7 +28,7 @@ import pyautogui as pag
 
 from core import gui_driver as gd
 from utils.logger import setup_logger
-from io.yaml_loader import UserConfig
+from bot_io.yaml_loader import UserConfig
 
 try:
     # lazy import to avoid circular dep when hooks file ещё не создан

@@ -24,6 +24,8 @@ import cv2  # type: ignore
 import numpy as np  # type: ignore
 import pyautogui as pag  # PyAutoGUI
 
+from screeninfo import get_monitors
+
 from utils.logger import setup_logger
 from utils.profile_manager import prepare as prepare_profile
 
@@ -35,14 +37,17 @@ pag.FAILSAFE = True
 # ---------------------------------------------------------------------------
 # Constants
 # ---------------------------------------------------------------------------
-SCREEN_W, SCREEN_H = pag.size()
+# Try to find a monitor with the exact 1920×1080 resolution
 TARGET_RES: Final[Tuple[int, int]] = (1920, 1080)
-
-if (SCREEN_W, SCREEN_H) != TARGET_RES:
+monitors = get_monitors()
+match = next((m for m in monitors if (m.width, m.height) == TARGET_RES), None)
+if match:
+    SCREEN_W, SCREEN_H = TARGET_RES
+else:
+    SCREEN_W, SCREEN_H = pag.size()
     LOGGER.warning(
-        "Монитор имеет %sx%s, ТЗ требует 1920x1080 – координаты могут не совпасть.",
-        SCREEN_W,
-        SCREEN_H,
+        "Detected virtual screen %sx%s, but using actual %sx%s for templates",
+        pag.size()[0], pag.size()[1], SCREEN_W, SCREEN_H
     )
 
 TEMPLATE_DIR: Final[Path] = Path(__file__).resolve().parent.parent / "assets"
@@ -52,25 +57,33 @@ TEMPLATE_DIR: Final[Path] = Path(__file__).resolve().parent.parent / "assets"
 # Public helpers
 # ---------------------------------------------------------------------------
 
-def launch_chrome(profile_dir: Path, url: str = "https://e-consul.gov.ua/") -> subprocess.Popen:  # noqa: D401
-    """Запустить Chrome в fullscreen с заданным профилем.
-
-    Returns
-    -------
-    subprocess.Popen
-        Дескриптор процесса Chrome.
-    """
+def launch_chrome(profile_dir: Path, url: str = "https://e-consul.gov.ua/") -> subprocess.Popen:
+    """Launch Chrome at 1920×1080 on the monitor matching TARGET_RES or primary."""
     chrome_path = _detect_chrome()
 
+    # Detect monitors
+    try:
+        from screeninfo import get_monitors
+        mons = get_monitors()
+        # Ищем монитор нужного разрешения или берём первый
+        mon = next((m for m in mons if (m.width, m.height) == TARGET_RES), mons[0])
+        offset_x, offset_y = mon.x, mon.y
+    except Exception:
+        offset_x, offset_y = 0, 0
+
+    width, height = TARGET_RES
     cmd = [
         str(chrome_path),
         f"--user-data-dir={profile_dir}",
         "--new-window",
-        "--start-fullscreen",
+        f"--window-size={width},{height}",
+        f"--window-position={offset_x},{offset_y}",
         url,
     ]
-    LOGGER.debug("Run Chrome: %s", cmd)
+    LOGGER.debug(f"Run Chrome at {width}x{height}+{offset_x}+{offset_y}: {cmd}")
     return subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+
 
 
 def click_image(name: str, timeout: float = 8.0, confidence: float = 0.9) -> bool:
