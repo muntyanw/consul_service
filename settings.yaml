@@ -8,25 +8,38 @@
 
 # Directory that contains user YAML configs
 
-users\_dir: "users\_cfg"
+users_dir: "data/users_cfg"
 
-# Base directory for electronic key files (used when key\_path is relative)
+# Base directory for electronic key files (used when key_path is relative)
 
-keys\_dir: "keys"
+keys_dir: "data/keys"
+
+ui_images: "assets/ui_images"
 
 # Template Chrome profile prepared manually once (zoom 90 %, no pop‑ups)
 
-chrome\_template: "chrome\_template/profile"
+chrome_template: "data/chrome_template/profile"
+chrome_templates: "data/chrome_template/profiles" #if keep_profiles is true
+keep_profiles: true  # Whether to keep Chrome profiles after use
 
-# HTML log output directory (can be overridden via env HTML\_LOG\_DIR)
+# HTML log output directory (can be overridden via env HTML_LOG_DIR)
 
-html\_log\_dir: "html\_log"
+html_log_dir: "data/html_log"
 
 # TCP server port; change if 4567 is already occupied
 
-control\_port: 4567
+control_port: 4567
 
 # Monitor resolution expected by GUI driver (for sanity check)
 
-monitor\_width: 1920
-monitor\_height: 1080
+monitor_width: 1920
+monitor_height: 1080
+monitor_index: 2
+
+#-------------------------------------------------------------------
+log_level: "debug"
+
+tessdata_prefix: "C:\\Program Files\\Tesseract-OCR"
+tesseract_cmd: "C:\\Program Files\\Tesseract-OCR\\tesseract.exe"
+
+

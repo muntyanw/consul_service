@@ -27,14 +27,14 @@ import os
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
 from typing import Final
+from project_config import LOG_LEVEL
 
 __all__ = ["setup_logger"]
 
 
 def setup_logger(name: str) -> logging.Logger:  # noqa: D401 – imperative style
     """Return configured ``logging.Logger`` instance shared across project."""
-    log_level_str: str = os.getenv("LOG_LEVEL", "INFO").upper()
-    numeric_level: int = getattr(logging, log_level_str, logging.INFO)
+    numeric_level: int = getattr(logging, LOG_LEVEL, logging.INFO)
 
     logger = logging.getLogger(name)
     logger.setLevel(numeric_level)
@@ -53,7 +53,7 @@ def setup_logger(name: str) -> logging.Logger:  # noqa: D401 – imperative styl
     logger.addHandler(console)
 
     # --- Rotating file handler ---------------------------------------
-    raw_path: str = os.getenv("LOG_FILE", "app.log")
+    raw_path: str = os.getenv("LOG_FILE", "data/app.log")
     base_dir: Path = Path(__file__).resolve().parent.parent  # project root
     log_path: Path = Path(raw_path) if Path(raw_path).is_absolute() else base_dir / raw_path
     log_path.parent.mkdir(parents=True, exist_ok=True)

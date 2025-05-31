@@ -55,12 +55,16 @@ pip install -r requirements.txt
 `requirements.txt` example:
 
 ```
-pyautogui
-opencv-python
-pillow
-watchdog
-cryptography
-pyyaml
+# Runtime
+pyautogui>=0.9
+opencv-python>=4.9
+pillow>=10
+watchdog>=4
+cryptography>=42
+PyYAML>=6
+numpy>=1.24
+screeninfo
+pytest>=8
 ```
 
 *(PyAutoGUI pulls PyScreeze + PyGetWindow; Pillow is needed for screenshots)*
@@ -74,6 +78,7 @@ pyyaml
 
    ```bash
    chrome.exe --user-data-dir="chrome_template/profile" --start-fullscreen
+    & "C:\Program Files\Google\Chrome\Application\chrome.exe" --user-data-dir="C:\prjs\consul\data\chrome_template\profile" --start-fullscreen
    ```
 
    * Set zoom to 90 % so all form fields fit on screen.
@@ -85,6 +90,7 @@ pyyaml
    ```bash
    python -m utils.crypto_utils --key   # copy output
    setx FERNET_SECRET_KEY "<generated>"
+   $env:FERNET_SECRET_KEY = "Ze4R_7PqlIvFRCy2lZSFKgV8t6hlMpJw4bKosuO8XAw="
    ```
 
 3. **Encrypt each user’s key password**
@@ -152,15 +158,7 @@ python Tests.py -v
 All tests are self‑contained and require no GUI.
 
 ---
-
-## 6  Troubleshooting
-
-| Symptom                       | Possible cause                                                                                              |
-| ----------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| **Button template not found** | Wrong zoom level / outdated screenshot – recapture PNG at 100 % or adjust `confidence` in `slot_finder.py`. |
-| **Chrome not found**          | Add custom path in `_detect_chrome()` inside `core.gui_driver`.                                             |
-| **Fernet decrypt error**      | `FERNET_SECRET_KEY` environment variable not set or mismatched with the token.                              |
-| **Cloudflare CAPTCHA**        | Manual intervention or integrate a CAPTCHA‑solving service (not included).                                  |
+                                 |
 
 ---
 

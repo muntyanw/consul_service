@@ -1,77 +1,74 @@
-"""gui_driver.py
-~~~~~~~~~~~~~~~~
-
-Low‑level wrapper around **PyAutoGUI** and **OpenCV** that gives the rest of the
-project a *clean*, high‑level API:
-
-* открыть Chrome с нужным профилем;
-* искать элементы на экране по PNG‑шаблону (учитывая текущий zoom 90–100 %);
-* перемещать мышь «по‑человечески» (Bezier‑кривая + случайные паузы);
-* клики, ввод текста, горячие клавиши;
-* базовые утилиты (fullscreen, zoom_to_fit, take_screenshot).
-
-Это **не** бизнес‑логика (SlotFinder), а тонкий "водитель" GUI.
 """
+core/gui_driver.py
+~~~~~~~~~~~~~~~~~~
+
+Low-level wrapper around PyAutoGUI + OpenCV (и опционально OCR), 
+адаптирован для работы на одном мониторе 1920×1080 в мульти-мониторной конфигурации.
+
+* Определяет целевой монитор по разрешению TARGET_RES.
+* Все скриншоты берутся только из этого монитора (с region).
+* Координаты кликов и поиска смещаются обратно в глобальные (с учётом x, y целевого монитора).
+"""
+
 from __future__ import annotations
 
+import os
 import random
 import subprocess
 import time
 from pathlib import Path
-from typing import Final, Tuple
+from typing import Final, Iterator, Tuple
 
-import cv2  # type: ignore
-import numpy as np  # type: ignore
-import pyautogui as pag  # PyAutoGUI
-
-from screeninfo import get_monitors
+import cv2
+import numpy as np
+import pyautogui as pag  
+from contextlib import contextmanager
+import pytesseract
+import matplotlib.pyplot as plt
+import mss
+import mss.tools
+import ctypes
+from ctypes import wintypes
 
 from utils.logger import setup_logger
-from utils.profile_manager import prepare as prepare_profile
+from utils.profile_manager import prepare_profile
+from project_config import LOG_LEVEL, HTML_LOG_DIR, TEMPLATE_DIR, MONITOR_WIDTH, MONITOR_HEIGHT,MONITOR_INDEX,TESSERCAT_CMD,TESSDATA_PREFIX
 
 LOGGER = setup_logger(__name__)
-
-# Disable PyAutoGUI failsafe?  Better keep it true and document "move mouse to top‑left".
-pag.FAILSAFE = True
+pag.FAILSAFE = True  # оставить возможность «движения мыши в угол для экстренной остановки»
 
 # ---------------------------------------------------------------------------
-# Constants
+# Constants: ищем монитор с разрешением необходимым для работы
 # ---------------------------------------------------------------------------
-# Try to find a monitor with the exact 1920×1080 resolution
-TARGET_RES: Final[Tuple[int, int]] = (1920, 1080)
-monitors = get_monitors()
-match = next((m for m in monitors if (m.width, m.height) == TARGET_RES), None)
-if match:
-    SCREEN_W, SCREEN_H = TARGET_RES
-else:
-    SCREEN_W, SCREEN_H = pag.size()
-    LOGGER.warning(
-        "Detected virtual screen %sx%s, but using actual %sx%s for templates",
-        pag.size()[0], pag.size()[1], SCREEN_W, SCREEN_H
-    )
+TARGET_RES: Final[Tuple[int, int]] = (MONITOR_WIDTH, MONITOR_HEIGHT)
 
-TEMPLATE_DIR: Final[Path] = Path(__file__).resolve().parent.parent / "assets"
-
-
+with mss.mss() as sct:
+    monitors = sct.monitors  # список словарей; monitors[0] — весь виртуальный экран
+    # monitors[1] — первый физический экран; monitors[2] — второй и т.д.
+    # Мы ожидаем MONITOR_INDEX 1-based
+    if 1 <= MONITOR_INDEX < len(monitors):
+        mon = monitors[MONITOR_INDEX]
+        MON_X, MON_Y, MON_W, MON_H = mon["left"], mon["top"], mon["width"], mon["height"]
+        LOGGER.info("Using MSS monitor #%d: offset (%d,%d), size %dx%d",
+                    MONITOR_INDEX, MON_X, MON_Y, MON_W, MON_H)
+    else:
+        # fallback: если указанный индекс вне диапазона — берем первый монитор
+        mon = monitors[1]
+        MON_X, MON_Y, MON_W, MON_H = mon["left"], mon["top"], mon["width"], mon["height"]
+        LOGGER.warning("monitor_index=%d is invalid, using primary monitor #%d", MONITOR_INDEX, 1)
+    
 # ---------------------------------------------------------------------------
 # Public helpers
 # ---------------------------------------------------------------------------
-
 def launch_chrome(profile_dir: Path, url: str = "https://e-consul.gov.ua/") -> subprocess.Popen:
-    """Launch Chrome at 1920×1080 on the monitor matching TARGET_RES or primary."""
+    """
+    Launch Chrome at 1920×1080 on the monitor matching TARGET_RES (или primary).
+    """
     chrome_path = _detect_chrome()
 
-    # Detect monitors
-    try:
-        from screeninfo import get_monitors
-        mons = get_monitors()
-        # Ищем монитор нужного разрешения или берём первый
-        mon = next((m for m in mons if (m.width, m.height) == TARGET_RES), mons[0])
-        offset_x, offset_y = mon.x, mon.y
-    except Exception:
-        offset_x, offset_y = 0, 0
+    width, height = MON_W, MON_H
+    offset_x, offset_y = MON_X, MON_Y
 
-    width, height = TARGET_RES
     cmd = [
         str(chrome_path),
         f"--user-data-dir={profile_dir}",
@@ -80,14 +77,15 @@ def launch_chrome(profile_dir: Path, url: str = "https://e-consul.gov.ua/") -> s
         f"--window-position={offset_x},{offset_y}",
         url,
     ]
-    LOGGER.debug(f"Run Chrome at {width}x{height}+{offset_x}+{offset_y}: {cmd}")
+    LOGGER.debug("Run Chrome at %dx%d+%d+%d: %s", width, height, offset_x, offset_y, cmd)
     return subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 
-
-
 def click_image(name: str, timeout: float = 8.0, confidence: float = 0.9) -> bool:
-    """Найти PNG‑шаблон на экране и кликнуть центр. Возврат True/False."""
+    """
+    Найти PNG-шаблон на экране (в пределах целевого монитора) и кликнуть его центр.
+    Возвращает True, если кликнули, False если не найдено за timeout секунд.
+    """
     path = TEMPLATE_DIR / name
     if not path.exists():
         raise FileNotFoundError(path)
@@ -96,34 +94,60 @@ def click_image(name: str, timeout: float = 8.0, confidence: float = 0.9) -> boo
     while time.perf_counter() < deadline:
         pos = _locate(path, confidence)
         if pos:
-            _human_move_and_click(*pos)
+            # pos возвращается как (x_center_rel, y_center_rel) внутри области полу-монитора,
+            # но мы сразу сконвертируем его в глобальные координаты:
+            abs_x = MON_X + pos[0]
+            abs_y = MON_Y + pos[1]
+            _human_move_and_click(abs_x, abs_y)
             return True
+        # Короткая пауза, чтобы не грузить CPU
+        time.sleep(0.1)
+
     return False
 
 
-def type_text(text: str, interval: tuple[float, float] = (0.05, 0.12)) -> None:
-    """Печатать строку с небольшим случайным интервалом между символами."""
+def type_text(text: str, interval: Tuple[float, float] = (0.05, 0.12)) -> None:
+    """
+    Печатать строку с небольшим случайным интервалом между символами.
+    """
     for ch in text:
         pag.typewrite(ch)
         time.sleep(random.uniform(*interval))
 
 
 def take_screenshot() -> Path:
-    """Сохранить PNG скрин в tmp‑dir, вернуть Path."""
+    """
+    Сделать PNG скрин целевого MONITOR_INDEX с помощью MSS и вернуть Path.
+    """
     import tempfile, datetime as dt
 
     ts = dt.datetime.utcnow().isoformat().replace(":", "-")
-    path = Path(tempfile.gettempdir()) / f"scr_{ts}.png"
-    pag.screenshot(str(path))
-    return path
+    output_path = Path(tempfile.gettempdir()) / f"scr_{ts}.png"
+
+    with mss.mss() as sct:
+        # Снимаем именно ту область, что описывает монитора:
+        monitor_region = {"top": MON_Y, "left": MON_X, "width": MON_W, "height": MON_H}
+        img_data = sct.grab(monitor_region)
+        # Записываем в PNG (MSS возвращает raw-битмап):
+        mss.tools.to_png(img_data.rgb, img_data.size, output=str(output_path))
+
+    return output_path
 
 
+def show_image(img) -> None:
+    # Показать изображение через matplotlib
+    plt.figure(figsize=(8, 5))
+    plt.imshow(img)
+    plt.axis('off')
+    plt.title("Tesseract Input: Full-Screen Screenshot")
+    plt.show()
 # ---------------------------------------------------------------------------
 # Internal helpers
 # ---------------------------------------------------------------------------
-
 def _detect_chrome() -> Path:
-    """Best‑effort поиск chrome.exe / google‑chrome в common locations."""
+    """
+    Best-effort поиск chrome.exe / google-chrome в common locations.
+    """
     candidates = [
         Path(r"C:/Program Files/Google/Chrome/Application/chrome.exe"),
         Path(r"C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"),
@@ -137,25 +161,46 @@ def _detect_chrome() -> Path:
 
 
 def _locate(template_path: Path, confidence: float) -> tuple[int, int] | None:
-    """Return (x, y) центра совпадения или None."""
-    screenshot = pag.screenshot()
-    scr_np = cv2.cvtColor(np.array(screenshot), cv2.COLOR_RGB2BGR)
+    """
+    Ищет шаблон (template_path) внутри прямоугольника MON_X..MON_W, MON_Y..MON_H.
+    Возвращает (x_center_rel, y_center_rel) или None.
+    """
+    # 1) Снимаем область MON_X..MON_H с помощью MSS
+    with mss.mss() as sct:
+        monitor_region = {"top": MON_Y, "left": MON_X, "width": MON_W, "height": MON_H}
+        img_data = sct.grab(monitor_region)
+        # Конвертируем в numpy.ndarray в BGR для OpenCV:
+        scr_np = np.array(img_data.rgb, dtype=np.uint8)
+        scr_np = scr_np.reshape((img_data.height, img_data.width, 3))
+        scr_bgr = cv2.cvtColor(scr_np, cv2.COLOR_RGB2BGR)
+
+    # 2) Загружаем шаблон (PNG) как BGR
     templ = cv2.imread(str(template_path))
-    res = cv2.matchTemplate(scr_np, templ, cv2.TM_CCOEFF_NORMED)
+    if templ is None:
+        raise RuntimeError(f"Cannot read template: {template_path}")
+
+    # 3) Поиск с помощью matchTemplate
+    res = cv2.matchTemplate(scr_bgr, templ, cv2.TM_CCOEFF_NORMED)
     loc = np.where(res >= confidence)
     try:
-        y, x = next(zip(*loc[::-1]))  # first match
+        y_loc, x_loc = next(zip(*loc[::-1]))  # top-left внутри локальной (0..MON_W,0..MON_H)
     except StopIteration:
         return None
+
     h, w, _ = templ.shape
-    return (x + w // 2, y + h // 2)
+    center_x_rel = x_loc + w // 2
+    center_y_rel = y_loc + h // 2
+    return (center_x_rel, center_y_rel)
 
 
-def _human_move_and_click(x: int, y: int, duration: tuple[float, float] = (0.4, 0.9)) -> None:
-    """Движение по кривой Безье + click."""
-    cx, cy = pag.position()
+def _human_move_and_click(x: int, y: int, duration: Tuple[float, float] = (0.4, 0.9)) -> None:
+    """
+    Передать абсолютные глобальные координаты (x, y) и выполнить плавное движение
+    “по-человечески” + клик. Используется Bezier-кривая + небольшие случайные паузы.
+    """
+    cx, cy = pag.position()  # текущая абсолютная позиция мыши
 
-    # Control points: start – two random anchors – end
+    # Точки для кривой Безье: старт → 2 случайные опоры → цель
     anchors = [
         (cx, cy),
         _rand_near(cx, cy, 100),
@@ -172,32 +217,126 @@ def _human_move_and_click(x: int, y: int, duration: tuple[float, float] = (0.4, 
     pag.click()
 
 
-def _bezier_point(pts: list[tuple[int, int]], t: float) -> tuple[int, int]:
-    """Quadratic/ cubic bezier evaluation (De Casteljau) – generic n‑degree."""
+def _bezier_point(pts: list[Tuple[int, int]], t: float) -> Tuple[int, int]:
+    """
+    Quadratic/ cubic bezier evaluation (De Casteljau) – generic n-degree.
+    Вход: pts — список точек (x, y), t от 0.0 до 1.0.
+    Выход: координаты точки на кривой Безье.
+    """
     pts_arr = np.array(pts, dtype=float)
     while len(pts_arr) > 1:
         pts_arr = (1 - t) * pts_arr[:-1] + t * pts_arr[1:]
     return int(pts_arr[0][0]), int(pts_arr[0][1])
 
 
-def _rand_near(x: int, y: int, radius: int = 80) -> tuple[int, int]:
+def _rand_near(x: int, y: int, radius: int = 80) -> Tuple[int, int]:
+    """
+    Вернёт точку в случайном направлении на расстоянии [radius*0.3 .. radius]
+    от (x, y). Используется для более «человеческого» движения мыши.
+    """
     ang = random.uniform(0, 2 * np.pi)
     r = random.uniform(radius * 0.3, radius)
     return int(x + r * np.cos(ang)), int(y + r * np.sin(ang))
 
+def draw_monitor_region_on_screen(color: tuple[int,int,int] = (0, 0, 255), thickness: int = 4) -> None:
+    """
+    Нарисовать на рабочем столе (на самой поверхности экрана) полупрозрачный (через XOR)
+    или сплошной (через GDI Rectangle) контур области MON_X, MON_Y, MON_W, MON_H.
+
+    Параметры:
+    ---------
+    color : BGR-цвет рамки, например (0, 0, 255) для красного (как OpenCV).
+    thickness : толщина линии рамки в пикселях.
+
+    При запуске этой функции вы увидите чёткую рамку на экране. Она отрисуется поверх всего,
+    но исчезнет при следующем обновлении окна или при следующем вызове (в зависимости от режима).
+    """
+    # 1) Сначала вычислим координаты нужного монитора через MSS:
+    with mss.mss() as sct:
+        monitors = sct.monitors
+        if 1 <= MONITOR_INDEX < len(monitors):
+            mon = monitors[MONITOR_INDEX]
+        else:
+            mon = monitors[1]  # если указан неверный индекс, взять первый
+        MON_X, MON_Y, MON_W, MON_H = mon["left"], mon["top"], mon["width"], mon["height"]
+
+    # 2) Получаем контекст устройства (DC) для всего экрана (hwnd=0 → весь экран)
+    hdc = ctypes.windll.user32.GetDC(0)
+
+    # 3) Создаём перо нужного цвета и толщины
+    #    В GDI цвет задаётся в формате 0x00BBGGRR, поэтому перекладываем:
+    b, g, r = color
+    gdi_color = (r << 16) | (g << 8) | b
+
+    PS_SOLID = 0          # сплошная линия
+    pen = ctypes.windll.gdi32.CreatePen(PS_SOLID, thickness, gdi_color)
+    old_pen = ctypes.windll.gdi32.SelectObject(hdc, pen)
+
+    # 4) Получаем «пустую кисть» (NULL_BRUSH), чтобы внутри не заливать
+    NULL_BRUSH = 5  # индекс в GDI для «null brush»
+    brush = ctypes.windll.gdi32.GetStockObject(NULL_BRUSH)
+    old_brush = ctypes.windll.gdi32.SelectObject(hdc, brush)
+
+    # 5) Рисуем прямоугольник. Параметры: hdc, left, top, right, bottom
+    left   = MON_X
+    top    = MON_Y
+    right  = MON_X + MON_W
+    bottom = MON_Y + MON_H
+
+    # Rectangle рисует рамку между (left, top) и (right, bottom)
+    ctypes.windll.gdi32.Rectangle(hdc, left, top, right, bottom)
+
+    # 6) Возвращаем предыдущее перо/кисть и удаляем созданные объекты
+    ctypes.windll.gdi32.SelectObject(hdc, old_pen)
+    ctypes.windll.gdi32.SelectObject(hdc, old_brush)
+    ctypes.windll.gdi32.DeleteObject(pen)
+
+    # 7) Освобождаем DC
+    ctypes.windll.user32.ReleaseDC(0, hdc)
+
+def flip_focus_rect_on_screen():
+    """
+    Нарисовать/стереть XOR-рамку вокруг MON_X..MON_Y..MON_W..MON_H.
+    При первом вызове – появится рамка, при втором – исчезнет.
+    """
+    import mss
+    from project_config import MONITOR_INDEX
+
+    # 1) получаем координаты монитора
+    with mss.mss() as sct:
+        monitors = sct.monitors
+        if 1 <= MONITOR_INDEX < len(monitors):
+            mon = monitors[MONITOR_INDEX]
+        else:
+            mon = monitors[1]
+        left = mon["left"]
+        top = mon["top"]
+        right = left + mon["width"]
+        bottom = top + mon["height"]
+
+    # 2) получаем HDC для экрана
+    hdc = ctypes.windll.user32.GetDC(0)
+    # 3) DrawFocusRect рисует рамку в режиме XOR: повторный вызов с теми же координатами удаляет её
+    rect = wintypes.RECT(left, top, right, bottom)
+    ctypes.windll.user32.DrawFocusRect(hdc, ctypes.byref(rect))
+    # 4) освобождаем HDC
+    ctypes.windll.user32.ReleaseDC(0, hdc)
 
 # ---------------------------------------------------------------------------
 # Convenience context: launch Chrome + ensure cleanup
 # ---------------------------------------------------------------------------
-from contextlib import contextmanager
-from subprocess import Popen, TimeoutExpired
-
+from subprocess import Popen, TimeoutExpired  # noqa: E402
 
 @contextmanager
 def chrome_session(user_alias: str, url: str = "https://e-consul.gov.ua/") -> Iterator[Popen]:
-    """Context manager: copy profile → launch chrome → yield Popen → kill & cleanup."""
+    """
+    Context manager: берет в работу профиль (temp или persistent) через ProfileManager,
+    стартует Chrome в нужной области экрана, отдаёт Popen, а по выходу завершает и/или
+    убирает профиль.
+    """
     with prepare_profile(user_alias) as prof_dir:
         proc = launch_chrome(prof_dir, url)
+        time.sleep(3)
         try:
             yield proc
         finally:
@@ -206,3 +345,99 @@ def chrome_session(user_alias: str, url: str = "https://e-consul.gov.ua/") -> It
                 proc.wait(timeout=5)
             except TimeoutExpired:
                 proc.kill()
+
+def click_text(
+    query: str,
+    timeout: float = 8.0,
+    lang: str = "eng",
+    conf_threshold: float = 0.6,
+) -> bool:
+    """
+    OCR-based search: найти текст `query` на экране (в пределах MON_X..MON_W, MON_Y..MON_H)
+    и кликнуть его центр.
+    Возвращает True, если удалось найти и кликнуть, иначе False по истечении timeout.
+
+    Параметры:
+    -----------
+    query : str
+        Подстрока (без учёта регистра), которую ищем среди распознанных слов.
+    timeout : float
+        Максимальное время (в секундах) на попытки поиска.
+    lang : str
+        Язык Tesseract (например, "eng", "rus", "ukr").
+    conf_threshold : float
+        Минимальный порог доверия (0.0–1.0) для распознанных слов.
+    """
+    deadline = time.perf_counter() + timeout
+
+    # Если tesseract.exe не лежит в PATH, можно явно указать:
+    os.environ['TESSDATA_PREFIX'] = TESSDATA_PREFIX
+    pytesseract.pytesseract.tesseract_cmd = TESSERCAT_CMD
+
+    while time.perf_counter() < deadline:
+        # 1) Снимаем кадр нужного монитора
+        with mss.mss() as sct:
+            monitor_region = {
+                "top": MON_Y,
+                "left": MON_X,
+                "width": MON_W,
+                "height": MON_H
+            }
+            img_data = sct.grab(monitor_region)
+            # MSS даёт raw.rgb, размеры — img_data.size
+            scr_np = np.array(img_data) 
+            scr_bgr = cv2.cvtColor(scr_np, cv2.COLOR_BGRA2BGR)
+        
+        if LOG_LEVEL == "DEBUG":
+            flip_focus_rect_on_screen()
+            show_image(scr_bgr)  
+            time.sleep(0.5)  #    
+        
+
+        # 2) Запускаем Tesseract OCR и получаем данные по каждому слову
+        data = pytesseract.image_to_data(
+            scr_bgr, lang=lang, output_type=pytesseract.Output.DICT
+        )
+
+        n_boxes = len(data["text"])
+        for i in range(n_boxes):
+            text = data["text"][i].strip()
+            if not text:
+                continue
+
+            # Конвертируем confidence в 0.0–1.0
+            try:
+                conf = float(data["conf"][i]) / 100.0
+            except (ValueError, KeyError):
+                conf = 0.0
+
+            if conf < conf_threshold:
+                continue
+
+            # Сравниваем без учёта регистра
+            if query.lower() in text.lower():
+                # Локальные (в пределах выбранного монитора) координаты
+                x_rel = int(data["left"][i])
+                y_rel = int(data["top"][i])
+                w = int(data["width"][i])
+                h = int(data["height"][i])
+
+                center_x_rel = x_rel + w // 2
+                center_y_rel = y_rel + h // 2
+
+                # Переводим в глобальные координаты для клика
+                abs_x = MON_X + center_x_rel
+                abs_y = MON_Y + center_y_rel
+
+                LOGGER.debug(
+                    "Found text '%s' (conf=%.2f) at local (%d,%d), clicking global (%d,%d)",
+                    text, conf, center_x_rel, center_y_rel, abs_x, abs_y
+                )
+                _human_move_and_click(abs_x, abs_y)
+                return True
+
+        # Если не найдено, небольшой sleep и повтор
+        time.sleep(0.2)
+
+    LOGGER.debug("Text '%s' not found within %.2f seconds", query, timeout)
+    return False

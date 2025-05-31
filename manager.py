@@ -1,29 +1,29 @@
-"""manager.py
-~~~~~~~~~~~~~
-
-Entry‑point module that orchestrates the complete e‑consul booking bot:
-
-1. Initial scan of the *users* YAML directory → build processing ``deque``.
-2. Start background threads:
-   * **ConfigWatcher** – hot‑reload YAML changes.
-   * **ControlServer** – TCP interface (pause / resume / stop).
-3. Iterate over users one‑by‑one; for each:
-   * launch Chrome inside ``gui_driver.chrome_session`` (isolated profile);
-   * invoke ``SlotFinder.work``;
-   * on success – drop user; on failure – append back to queue tail.
-4. Respect global flags ``PAUSE_EVT`` and ``STOP_EVT`` (set by TCP server).
-
-The main loop is **single‑threaded** relative to GUI, so PyAutoGUI always
-controls only *one* active window.
 """
+manager.py
+~~~~~~~~~~
+
+Entry-point module that orchestrates the complete e-consul booking bot:
+1. Initial scan of the users YAML directory → build processing deque.
+2. Start background threads:
+   * ConfigWatcher – hot-reload YAML changes.
+   * ControlServer – TCP interface (pause / resume / stop).
+3. Iterate over users one-by-one; for each:
+   * launch Chrome inside gui_driver.chrome_session (isolated profile);
+   * invoke SlotFinder.work;
+   * on success – drop user; on failure – append back to queue tail.
+4. Respect global flags PAUSE_EVT and STOP_EVT (set by TCP server).
+"""
+
 from __future__ import annotations
 
+import os
 import signal
 import threading
 import time
 from collections import deque
 from pathlib import Path
 from typing import Dict, Optional
+from dotenv import load_dotenv
 
 from core.gui_driver import chrome_session
 from core.slot_finder import SlotFinder
@@ -31,21 +31,21 @@ from bot_io.config_watcher import ChangeEvent, ChangeKind, ConfigWatcher
 from bot_io.yaml_loader import UserConfig, YAMLLoader, ConfigError
 from server.tcp_server import ControlServer, PAUSE_EVT, STOP_EVT
 from utils.logger import setup_logger
+from project_config import USERS_DIR, KEYS_DIR, LOG_LEVEL
 
 LOGGER = setup_logger(__name__)
 
 # ---------------------------------------------------------------------------
-# Helper container – thread‑safe queue wrapper
+# Helper container – thread-safe queue wrapper
 # ---------------------------------------------------------------------------
 class UserQueue:
-    """Thread‑safe deque with alias → config mapping."""
+    """Thread-safe deque with alias → config mapping."""
 
     def __init__(self, initial: list[UserConfig]):
         self._dq: deque[UserConfig] = deque(initial)
         self._map: Dict[str, UserConfig] = {u.alias: u for u in initial}
         self._lock = threading.Lock()
 
-    # ---------------------------------------------------------------
     def pop_left(self) -> Optional[UserConfig]:
         with self._lock:
             return self._dq.popleft() if self._dq else None
@@ -62,11 +62,12 @@ class UserQueue:
             self._map.pop(alias, None)
 
     def update(self, user: UserConfig) -> None:
-        """Replace existing config in‑place (position preserved)."""
+        """Replace existing config in-place (position preserved)."""
         with self._lock:
-            if alias := user.alias in self._map:
-                # Replace object inside deque while preserving order
-                self._dq = deque(user if u.alias == user.alias else u for u in self._dq)
+            if user.alias in self._map:
+                self._dq = deque(
+                    user if u.alias == user.alias else u for u in self._dq
+                )
                 self._map[user.alias] = user
             else:
                 self.append(user)
@@ -74,28 +75,30 @@ class UserQueue:
     def exists(self, alias: str) -> bool:
         return alias in self._map
 
-    def __bool__(self):  # bool(queue)
+    def __bool__(self) -> bool:
         return bool(self._dq)
 
 
 # ---------------------------------------------------------------------------
 # Watcher callback
 # ---------------------------------------------------------------------------
-
-def _on_yaml_change(evt: ChangeEvent, loader: YAMLLoader, queue: UserQueue) -> None:
+def _on_yaml_change(
+    evt: ChangeEvent, loader: YAMLLoader, queue: UserQueue
+) -> None:
     try:
         if evt.kind == ChangeKind.DELETED:
             queue.remove(evt.path.stem)
             LOGGER.info("YAML deleted → remove user %s", evt.path.stem)
             return
-        # CREATED or MODIFIED – parse file anew
+
         cfg = loader._parse_file(evt.path)  # type: ignore[protected-access]
         if evt.kind == ChangeKind.CREATED:
             queue.append(cfg)
             LOGGER.info("YAML created → add user %s", cfg.alias)
-        else:  # modified
+        else:
             queue.update(cfg)
             LOGGER.info("YAML modified → update user %s", cfg.alias)
+
     except ConfigError as exc:
         LOGGER.warning("Invalid YAML on %s: %s", evt.path.name, exc)
 
@@ -103,9 +106,8 @@ def _on_yaml_change(evt: ChangeEvent, loader: YAMLLoader, queue: UserQueue) -> N
 # ---------------------------------------------------------------------------
 # Graceful shutdown helpers
 # ---------------------------------------------------------------------------
-
-def _install_signal_handlers():
-    def _sig_handler(signum, _frame):  # noqa: D401 – imperative style
+def _install_signal_handlers() -> None:
+    def _sig_handler(signum, _frame) -> None:
         LOGGER.info("Received signal %s – setting STOP event", signum)
         STOP_EVT.set()
 
@@ -116,15 +118,10 @@ def _install_signal_handlers():
 # ---------------------------------------------------------------------------
 # Main routine
 # ---------------------------------------------------------------------------
+def main() -> None:
 
-def main() -> None:  # noqa: C901 – main can be lengthy
-    settings_file = Path(__file__).resolve().parent / "settings.yaml"
-    with settings_file.open("rt", encoding="utf-8") as fh:
-        import yaml
-
-        settings = yaml.safe_load(fh) or {}
-    users_dir = Path(settings.get("users_dir", "users_cfg")).expanduser().resolve()
-    keys_base = Path(settings.get("keys_dir", "keys")).expanduser().resolve()
+    users_dir = USERS_DIR
+    keys_base = KEYS_DIR
 
     try:
         loader = YAMLLoader(users_dir, keys_base)
@@ -134,10 +131,14 @@ def main() -> None:  # noqa: C901 – main can be lengthy
         return
 
     # Start background services
-    watcher = ConfigWatcher(users_dir, lambda evt: _on_yaml_change(evt, loader, queue))
+    watcher = ConfigWatcher(
+        users_dir, lambda evt: _on_yaml_change(evt, loader, queue)
+    )
     watcher.start()
+
     ctrl_srv = ControlServer()
     ctrl_srv.start()
+
     _install_signal_handlers()
 
     finder = SlotFinder()
@@ -151,7 +152,7 @@ def main() -> None:  # noqa: C901 – main can be lengthy
 
         user = queue.pop_left()
         if not user:
-            time.sleep(2)  # nothing to do – wait for watcher to add more
+            time.sleep(2)
             continue
 
         LOGGER.info("Processing user %s", user.alias)
@@ -162,15 +163,14 @@ def main() -> None:  # noqa: C901 – main can be lengthy
             LOGGER.info("User %s completed – removed from queue", user.alias)
             queue.remove(user.alias)
         else:
-            if queue.exists(user.alias):  # could be deleted during work
+            if queue.exists(user.alias):
                 queue.append(user)
-                LOGGER.info("User %s re‑queued", user.alias)
+                LOGGER.info("User %s re-queued", user.alias)
 
-    # --- shutdown -----------------------------------------------------
     LOGGER.info("Stop flag received – shutting down…")
     watcher.close()
     ctrl_srv.shutdown()
 
 
-if __name__ == "__main__":  # pragma: no cover
+if __name__ == "__main__":
     main()

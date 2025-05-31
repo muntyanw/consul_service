@@ -7,6 +7,10 @@ cryptography>=42
 PyYAML>=6
 numpy>=1.24
 screeninfo
+pytesseract>=0.3.10
+matplotlib>=3.7
+python-dotenv>=1.0.0
+mss>=7.0
 
 # Tests / dev
 pytest>=8

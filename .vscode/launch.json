@@ -1,0 +1,8 @@
+{
+  "name": "Run Bot",
+  "type": "python",
+  "request": "launch",
+  "program": "${workspaceFolder}/manager.py",
+  "cwd": "${workspaceFolder}",
+  "env": { "PYTHONPATH": "${workspaceFolder}" }
+}

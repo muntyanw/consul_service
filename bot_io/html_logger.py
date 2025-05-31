@@ -33,6 +33,7 @@ import threading
 from datetime import datetime as _dt
 from pathlib import Path
 from typing import Final, Optional
+from project_config import LOG_LEVEL, HTML_LOG_DIR
 
 from utils.logger import setup_logger
 
@@ -48,7 +49,7 @@ class _HtmlLogger:
 
     def __init__(self) -> None:
         ts = _dt.utcnow().strftime("%Y%m%dT%H%M%SZ")
-        base_dir = Path(os.getenv("HTML_LOG_DIR", "html_log")).expanduser().resolve()
+        base_dir = HTML_LOG_DIR
         base_dir.mkdir(parents=True, exist_ok=True)
         self._img_dir = base_dir / "img"
         self._img_dir.mkdir(exist_ok=True)

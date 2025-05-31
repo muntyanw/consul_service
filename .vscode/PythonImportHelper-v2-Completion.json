@@ -112,6 +112,30 @@
         "documentation": {}
     },
     {
+        "label": "setup_logger",
+        "importPath": "utils.logger",
+        "description": "utils.logger",
+        "isExtraImport": true,
+        "detail": "utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
         "label": "annotations",
         "importPath": "__future__",
         "description": "__future__",
@@ -229,6 +253,22 @@
         "isExtraImport": true,
         "importPath": "pathlib",
         "description": "pathlib",
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
         "detail": "pathlib",
         "documentation": {}
     },
@@ -434,6 +474,14 @@
         "documentation": {}
     },
     {
+        "label": "Iterator",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
         "label": "Tuple",
         "importPath": "typing",
         "description": "typing",
@@ -442,7 +490,23 @@
         "documentation": {}
     },
     {
-        "label": "Iterable",
+        "label": "Final",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
         "importPath": "typing",
         "description": "typing",
         "isExtraImport": true,
@@ -458,7 +522,7 @@
         "documentation": {}
     },
     {
-        "label": "Sequence",
+        "label": "Iterable",
         "importPath": "typing",
         "description": "typing",
         "isExtraImport": true,
@@ -515,6 +579,22 @@
     },
     {
         "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
         "importPath": "typing",
         "description": "typing",
         "isExtraImport": true,
@@ -586,6 +666,118 @@
         "description": "datetime",
         "isExtraImport": true,
         "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "LOG_LEVEL",
+        "importPath": "project_config",
+        "description": "project_config",
+        "isExtraImport": true,
+        "detail": "project_config",
+        "documentation": {}
+    },
+    {
+        "label": "HTML_LOG_DIR",
+        "importPath": "project_config",
+        "description": "project_config",
+        "isExtraImport": true,
+        "detail": "project_config",
+        "documentation": {}
+    },
+    {
+        "label": "LOG_LEVEL",
+        "importPath": "project_config",
+        "description": "project_config",
+        "isExtraImport": true,
+        "detail": "project_config",
+        "documentation": {}
+    },
+    {
+        "label": "HTML_LOG_DIR",
+        "importPath": "project_config",
+        "description": "project_config",
+        "isExtraImport": true,
+        "detail": "project_config",
+        "documentation": {}
+    },
+    {
+        "label": "TEMPLATE_DIR",
+        "importPath": "project_config",
+        "description": "project_config",
+        "isExtraImport": true,
+        "detail": "project_config",
+        "documentation": {}
+    },
+    {
+        "label": "MONITOR_WIDTH",
+        "importPath": "project_config",
+        "description": "project_config",
+        "isExtraImport": true,
+        "detail": "project_config",
+        "documentation": {}
+    },
+    {
+        "label": "MONITOR_HEIGHT",
+        "importPath": "project_config",
+        "description": "project_config",
+        "isExtraImport": true,
+        "detail": "project_config",
+        "documentation": {}
+    },
+    {
+        "label": "MONITOR_INDEX",
+        "importPath": "project_config",
+        "description": "project_config",
+        "isExtraImport": true,
+        "detail": "project_config",
+        "documentation": {}
+    },
+    {
+        "label": "TESSERCAT_CMD",
+        "importPath": "project_config",
+        "description": "project_config",
+        "isExtraImport": true,
+        "detail": "project_config",
+        "documentation": {}
+    },
+    {
+        "label": "TESSDATA_PREFIX",
+        "importPath": "project_config",
+        "description": "project_config",
+        "isExtraImport": true,
+        "detail": "project_config",
+        "documentation": {}
+    },
+    {
+        "label": "LOG_LEVEL",
+        "importPath": "project_config",
+        "description": "project_config",
+        "isExtraImport": true,
+        "detail": "project_config",
+        "documentation": {}
+    },
+    {
+        "label": "USERS_DIR",
+        "importPath": "project_config",
+        "description": "project_config",
+        "isExtraImport": true,
+        "detail": "project_config",
+        "documentation": {}
+    },
+    {
+        "label": "KEYS_DIR",
+        "importPath": "project_config",
+        "description": "project_config",
+        "isExtraImport": true,
+        "detail": "project_config",
+        "documentation": {}
+    },
+    {
+        "label": "LOG_LEVEL",
+        "importPath": "project_config",
+        "description": "project_config",
+        "isExtraImport": true,
+        "detail": "project_config",
         "documentation": {}
     },
     {
@@ -672,6 +864,22 @@
         "documentation": {}
     },
     {
+        "label": "Popen",
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "isExtraImport": true,
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "TimeoutExpired",
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "isExtraImport": true,
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
         "label": "time",
         "kind": 6,
         "isExtraImport": true,
@@ -708,52 +916,120 @@
         "documentation": {}
     },
     {
+        "label": "contextmanager",
+        "importPath": "contextlib",
+        "description": "contextlib",
+        "isExtraImport": true,
+        "detail": "contextlib",
+        "documentation": {}
+    },
+    {
+        "label": "contextmanager",
+        "importPath": "contextlib",
+        "description": "contextlib",
+        "isExtraImport": true,
+        "detail": "contextlib",
+        "documentation": {}
+    },
+    {
+        "label": "contextmanager",
+        "importPath": "contextlib",
+        "description": "contextlib",
+        "isExtraImport": true,
+        "detail": "contextlib",
+        "documentation": {}
+    },
+    {
+        "label": "contextmanager",
+        "importPath": "contextlib",
+        "description": "contextlib",
+        "isExtraImport": true,
+        "detail": "contextlib",
+        "documentation": {}
+    },
+    {
+        "label": "pytesseract",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pytesseract",
+        "description": "pytesseract",
+        "detail": "pytesseract",
+        "documentation": {}
+    },
+    {
+        "label": "matplotlib.pyplot",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "matplotlib.pyplot",
+        "description": "matplotlib.pyplot",
+        "detail": "matplotlib.pyplot",
+        "documentation": {}
+    },
+    {
+        "label": "mss",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "mss",
+        "description": "mss",
+        "detail": "mss",
+        "documentation": {}
+    },
+    {
+        "label": "mss.tools",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "mss.tools",
+        "description": "mss.tools",
+        "detail": "mss.tools",
+        "documentation": {}
+    },
+    {
+        "label": "ctypes",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "ctypes",
+        "description": "ctypes",
+        "detail": "ctypes",
+        "documentation": {}
+    },
+    {
+        "label": "wintypes",
+        "importPath": "ctypes",
+        "description": "ctypes",
+        "isExtraImport": true,
+        "detail": "ctypes",
+        "documentation": {}
+    },
+    {
+        "label": "prepare_profile",
+        "importPath": "utils.profile_manager",
+        "description": "utils.profile_manager",
+        "isExtraImport": true,
+        "detail": "utils.profile_manager",
+        "documentation": {}
+    },
+    {
+        "label": "prepare_profile",
+        "importPath": "utils.profile_manager",
+        "description": "utils.profile_manager",
+        "isExtraImport": true,
+        "detail": "utils.profile_manager",
+        "documentation": {}
+    },
+    {
+        "label": "prepare",
+        "importPath": "utils.profile_manager",
+        "description": "utils.profile_manager",
+        "isExtraImport": true,
+        "detail": "utils.profile_manager",
+        "documentation": {}
+    },
+    {
         "label": "get_monitors",
         "importPath": "screeninfo",
         "description": "screeninfo",
         "isExtraImport": true,
         "detail": "screeninfo",
-        "documentation": {}
-    },
-    {
-        "label": "prepare",
-        "importPath": "utils.profile_manager",
-        "description": "utils.profile_manager",
-        "isExtraImport": true,
-        "detail": "utils.profile_manager",
-        "documentation": {}
-    },
-    {
-        "label": "prepare",
-        "importPath": "utils.profile_manager",
-        "description": "utils.profile_manager",
-        "isExtraImport": true,
-        "detail": "utils.profile_manager",
-        "documentation": {}
-    },
-    {
-        "label": "contextmanager",
-        "importPath": "contextlib",
-        "description": "contextlib",
-        "isExtraImport": true,
-        "detail": "contextlib",
-        "documentation": {}
-    },
-    {
-        "label": "contextmanager",
-        "importPath": "contextlib",
-        "description": "contextlib",
-        "isExtraImport": true,
-        "detail": "contextlib",
-        "documentation": {}
-    },
-    {
-        "label": "functools",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "functools",
-        "description": "functools",
-        "detail": "functools",
         "documentation": {}
     },
     {
@@ -834,6 +1110,15 @@
         "description": "bot_io.html_logger",
         "isExtraImport": true,
         "detail": "bot_io.html_logger",
+        "documentation": {}
+    },
+    {
+        "label": "functools",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "functools",
+        "description": "functools",
+        "detail": "functools",
         "documentation": {}
     },
     {
@@ -1053,6 +1338,14 @@
         "documentation": {}
     },
     {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
         "label": "chrome_session",
         "importPath": "core.gui_driver",
         "description": "core.gui_driver",
@@ -1146,7 +1439,7 @@
         "kind": 6,
         "importPath": "bot_io.html_logger",
         "description": "bot_io.html_logger",
-        "peekOfCode": "class _HtmlLogger:\n    \"\"\"Internal singleton that appends HTML blocks + saves images.\"\"\"\n    _lock = threading.Lock()\n    def __init__(self) -> None:\n        ts = _dt.utcnow().strftime(\"%Y%m%dT%H%M%SZ\")\n        base_dir = Path(os.getenv(\"HTML_LOG_DIR\", \"html_log\")).expanduser().resolve()\n        base_dir.mkdir(parents=True, exist_ok=True)\n        self._img_dir = base_dir / \"img\"\n        self._img_dir.mkdir(exist_ok=True)\n        self._file = base_dir / f\"session_{ts}.html\"",
+        "peekOfCode": "class _HtmlLogger:\n    \"\"\"Internal singleton that appends HTML blocks + saves images.\"\"\"\n    _lock = threading.Lock()\n    def __init__(self) -> None:\n        ts = _dt.utcnow().strftime(\"%Y%m%dT%H%M%SZ\")\n        base_dir = HTML_LOG_DIR\n        base_dir.mkdir(parents=True, exist_ok=True)\n        self._img_dir = base_dir / \"img\"\n        self._img_dir.mkdir(exist_ok=True)\n        self._file = base_dir / f\"session_{ts}.html\"",
         "detail": "bot_io.html_logger",
         "documentation": {}
     },
@@ -1155,7 +1448,7 @@
         "kind": 5,
         "importPath": "bot_io.html_logger",
         "description": "bot_io.html_logger",
-        "peekOfCode": "LOGGER = setup_logger(__name__)\n__all__ = [\"html_log\"]\nclass _HtmlLogger:\n    \"\"\"Internal singleton that appends HTML blocks + saves images.\"\"\"\n    _lock = threading.Lock()\n    def __init__(self) -> None:\n        ts = _dt.utcnow().strftime(\"%Y%m%dT%H%M%SZ\")\n        base_dir = Path(os.getenv(\"HTML_LOG_DIR\", \"html_log\")).expanduser().resolve()\n        base_dir.mkdir(parents=True, exist_ok=True)\n        self._img_dir = base_dir / \"img\"",
+        "peekOfCode": "LOGGER = setup_logger(__name__)\n__all__ = [\"html_log\"]\nclass _HtmlLogger:\n    \"\"\"Internal singleton that appends HTML blocks + saves images.\"\"\"\n    _lock = threading.Lock()\n    def __init__(self) -> None:\n        ts = _dt.utcnow().strftime(\"%Y%m%dT%H%M%SZ\")\n        base_dir = HTML_LOG_DIR\n        base_dir.mkdir(parents=True, exist_ok=True)\n        self._img_dir = base_dir / \"img\"",
         "detail": "bot_io.html_logger",
         "documentation": {}
     },
@@ -1164,7 +1457,7 @@
         "kind": 5,
         "importPath": "bot_io.html_logger",
         "description": "bot_io.html_logger",
-        "peekOfCode": "__all__ = [\"html_log\"]\nclass _HtmlLogger:\n    \"\"\"Internal singleton that appends HTML blocks + saves images.\"\"\"\n    _lock = threading.Lock()\n    def __init__(self) -> None:\n        ts = _dt.utcnow().strftime(\"%Y%m%dT%H%M%SZ\")\n        base_dir = Path(os.getenv(\"HTML_LOG_DIR\", \"html_log\")).expanduser().resolve()\n        base_dir.mkdir(parents=True, exist_ok=True)\n        self._img_dir = base_dir / \"img\"\n        self._img_dir.mkdir(exist_ok=True)",
+        "peekOfCode": "__all__ = [\"html_log\"]\nclass _HtmlLogger:\n    \"\"\"Internal singleton that appends HTML blocks + saves images.\"\"\"\n    _lock = threading.Lock()\n    def __init__(self) -> None:\n        ts = _dt.utcnow().strftime(\"%Y%m%dT%H%M%SZ\")\n        base_dir = HTML_LOG_DIR\n        base_dir.mkdir(parents=True, exist_ok=True)\n        self._img_dir = base_dir / \"img\"\n        self._img_dir.mkdir(exist_ok=True)",
         "detail": "bot_io.html_logger",
         "documentation": {}
     },
@@ -1227,7 +1520,7 @@
         "kind": 2,
         "importPath": "core.gui_driver",
         "description": "core.gui_driver",
-        "peekOfCode": "def launch_chrome(profile_dir: Path, url: str = \"https://e-consul.gov.ua/\") -> subprocess.Popen:\n    \"\"\"Launch Chrome at 1920×1080 on the monitor matching TARGET_RES or primary.\"\"\"\n    chrome_path = _detect_chrome()\n    # Detect monitors\n    try:\n        from screeninfo import get_monitors\n        mons = get_monitors()\n        # Ищем монитор нужного разрешения или берём первый\n        mon = next((m for m in mons if (m.width, m.height) == TARGET_RES), mons[0])\n        offset_x, offset_y = mon.x, mon.y",
+        "peekOfCode": "def launch_chrome(profile_dir: Path, url: str = \"https://e-consul.gov.ua/\") -> subprocess.Popen:\n    \"\"\"\n    Launch Chrome at 1920×1080 on the monitor matching TARGET_RES (или primary).\n    \"\"\"\n    chrome_path = _detect_chrome()\n    width, height = MON_W, MON_H\n    offset_x, offset_y = MON_X, MON_Y\n    cmd = [\n        str(chrome_path),\n        f\"--user-data-dir={profile_dir}\",",
         "detail": "core.gui_driver",
         "documentation": {}
     },
@@ -1236,7 +1529,7 @@
         "kind": 2,
         "importPath": "core.gui_driver",
         "description": "core.gui_driver",
-        "peekOfCode": "def click_image(name: str, timeout: float = 8.0, confidence: float = 0.9) -> bool:\n    \"\"\"Найти PNG‑шаблон на экране и кликнуть центр. Возврат True/False.\"\"\"\n    path = TEMPLATE_DIR / name\n    if not path.exists():\n        raise FileNotFoundError(path)\n    deadline = time.perf_counter() + timeout\n    while time.perf_counter() < deadline:\n        pos = _locate(path, confidence)\n        if pos:\n            _human_move_and_click(*pos)",
+        "peekOfCode": "def click_image(name: str, timeout: float = 8.0, confidence: float = 0.9) -> bool:\n    \"\"\"\n    Найти PNG-шаблон на экране (в пределах целевого монитора) и кликнуть его центр.\n    Возвращает True, если кликнули, False если не найдено за timeout секунд.\n    \"\"\"\n    path = TEMPLATE_DIR / name\n    if not path.exists():\n        raise FileNotFoundError(path)\n    deadline = time.perf_counter() + timeout\n    while time.perf_counter() < deadline:",
         "detail": "core.gui_driver",
         "documentation": {}
     },
@@ -1245,7 +1538,7 @@
         "kind": 2,
         "importPath": "core.gui_driver",
         "description": "core.gui_driver",
-        "peekOfCode": "def type_text(text: str, interval: tuple[float, float] = (0.05, 0.12)) -> None:\n    \"\"\"Печатать строку с небольшим случайным интервалом между символами.\"\"\"\n    for ch in text:\n        pag.typewrite(ch)\n        time.sleep(random.uniform(*interval))\ndef take_screenshot() -> Path:\n    \"\"\"Сохранить PNG скрин в tmp‑dir, вернуть Path.\"\"\"\n    import tempfile, datetime as dt\n    ts = dt.datetime.utcnow().isoformat().replace(\":\", \"-\")\n    path = Path(tempfile.gettempdir()) / f\"scr_{ts}.png\"",
+        "peekOfCode": "def type_text(text: str, interval: Tuple[float, float] = (0.05, 0.12)) -> None:\n    \"\"\"\n    Печатать строку с небольшим случайным интервалом между символами.\n    \"\"\"\n    for ch in text:\n        pag.typewrite(ch)\n        time.sleep(random.uniform(*interval))\ndef take_screenshot() -> Path:\n    \"\"\"\n    Сделать PNG скрин целевого MONITOR_INDEX с помощью MSS и вернуть Path.",
         "detail": "core.gui_driver",
         "documentation": {}
     },
@@ -1254,7 +1547,34 @@
         "kind": 2,
         "importPath": "core.gui_driver",
         "description": "core.gui_driver",
-        "peekOfCode": "def take_screenshot() -> Path:\n    \"\"\"Сохранить PNG скрин в tmp‑dir, вернуть Path.\"\"\"\n    import tempfile, datetime as dt\n    ts = dt.datetime.utcnow().isoformat().replace(\":\", \"-\")\n    path = Path(tempfile.gettempdir()) / f\"scr_{ts}.png\"\n    pag.screenshot(str(path))\n    return path\n# ---------------------------------------------------------------------------\n# Internal helpers\n# ---------------------------------------------------------------------------",
+        "peekOfCode": "def take_screenshot() -> Path:\n    \"\"\"\n    Сделать PNG скрин целевого MONITOR_INDEX с помощью MSS и вернуть Path.\n    \"\"\"\n    import tempfile, datetime as dt\n    ts = dt.datetime.utcnow().isoformat().replace(\":\", \"-\")\n    output_path = Path(tempfile.gettempdir()) / f\"scr_{ts}.png\"\n    with mss.mss() as sct:\n        # Снимаем именно ту область, что описывает монитора:\n        monitor_region = {\"top\": MON_Y, \"left\": MON_X, \"width\": MON_W, \"height\": MON_H}",
+        "detail": "core.gui_driver",
+        "documentation": {}
+    },
+    {
+        "label": "show_image",
+        "kind": 2,
+        "importPath": "core.gui_driver",
+        "description": "core.gui_driver",
+        "peekOfCode": "def show_image(img) -> None:\n    # Показать изображение через matplotlib\n    plt.figure(figsize=(8, 5))\n    plt.imshow(img)\n    plt.axis('off')\n    plt.title(\"Tesseract Input: Full-Screen Screenshot\")\n    plt.show()\n# ---------------------------------------------------------------------------\n# Internal helpers\n# ---------------------------------------------------------------------------",
+        "detail": "core.gui_driver",
+        "documentation": {}
+    },
+    {
+        "label": "draw_monitor_region_on_screen",
+        "kind": 2,
+        "importPath": "core.gui_driver",
+        "description": "core.gui_driver",
+        "peekOfCode": "def draw_monitor_region_on_screen(color: tuple[int,int,int] = (0, 0, 255), thickness: int = 4) -> None:\n    \"\"\"\n    Нарисовать на рабочем столе (на самой поверхности экрана) полупрозрачный (через XOR)\n    или сплошной (через GDI Rectangle) контур области MON_X, MON_Y, MON_W, MON_H.\n    Параметры:\n    ---------\n    color : BGR-цвет рамки, например (0, 0, 255) для красного (как OpenCV).\n    thickness : толщина линии рамки в пикселях.\n    При запуске этой функции вы увидите чёткую рамку на экране. Она отрисуется поверх всего,\n    но исчезнет при следующем обновлении окна или при следующем вызове (в зависимости от режима).",
+        "detail": "core.gui_driver",
+        "documentation": {}
+    },
+    {
+        "label": "flip_focus_rect_on_screen",
+        "kind": 2,
+        "importPath": "core.gui_driver",
+        "description": "core.gui_driver",
+        "peekOfCode": "def flip_focus_rect_on_screen():\n    \"\"\"\n    Нарисовать/стереть XOR-рамку вокруг MON_X..MON_Y..MON_W..MON_H.\n    При первом вызове – появится рамка, при втором – исчезнет.\n    \"\"\"\n    import mss\n    from project_config import MONITOR_INDEX\n    # 1) получаем координаты монитора\n    with mss.mss() as sct:\n        monitors = sct.monitors",
         "detail": "core.gui_driver",
         "documentation": {}
     },
@@ -1263,7 +1583,16 @@
         "kind": 2,
         "importPath": "core.gui_driver",
         "description": "core.gui_driver",
-        "peekOfCode": "def chrome_session(user_alias: str, url: str = \"https://e-consul.gov.ua/\") -> Iterator[Popen]:\n    \"\"\"Context manager: copy profile → launch chrome → yield Popen → kill & cleanup.\"\"\"\n    with prepare_profile(user_alias) as prof_dir:\n        proc = launch_chrome(prof_dir, url)\n        try:\n            yield proc\n        finally:\n            proc.terminate()\n            try:\n                proc.wait(timeout=5)",
+        "peekOfCode": "def chrome_session(user_alias: str, url: str = \"https://e-consul.gov.ua/\") -> Iterator[Popen]:\n    \"\"\"\n    Context manager: берет в работу профиль (temp или persistent) через ProfileManager,\n    стартует Chrome в нужной области экрана, отдаёт Popen, а по выходу завершает и/или\n    убирает профиль.\n    \"\"\"\n    with prepare_profile(user_alias) as prof_dir:\n        proc = launch_chrome(prof_dir, url)\n        time.sleep(3)\n        try:",
+        "detail": "core.gui_driver",
+        "documentation": {}
+    },
+    {
+        "label": "click_text",
+        "kind": 2,
+        "importPath": "core.gui_driver",
+        "description": "core.gui_driver",
+        "peekOfCode": "def click_text(\n    query: str,\n    timeout: float = 8.0,\n    lang: str = \"eng\",\n    conf_threshold: float = 0.6,\n) -> bool:\n    \"\"\"\n    OCR-based search: найти текст `query` на экране (в пределах MON_X..MON_W, MON_Y..MON_H)\n    и кликнуть его центр.\n    Возвращает True, если удалось найти и кликнуть, иначе False по истечении timeout.",
         "detail": "core.gui_driver",
         "documentation": {}
     },
@@ -1272,7 +1601,7 @@
         "kind": 5,
         "importPath": "core.gui_driver",
         "description": "core.gui_driver",
-        "peekOfCode": "LOGGER = setup_logger(__name__)\n# Disable PyAutoGUI failsafe?  Better keep it true and document \"move mouse to top‑left\".\npag.FAILSAFE = True\n# ---------------------------------------------------------------------------\n# Constants\n# ---------------------------------------------------------------------------\n# Try to find a monitor with the exact 1920×1080 resolution\nTARGET_RES: Final[Tuple[int, int]] = (1920, 1080)\nmonitors = get_monitors()\nmatch = next((m for m in monitors if (m.width, m.height) == TARGET_RES), None)",
+        "peekOfCode": "LOGGER = setup_logger(__name__)\npag.FAILSAFE = True  # оставить возможность «движения мыши в угол для экстренной остановки»\n# ---------------------------------------------------------------------------\n# Constants: ищем монитор с разрешением необходимым для работы\n# ---------------------------------------------------------------------------\nTARGET_RES: Final[Tuple[int, int]] = (MONITOR_WIDTH, MONITOR_HEIGHT)\nwith mss.mss() as sct:\n    monitors = sct.monitors  # список словарей; monitors[0] — весь виртуальный экран\n    # monitors[1] — первый физический экран; monitors[2] — второй и т.д.\n    # Мы ожидаем MONITOR_INDEX 1-based",
         "detail": "core.gui_driver",
         "documentation": {}
     },
@@ -1281,71 +1610,98 @@
         "kind": 5,
         "importPath": "core.gui_driver",
         "description": "core.gui_driver",
-        "peekOfCode": "pag.FAILSAFE = True\n# ---------------------------------------------------------------------------\n# Constants\n# ---------------------------------------------------------------------------\n# Try to find a monitor with the exact 1920×1080 resolution\nTARGET_RES: Final[Tuple[int, int]] = (1920, 1080)\nmonitors = get_monitors()\nmatch = next((m for m in monitors if (m.width, m.height) == TARGET_RES), None)\nif match:\n    SCREEN_W, SCREEN_H = TARGET_RES",
+        "peekOfCode": "pag.FAILSAFE = True  # оставить возможность «движения мыши в угол для экстренной остановки»\n# ---------------------------------------------------------------------------\n# Constants: ищем монитор с разрешением необходимым для работы\n# ---------------------------------------------------------------------------\nTARGET_RES: Final[Tuple[int, int]] = (MONITOR_WIDTH, MONITOR_HEIGHT)\nwith mss.mss() as sct:\n    monitors = sct.monitors  # список словарей; monitors[0] — весь виртуальный экран\n    # monitors[1] — первый физический экран; monitors[2] — второй и т.д.\n    # Мы ожидаем MONITOR_INDEX 1-based\n    if 1 <= MONITOR_INDEX < len(monitors):",
         "detail": "core.gui_driver",
         "documentation": {}
     },
     {
-        "label": "monitors",
-        "kind": 5,
-        "importPath": "core.gui_driver",
-        "description": "core.gui_driver",
-        "peekOfCode": "monitors = get_monitors()\nmatch = next((m for m in monitors if (m.width, m.height) == TARGET_RES), None)\nif match:\n    SCREEN_W, SCREEN_H = TARGET_RES\nelse:\n    SCREEN_W, SCREEN_H = pag.size()\n    LOGGER.warning(\n        \"Detected virtual screen %sx%s, but using actual %sx%s for templates\",\n        pag.size()[0], pag.size()[1], SCREEN_W, SCREEN_H\n    )",
-        "detail": "core.gui_driver",
-        "documentation": {}
-    },
-    {
-        "label": "match",
-        "kind": 5,
-        "importPath": "core.gui_driver",
-        "description": "core.gui_driver",
-        "peekOfCode": "match = next((m for m in monitors if (m.width, m.height) == TARGET_RES), None)\nif match:\n    SCREEN_W, SCREEN_H = TARGET_RES\nelse:\n    SCREEN_W, SCREEN_H = pag.size()\n    LOGGER.warning(\n        \"Detected virtual screen %sx%s, but using actual %sx%s for templates\",\n        pag.size()[0], pag.size()[1], SCREEN_W, SCREEN_H\n    )\nTEMPLATE_DIR: Final[Path] = Path(__file__).resolve().parent.parent / \"assets\"",
-        "detail": "core.gui_driver",
-        "documentation": {}
-    },
-    {
-        "label": "load_template",
+        "label": "launch_chrome",
         "kind": 2,
-        "importPath": "core.image_lib",
-        "description": "core.image_lib",
-        "peekOfCode": "def load_template(name: str, scale: float = 1.0) -> np.ndarray:\n    \"\"\"Return cached template by filename inside *assets* dir, optionally scaled.\"\"\"\n    path = TEMPLATE_DIR / name\n    img = _read_png(path)\n    if scale != 1.0:\n        h, w = img.shape[:2]\n        img = cv2.resize(img, (int(w * scale), int(h * scale)), interpolation=cv2.INTER_LINEAR)\n    return img\n# ---------------------------------------------------------------------------\n# Public API",
-        "detail": "core.image_lib",
+        "importPath": "core.gui_driver_one_mon",
+        "description": "core.gui_driver_one_mon",
+        "peekOfCode": "def launch_chrome(profile_dir: Path, url: str = \"https://e-consul.gov.ua/\") -> subprocess.Popen:\n    \"\"\"Launch Chrome at 1920×1080 on the monitor matching TARGET_RES or primary.\"\"\"\n    chrome_path = _detect_chrome()\n    # Detect monitors\n    try:\n        from screeninfo import get_monitors\n        mons = get_monitors()\n        # Ищем монитор нужного разрешения или берём первый\n        mon = next((m for m in mons if (m.width, m.height) == TARGET_RES), mons[0])\n        offset_x, offset_y = mon.x, mon.y",
+        "detail": "core.gui_driver_one_mon",
         "documentation": {}
     },
     {
-        "label": "locate_on_screen",
+        "label": "click_image",
         "kind": 2,
-        "importPath": "core.image_lib",
-        "description": "core.image_lib",
-        "peekOfCode": "def locate_on_screen(\n    template_name: str,\n    confidence: float = 0.9,\n    roi: tuple[int, int, int, int] | None = None,\n    scales: Iterable[float] | None = None,\n) -> tuple[int, int] | None:\n    \"\"\"Locate *template_name* on current screen.\n    Parameters\n    ----------\n    template_name : str",
-        "detail": "core.image_lib",
+        "importPath": "core.gui_driver_one_mon",
+        "description": "core.gui_driver_one_mon",
+        "peekOfCode": "def click_image(name: str, timeout: float = 8.0, confidence: float = 0.9) -> bool:\n    \"\"\"Найти PNG‑шаблон на экране и кликнуть центр. Возврат True/False.\"\"\"\n    path = TEMPLATE_DIR / name\n    if not path.exists():\n        raise FileNotFoundError(path)\n    deadline = time.perf_counter() + timeout\n    while time.perf_counter() < deadline:\n        pos = _locate(path, confidence)\n        if pos:\n            _human_move_and_click(*pos)",
+        "detail": "core.gui_driver_one_mon",
+        "documentation": {}
+    },
+    {
+        "label": "click_text",
+        "kind": 2,
+        "importPath": "core.gui_driver_one_mon",
+        "description": "core.gui_driver_one_mon",
+        "peekOfCode": "def click_text(\n    query: str,\n    timeout: float = 8.0,\n    lang: str = \"eng\",\n    conf_threshold: float = 0.6,\n) -> bool:\n    \"\"\"\n    OCR-based search: find `query` text on screen and click its center.\n    Returns True if clicked, False if not found within `timeout` seconds.\n    Parameters",
+        "detail": "core.gui_driver_one_mon",
+        "documentation": {}
+    },
+    {
+        "label": "type_text",
+        "kind": 2,
+        "importPath": "core.gui_driver_one_mon",
+        "description": "core.gui_driver_one_mon",
+        "peekOfCode": "def type_text(text: str, interval: tuple[float, float] = (0.05, 0.12)) -> None:\n    \"\"\"Печатать строку с небольшим случайным интервалом между символами.\"\"\"\n    for ch in text:\n        pag.typewrite(ch)\n        time.sleep(random.uniform(*interval))\ndef take_screenshot() -> Path:\n    \"\"\"Сохранить PNG скрин в tmp‑dir, вернуть Path.\"\"\"\n    import tempfile, datetime as dt\n    ts = dt.datetime.utcnow().isoformat().replace(\":\", \"-\")\n    path = Path(tempfile.gettempdir()) / f\"scr_{ts}.png\"",
+        "detail": "core.gui_driver_one_mon",
+        "documentation": {}
+    },
+    {
+        "label": "take_screenshot",
+        "kind": 2,
+        "importPath": "core.gui_driver_one_mon",
+        "description": "core.gui_driver_one_mon",
+        "peekOfCode": "def take_screenshot() -> Path:\n    \"\"\"Сохранить PNG скрин в tmp‑dir, вернуть Path.\"\"\"\n    import tempfile, datetime as dt\n    ts = dt.datetime.utcnow().isoformat().replace(\":\", \"-\")\n    path = Path(tempfile.gettempdir()) / f\"scr_{ts}.png\"\n    pag.screenshot(str(path))\n    return path\n# ---------------------------------------------------------------------------\n# Internal helpers\n# ---------------------------------------------------------------------------",
+        "detail": "core.gui_driver_one_mon",
+        "documentation": {}
+    },
+    {
+        "label": "chrome_session",
+        "kind": 2,
+        "importPath": "core.gui_driver_one_mon",
+        "description": "core.gui_driver_one_mon",
+        "peekOfCode": "def chrome_session(user_alias: str, url: str = \"https://e-consul.gov.ua/\") -> Iterator[Popen]:\n    \"\"\"Context manager: copy profile → launch chrome → yield Popen → kill & cleanup.\"\"\"\n    with prepare_profile(user_alias) as prof_dir:\n        proc = launch_chrome(prof_dir, url)\n        time.sleep(3.0)\n        try:\n            yield proc\n        finally:\n            proc.terminate()\n            try:",
+        "detail": "core.gui_driver_one_mon",
         "documentation": {}
     },
     {
         "label": "LOGGER",
         "kind": 5,
-        "importPath": "core.image_lib",
-        "description": "core.image_lib",
-        "peekOfCode": "LOGGER = setup_logger(__name__)\n# Root folder for PNG templates (injected from settings or default \"assets\")\nTEMPLATE_DIR = Path(__file__).resolve().parent.parent / \"assets\"\n__all__ = [\n    \"locate_on_screen\",\n    \"load_template\",\n]\n# ---------------------------------------------------------------------------\n# Internal cache helpers\n# ---------------------------------------------------------------------------",
-        "detail": "core.image_lib",
+        "importPath": "core.gui_driver_one_mon",
+        "description": "core.gui_driver_one_mon",
+        "peekOfCode": "LOGGER = setup_logger(__name__)\n# Disable PyAutoGUI failsafe?  Better keep it true and document \"move mouse to top‑left\".\npag.FAILSAFE = True\n# ---------------------------------------------------------------------------\n# Constants\n# ---------------------------------------------------------------------------\n# Try to find a monitor with the exact 1920×1080 resolution\nTARGET_RES: Final[Tuple[int, int]] = (1920, 1080)\nmonitors = get_monitors()\nmatch = next((m for m in monitors if (m.width, m.height) == TARGET_RES), None)",
+        "detail": "core.gui_driver_one_mon",
         "documentation": {}
     },
     {
-        "label": "TEMPLATE_DIR",
+        "label": "pag.FAILSAFE",
         "kind": 5,
-        "importPath": "core.image_lib",
-        "description": "core.image_lib",
-        "peekOfCode": "TEMPLATE_DIR = Path(__file__).resolve().parent.parent / \"assets\"\n__all__ = [\n    \"locate_on_screen\",\n    \"load_template\",\n]\n# ---------------------------------------------------------------------------\n# Internal cache helpers\n# ---------------------------------------------------------------------------\n@functools.lru_cache(maxsize=128)\ndef _read_png(path: Path) -> np.ndarray:",
-        "detail": "core.image_lib",
+        "importPath": "core.gui_driver_one_mon",
+        "description": "core.gui_driver_one_mon",
+        "peekOfCode": "pag.FAILSAFE = True\n# ---------------------------------------------------------------------------\n# Constants\n# ---------------------------------------------------------------------------\n# Try to find a monitor with the exact 1920×1080 resolution\nTARGET_RES: Final[Tuple[int, int]] = (1920, 1080)\nmonitors = get_monitors()\nmatch = next((m for m in monitors if (m.width, m.height) == TARGET_RES), None)\nif match:\n    SCREEN_W, SCREEN_H = TARGET_RES",
+        "detail": "core.gui_driver_one_mon",
         "documentation": {}
     },
     {
-        "label": "__all__",
+        "label": "monitors",
         "kind": 5,
-        "importPath": "core.image_lib",
-        "description": "core.image_lib",
-        "peekOfCode": "__all__ = [\n    \"locate_on_screen\",\n    \"load_template\",\n]\n# ---------------------------------------------------------------------------\n# Internal cache helpers\n# ---------------------------------------------------------------------------\n@functools.lru_cache(maxsize=128)\ndef _read_png(path: Path) -> np.ndarray:\n    \"\"\"Read PNG file as BGR numpy array and cache the result.\"\"\"",
-        "detail": "core.image_lib",
+        "importPath": "core.gui_driver_one_mon",
+        "description": "core.gui_driver_one_mon",
+        "peekOfCode": "monitors = get_monitors()\nmatch = next((m for m in monitors if (m.width, m.height) == TARGET_RES), None)\nif match:\n    SCREEN_W, SCREEN_H = TARGET_RES\nelse:\n    SCREEN_W, SCREEN_H = pag.size()\n    LOGGER.warning(\n        \"Detected virtual screen %sx%s, but using actual %sx%s for templates\",\n        pag.size()[0], pag.size()[1], SCREEN_W, SCREEN_H\n    )",
+        "detail": "core.gui_driver_one_mon",
+        "documentation": {}
+    },
+    {
+        "label": "match",
+        "kind": 5,
+        "importPath": "core.gui_driver_one_mon",
+        "description": "core.gui_driver_one_mon",
+        "peekOfCode": "match = next((m for m in monitors if (m.width, m.height) == TARGET_RES), None)\nif match:\n    SCREEN_W, SCREEN_H = TARGET_RES\nelse:\n    SCREEN_W, SCREEN_H = pag.size()\n    LOGGER.warning(\n        \"Detected virtual screen %sx%s, but using actual %sx%s for templates\",\n        pag.size()[0], pag.size()[1], SCREEN_W, SCREEN_H\n    )\nTEMPLATE_DIR: Final[Path] = Path(__file__).resolve().parent.parent / \"data/ui_images\"",
+        "detail": "core.gui_driver_one_mon",
         "documentation": {}
     },
     {
@@ -1592,6 +1948,60 @@
         "documentation": {}
     },
     {
+        "label": "load_template",
+        "kind": 2,
+        "importPath": "core.ui_lib",
+        "description": "core.ui_lib",
+        "peekOfCode": "def load_template(name: str, scale: float = 1.0) -> np.ndarray:\n    \"\"\"Return cached template by filename inside *assets* dir, optionally scaled.\"\"\"\n    path = TEMPLATE_DIR / name\n    img = _read_png(path)\n    if scale != 1.0:\n        h, w = img.shape[:2]\n        img = cv2.resize(img, (int(w * scale), int(h * scale)), interpolation=cv2.INTER_LINEAR)\n    return img\n# ---------------------------------------------------------------------------\n# Public API",
+        "detail": "core.ui_lib",
+        "documentation": {}
+    },
+    {
+        "label": "locate_on_screen",
+        "kind": 2,
+        "importPath": "core.ui_lib",
+        "description": "core.ui_lib",
+        "peekOfCode": "def locate_on_screen(\n    template_name: str,\n    confidence: float = 0.9,\n    roi: tuple[int, int, int, int] | None = None,\n    scales: Iterable[float] | None = None,\n) -> tuple[int, int] | None:\n    \"\"\"Locate *template_name* on current screen.\n    Parameters\n    ----------\n    template_name : str",
+        "detail": "core.ui_lib",
+        "documentation": {}
+    },
+    {
+        "label": "locate_text_on_screen",
+        "kind": 2,
+        "importPath": "core.ui_lib",
+        "description": "core.ui_lib",
+        "peekOfCode": "def locate_text_on_screen(\n    query: str,\n    lang: str = \"eng\",\n    threshold: float = 0.6\n) -> Optional[Tuple[int, int]]:\n    \"\"\"\n    OCR-based search: take a screenshot of the entire screen,\n    run Tesseract to get bounding boxes, then find the first occurrence\n    of `query` (exact substring match) and return the (center_x, center_y).\n    Parameters",
+        "detail": "core.ui_lib",
+        "documentation": {}
+    },
+    {
+        "label": "LOGGER",
+        "kind": 5,
+        "importPath": "core.ui_lib",
+        "description": "core.ui_lib",
+        "peekOfCode": "LOGGER = setup_logger(__name__)\n# Root folder for PNG templates (injected from settings or default \"assets\")\nTEMPLATE_DIR = Path(__file__).resolve().parent.parent / \"assets\"\n__all__ = [\n    \"locate_on_screen\",\n    \"load_template\",\n]\n# ---------------------------------------------------------------------------\n# Internal cache helpers\n# ---------------------------------------------------------------------------",
+        "detail": "core.ui_lib",
+        "documentation": {}
+    },
+    {
+        "label": "TEMPLATE_DIR",
+        "kind": 5,
+        "importPath": "core.ui_lib",
+        "description": "core.ui_lib",
+        "peekOfCode": "TEMPLATE_DIR = Path(__file__).resolve().parent.parent / \"assets\"\n__all__ = [\n    \"locate_on_screen\",\n    \"load_template\",\n]\n# ---------------------------------------------------------------------------\n# Internal cache helpers\n# ---------------------------------------------------------------------------\n@functools.lru_cache(maxsize=128)\ndef _read_png(path: Path) -> np.ndarray:",
+        "detail": "core.ui_lib",
+        "documentation": {}
+    },
+    {
+        "label": "__all__",
+        "kind": 5,
+        "importPath": "core.ui_lib",
+        "description": "core.ui_lib",
+        "peekOfCode": "__all__ = [\n    \"locate_on_screen\",\n    \"load_template\",\n]\n# ---------------------------------------------------------------------------\n# Internal cache helpers\n# ---------------------------------------------------------------------------\n@functools.lru_cache(maxsize=128)\ndef _read_png(path: Path) -> np.ndarray:\n    \"\"\"Read PNG file as BGR numpy array and cache the result.\"\"\"",
+        "detail": "core.ui_lib",
+        "documentation": {}
+    },
+    {
         "label": "_Handler",
         "kind": 6,
         "importPath": "server.tcp_server",
@@ -1722,7 +2132,7 @@
         "kind": 2,
         "importPath": "utils.logger",
         "description": "utils.logger",
-        "peekOfCode": "def setup_logger(name: str) -> logging.Logger:  # noqa: D401 – imperative style\n    \"\"\"Return configured ``logging.Logger`` instance shared across project.\"\"\"\n    log_level_str: str = os.getenv(\"LOG_LEVEL\", \"INFO\").upper()\n    numeric_level: int = getattr(logging, log_level_str, logging.INFO)\n    logger = logging.getLogger(name)\n    logger.setLevel(numeric_level)\n    # Clear duplicate handlers if re‑invoked\n    if logger.hasHandlers():\n        logger.handlers.clear()\n    fmt = \"%(asctime)s %(levelname)-8s [%(name)s] %(message)s\"",
+        "peekOfCode": "def setup_logger(name: str) -> logging.Logger:  # noqa: D401 – imperative style\n    \"\"\"Return configured ``logging.Logger`` instance shared across project.\"\"\"\n    numeric_level: int = getattr(logging, LOG_LEVEL, logging.INFO)\n    logger = logging.getLogger(name)\n    logger.setLevel(numeric_level)\n    # Clear duplicate handlers if re‑invoked\n    if logger.hasHandlers():\n        logger.handlers.clear()\n    fmt = \"%(asctime)s %(levelname)-8s [%(name)s] %(message)s\"\n    formatter = logging.Formatter(fmt)",
         "detail": "utils.logger",
         "documentation": {}
     },
@@ -1740,16 +2150,16 @@
         "kind": 5,
         "importPath": "utils.logger",
         "description": "utils.logger",
-        "peekOfCode": "__all__ = [\"setup_logger\"]\ndef setup_logger(name: str) -> logging.Logger:  # noqa: D401 – imperative style\n    \"\"\"Return configured ``logging.Logger`` instance shared across project.\"\"\"\n    log_level_str: str = os.getenv(\"LOG_LEVEL\", \"INFO\").upper()\n    numeric_level: int = getattr(logging, log_level_str, logging.INFO)\n    logger = logging.getLogger(name)\n    logger.setLevel(numeric_level)\n    # Clear duplicate handlers if re‑invoked\n    if logger.hasHandlers():\n        logger.handlers.clear()",
+        "peekOfCode": "__all__ = [\"setup_logger\"]\ndef setup_logger(name: str) -> logging.Logger:  # noqa: D401 – imperative style\n    \"\"\"Return configured ``logging.Logger`` instance shared across project.\"\"\"\n    numeric_level: int = getattr(logging, LOG_LEVEL, logging.INFO)\n    logger = logging.getLogger(name)\n    logger.setLevel(numeric_level)\n    # Clear duplicate handlers if re‑invoked\n    if logger.hasHandlers():\n        logger.handlers.clear()\n    fmt = \"%(asctime)s %(levelname)-8s [%(name)s] %(message)s\"",
         "detail": "utils.logger",
         "documentation": {}
     },
     {
-        "label": "prepare",
+        "label": "prepare_profile",
         "kind": 2,
         "importPath": "utils.profile_manager",
         "description": "utils.profile_manager",
-        "peekOfCode": "def prepare(user_alias: str, keep_debug: bool = False) -> Iterator[Path]:\n    \"\"\"Context‑manager that copies template profile → temp dir and yields it.\n    Parameters\n    ----------\n    user_alias : str\n        Used in folder name to simplify debugging.\n    keep_debug : bool, default *False*\n        If *True*, directory is **not** removed on exit – handy when нужно\n        посмотреть, что именно сохранилось в профиле.\n    \"\"\"",
+        "peekOfCode": "def prepare_profile(user_alias: str) -> Iterator[Path]:\n    \"\"\"\n    Context manager: yields a directory for Chrome user data.\n    If KEEP_PROFILES is True, uses `profiles/<alias>` under project root;\n    otherwise, copies TEMPLATE_PATH to a temp dir per session and deletes it.\n    \"\"\"\n    if KEEP_PROFILES:\n        # Persistent mode: one folder per user\n        project_root = Path(__file__).resolve().parent.parent\n        profiles_dir = TEMPLATE_PATHS",
         "detail": "utils.profile_manager",
         "documentation": {}
     },
@@ -1758,7 +2168,16 @@
         "kind": 5,
         "importPath": "utils.profile_manager",
         "description": "utils.profile_manager",
-        "peekOfCode": "LOGGER = setup_logger(__name__)\n__all__ = [\"prepare\"]\ndef _template_path() -> Path:\n    \"\"\"Return absolute path to template chrome profile from settings.yaml.\"\"\"\n    from yaml import safe_load\n    settings_file = Path(__file__).resolve().parent.parent / \"settings.yaml\"\n    if not settings_file.exists():\n        raise RuntimeError(\"settings.yaml not found – cannot locate template profile\")\n    with settings_file.open(\"rt\", encoding=\"utf-8\") as fh:\n        cfg = safe_load(fh) or {}",
+        "peekOfCode": "LOGGER = setup_logger(__name__)\n# Load global settings\n_SETTINGS_PATH = Path(__file__).resolve().parent.parent / \"settings.yaml\"\ntry:\n    with _SETTINGS_PATH.open(\"rt\", encoding=\"utf-8\") as fh:\n        _SETTINGS = yaml.safe_load(fh) or {}\nexcept FileNotFoundError:\n    LOGGER.warning(\"settings.yaml not found at %s; defaulting to temporary profiles\", _SETTINGS_PATH)\n    _SETTINGS = {}\n# Configuration flags",
+        "detail": "utils.profile_manager",
+        "documentation": {}
+    },
+    {
+        "label": "_SETTINGS_PATH",
+        "kind": 5,
+        "importPath": "utils.profile_manager",
+        "description": "utils.profile_manager",
+        "peekOfCode": "_SETTINGS_PATH = Path(__file__).resolve().parent.parent / \"settings.yaml\"\ntry:\n    with _SETTINGS_PATH.open(\"rt\", encoding=\"utf-8\") as fh:\n        _SETTINGS = yaml.safe_load(fh) or {}\nexcept FileNotFoundError:\n    LOGGER.warning(\"settings.yaml not found at %s; defaulting to temporary profiles\", _SETTINGS_PATH)\n    _SETTINGS = {}\n# Configuration flags\nKEEP_PROFILES: bool = bool(_SETTINGS.get(\"keep_profiles\", False))\nTEMPLATE_PATH: Path = Path(_SETTINGS.get(\"chrome_template\", \"chrome_template/profile\")).expanduser().resolve()",
         "detail": "utils.profile_manager",
         "documentation": {}
     },
@@ -1767,7 +2186,7 @@
         "kind": 5,
         "importPath": "utils.profile_manager",
         "description": "utils.profile_manager",
-        "peekOfCode": "__all__ = [\"prepare\"]\ndef _template_path() -> Path:\n    \"\"\"Return absolute path to template chrome profile from settings.yaml.\"\"\"\n    from yaml import safe_load\n    settings_file = Path(__file__).resolve().parent.parent / \"settings.yaml\"\n    if not settings_file.exists():\n        raise RuntimeError(\"settings.yaml not found – cannot locate template profile\")\n    with settings_file.open(\"rt\", encoding=\"utf-8\") as fh:\n        cfg = safe_load(fh) or {}\n    t = cfg.get(\"chrome_template\")",
+        "peekOfCode": "__all__ = [\"prepare_profile\"]\n@contextmanager\ndef prepare_profile(user_alias: str) -> Iterator[Path]:\n    \"\"\"\n    Context manager: yields a directory for Chrome user data.\n    If KEEP_PROFILES is True, uses `profiles/<alias>` under project root;\n    otherwise, copies TEMPLATE_PATH to a temp dir per session and deletes it.\n    \"\"\"\n    if KEEP_PROFILES:\n        # Persistent mode: one folder per user",
         "detail": "utils.profile_manager",
         "documentation": {}
     },
@@ -1857,7 +2276,7 @@
         "kind": 6,
         "importPath": "manager",
         "description": "manager",
-        "peekOfCode": "class UserQueue:\n    \"\"\"Thread‑safe deque with alias → config mapping.\"\"\"\n    def __init__(self, initial: list[UserConfig]):\n        self._dq: deque[UserConfig] = deque(initial)\n        self._map: Dict[str, UserConfig] = {u.alias: u for u in initial}\n        self._lock = threading.Lock()\n    # ---------------------------------------------------------------\n    def pop_left(self) -> Optional[UserConfig]:\n        with self._lock:\n            return self._dq.popleft() if self._dq else None",
+        "peekOfCode": "class UserQueue:\n    \"\"\"Thread-safe deque with alias → config mapping.\"\"\"\n    def __init__(self, initial: list[UserConfig]):\n        self._dq: deque[UserConfig] = deque(initial)\n        self._map: Dict[str, UserConfig] = {u.alias: u for u in initial}\n        self._lock = threading.Lock()\n    def pop_left(self) -> Optional[UserConfig]:\n        with self._lock:\n            return self._dq.popleft() if self._dq else None\n    def append(self, user: UserConfig) -> None:",
         "detail": "manager",
         "documentation": {}
     },
@@ -1866,7 +2285,7 @@
         "kind": 2,
         "importPath": "manager",
         "description": "manager",
-        "peekOfCode": "def main() -> None:  # noqa: C901 – main can be lengthy\n    settings_file = Path(__file__).resolve().parent / \"settings.yaml\"\n    with settings_file.open(\"rt\", encoding=\"utf-8\") as fh:\n        import yaml\n        settings = yaml.safe_load(fh) or {}\n    users_dir = Path(settings.get(\"users_dir\", \"users_cfg\")).expanduser().resolve()\n    keys_base = Path(settings.get(\"keys_dir\", \"keys\")).expanduser().resolve()\n    try:\n        loader = YAMLLoader(users_dir, keys_base)\n        queue = UserQueue(loader.load())",
+        "peekOfCode": "def main() -> None:\n    users_dir = USERS_DIR\n    keys_base = KEYS_DIR\n    try:\n        loader = YAMLLoader(users_dir, keys_base)\n        queue = UserQueue(loader.load())\n    except ConfigError as exc:\n        LOGGER.error(\"Failed to load configs: %s\", exc)\n        return\n    # Start background services",
         "detail": "manager",
         "documentation": {}
     },
@@ -1875,8 +2294,17 @@
         "kind": 5,
         "importPath": "manager",
         "description": "manager",
-        "peekOfCode": "LOGGER = setup_logger(__name__)\n# ---------------------------------------------------------------------------\n# Helper container – thread‑safe queue wrapper\n# ---------------------------------------------------------------------------\nclass UserQueue:\n    \"\"\"Thread‑safe deque with alias → config mapping.\"\"\"\n    def __init__(self, initial: list[UserConfig]):\n        self._dq: deque[UserConfig] = deque(initial)\n        self._map: Dict[str, UserConfig] = {u.alias: u for u in initial}\n        self._lock = threading.Lock()",
+        "peekOfCode": "LOGGER = setup_logger(__name__)\n# ---------------------------------------------------------------------------\n# Helper container – thread-safe queue wrapper\n# ---------------------------------------------------------------------------\nclass UserQueue:\n    \"\"\"Thread-safe deque with alias → config mapping.\"\"\"\n    def __init__(self, initial: list[UserConfig]):\n        self._dq: deque[UserConfig] = deque(initial)\n        self._map: Dict[str, UserConfig] = {u.alias: u for u in initial}\n        self._lock = threading.Lock()",
         "detail": "manager",
+        "documentation": {}
+    },
+    {
+        "label": "_SETTINGS_PATH",
+        "kind": 5,
+        "importPath": "project_config",
+        "description": "project_config",
+        "peekOfCode": "_SETTINGS_PATH = Path(__file__).resolve().parent / \"settings.yaml\"\n# -------------------------------------------------------------------\n# 2) Загружаем YAML-данные при импорте (одно чтение)\n# -------------------------------------------------------------------\ntry:\n    with _SETTINGS_PATH.open(\"rt\", encoding=\"utf-8\") as _fh:\n        _RAW_SETTINGS: Dict[str, Any] = yaml.safe_load(_fh) or {}\nexcept FileNotFoundError:\n    raise RuntimeError(f\"settings.yaml not found at {_SETTINGS_PATH}\")\n# -------------------------------------------------------------------",
+        "detail": "project_config",
         "documentation": {}
     }
 ]

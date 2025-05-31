@@ -118,7 +118,8 @@ class SlotFinder:
 
     def _login(self, user: UserConfig) -> bool:
         LOGGER.debug("login step – personal key")
-        if not gd.click_image(BTN_PERSONAL_KEY, timeout=5):
+        #if not gd.click_image(BTN_PERSONAL_KEY, timeout=5):
+        if not gd.click_text("Особистий ключ", lang="ukr", conf_threshold=0.6):
             LOGGER.warning("personal key button not found – maybe already logged in")
         time.sleep(self.slow)
 
