@@ -32,7 +32,7 @@ from ctypes import wintypes
 
 from utils.logger import setup_logger
 from utils.profile_manager import prepare_profile
-from project_config import LOG_LEVEL, HTML_LOG_DIR, TEMPLATE_DIR, MONITOR_WIDTH, MONITOR_HEIGHT,MONITOR_INDEX,TESSERCAT_CMD,TESSDATA_PREFIX
+from project_config import LOG_LEVEL, TEMPLATE_DIR, MONITOR_WIDTH, MONITOR_HEIGHT,MONITOR_INDEX,TESSERCAT_CMD,TESSDATA_PREFIX
 
 LOGGER = setup_logger(__name__)
 pag.FAILSAFE = True  # оставить возможность «движения мыши в угол для экстренной остановки»
@@ -294,30 +294,16 @@ def draw_monitor_region_on_screen(color: tuple[int,int,int] = (0, 0, 255), thick
     # 7) Освобождаем DC
     ctypes.windll.user32.ReleaseDC(0, hdc)
 
-def flip_focus_rect_on_screen():
+def flip_focus_rect_on_screen(scope):
     """
-    Нарисовать/стереть XOR-рамку вокруг MON_X..MON_Y..MON_W..MON_H.
+    Нарисовать/стереть XOR-рамку вокруг left, top, width, height.
     При первом вызове – появится рамка, при втором – исчезнет.
     """
-    import mss
-    from project_config import MONITOR_INDEX
-
-    # 1) получаем координаты монитора
-    with mss.mss() as sct:
-        monitors = sct.monitors
-        if 1 <= MONITOR_INDEX < len(monitors):
-            mon = monitors[MONITOR_INDEX]
-        else:
-            mon = monitors[1]
-        left = mon["left"]
-        top = mon["top"]
-        right = left + mon["width"]
-        bottom = top + mon["height"]
 
     # 2) получаем HDC для экрана
     hdc = ctypes.windll.user32.GetDC(0)
     # 3) DrawFocusRect рисует рамку в режиме XOR: повторный вызов с теми же координатами удаляет её
-    rect = wintypes.RECT(left, top, right, bottom)
+    rect = wintypes.RECT(scope["left"], scope["top"], scope["left"] + scope["width"], scope["top"] + scope["height"])
     ctypes.windll.user32.DrawFocusRect(hdc, ctypes.byref(rect))
     # 4) освобождаем HDC
     ctypes.windll.user32.ReleaseDC(0, hdc)
@@ -348,9 +334,10 @@ def chrome_session(user_alias: str, url: str = "https://e-consul.gov.ua/") -> It
 
 def click_text(
     query: str,
-    timeout: float = 8.0,
-    lang: str = "eng",
-    conf_threshold: float = 0.6,
+    timeout: float,
+    lang: str,
+    conf_threshold: float,
+    scope: tuple[int, int, int, int] = None
 ) -> bool:
     """
     OCR-based search: найти текст `query` на экране (в пределах MON_X..MON_W, MON_Y..MON_H)
@@ -367,77 +354,270 @@ def click_text(
         Язык Tesseract (например, "eng", "rus", "ukr").
     conf_threshold : float
         Минимальный порог доверия (0.0–1.0) для распознанных слов.
+    padding : tuple[int, int, int, int], optional
+        Смещение (left, bottom, right, top) для сужения области скриншота.
     """
     deadline = time.perf_counter() + timeout
 
-    # Если tesseract.exe не лежит в PATH, можно явно указать:
-    os.environ['TESSDATA_PREFIX'] = TESSDATA_PREFIX
-    pytesseract.pytesseract.tesseract_cmd = TESSERCAT_CMD
+    # Разбиваем query на слова для поиска последовательности
+    query_words = query.lower().split()
+    n_words = len(query_words)
 
     while time.perf_counter() < deadline:
-        # 1) Снимаем кадр нужного монитора
+        left, bottom, right, top = scope
         with mss.mss() as sct:
+           
+            if scope != None:
+                monitor_region = {
+                    "top": bottom,
+                    "left": MON_X + left,
+                    "width" :right - left,
+                    "height": top - bottom
+                }
+            else:
+                monitor_region = {
+                    "top": MON_Y,
+                    "left": MON_X,
+                    "width": MON_W,
+                    "height": MON_H
+                }
+                
+            img_data = sct.grab(monitor_region)
+            scr_np = np.array(img_data)
+            scr_bgr = cv2.cvtColor(scr_np, cv2.COLOR_BGRA2BGR)
+
+        if LOG_LEVEL == "DEBUG":
+            flip_focus_rect_on_screen(monitor_region)
+            show_image(scr_bgr)
+            time.sleep(0.5)
+
+        os.environ['TESSDATA_PREFIX'] = os.path.normpath(TESSDATA_PREFIX)
+        pytesseract.pytesseract.tesseract_cmd = r"C:/Program Files/Tesseract-OCR/tesseract.exe"
+
+        data = pytesseract.image_to_data(
+            scr_bgr, lang=lang, output_type=pytesseract.Output.DICT
+        )
+
+        texts = [t.strip().lower() for t in data["text"]]
+        confs = []
+        for c in data.get("conf", []):
+            try:
+                confs.append(float(c) / 100.0)
+            except Exception:
+                confs.append(0.0)
+
+        n_boxes = len(texts)
+
+        for i in range(n_boxes - n_words + 1):
+            window = texts[i:i + n_words]
+            window_confs = confs[i:i + n_words]
+
+            if any(not w for w in window):
+                continue
+            if any(conf < conf_threshold for conf in window_confs):
+                continue
+
+            if window == query_words:
+                # Рассчитываем общий прямоугольник для всей последовательности
+                x_left = min(int(data["left"][j]) for j in range(i, i + n_words))
+                y_top = min(int(data["top"][j]) for j in range(i, i + n_words))
+                x_right = max(int(data["left"][j]) + int(data["width"][j]) for j in range(i, i + n_words))
+                y_bottom = max(int(data["top"][j]) + int(data["height"][j]) for j in range(i, i + n_words))
+
+                center_x_rel = (x_left + x_right) // 2
+                center_y_rel = (y_top + y_bottom) // 2
+
+                abs_x = MON_X + center_x_rel + left
+                abs_y = MON_Y + center_y_rel + bottom
+
+                LOGGER.debug(
+                    "Found phrase '%s' at local (%d,%d), clicking global (%d,%d)",
+                    query, center_x_rel, center_y_rel, abs_x, abs_y
+                )
+                _human_move_and_click(abs_x, abs_y)
+                return True
+
+        time.sleep(0.2)
+
+    LOGGER.debug("Text '%s' not found within %.2f seconds", query, timeout)
+    return False
+
+def find_text(
+    query: str,
+    timeout: float,
+    lang: str,
+    conf_threshold: float,
+    scope: tuple[int, int, int, int] = None
+) -> bool:
+    """
+    OCR-based search: найти текст `query` на экране (в пределах MON_X..MON_W, MON_Y..MON_H).
+    Возвращает True, если удалось найти, иначе False по истечении timeout.
+
+    Параметры:
+    -----------
+    query : str
+        Подстрока (без учёта регистра), которую ищем среди распознанных слов.
+    timeout : float
+        Максимальное время (в секундах) на попытки поиска.
+    lang : str
+        Язык Tesseract (например, "eng", "rus", "ukr").
+    conf_threshold : float
+        Минимальный порог доверия (0.0–1.0) для распознанных слов.
+    scope : tuple[int, int, int, int], optional
+        Область поиска (left, bottom, right, top) для сужения области скриншота.
+    """
+    deadline = time.perf_counter() + timeout
+
+    query_words = query.lower().split()
+    n_words = len(query_words)
+
+    while time.perf_counter() < deadline:
+        if scope is not None:
+            left, bottom, right, top = scope
+            monitor_region = {
+                "top": bottom,
+                "left": MON_X + left,
+                "width": right - left,
+                "height": top - bottom
+            }
+        else:
             monitor_region = {
                 "top": MON_Y,
                 "left": MON_X,
                 "width": MON_W,
                 "height": MON_H
             }
-            img_data = sct.grab(monitor_region)
-            # MSS даёт raw.rgb, размеры — img_data.size
-            scr_np = np.array(img_data) 
-            scr_bgr = cv2.cvtColor(scr_np, cv2.COLOR_BGRA2BGR)
-        
-        if LOG_LEVEL == "DEBUG":
-            flip_focus_rect_on_screen()
-            show_image(scr_bgr)  
-            time.sleep(0.5)  #    
-        
 
-        # 2) Запускаем Tesseract OCR и получаем данные по каждому слову
+        with mss.mss() as sct:
+            img_data = sct.grab(monitor_region)
+            scr_np = np.array(img_data)
+            scr_bgr = cv2.cvtColor(scr_np, cv2.COLOR_BGRA2BGR)
+
+        if LOG_LEVEL == "DEBUG":
+            flip_focus_rect_on_screen(monitor_region)
+            show_image(scr_bgr)
+            time.sleep(0.5)
+
+        os.environ['TESSDATA_PREFIX'] = os.path.normpath(TESSDATA_PREFIX)
+        pytesseract.pytesseract.tesseract_cmd = r"C:/Program Files/Tesseract-OCR/tesseract.exe"
+
         data = pytesseract.image_to_data(
             scr_bgr, lang=lang, output_type=pytesseract.Output.DICT
         )
 
-        n_boxes = len(data["text"])
-        for i in range(n_boxes):
-            text = data["text"][i].strip()
-            if not text:
-                continue
-
-            # Конвертируем confidence в 0.0–1.0
+        texts = [t.strip().lower() for t in data["text"]]
+        confs = []
+        for c in data.get("conf", []):
             try:
-                conf = float(data["conf"][i]) / 100.0
-            except (ValueError, KeyError):
-                conf = 0.0
+                confs.append(float(c) / 100.0)
+            except Exception:
+                confs.append(0.0)
 
-            if conf < conf_threshold:
+        n_boxes = len(texts)
+
+        for i in range(n_boxes - n_words + 1):
+            window = texts[i:i + n_words]
+            window_confs = confs[i:i + n_words]
+
+            if any(not w for w in window):
+                continue
+            if any(conf < conf_threshold for conf in window_confs):
                 continue
 
-            # Сравниваем без учёта регистра
-            if query.lower() in text.lower():
-                # Локальные (в пределах выбранного монитора) координаты
-                x_rel = int(data["left"][i])
-                y_rel = int(data["top"][i])
-                w = int(data["width"][i])
-                h = int(data["height"][i])
-
-                center_x_rel = x_rel + w // 2
-                center_y_rel = y_rel + h // 2
-
-                # Переводим в глобальные координаты для клика
-                abs_x = MON_X + center_x_rel
-                abs_y = MON_Y + center_y_rel
-
+            if query_words in window:
                 LOGGER.debug(
-                    "Found text '%s' (conf=%.2f) at local (%d,%d), clicking global (%d,%d)",
-                    text, conf, center_x_rel, center_y_rel, abs_x, abs_y
+                    "Found phrase '%s' within timeout %.2f seconds", query, timeout
                 )
-                _human_move_and_click(abs_x, abs_y)
                 return True
 
-        # Если не найдено, небольшой sleep и повтор
         time.sleep(0.2)
 
     LOGGER.debug("Text '%s' not found within %.2f seconds", query, timeout)
+    return False
+
+from typing import Iterable
+
+def find_text_any(
+    queries: Iterable[str],
+    timeout: float,
+    lang: str,
+    conf_threshold: float,
+    scope: tuple[int, int, int, int] = None
+) -> bool:
+    """
+    Ищет любой из текстов из `queries` на экране.
+    Возвращает True, если найден хотя бы один, иначе False.
+
+    queries : список или кортеж строк для поиска.
+    Остальные параметры как в find_text.
+    """
+    deadline = time.perf_counter() + timeout
+    # Для оптимизации разобьём все query на списки слов заранее
+    queries_words = [q.lower().split() for q in queries]
+
+    while time.perf_counter() < deadline:
+        if scope is not None:
+            left, bottom, right, top = scope
+            monitor_region = {
+                "top": bottom,
+                "left": MON_X + left,
+                "width": right - left,
+                "height": top - bottom
+            }
+        else:
+            left = bottom = 0
+            monitor_region = {
+                "top": MON_Y,
+                "left": MON_X,
+                "width": MON_W,
+                "height": MON_H
+            }
+
+        with mss.mss() as sct:
+            img_data = sct.grab(monitor_region)
+            scr_np = np.array(img_data)
+            scr_bgr = cv2.cvtColor(scr_np, cv2.COLOR_BGRA2BGR)
+
+        if LOG_LEVEL == "DEBUG":
+            flip_focus_rect_on_screen(monitor_region)
+            show_image(scr_bgr)
+            time.sleep(0.5)
+
+        os.environ['TESSDATA_PREFIX'] = os.path.normpath(TESSDATA_PREFIX)
+        pytesseract.pytesseract.tesseract_cmd = r"C:/Program Files/Tesseract-OCR/tesseract.exe"
+
+        data = pytesseract.image_to_data(
+            scr_bgr, lang=lang, output_type=pytesseract.Output.DICT
+        )
+
+        texts = [t.strip().lower() for t in data["text"]]
+        confs = []
+        for c in data.get("conf", []):
+            try:
+                confs.append(float(c) / 100.0)
+            except Exception:
+                confs.append(0.0)
+
+        n_boxes = len(texts)
+
+        for query_words in queries_words:
+            n_words = len(query_words)
+            for i in range(n_boxes - n_words + 1):
+                window = texts[i:i + n_words]
+                window_confs = confs[i:i + n_words]
+
+                if any(not w for w in window):
+                    continue
+                if any(conf < conf_threshold for conf in window_confs):
+                    continue
+
+                if window == query_words:
+                    LOGGER.debug(
+                        "Found phrase '%s' within timeout %.2f seconds", ' '.join(query_words), timeout
+                    )
+                    return True
+
+        time.sleep(0.2)
+
+    LOGGER.debug("None of texts '%s' found within %.2f seconds", queries, timeout)
     return False

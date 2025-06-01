@@ -25,10 +25,13 @@ from pathlib import Path
 from typing import Sequence
 
 import pyautogui as pag
+import pyperclip
 
 from core import gui_driver as gd
 from utils.logger import setup_logger
 from bot_io.yaml_loader import UserConfig
+from project_config import LOG_LEVEL, USERS_DIR
+
 
 try:
     # lazy import to avoid circular dep when hooks file ещё не создан
@@ -116,28 +119,64 @@ class SlotFinder:
     # Internal steps
     # ------------------------------------------------------------------
 
+    def _is_login(self) -> bool:
+            LOGGER.debug("check is login")
+            if not gd.find_text_any(["Вітаємо", "Вітаємо.", "Вітаємо,"], 
+                                timeout = 6, lang="ukr", 
+                                conf_threshold=0.6, 
+                                scope=(270, 240, 540, 300)):
+                
+                LOGGER.error("not logged in – welcome banner not found")
+                return False
+            return True
+    
     def _login(self, user: UserConfig) -> bool:
+        
+        if self._is_login():
+            return True  
+        
         LOGGER.debug("login step – personal key")
         #if not gd.click_image(BTN_PERSONAL_KEY, timeout=5):
-        if not gd.click_text("Особистий ключ", lang="ukr", conf_threshold=0.6):
-            LOGGER.warning("personal key button not found – maybe already logged in")
+        if not gd.click_text("Особистий ключ", 
+                             timeout = 6, lang="ukr", 
+                             conf_threshold=0.6, 
+                             scope=(600, 420, 940, 520)):
+            
+            _error_hook("personal login button not found", gd.take_screenshot())
+            
         time.sleep(self.slow)
-
-        if not gd.click_image(FIELD_KEY_PATH, timeout=4):
-            _error_hook("key path field not found", gd.take_screenshot())
-            return False
-        gd.type_text(str(user.key_path))
+        
+        if not gd.click_text("Оберіть ключ на своєму носієві", 
+                             timeout = 6, lang="ukr", conf_threshold=0.6, 
+                             scope=(700, 420, 1200, 620)):
+            
+            _error_hook("personal select key button not found", gd.take_screenshot())
+        time.sleep(self.slow)
+        
+        #вставка пути к ключу
         time.sleep(self.fast)
+        pyperclip.copy(user.key_path)
+        time.sleep(self.fast)
+        pag.press('enter')
+        pag.hotkey('ctrl', 'v')
+        time.sleep(self.fast)
+        pag.press('enter')
+        time.sleep(self.fast)
+                
+        #вставка пароля
+        pyperclip.copy(user.key_password)
+        time.sleep(self.fast)
+        pag.hotkey('ctrl', 'v')
+        time.sleep(self.fast)
+        pag.press('enter')
+        time.sleep(self.fast)
+        
+        time.sleep(8)
 
-        if gd.click_image(FIELD_KEY_PASS, timeout=3):
-            gd.type_text(user.key_password)
-        if gd.click_image(BTN_LOGIN, timeout=3):
-            time.sleep(self.slow)
+        if self._is_login():
+            return True 
 
-        # проверяем welcome
-        if not gd.click_image(WELCOME_BANNER, timeout=7, confidence=0.8):
-            _error_hook("welcome banner not found after login", gd.take_screenshot())
-            return False
+        _error_hook("Error login", gd.take_screenshot())
         return True
 
     # ------------------------------------------------------------------

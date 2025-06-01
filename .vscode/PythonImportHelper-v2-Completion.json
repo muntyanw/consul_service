@@ -490,6 +490,14 @@
         "documentation": {}
     },
     {
+        "label": "Iterable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
         "label": "Final",
         "importPath": "typing",
         "description": "typing",
@@ -693,14 +701,6 @@
         "documentation": {}
     },
     {
-        "label": "HTML_LOG_DIR",
-        "importPath": "project_config",
-        "description": "project_config",
-        "isExtraImport": true,
-        "detail": "project_config",
-        "documentation": {}
-    },
-    {
         "label": "TEMPLATE_DIR",
         "importPath": "project_config",
         "description": "project_config",
@@ -742,6 +742,22 @@
     },
     {
         "label": "TESSDATA_PREFIX",
+        "importPath": "project_config",
+        "description": "project_config",
+        "isExtraImport": true,
+        "detail": "project_config",
+        "documentation": {}
+    },
+    {
+        "label": "LOG_LEVEL",
+        "importPath": "project_config",
+        "description": "project_config",
+        "isExtraImport": true,
+        "detail": "project_config",
+        "documentation": {}
+    },
+    {
+        "label": "USERS_DIR",
         "importPath": "project_config",
         "description": "project_config",
         "isExtraImport": true,
@@ -1046,6 +1062,15 @@
         "description": "core.slot_finder",
         "isExtraImport": true,
         "detail": "core.slot_finder",
+        "documentation": {}
+    },
+    {
+        "label": "pyperclip",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pyperclip",
+        "description": "pyperclip",
+        "detail": "pyperclip",
         "documentation": {}
     },
     {
@@ -1574,7 +1599,7 @@
         "kind": 2,
         "importPath": "core.gui_driver",
         "description": "core.gui_driver",
-        "peekOfCode": "def flip_focus_rect_on_screen():\n    \"\"\"\n    Нарисовать/стереть XOR-рамку вокруг MON_X..MON_Y..MON_W..MON_H.\n    При первом вызове – появится рамка, при втором – исчезнет.\n    \"\"\"\n    import mss\n    from project_config import MONITOR_INDEX\n    # 1) получаем координаты монитора\n    with mss.mss() as sct:\n        monitors = sct.monitors",
+        "peekOfCode": "def flip_focus_rect_on_screen(scope):\n    \"\"\"\n    Нарисовать/стереть XOR-рамку вокруг left, top, width, height.\n    При первом вызове – появится рамка, при втором – исчезнет.\n    \"\"\"\n    # 2) получаем HDC для экрана\n    hdc = ctypes.windll.user32.GetDC(0)\n    # 3) DrawFocusRect рисует рамку в режиме XOR: повторный вызов с теми же координатами удаляет её\n    rect = wintypes.RECT(scope[\"left\"], scope[\"top\"], scope[\"left\"] + scope[\"width\"], scope[\"top\"] + scope[\"height\"])\n    ctypes.windll.user32.DrawFocusRect(hdc, ctypes.byref(rect))",
         "detail": "core.gui_driver",
         "documentation": {}
     },
@@ -1592,7 +1617,25 @@
         "kind": 2,
         "importPath": "core.gui_driver",
         "description": "core.gui_driver",
-        "peekOfCode": "def click_text(\n    query: str,\n    timeout: float = 8.0,\n    lang: str = \"eng\",\n    conf_threshold: float = 0.6,\n) -> bool:\n    \"\"\"\n    OCR-based search: найти текст `query` на экране (в пределах MON_X..MON_W, MON_Y..MON_H)\n    и кликнуть его центр.\n    Возвращает True, если удалось найти и кликнуть, иначе False по истечении timeout.",
+        "peekOfCode": "def click_text(\n    query: str,\n    timeout: float,\n    lang: str,\n    conf_threshold: float,\n    scope: tuple[int, int, int, int] = None\n) -> bool:\n    \"\"\"\n    OCR-based search: найти текст `query` на экране (в пределах MON_X..MON_W, MON_Y..MON_H)\n    и кликнуть его центр.",
+        "detail": "core.gui_driver",
+        "documentation": {}
+    },
+    {
+        "label": "find_text",
+        "kind": 2,
+        "importPath": "core.gui_driver",
+        "description": "core.gui_driver",
+        "peekOfCode": "def find_text(\n    query: str,\n    timeout: float,\n    lang: str,\n    conf_threshold: float,\n    scope: tuple[int, int, int, int] = None\n) -> bool:\n    \"\"\"\n    OCR-based search: найти текст `query` на экране (в пределах MON_X..MON_W, MON_Y..MON_H).\n    Возвращает True, если удалось найти, иначе False по истечении timeout.",
+        "detail": "core.gui_driver",
+        "documentation": {}
+    },
+    {
+        "label": "find_text_any",
+        "kind": 2,
+        "importPath": "core.gui_driver",
+        "description": "core.gui_driver",
+        "peekOfCode": "def find_text_any(\n    queries: Iterable[str],\n    timeout: float,\n    lang: str,\n    conf_threshold: float,\n    scope: tuple[int, int, int, int] = None\n) -> bool:\n    \"\"\"\n    Ищет любой из текстов из `queries` на экране.\n    Возвращает True, если найден хотя бы один, иначе False.",
         "detail": "core.gui_driver",
         "documentation": {}
     },

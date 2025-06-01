@@ -51,5 +51,5 @@ HTML_LOG_DIR: Path = Path(_RAW_SETTINGS.get("html_log_dir", "data/html_log")).ex
 # Уровень логирования (строка, например "DEBUG", "INFO")
 LOG_LEVEL: str = str(_RAW_SETTINGS.get("log_level", "INFO")).upper()
 
-TESSDATA_PREFIX: str = str(_RAW_SETTINGS.get("tessdata_prefix", "C:\\Program Files\\Tesseract-OCR")).upper()
-TESSERCAT_CMD: str = str(_RAW_SETTINGS.get("tesseract_cmd", "C:\\Program Files\\Tesseract-OCR\\tesseract.exe")).upper()
+TESSDATA_PREFIX: str = str(_RAW_SETTINGS.get("tessdata_prefix", r"C:/Program Files/Tesseract-OCR/tessdata"))
+TESSERCAT_CMD: str = str(_RAW_SETTINGS.get("tesseract_cmd", r"C:/Program Files/Tesseract-OCR/tesseract.exe"))

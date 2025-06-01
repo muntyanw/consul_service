@@ -37,9 +37,9 @@ monitor_height: 1080
 monitor_index: 2
 
 #-------------------------------------------------------------------
-log_level: "debug"
+log_level: "debug" #"prod" 
 
-tessdata_prefix: "C:\\Program Files\\Tesseract-OCR"
-tesseract_cmd: "C:\\Program Files\\Tesseract-OCR\\tesseract.exe"
+tessdata_prefix: r"C:/Program Files/Tesseract-OCR/tessdata"
+tesseract_cmd: r"C:/Program Files/Tesseract-OCR/tesseract.exe"
 
 
