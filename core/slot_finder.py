@@ -32,6 +32,9 @@ from utils.logger import setup_logger
 from bot_io.yaml_loader import UserConfig
 from project_config import LOG_LEVEL, USERS_DIR
 
+from datetime import datetime
+from babel.dates import format_date
+
 
 try:
     # lazy import to avoid circular dep when hooks file ещё не создан
@@ -136,7 +139,7 @@ class SlotFinder:
             return True  
         
         LOGGER.debug("login step – personal key")
-        #if not gd.click_image(BTN_PERSONAL_KEY, timeout=5):
+        
         if not gd.click_text("Особистий ключ", 
                              timeout = 6, lang="ukr", 
                              conf_threshold=0.6, 
@@ -151,14 +154,15 @@ class SlotFinder:
                              scope=(700, 420, 1200, 620)):
             
             _error_hook("personal select key button not found", gd.take_screenshot())
-        time.sleep(self.slow)
+        #time.sleep(self.slow)
         
         #вставка пути к ключу
         time.sleep(self.fast)
-        pyperclip.copy(user.key_path)
-        time.sleep(self.fast)
-        pag.press('enter')
-        pag.hotkey('ctrl', 'v')
+        #pyperclip.copy(user.key_path)
+        #time.sleep(self.fast)
+        #pag.press('enter')
+        #pag.hotkey('ctrl', 'v')
+        pag.typewrite(str(user.key_path), interval=0.02)
         time.sleep(self.fast)
         pag.press('enter')
         time.sleep(self.fast)
@@ -177,42 +181,140 @@ class SlotFinder:
             return True 
 
         _error_hook("Error login", gd.take_screenshot())
-        return True
+        return False
 
     # ------------------------------------------------------------------
     def _open_visit_wizard(self) -> bool:
+        
         LOGGER.debug("open visit wizard")
-        if not gd.click_image(BTN_VISIT, timeout=5):
-            _error_hook("btn_visit not found", gd.take_screenshot())
-            return False
-        time.sleep(self.fast)
-        if not gd.click_image(BTN_BOOK, timeout=5):
-            _error_hook("btn_book not found", gd.take_screenshot())
-            return False
-        time.sleep(self.slow)
+        
+        if not gd.click_text("Запис на візит", 
+                             timeout = 6, lang="ukr", 
+                             conf_threshold=0.6, 
+                             scope=(210, 100, 480, 160)):
+                    _error_hook("btn visit wizard not found", gd.take_screenshot())
+                    return False
+                
+        time.sleep(6)
+        
+        if not gd.click_text("Записатись на візит", 
+                             timeout = 6, lang="ukr", 
+                             conf_threshold=0.6, 
+                             scope=(540, 300, 690, 360)):
+                    _error_hook("btn visit wizard 2 not found", gd.take_screenshot())
+                    return False
+                
+        time.sleep(6)
+
         return True
 
     # ------------------------------------------------------------------
     def _fill_steps(self, user: UserConfig) -> bool:
         LOGGER.debug("fill step 1 – personal data")
-        if not gd.click_image(FIELD_BIRTHDATE, timeout=5):
-            _error_hook("birthdate field missing", gd.take_screenshot())
+        
+        gd.scroll(10)  
+            
+        if not gd.click_text("день", 
+                            timeout = 6, lang="ukr", 
+                            conf_threshold=0.6, 
+                            scope=(170, 530, 260, 560)):
+                _error_hook("birthdate field day missing", gd.take_screenshot())
+                return False
+            
+        day_number = user.birthdate.strftime("%d") 
+        gd.type_text(day_number)
+        time.sleep(self.fast)
+        
+        if not gd.click_text("місяць", 
+                        timeout = 6, lang="ukr", 
+                        conf_threshold=0.6, 
+                        scope=(260, 530, 450, 560)):
+            _error_hook("birthdate field month missing", gd.take_screenshot())
             return False
-        gd.type_text(user.birthdate.isoformat())
+        
         time.sleep(self.fast)
-
-        gd.click_image(FIELD_GENDER)
-        gd.type_text(user.gender)
-        pag.press("enter")
+        
+        formatted = format_date(user.birthdate, format='d MMMM', locale='uk')
+        month_in_genitive = formatted.split()[1]
+        
+        if not gd.click_text(month_in_genitive, 
+                        timeout = 6, lang="ukr", 
+                        conf_threshold=0.6, 
+                        scope=(260, 570, 390, 960)):
+            
+            #если месяц не найден скролим список и ищем опять
+            gd._human_move(280, 600)
+            
+            gd.scroll(2)
+                
+            if not gd.click_text(month_in_genitive, 
+                timeout = 6, lang="ukr", 
+                conf_threshold=0.6, 
+                scope=(260, 570, 390, 960)):
+    
+                _error_hook("birthdate field number month missing", gd.take_screenshot())
+                return False
+            
+        
+        if not gd.click_text("рік", 
+                    timeout = 6, lang="ukr", 
+                    conf_threshold=0.6, 
+                    scope=(480, 530, 550, 560)):
+            _error_hook("birthdate field year missing", gd.take_screenshot())
+            return False
+        
         time.sleep(self.fast)
-
-        gd.click_image(BTN_NEXT)
+        
+        year = user.birthdate.year
+        gd.type_text(str(year))
+        
+        time.sleep(self.fast)
+        
+        if user.gender == "Male":
+            if not gd.click_text("Чоловіча", 
+                    timeout = 6, lang="ukr", 
+                    conf_threshold=0.6, 
+                    scope=(190, 660, 490, 710)):
+                _error_hook("gender field missing", gd.take_screenshot())
+                return False
+        else:
+            if not gd.click_text("Жіноча", 
+                timeout = 6, lang="ukr", 
+                conf_threshold=0.6, 
+                scope=(190, 660, 490, 710)):
+                _error_hook("gender field missing", gd.take_screenshot())
+                return False
+            
         time.sleep(self.slow)
-
+        
+        if not gd.click_text("Далі", 
+            timeout = 6, lang="ukr", 
+            conf_threshold=0.6, 
+            scope=(190, 770, 360, 820)):
+            _error_hook("button Next after gender missing", gd.take_screenshot())
+            return False
+        
+        time.sleep(self.slow)
+        
+        gd.scroll(10)
+        
         # --- step 2 ----------------------------------------------------
-        gd.click_image(FIELD_COUNTRY)
+        
+        if not gd.click_text("Країна", 
+            timeout = 6, lang="ukr", 
+            conf_threshold=0.6, 
+            scope=(170, 640, 360, 680)):
+            _error_hook("field country missing", gd.take_screenshot())
+            return False
+        
+        time.sleep(self.fast)
+        
         gd.type_text(user.country)
+        time.sleep(self.fast)
         pag.press("enter")
+        
+        gd.scroll(10)
+        
 
         for cons in user.consulates:
             gd.click_image(FIELD_CONSULATE)

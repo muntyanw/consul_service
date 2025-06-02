@@ -159,6 +159,10 @@ def _detect_chrome() -> Path:
             return p
     raise RuntimeError("Chrome executable not found; add custom logic in _detect_chrome()")
 
+def scroll(amount: int = 100) -> None:
+     for _ in range(amount): 
+        pag.scroll(100) 
+        time.sleep(0.01) 
 
 def _locate(template_path: Path, confidence: float) -> tuple[int, int] | None:
     """
@@ -192,11 +196,10 @@ def _locate(template_path: Path, confidence: float) -> tuple[int, int] | None:
     center_y_rel = y_loc + h // 2
     return (center_x_rel, center_y_rel)
 
-
-def _human_move_and_click(x: int, y: int, duration: Tuple[float, float] = (0.4, 0.9)) -> None:
+def _human_move(x: int, y: int, duration: Tuple[float, float] = (0.4, 0.9)) -> None:
     """
     Передать абсолютные глобальные координаты (x, y) и выполнить плавное движение
-    “по-человечески” + клик. Используется Bezier-кривая + небольшие случайные паузы.
+    “по-человечески”. Используется Bezier-кривая + небольшие случайные паузы.
     """
     cx, cy = pag.position()  # текущая абсолютная позиция мыши
 
@@ -214,6 +217,14 @@ def _human_move_and_click(x: int, y: int, duration: Tuple[float, float] = (0.4, 
         time.sleep(0.003)
 
     pag.moveTo(x, y, duration=random.uniform(*duration))
+
+
+def _human_move_and_click(x: int, y: int, duration: Tuple[float, float] = (0.4, 0.9)) -> None:
+    """
+    Передать абсолютные глобальные координаты (x, y) и выполнить плавное движение
+    “по-человечески” + клик. Используется Bezier-кривая + небольшие случайные паузы.
+    """
+    _human_move(x, y, duration)
     pag.click()
 
 

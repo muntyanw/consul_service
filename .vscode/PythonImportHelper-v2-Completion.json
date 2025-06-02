@@ -677,6 +677,14 @@
         "documentation": {}
     },
     {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
         "label": "LOG_LEVEL",
         "importPath": "project_config",
         "description": "project_config",
@@ -1127,6 +1135,14 @@
         "description": "bot_io.yaml_loader",
         "isExtraImport": true,
         "detail": "bot_io.yaml_loader",
+        "documentation": {}
+    },
+    {
+        "label": "format_date",
+        "importPath": "babel.dates",
+        "description": "babel.dates",
+        "isExtraImport": true,
+        "detail": "babel.dates",
         "documentation": {}
     },
     {
@@ -1582,6 +1598,15 @@
         "importPath": "core.gui_driver",
         "description": "core.gui_driver",
         "peekOfCode": "def show_image(img) -> None:\n    # Показать изображение через matplotlib\n    plt.figure(figsize=(8, 5))\n    plt.imshow(img)\n    plt.axis('off')\n    plt.title(\"Tesseract Input: Full-Screen Screenshot\")\n    plt.show()\n# ---------------------------------------------------------------------------\n# Internal helpers\n# ---------------------------------------------------------------------------",
+        "detail": "core.gui_driver",
+        "documentation": {}
+    },
+    {
+        "label": "scroll",
+        "kind": 2,
+        "importPath": "core.gui_driver",
+        "description": "core.gui_driver",
+        "peekOfCode": "def scroll(amount: int = 100) -> None:\n     for _ in range(amount): \n        pag.scroll(100) \n        time.sleep(0.01) \ndef _locate(template_path: Path, confidence: float) -> tuple[int, int] | None:\n    \"\"\"\n    Ищет шаблон (template_path) внутри прямоугольника MON_X..MON_W, MON_Y..MON_H.\n    Возвращает (x_center_rel, y_center_rel) или None.\n    \"\"\"\n    # 1) Снимаем область MON_X..MON_H с помощью MSS",
         "detail": "core.gui_driver",
         "documentation": {}
     },

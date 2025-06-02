@@ -3,8 +3,8 @@
    key_password: "gAAAAABoObN_HLGndTZHjxWjE7NAePEfRX6RZ_ZOpwjE4jygw6zKFYruZCXCf7PJQZynXvywmTx6FqPVDxF1jNlMZD6RqIr5KA=="
    birthdate: "1976-05-24"
    gender: "Male"
-   country: "Canada"
-   consulates: ["Toronto", "Montreal"]
+   country: "Канада"
+   consulates: ["Генеральне Консульство України в Едмонтоні", "Генеральне Консульство України в Торонто", "Посольство України в Канаді"]
    service: "Оформлення закордонного паспорта"
    client_name:
      surname: "Мунтян"
