@@ -29,6 +29,7 @@ import mss
 import mss.tools
 import ctypes
 from ctypes import wintypes
+from typing import Iterable
 
 from utils.logger import setup_logger
 from utils.profile_manager import prepare_profile
@@ -56,7 +57,24 @@ with mss.mss() as sct:
         mon = monitors[1]
         MON_X, MON_Y, MON_W, MON_H = mon["left"], mon["top"], mon["width"], mon["height"]
         LOGGER.warning("monitor_index=%d is invalid, using primary monitor #%d", MONITOR_INDEX, 1)
-    
+
+def _get_monitor_region(scope) -> dict:
+    if scope != None:
+        left, bottom, right, top = scope
+        monitor_region = {
+            "top": bottom,
+            "left": MON_X + left,
+            "width" :right - left,
+            "height": top - bottom
+        }
+    else:
+        monitor_region = {
+            "top": MON_Y,
+            "left": MON_X,
+            "width": MON_W,
+            "height": MON_H
+        }
+    return monitor_region
 # ---------------------------------------------------------------------------
 # Public helpers
 # ---------------------------------------------------------------------------
@@ -80,11 +98,11 @@ def launch_chrome(profile_dir: Path, url: str = "https://e-consul.gov.ua/") -> s
     LOGGER.debug("Run Chrome at %dx%d+%d+%d: %s", width, height, offset_x, offset_y, cmd)
     return subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-
-def click_image(name: str, timeout: float = 8.0, confidence: float = 0.9) -> bool:
+def find_image(name: str, timeout: float = 8.0, confidence: float = 0.9,
+                scope: tuple[int, int, int, int] = None,
+                is_debug: bool = False) -> (tuple[int, int] | None):
     """
-    Найти PNG-шаблон на экране (в пределах целевого монитора) и кликнуть его центр.
-    Возвращает True, если кликнули, False если не найдено за timeout секунд.
+    Найти PNG-шаблон на экране.
     """
     path = TEMPLATE_DIR / name
     if not path.exists():
@@ -92,16 +110,28 @@ def click_image(name: str, timeout: float = 8.0, confidence: float = 0.9) -> boo
 
     deadline = time.perf_counter() + timeout
     while time.perf_counter() < deadline:
-        pos = _locate(path, confidence)
+        pos = _locate(path, confidence, scope=scope, is_debug=is_debug)
         if pos:
-            # pos возвращается как (x_center_rel, y_center_rel) внутри области полу-монитора,
-            # но мы сразу сконвертируем его в глобальные координаты:
             abs_x = MON_X + pos[0]
-            abs_y = MON_Y + pos[1]
-            _human_move_and_click(abs_x, abs_y)
-            return True
-        # Короткая пауза, чтобы не грузить CPU
+            abs_y = MON_Y + pos[1] 
+            return (abs_x, abs_y) 
+
+    return False
+
+def click_image(name: str, timeout: float = 8.0, confidence: float = 0.9,
+                scope: tuple[int, int, int, int] = None,
+                plus_y: int = 0,
+                is_debug: bool = False) -> bool:
+    """
+    Найти PNG-шаблон на экране (в пределах целевого монитора) и кликнуть его центр.
+    Возвращает True, если кликнули, False если не найдено за timeout секунд.
+    """
+    abs_x, abs_y = find_image(name, timeout, confidence, scope, is_debug)
+    if abs_x is not None and abs_y is not None:
+        _human_move_and_click(abs_x, abs_y + plus_y)
         time.sleep(0.1)
+        return True
+        
 
     return False
 
@@ -160,23 +190,27 @@ def _detect_chrome() -> Path:
     raise RuntimeError("Chrome executable not found; add custom logic in _detect_chrome()")
 
 def scroll(amount: int = 100) -> None:
-     for _ in range(amount): 
-        pag.scroll(100) 
+        pag.scroll(amount) 
         time.sleep(0.01) 
 
-def _locate(template_path: Path, confidence: float) -> tuple[int, int] | None:
+def _locate(template_path: Path, confidence: float,
+            scope: tuple[int, int, int, int] = None,
+            is_debug: bool = False) -> tuple[int, int] | None:
     """
     Ищет шаблон (template_path) внутри прямоугольника MON_X..MON_W, MON_Y..MON_H.
     Возвращает (x_center_rel, y_center_rel) или None.
     """
     # 1) Снимаем область MON_X..MON_H с помощью MSS
     with mss.mss() as sct:
-        monitor_region = {"top": MON_Y, "left": MON_X, "width": MON_W, "height": MON_H}
+        monitor_region = _get_monitor_region(scope)
         img_data = sct.grab(monitor_region)
         # Конвертируем в numpy.ndarray в BGR для OpenCV:
-        scr_np = np.array(img_data.rgb, dtype=np.uint8)
-        scr_np = scr_np.reshape((img_data.height, img_data.width, 3))
-        scr_bgr = cv2.cvtColor(scr_np, cv2.COLOR_RGB2BGR)
+        scr_np = np.array(img_data)
+        scr_bgr = cv2.cvtColor(scr_np, cv2.COLOR_BGRA2BGR)
+        
+    if is_debug or LOG_LEVEL == "DEBUG":
+            show_image(scr_bgr)
+            time.sleep(0.5)
 
     # 2) Загружаем шаблон (PNG) как BGR
     templ = cv2.imread(str(template_path))
@@ -192,8 +226,8 @@ def _locate(template_path: Path, confidence: float) -> tuple[int, int] | None:
         return None
 
     h, w, _ = templ.shape
-    center_x_rel = x_loc + w // 2
-    center_y_rel = y_loc + h // 2
+    center_x_rel = scope[0] + x_loc + w // 2 - 30
+    center_y_rel = scope[1] + y_loc + h // 2 + 30
     return (center_x_rel, center_y_rel)
 
 def _human_move(x: int, y: int, duration: Tuple[float, float] = (0.4, 0.9)) -> None:
@@ -305,20 +339,6 @@ def draw_monitor_region_on_screen(color: tuple[int,int,int] = (0, 0, 255), thick
     # 7) Освобождаем DC
     ctypes.windll.user32.ReleaseDC(0, hdc)
 
-def flip_focus_rect_on_screen(scope):
-    """
-    Нарисовать/стереть XOR-рамку вокруг left, top, width, height.
-    При первом вызове – появится рамка, при втором – исчезнет.
-    """
-
-    # 2) получаем HDC для экрана
-    hdc = ctypes.windll.user32.GetDC(0)
-    # 3) DrawFocusRect рисует рамку в режиме XOR: повторный вызов с теми же координатами удаляет её
-    rect = wintypes.RECT(scope["left"], scope["top"], scope["left"] + scope["width"], scope["top"] + scope["height"])
-    ctypes.windll.user32.DrawFocusRect(hdc, ctypes.byref(rect))
-    # 4) освобождаем HDC
-    ctypes.windll.user32.ReleaseDC(0, hdc)
-
 # ---------------------------------------------------------------------------
 # Convenience context: launch Chrome + ensure cleanup
 # ---------------------------------------------------------------------------
@@ -348,7 +368,8 @@ def click_text(
     timeout: float,
     lang: str,
     conf_threshold: float,
-    scope: tuple[int, int, int, int] = None
+    scope: tuple[int, int, int, int] = None,
+    is_debug: bool = False
 ) -> bool:
     """
     OCR-based search: найти текст `query` на экране (в пределах MON_X..MON_W, MON_Y..MON_H)
@@ -375,30 +396,13 @@ def click_text(
     n_words = len(query_words)
 
     while time.perf_counter() < deadline:
-        left, bottom, right, top = scope
         with mss.mss() as sct:
-           
-            if scope != None:
-                monitor_region = {
-                    "top": bottom,
-                    "left": MON_X + left,
-                    "width" :right - left,
-                    "height": top - bottom
-                }
-            else:
-                monitor_region = {
-                    "top": MON_Y,
-                    "left": MON_X,
-                    "width": MON_W,
-                    "height": MON_H
-                }
-                
+            monitor_region = _get_monitor_region(scope)
             img_data = sct.grab(monitor_region)
             scr_np = np.array(img_data)
             scr_bgr = cv2.cvtColor(scr_np, cv2.COLOR_BGRA2BGR)
 
-        if LOG_LEVEL == "DEBUG":
-            flip_focus_rect_on_screen(monitor_region)
+        if is_debug or LOG_LEVEL == "DEBUG":
             show_image(scr_bgr)
             time.sleep(0.5)
 
@@ -438,8 +442,8 @@ def click_text(
                 center_x_rel = (x_left + x_right) // 2
                 center_y_rel = (y_top + y_bottom) // 2
 
-                abs_x = MON_X + center_x_rel + left
-                abs_y = MON_Y + center_y_rel + bottom
+                abs_x = MON_X + center_x_rel + scope[0]
+                abs_y = MON_Y + center_y_rel + scope[1]
 
                 LOGGER.debug(
                     "Found phrase '%s' at local (%d,%d), clicking global (%d,%d)",
@@ -483,29 +487,13 @@ def find_text(
     n_words = len(query_words)
 
     while time.perf_counter() < deadline:
-        if scope is not None:
-            left, bottom, right, top = scope
-            monitor_region = {
-                "top": bottom,
-                "left": MON_X + left,
-                "width": right - left,
-                "height": top - bottom
-            }
-        else:
-            monitor_region = {
-                "top": MON_Y,
-                "left": MON_X,
-                "width": MON_W,
-                "height": MON_H
-            }
-
+        monitor_region = _get_monitor_region(scope)
         with mss.mss() as sct:
             img_data = sct.grab(monitor_region)
             scr_np = np.array(img_data)
             scr_bgr = cv2.cvtColor(scr_np, cv2.COLOR_BGRA2BGR)
 
         if LOG_LEVEL == "DEBUG":
-            flip_focus_rect_on_screen(monitor_region)
             show_image(scr_bgr)
             time.sleep(0.5)
 
@@ -546,8 +534,6 @@ def find_text(
     LOGGER.debug("Text '%s' not found within %.2f seconds", query, timeout)
     return False
 
-from typing import Iterable
-
 def find_text_any(
     queries: Iterable[str],
     timeout: float,
@@ -567,22 +553,7 @@ def find_text_any(
     queries_words = [q.lower().split() for q in queries]
 
     while time.perf_counter() < deadline:
-        if scope is not None:
-            left, bottom, right, top = scope
-            monitor_region = {
-                "top": bottom,
-                "left": MON_X + left,
-                "width": right - left,
-                "height": top - bottom
-            }
-        else:
-            left = bottom = 0
-            monitor_region = {
-                "top": MON_Y,
-                "left": MON_X,
-                "width": MON_W,
-                "height": MON_H
-            }
+        monitor_region = _get_monitor_region(scope)
 
         with mss.mss() as sct:
             img_data = sct.grab(monitor_region)
@@ -590,7 +561,6 @@ def find_text_any(
             scr_bgr = cv2.cvtColor(scr_np, cv2.COLOR_BGRA2BGR)
 
         if LOG_LEVEL == "DEBUG":
-            flip_focus_rect_on_screen(monitor_region)
             show_image(scr_bgr)
             time.sleep(0.5)
 
@@ -632,3 +602,12 @@ def find_text_any(
 
     LOGGER.debug("None of texts '%s' found within %.2f seconds", queries, timeout)
     return False
+
+def cursor_move_to(
+    x: int = 500,
+    y: int = 500
+) -> None:
+   
+    x = MON_X + x
+    LOGGER.debug("Cursor moved to global (%d,%d)", x, y)                    
+    _human_move_and_click(x, y)

@@ -1525,7 +1525,7 @@
         "kind": 6,
         "importPath": "bot_io.yaml_loader",
         "description": "bot_io.yaml_loader",
-        "peekOfCode": "class YAMLLoader:\n    \"\"\"Scans a directory for ``*.yaml`` configs and yields :class:`UserConfig`.\"\"\"\n    REQUIRED_FIELDS = {\n        \"key_path\",\n        \"birthdate\",\n        \"gender\",\n        \"country\",\n        \"consulates\",\n        \"service\",\n    }",
+        "peekOfCode": "class YAMLLoader:\n    \"\"\"Scans a directory for ``*.yaml`` configs and yields :class:`UserConfig`.\"\"\"\n    REQUIRED_FIELDS = {\n        \"key_path\",\n        \"birthdate\",\n        \"gender\",\n        \"country\",\n        \"consulates\",\n        \"services\",\n    }",
         "detail": "bot_io.yaml_loader",
         "documentation": {}
     },
@@ -1566,11 +1566,20 @@
         "documentation": {}
     },
     {
+        "label": "find_image",
+        "kind": 2,
+        "importPath": "core.gui_driver",
+        "description": "core.gui_driver",
+        "peekOfCode": "def find_image(name: str, timeout: float = 8.0, confidence: float = 0.9,\n                scope: tuple[int, int, int, int] = None,\n                is_debug: bool = False) -> (tuple[int, int] | None):\n    \"\"\"\n    Найти PNG-шаблон на экране.\n    \"\"\"\n    path = TEMPLATE_DIR / name\n    if not path.exists():\n        raise FileNotFoundError(path)\n    deadline = time.perf_counter() + timeout",
+        "detail": "core.gui_driver",
+        "documentation": {}
+    },
+    {
         "label": "click_image",
         "kind": 2,
         "importPath": "core.gui_driver",
         "description": "core.gui_driver",
-        "peekOfCode": "def click_image(name: str, timeout: float = 8.0, confidence: float = 0.9) -> bool:\n    \"\"\"\n    Найти PNG-шаблон на экране (в пределах целевого монитора) и кликнуть его центр.\n    Возвращает True, если кликнули, False если не найдено за timeout секунд.\n    \"\"\"\n    path = TEMPLATE_DIR / name\n    if not path.exists():\n        raise FileNotFoundError(path)\n    deadline = time.perf_counter() + timeout\n    while time.perf_counter() < deadline:",
+        "peekOfCode": "def click_image(name: str, timeout: float = 8.0, confidence: float = 0.9,\n                scope: tuple[int, int, int, int] = None,\n                plus_y: int = 0,\n                is_debug: bool = False) -> bool:\n    \"\"\"\n    Найти PNG-шаблон на экране (в пределах целевого монитора) и кликнуть его центр.\n    Возвращает True, если кликнули, False если не найдено за timeout секунд.\n    \"\"\"\n    abs_x, abs_y = find_image(name, timeout, confidence, scope, is_debug)\n    if abs_x is not None and abs_y is not None:",
         "detail": "core.gui_driver",
         "documentation": {}
     },
@@ -1606,7 +1615,7 @@
         "kind": 2,
         "importPath": "core.gui_driver",
         "description": "core.gui_driver",
-        "peekOfCode": "def scroll(amount: int = 100) -> None:\n     for _ in range(amount): \n        pag.scroll(100) \n        time.sleep(0.01) \ndef _locate(template_path: Path, confidence: float) -> tuple[int, int] | None:\n    \"\"\"\n    Ищет шаблон (template_path) внутри прямоугольника MON_X..MON_W, MON_Y..MON_H.\n    Возвращает (x_center_rel, y_center_rel) или None.\n    \"\"\"\n    # 1) Снимаем область MON_X..MON_H с помощью MSS",
+        "peekOfCode": "def scroll(amount: int = 100) -> None:\n        pag.scroll(amount) \n        time.sleep(0.01) \ndef _locate(template_path: Path, confidence: float,\n            scope: tuple[int, int, int, int] = None,\n            is_debug: bool = False) -> tuple[int, int] | None:\n    \"\"\"\n    Ищет шаблон (template_path) внутри прямоугольника MON_X..MON_W, MON_Y..MON_H.\n    Возвращает (x_center_rel, y_center_rel) или None.\n    \"\"\"",
         "detail": "core.gui_driver",
         "documentation": {}
     },
@@ -1616,15 +1625,6 @@
         "importPath": "core.gui_driver",
         "description": "core.gui_driver",
         "peekOfCode": "def draw_monitor_region_on_screen(color: tuple[int,int,int] = (0, 0, 255), thickness: int = 4) -> None:\n    \"\"\"\n    Нарисовать на рабочем столе (на самой поверхности экрана) полупрозрачный (через XOR)\n    или сплошной (через GDI Rectangle) контур области MON_X, MON_Y, MON_W, MON_H.\n    Параметры:\n    ---------\n    color : BGR-цвет рамки, например (0, 0, 255) для красного (как OpenCV).\n    thickness : толщина линии рамки в пикселях.\n    При запуске этой функции вы увидите чёткую рамку на экране. Она отрисуется поверх всего,\n    но исчезнет при следующем обновлении окна или при следующем вызове (в зависимости от режима).",
-        "detail": "core.gui_driver",
-        "documentation": {}
-    },
-    {
-        "label": "flip_focus_rect_on_screen",
-        "kind": 2,
-        "importPath": "core.gui_driver",
-        "description": "core.gui_driver",
-        "peekOfCode": "def flip_focus_rect_on_screen(scope):\n    \"\"\"\n    Нарисовать/стереть XOR-рамку вокруг left, top, width, height.\n    При первом вызове – появится рамка, при втором – исчезнет.\n    \"\"\"\n    # 2) получаем HDC для экрана\n    hdc = ctypes.windll.user32.GetDC(0)\n    # 3) DrawFocusRect рисует рамку в режиме XOR: повторный вызов с теми же координатами удаляет её\n    rect = wintypes.RECT(scope[\"left\"], scope[\"top\"], scope[\"left\"] + scope[\"width\"], scope[\"top\"] + scope[\"height\"])\n    ctypes.windll.user32.DrawFocusRect(hdc, ctypes.byref(rect))",
         "detail": "core.gui_driver",
         "documentation": {}
     },
@@ -1642,7 +1642,7 @@
         "kind": 2,
         "importPath": "core.gui_driver",
         "description": "core.gui_driver",
-        "peekOfCode": "def click_text(\n    query: str,\n    timeout: float,\n    lang: str,\n    conf_threshold: float,\n    scope: tuple[int, int, int, int] = None\n) -> bool:\n    \"\"\"\n    OCR-based search: найти текст `query` на экране (в пределах MON_X..MON_W, MON_Y..MON_H)\n    и кликнуть его центр.",
+        "peekOfCode": "def click_text(\n    query: str,\n    timeout: float,\n    lang: str,\n    conf_threshold: float,\n    scope: tuple[int, int, int, int] = None,\n    is_debug: bool = False\n) -> bool:\n    \"\"\"\n    OCR-based search: найти текст `query` на экране (в пределах MON_X..MON_W, MON_Y..MON_H)",
         "detail": "core.gui_driver",
         "documentation": {}
     },
@@ -1661,6 +1661,15 @@
         "importPath": "core.gui_driver",
         "description": "core.gui_driver",
         "peekOfCode": "def find_text_any(\n    queries: Iterable[str],\n    timeout: float,\n    lang: str,\n    conf_threshold: float,\n    scope: tuple[int, int, int, int] = None\n) -> bool:\n    \"\"\"\n    Ищет любой из текстов из `queries` на экране.\n    Возвращает True, если найден хотя бы один, иначе False.",
+        "detail": "core.gui_driver",
+        "documentation": {}
+    },
+    {
+        "label": "cursor_move_to",
+        "kind": 2,
+        "importPath": "core.gui_driver",
+        "description": "core.gui_driver",
+        "peekOfCode": "def cursor_move_to(\n    x: int = 500,\n    y: int = 500\n) -> None:\n    x = MON_X + x\n    LOGGER.debug(\"Cursor moved to global (%d,%d)\", x, y)                    \n    _human_move_and_click(x, y)",
         "detail": "core.gui_driver",
         "documentation": {}
     },
@@ -1777,7 +1786,7 @@
         "kind": 6,
         "importPath": "core.slot_finder",
         "description": "core.slot_finder",
-        "peekOfCode": "class SlotFinder:\n    \"\"\"Encapsulates wizard navigation and calendar scanning.\"\"\"\n    def __init__(self, fast_delay: float = 0.4, slow_delay: float = 1.2):\n        self.fast = fast_delay  # small waits between field fills\n        self.slow = slow_delay  # waits for page loads\n    # ------------------------------------------------------------------\n    def work(self, user: UserConfig) -> bool:  # noqa: C901 (complexity OK here)\n        \"\"\"Return *True* if slot booked, else *False* (user remains).\"\"\"\n        LOGGER.info(\"Start SlotFinder for %s\", user.alias)\n        try:",
+        "peekOfCode": "class SlotFinder:\n    \"\"\"Encapsulates wizard navigation and calendar scanning.\"\"\"\n    slots_found = []\n    def __init__(self, fast_delay: float = 0.4, slow_delay: float = 1.2):\n        self.fast = fast_delay  # small waits between field fills\n        self.slow = slow_delay  # waits for page loads\n    # ------------------------------------------------------------------\n    def work(self, user: UserConfig) -> bool:  # noqa: C901 (complexity OK here)\n        \"\"\"Return *True* if slot booked, else *False* (user remains).\"\"\"\n        LOGGER.info(\"Start SlotFinder for %s\", user.alias)",
         "detail": "core.slot_finder",
         "documentation": {}
     },
@@ -1795,34 +1804,34 @@
         "kind": 5,
         "importPath": "core.slot_finder",
         "description": "core.slot_finder",
-        "peekOfCode": "LOGGER = setup_logger(__name__)\n# ---------------------------------------------------------------------------\n# Constants – names of PNG templates (must exist in assets/)\n# ---------------------------------------------------------------------------\nBTN_PERSONAL_KEY = \"btn_personal_key.png\"\nFIELD_KEY_PATH = \"field_key_path.png\"\nFIELD_KEY_PASS = \"field_key_pass.png\"\nBTN_LOGIN = \"btn_login.png\"\nWELCOME_BANNER = \"banner_welcome.png\"\nBTN_VISIT = \"btn_visit.png\"  # «Запис на візит»",
+        "peekOfCode": "LOGGER = setup_logger(__name__)\n# ---------------------------------------------------------------------------\n# Constants – names of PNG templates (must exist in assets/)\n# ---------------------------------------------------------------------------\nIMG_BTN_DALI = \"but_dali.png\"\nFIELD_CHECK = \"check.png\"\nFIELD_CHECK = \"field_key_pass.png\"\nBTN_LOGIN = \"btn_login.png\"\nWELCOME_BANNER = \"banner_welcome.png\"\nBTN_VISIT = \"btn_visit.png\"  # «Запис на візит»",
         "detail": "core.slot_finder",
         "documentation": {}
     },
     {
-        "label": "BTN_PERSONAL_KEY",
+        "label": "IMG_BTN_DALI",
         "kind": 5,
         "importPath": "core.slot_finder",
         "description": "core.slot_finder",
-        "peekOfCode": "BTN_PERSONAL_KEY = \"btn_personal_key.png\"\nFIELD_KEY_PATH = \"field_key_path.png\"\nFIELD_KEY_PASS = \"field_key_pass.png\"\nBTN_LOGIN = \"btn_login.png\"\nWELCOME_BANNER = \"banner_welcome.png\"\nBTN_VISIT = \"btn_visit.png\"  # «Запис на візит»\nBTN_BOOK = \"btn_book.png\"    # «Записатись на візит»\n# --- wizard steps -----------------------------------------------------------\n# шаблоны полей; будут уточняться в runtime\nFIELD_BIRTHDATE = \"field_birthdate.png\"",
+        "peekOfCode": "IMG_BTN_DALI = \"but_dali.png\"\nFIELD_CHECK = \"check.png\"\nFIELD_CHECK = \"field_key_pass.png\"\nBTN_LOGIN = \"btn_login.png\"\nWELCOME_BANNER = \"banner_welcome.png\"\nBTN_VISIT = \"btn_visit.png\"  # «Запис на візит»\nBTN_BOOK = \"btn_book.png\"    # «Записатись на візит»\n# --- wizard steps -----------------------------------------------------------\n# шаблоны полей; будут уточняться в runtime\nFIELD_BIRTHDATE = \"field_birthdate.png\"",
         "detail": "core.slot_finder",
         "documentation": {}
     },
     {
-        "label": "FIELD_KEY_PATH",
+        "label": "FIELD_CHECK",
         "kind": 5,
         "importPath": "core.slot_finder",
         "description": "core.slot_finder",
-        "peekOfCode": "FIELD_KEY_PATH = \"field_key_path.png\"\nFIELD_KEY_PASS = \"field_key_pass.png\"\nBTN_LOGIN = \"btn_login.png\"\nWELCOME_BANNER = \"banner_welcome.png\"\nBTN_VISIT = \"btn_visit.png\"  # «Запис на візит»\nBTN_BOOK = \"btn_book.png\"    # «Записатись на візит»\n# --- wizard steps -----------------------------------------------------------\n# шаблоны полей; будут уточняться в runtime\nFIELD_BIRTHDATE = \"field_birthdate.png\"\nFIELD_GENDER = \"field_gender.png\"",
+        "peekOfCode": "FIELD_CHECK = \"check.png\"\nFIELD_CHECK = \"field_key_pass.png\"\nBTN_LOGIN = \"btn_login.png\"\nWELCOME_BANNER = \"banner_welcome.png\"\nBTN_VISIT = \"btn_visit.png\"  # «Запис на візит»\nBTN_BOOK = \"btn_book.png\"    # «Записатись на візит»\n# --- wizard steps -----------------------------------------------------------\n# шаблоны полей; будут уточняться в runtime\nFIELD_BIRTHDATE = \"field_birthdate.png\"\nFIELD_GENDER = \"field_gender.png\"",
         "detail": "core.slot_finder",
         "documentation": {}
     },
     {
-        "label": "FIELD_KEY_PASS",
+        "label": "FIELD_CHECK",
         "kind": 5,
         "importPath": "core.slot_finder",
         "description": "core.slot_finder",
-        "peekOfCode": "FIELD_KEY_PASS = \"field_key_pass.png\"\nBTN_LOGIN = \"btn_login.png\"\nWELCOME_BANNER = \"banner_welcome.png\"\nBTN_VISIT = \"btn_visit.png\"  # «Запис на візит»\nBTN_BOOK = \"btn_book.png\"    # «Записатись на візит»\n# --- wizard steps -----------------------------------------------------------\n# шаблоны полей; будут уточняться в runtime\nFIELD_BIRTHDATE = \"field_birthdate.png\"\nFIELD_GENDER = \"field_gender.png\"\nFIELD_COUNTRY = \"field_country.png\"",
+        "peekOfCode": "FIELD_CHECK = \"field_key_pass.png\"\nBTN_LOGIN = \"btn_login.png\"\nWELCOME_BANNER = \"banner_welcome.png\"\nBTN_VISIT = \"btn_visit.png\"  # «Запис на візит»\nBTN_BOOK = \"btn_book.png\"    # «Записатись на візит»\n# --- wizard steps -----------------------------------------------------------\n# шаблоны полей; будут уточняться в runtime\nFIELD_BIRTHDATE = \"field_birthdate.png\"\nFIELD_GENDER = \"field_gender.png\"\nFIELD_COUNTRY = \"field_country.png\"",
         "detail": "core.slot_finder",
         "documentation": {}
     },
@@ -1939,7 +1948,7 @@
         "kind": 5,
         "importPath": "core.slot_finder",
         "description": "core.slot_finder",
-        "peekOfCode": "LBL_NO_SLOTS_DAY = \"lbl_no_slots_day.png\"\nLBL_NO_SLOTS_ALL = \"lbl_no_slots_all.png\"\nBTN_NEXT_DAY = \"btn_next_day.png\"\nSLOT_ANY_TIME = \"slot_any.png\"  # условный шаблон «07:40»\n# ---------------------------------------------------------------------------\n# SlotFinder implementation\n# ---------------------------------------------------------------------------\nclass SlotFinder:\n    \"\"\"Encapsulates wizard navigation and calendar scanning.\"\"\"\n    def __init__(self, fast_delay: float = 0.4, slow_delay: float = 1.2):",
+        "peekOfCode": "LBL_NO_SLOTS_DAY = \"lbl_no_slots_day.png\"\nLBL_NO_SLOTS_ALL = \"lbl_no_slots_all.png\"\nBTN_NEXT_DAY = \"btn_next_day.png\"\nSLOT_ANY_TIME = \"slot_any.png\"  # условный шаблон «07:40»\n# ---------------------------------------------------------------------------\n# SlotFinder implementation\n# ---------------------------------------------------------------------------\nclass SlotFinder:\n    \"\"\"Encapsulates wizard navigation and calendar scanning.\"\"\"\n    slots_found = []",
         "detail": "core.slot_finder",
         "documentation": {}
     },
@@ -1948,7 +1957,7 @@
         "kind": 5,
         "importPath": "core.slot_finder",
         "description": "core.slot_finder",
-        "peekOfCode": "LBL_NO_SLOTS_ALL = \"lbl_no_slots_all.png\"\nBTN_NEXT_DAY = \"btn_next_day.png\"\nSLOT_ANY_TIME = \"slot_any.png\"  # условный шаблон «07:40»\n# ---------------------------------------------------------------------------\n# SlotFinder implementation\n# ---------------------------------------------------------------------------\nclass SlotFinder:\n    \"\"\"Encapsulates wizard navigation and calendar scanning.\"\"\"\n    def __init__(self, fast_delay: float = 0.4, slow_delay: float = 1.2):\n        self.fast = fast_delay  # small waits between field fills",
+        "peekOfCode": "LBL_NO_SLOTS_ALL = \"lbl_no_slots_all.png\"\nBTN_NEXT_DAY = \"btn_next_day.png\"\nSLOT_ANY_TIME = \"slot_any.png\"  # условный шаблон «07:40»\n# ---------------------------------------------------------------------------\n# SlotFinder implementation\n# ---------------------------------------------------------------------------\nclass SlotFinder:\n    \"\"\"Encapsulates wizard navigation and calendar scanning.\"\"\"\n    slots_found = []\n    def __init__(self, fast_delay: float = 0.4, slow_delay: float = 1.2):",
         "detail": "core.slot_finder",
         "documentation": {}
     },
@@ -1957,7 +1966,7 @@
         "kind": 5,
         "importPath": "core.slot_finder",
         "description": "core.slot_finder",
-        "peekOfCode": "BTN_NEXT_DAY = \"btn_next_day.png\"\nSLOT_ANY_TIME = \"slot_any.png\"  # условный шаблон «07:40»\n# ---------------------------------------------------------------------------\n# SlotFinder implementation\n# ---------------------------------------------------------------------------\nclass SlotFinder:\n    \"\"\"Encapsulates wizard navigation and calendar scanning.\"\"\"\n    def __init__(self, fast_delay: float = 0.4, slow_delay: float = 1.2):\n        self.fast = fast_delay  # small waits between field fills\n        self.slow = slow_delay  # waits for page loads",
+        "peekOfCode": "BTN_NEXT_DAY = \"btn_next_day.png\"\nSLOT_ANY_TIME = \"slot_any.png\"  # условный шаблон «07:40»\n# ---------------------------------------------------------------------------\n# SlotFinder implementation\n# ---------------------------------------------------------------------------\nclass SlotFinder:\n    \"\"\"Encapsulates wizard navigation and calendar scanning.\"\"\"\n    slots_found = []\n    def __init__(self, fast_delay: float = 0.4, slow_delay: float = 1.2):\n        self.fast = fast_delay  # small waits between field fills",
         "detail": "core.slot_finder",
         "documentation": {}
     },
@@ -1966,7 +1975,7 @@
         "kind": 5,
         "importPath": "core.slot_finder",
         "description": "core.slot_finder",
-        "peekOfCode": "SLOT_ANY_TIME = \"slot_any.png\"  # условный шаблон «07:40»\n# ---------------------------------------------------------------------------\n# SlotFinder implementation\n# ---------------------------------------------------------------------------\nclass SlotFinder:\n    \"\"\"Encapsulates wizard navigation and calendar scanning.\"\"\"\n    def __init__(self, fast_delay: float = 0.4, slow_delay: float = 1.2):\n        self.fast = fast_delay  # small waits between field fills\n        self.slow = slow_delay  # waits for page loads\n    # ------------------------------------------------------------------",
+        "peekOfCode": "SLOT_ANY_TIME = \"slot_any.png\"  # условный шаблон «07:40»\n# ---------------------------------------------------------------------------\n# SlotFinder implementation\n# ---------------------------------------------------------------------------\nclass SlotFinder:\n    \"\"\"Encapsulates wizard navigation and calendar scanning.\"\"\"\n    slots_found = []\n    def __init__(self, fast_delay: float = 0.4, slow_delay: float = 1.2):\n        self.fast = fast_delay  # small waits between field fills\n        self.slow = slow_delay  # waits for page loads",
         "detail": "core.slot_finder",
         "documentation": {}
     },

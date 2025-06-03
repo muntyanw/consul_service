@@ -1,3 +1,3 @@
-2025/06/02-13:56:47.403 7784 Reusing MANIFEST C:\prjs\consul\data\chrome_template\profiles\val\Default\Sync Data\LevelDB/MANIFEST-000001
-2025/06/02-13:56:47.403 7784 Recovering log #3
-2025/06/02-13:56:47.403 7784 Reusing old log C:\prjs\consul\data\chrome_template\profiles\val\Default\Sync Data\LevelDB/000003.log 
+2025/06/03-17:54:11.281 8494 Reusing MANIFEST C:\prjs\consul\data\chrome_template\profiles\val\Default\Sync Data\LevelDB/MANIFEST-000001
+2025/06/03-17:54:11.297 8494 Recovering log #3
+2025/06/03-17:54:11.298 8494 Reusing old log C:\prjs\consul\data\chrome_template\profiles\val\Default\Sync Data\LevelDB/000003.log 

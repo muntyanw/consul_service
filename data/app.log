@@ -1,1061 +1,497 @@
-2025-05-30 12:51:15,946 WARNING  [core.gui_driver] Монитор имеет 3440x1440, ТЗ требует 1920x1080 – координаты могут не совпасть.
-2025-05-30 12:53:51,532 WARNING  [core.gui_driver] Монитор имеет 3440x1440, ТЗ требует 1920x1080 – координаты могут не совпасть.
-2025-05-30 13:02:07,333 WARNING  [core.gui_driver] Монитор имеет 3440x1440, ТЗ требует 1920x1080 – координаты могут не совпасть.
-2025-05-30 13:03:23,726 WARNING  [core.gui_driver] Монитор имеет 3440x1440, ТЗ требует 1920x1080 – координаты могут не совпасть.
-2025-05-30 13:07:27,792 WARNING  [core.gui_driver] Монитор имеет 3440x1440, ТЗ требует 1920x1080 – координаты могут не совпасть.
-2025-05-30 13:09:24,208 WARNING  [core.gui_driver] Монитор имеет 3440x1440, ТЗ требует 1920x1080 – координаты могут не совпасть.
-2025-05-30 13:12:02,204 WARNING  [core.gui_driver] Монитор имеет 3440x1440, ТЗ требует 1920x1080 – координаты могут не совпасть.
-2025-05-30 13:12:02,289 ERROR    [__main__] Failed to load configs: Config directory does not exist: C:\prjs\consul\users_cfg
-2025-05-30 13:20:20,460 WARNING  [core.gui_driver] Монитор имеет 3440x1440, ТЗ требует 1920x1080 – координаты могут не совпасть.
-2025-05-30 13:20:20,550 ERROR    [__main__] Failed to load configs: Config directory does not exist: C:\prjs\consul\users_cfg
-2025-05-30 13:20:40,622 WARNING  [core.gui_driver] Монитор имеет 3440x1440, ТЗ требует 1920x1080 – координаты могут не совпасть.
-2025-05-30 13:20:40,715 ERROR    [__main__] Failed to load configs: Config directory does not exist: C:\prjs\consul\users_cfg
-2025-05-30 13:23:03,691 ERROR    [__main__] Failed to load configs: Config directory does not exist: C:\prjs\consul\users_cfg
-2025-05-30 16:16:15,755 WARNING  [bot_io.yaml_loader] Skip invalid config val.yaml: Key file not found: C:\prjs\consul\data\keys\keys\val.dat
-2025-05-30 16:51:45,629 WARNING  [bot_io.yaml_loader] Skip invalid config val.yaml: Key file not found: C:\prjs\consul\data\keys\keys\pb_2790320694.jks
-2025-05-30 16:51:45,632 ERROR    [__main__] Failed to load configs: No valid user configurations found.
-2025-05-30 16:57:09,199 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-30 16:57:10,102 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-30 16:57:21,748 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-30 16:57:28,652 INFO     [__main__] Processing user val
-2025-05-30 17:50:48,285 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-30 17:50:48,285 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-30 17:50:48,285 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-30 17:50:48,286 INFO     [__main__] Processing user val
-2025-05-30 17:50:49,185 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-30 17:50:49,188 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-30 17:50:49,750 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: C:\prjs\consul\assets\btn_personal_key.png
-2025-05-30 17:50:49,965 INFO     [__main__] User val re‑queued
-2025-05-30 17:59:20,924 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-30 17:59:20,925 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-30 17:59:20,926 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-30 17:59:20,928 INFO     [__main__] Processing user val
-2025-05-30 17:59:52,610 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-30 17:59:52,612 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-30 17:59:52,955 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: C:\prjs\consul\assets\btn_personal_key.png
-2025-05-31 08:00:51,370 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 08:00:51,370 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 08:00:51,371 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 08:00:51,374 INFO     [__main__] Processing user val
-2025-05-31 08:01:14,461 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 08:01:14,461 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 08:02:46,573 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 08:02:46,578 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 08:02:46,579 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 08:02:46,580 INFO     [__main__] Processing user val
-2025-05-31 08:02:51,921 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 08:02:51,922 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 08:24:48,369 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 08:24:48,371 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 08:24:48,372 INFO     [__main__] Processing user val
-2025-05-31 08:24:48,369 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 08:24:48,381 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 08:24:48,384 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 08:24:57,731 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: name 'pytesseract' is not defined
-2025-05-31 08:24:57,813 INFO     [__main__] User val re-queued
-2025-05-31 08:25:43,387 INFO     [__main__] === Bot started. Users in queue: 1 ===
- 0.0.0.0:4567
-2025-05-31 08:25:43,390 INFO     [__main__] Processing user val
-2025-05-31 08:25:43,390 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 08:25:43,399 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 08:25:43,400 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 08:25:54,050 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: name 'pytesseract' is not defined
-2025-05-31 08:25:54,131 INFO     [__main__] User val re-queued
-2025-05-31 08:27:01,524 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 08:27:01,525 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 08:27:01,526 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 08:27:01,527 INFO     [__main__] Processing user val
-2025-05-31 08:27:01,535 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 08:27:01,560 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 08:27:20,695 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: (1, 'Error opening data file C:\\Program Files\\Tesseract-OCR/tessdata/ukr.traineddata Please make sure the TESSDATA_PREFIX environment variable is set to your "tessdata" directory. Failed loading language \'ukr\' Tesseract couldn\'t load any languages! Could not initialize tesseract.')
-2025-05-31 08:27:20,817 INFO     [__main__] User val re-queued
-2025-05-31 08:29:48,960 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 08:29:48,962 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 08:29:48,963 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 08:29:48,964 INFO     [__main__] Processing user val
-2025-05-31 08:29:48,971 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 08:29:48,972 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 08:31:03,192 WARNING  [core.slot_finder] personal key button not found – maybe already logged in
-2025-05-31 08:31:04,668 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: C:\prjs\consul\data\ui_images\field_key_path.png
-2025-05-31 08:31:04,751 INFO     [__main__] User val re-queued
-2025-05-31 08:31:32,600 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 08:31:32,602 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 08:31:32,600 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 08:31:32,602 INFO     [__main__] Processing user val
-2025-05-31 08:31:32,610 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 08:31:32,611 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 08:32:19,915 WARNING  [core.slot_finder] personal key button not found – maybe already logged in
-2025-05-31 08:37:06,852 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 08:37:06,853 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 08:37:06,855 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 08:37:06,856 INFO     [__main__] Processing user val
-2025-05-31 08:37:06,863 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 08:37:06,863 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 11:18:52,894 INFO     [core.gui_driver] Found target monitor 1920x1080 at offset (-1920,0)
-2025-05-31 11:20:05,302 INFO     [core.gui_driver] Found target monitor 1920x1080 at offset (-1920,0)
-2025-05-31 11:20:37,201 INFO     [core.gui_driver] Found target monitor 1920x1080 at offset (-1920,0)
-2025-05-31 11:20:38,238 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 11:20:38,240 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 11:20:38,240 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 11:20:38,241 INFO     [__main__] Processing user val
-2025-05-31 11:20:38,248 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 11:20:38,249 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 11:20:50,897 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: name 'pytesseract' is not defined
-2025-05-31 11:20:50,999 INFO     [__main__] User val re-queued
-2025-05-31 11:22:30,784 INFO     [core.gui_driver] Found target monitor 1920x1080 at offset (-1920,0)
-2025-05-31 11:22:30,886 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 11:22:30,887 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 11:22:30,888 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 11:22:30,888 INFO     [__main__] Processing user val
-2025-05-31 11:22:30,896 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 11:22:30,897 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 11:26:29,302 INFO     [core.gui_driver] Found target monitor 1920x1080 at offset (-1920,0)
-2025-05-31 11:26:29,416 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 11:26:29,417 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 11:26:29,418 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 11:26:29,419 INFO     [__main__] Processing user val
-2025-05-31 11:26:29,426 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 11:26:29,427 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 11:34:28,412 INFO     [core.gui_driver] Found target monitor 1920x1080 at offset (-1920,0)
-2025-05-31 11:34:28,521 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 11:34:28,522 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 11:34:28,523 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 11:34:28,524 INFO     [__main__] Processing user val
-2025-05-31 11:34:28,531 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 11:34:28,532 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 12:31:16,505 INFO     [core.gui_driver] Found target monitor 1920x1080 at offset (-1920,0)
-2025-05-31 12:31:16,609 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 12:31:16,611 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 12:31:16,610 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 12:31:16,612 INFO     [__main__] Processing user val
-2025-05-31 12:31:16,613 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-05-31 12:31:16,614 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-05-31 12:31:16,620 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 12:31:16,621 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 12:31:16,622 DEBUG    [core.slot_finder] login step – personal key
-2025-05-31 12:59:45,797 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-05-31 12:59:45,897 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 12:59:45,898 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 12:59:45,899 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 12:59:45,900 INFO     [__main__] Processing user val
-2025-05-31 12:59:45,901 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-05-31 12:59:45,901 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-05-31 12:59:45,907 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 12:59:45,910 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 12:59:45,911 DEBUG    [core.slot_finder] login step – personal key
-2025-05-31 13:06:26,473 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-05-31 13:06:26,622 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 13:06:26,624 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 13:06:26,623 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 13:06:26,625 INFO     [__main__] Processing user val
-2025-05-31 13:06:26,629 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-05-31 13:06:26,630 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-05-31 13:06:26,639 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 13:06:26,642 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 13:06:26,643 DEBUG    [core.slot_finder] login step – personal key
-2025-05-31 13:06:48,574 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: invalid literal for int() with base 10: b'\xe3\xda\xe9\xe2\xd9\xe8\xe0\xd8\xe6\xdf\xd6\xe5\xde\xd5\xe4\xdc\xd3\xe1\xd9\xd1\xdf\x9f\x9a\xa2\x99\x9c\x9f\x99\x9c\x9f\x99\x9c\x9f\x99\x9c\x9f\x99\x9c\x9f\x99\x9c\x9f\x99\x9c\x9f\x99\x9c\x9f\x99\x
-2025-05-31 13:06:48,639 INFO     [__main__] User val re-queued
-2025-05-31 13:12:55,359 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-05-31 13:12:55,463 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 13:12:55,464 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 13:12:55,465 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 13:12:55,466 INFO     [__main__] Processing user val
-2025-05-31 13:12:55,467 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-05-31 13:12:55,467 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-05-31 13:12:55,474 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 13:12:55,475 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 13:12:55,476 DEBUG    [core.slot_finder] login step – personal key
-2025-05-31 13:13:09,645 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: invalid literal for int() with base 10: b'\xe3\xda\xe9\xe2\xd9\xe8\xe0\xd8\xe6\xdf\xd6\xe5\xde\xd5\xe4\xdc\xd3\xe1\xd9\xd1\xdf\x9f\x9a\xa2\x99\x9c\x9f\x99\x9c\x9f\x99\x9c\x9f\x99\x9c\x9f\x99\x9c\x9f\x99\x9c\x9f\x99\x9c\x9f\x99\x9c\x9f\x99\x
-2025-05-31 13:13:09,743 INFO     [__main__] User val re-queued
-2025-05-31 13:14:49,017 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-05-31 13:14:49,129 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 13:14:49,130 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 13:14:49,131 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 13:14:49,133 INFO     [__main__] Processing user val
-2025-05-31 13:14:49,135 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-05-31 13:14:49,135 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-05-31 13:14:49,141 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 13:14:49,144 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 13:14:49,145 DEBUG    [core.slot_finder] login step – personal key
-2025-05-31 13:15:04,506 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: invalid literal for int() with base 10: b'\xe3\xda\xe9\xe2\xd9\xe8\xe0\xd8\xe6\xdf\xd6\xe5\xde\xd5\xe4\xdc\xd3\xe1\xd9\xd1\xdf\x9f\x9a\xa2\x99\x9c\x9f\x99\x9c\x9f\x99\x9c\x9f\x99\x9c\x9f\x99\x9c\x9f\x99\x9c\x9f\x99\x9c\x9f\x99\x9c\x9f\x99\x
-2025-05-31 13:15:04,598 INFO     [__main__] User val re-queued
-2025-05-31 13:19:32,656 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-05-31 13:19:32,761 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 13:19:32,760 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 13:19:32,761 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 13:19:32,763 INFO     [__main__] Processing user val
-2025-05-31 13:19:32,765 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-05-31 13:19:32,768 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-05-31 13:19:32,776 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 13:19:32,777 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 13:19:32,780 DEBUG    [core.slot_finder] login step – personal key
-2025-05-31 13:20:32,113 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: tesseract is not installed or it's not in your PATH. See README file for more information.
-2025-05-31 13:20:32,191 INFO     [__main__] User val re-queued
-2025-05-31 13:27:21,198 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-05-31 13:27:21,307 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 13:27:21,308 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 13:27:21,309 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 13:27:21,310 INFO     [__main__] Processing user val
-2025-05-31 13:27:21,311 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-05-31 13:27:21,311 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-05-31 13:27:21,317 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 13:27:21,318 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 13:27:21,319 DEBUG    [core.slot_finder] login step – personal key
-2025-05-31 13:40:18,586 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-05-31 13:41:14,489 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-05-31 13:41:14,598 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 13:41:14,599 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 13:41:14,600 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 13:41:14,601 INFO     [__main__] Processing user val
-2025-05-31 13:41:14,602 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-05-31 13:41:14,602 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-05-31 13:41:14,608 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 13:41:14,609 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 13:41:14,621 DEBUG    [core.slot_finder] login step – personal key
-2025-05-31 13:42:14,373 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: tesseract is not installed or it's not in your PATH. See README file for more information.
-2025-05-31 13:42:14,473 INFO     [__main__] User val re-queued
-2025-05-31 13:45:09,218 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-05-31 13:45:09,327 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 13:45:09,330 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 13:45:09,329 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 13:45:09,331 INFO     [__main__] Processing user val
-2025-05-31 13:45:09,332 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-05-31 13:45:09,333 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-05-31 13:45:09,340 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 13:45:09,341 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 13:45:09,343 DEBUG    [core.slot_finder] login step – personal key
-2025-05-31 13:45:50,421 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: R"C:\PROGRAM FILES\TESSERACT-OCR\TESSERACT.EXE" is not installed or it's not in your PATH. See README file for more information.
-2025-05-31 13:45:50,517 INFO     [__main__] User val re-queued
-2025-05-31 13:51:00,271 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-05-31 13:51:00,378 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 13:51:00,379 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 13:51:00,380 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 13:51:00,381 INFO     [__main__] Processing user val
-2025-05-31 13:51:00,382 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-05-31 13:51:00,382 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-05-31 13:51:00,390 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 13:51:00,390 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 13:51:00,391 DEBUG    [core.slot_finder] login step – personal key
-2025-05-31 14:04:19,100 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-05-31 14:04:19,205 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 14:04:19,207 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 14:04:19,207 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 14:04:19,208 INFO     [__main__] Processing user val
-2025-05-31 14:04:19,209 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-05-31 14:04:19,210 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-05-31 14:04:19,217 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 14:04:19,218 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 14:04:19,220 DEBUG    [core.slot_finder] login step – personal key
-2025-05-31 14:04:50,674 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-05-31 14:05:01,862 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 14:05:03,455 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 14:05:06,674 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 14:05:10,644 INFO     [__main__] Processing user val
-2025-05-31 14:05:11,778 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-05-31 14:05:11,779 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-05-31 14:05:49,604 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-05-31 14:05:55,241 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 14:05:55,242 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 14:05:55,243 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 14:05:55,244 INFO     [__main__] Processing user val
-2025-05-31 14:05:55,245 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-05-31 14:05:55,246 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-05-31 14:05:55,252 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 14:05:55,255 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 14:05:55,257 DEBUG    [core.slot_finder] login step – personal key
-2025-05-31 14:06:34,202 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-05-31 14:06:34,305 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 14:06:34,306 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 14:06:34,306 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 14:06:34,307 INFO     [__main__] Processing user val
-2025-05-31 14:06:38,410 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-05-31 14:06:38,412 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-05-31 14:06:43,529 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 14:06:43,530 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 14:06:43,531 DEBUG    [core.slot_finder] login step – personal key
-2025-05-31 14:10:59,775 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-05-31 14:10:59,878 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 14:10:59,879 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 14:10:59,879 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 14:10:59,880 INFO     [__main__] Processing user val
-2025-05-31 14:11:05,927 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-05-31 14:11:05,928 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-05-31 14:11:08,936 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 14:11:08,936 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 14:11:08,937 DEBUG    [core.slot_finder] login step – personal key
-2025-05-31 14:11:27,367 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: (1, 'Error opening data file C:\\Program Files\\Tesseract-OCR/ukr.traineddata Please make sure the TESSDATA_PREFIX environment variable is set to your "tessdata" directory. Failed loading language \'ukr\' Tesseract couldn\'t load any languages! Could not initialize tesseract.')
-2025-05-31 14:11:27,462 INFO     [__main__] User val re-queued
-2025-05-31 14:17:48,293 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-05-31 14:17:48,402 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 14:17:48,403 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 14:17:48,404 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 14:17:48,405 INFO     [__main__] Processing user val
-2025-05-31 14:17:48,406 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-05-31 14:17:48,406 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-05-31 14:17:51,413 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 14:17:51,413 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 14:17:51,414 DEBUG    [core.slot_finder] login step – personal key
-2025-05-31 14:17:51,568 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: name 'os' is not defined
-2025-05-31 14:17:51,953 INFO     [__main__] User val re-queued
-2025-05-31 14:18:22,619 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-05-31 14:18:22,726 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 14:18:22,728 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 14:18:22,728 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 14:18:22,729 INFO     [__main__] Processing user val
-2025-05-31 14:18:22,730 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-05-31 14:18:22,731 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-05-31 14:18:25,737 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 14:18:25,738 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 14:18:25,738 DEBUG    [core.slot_finder] login step – personal key
-2025-05-31 14:18:25,894 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: name 'os' is not defined
-2025-05-31 14:18:26,046 INFO     [__main__] User val re-queued
-2025-05-31 14:59:28,038 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-05-31 14:59:28,214 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 14:59:28,216 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 14:59:28,216 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 14:59:28,217 INFO     [__main__] Processing user val
-2025-05-31 14:59:28,218 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-05-31 14:59:28,219 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-05-31 14:59:31,226 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 14:59:31,226 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 14:59:31,227 DEBUG    [core.slot_finder] login step – personal key
-2025-05-31 14:59:50,595 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: (1, 'Error opening data file C:\\PROGRAM FILES\\TESSERACT-OCR/ukr.traineddata Please make sure the TESSDATA_PREFIX environment variable is set to your "tessdata" directory. Failed loading language \'ukr\' Tesseract couldn\'t load any languages! Could not initialize tesseract.')
-2025-05-31 14:59:50,684 INFO     [__main__] User val re-queued
-2025-05-31 19:06:04,312 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-05-31 19:06:04,427 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 19:06:04,428 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 19:06:04,429 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 19:06:04,430 INFO     [__main__] Processing user val
-2025-05-31 19:06:04,431 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-05-31 19:06:04,431 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-05-31 19:06:07,437 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 19:06:07,438 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 19:06:07,439 DEBUG    [core.slot_finder] login step – personal key
-2025-05-31 19:06:24,570 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: (1, 'Error opening data file C:\\PROGRAM FILES\\TESSERACT-OCR/ukr.traineddata Please make sure the TESSDATA_PREFIX environment variable is set to your "tessdata" directory. Failed loading language \'ukr\' Tesseract couldn\'t load any languages! Could not initialize tesseract.')
-2025-05-31 19:06:24,742 INFO     [__main__] User val re-queued
-2025-05-31 19:08:32,834 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-05-31 19:08:32,941 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 19:08:32,942 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 19:08:32,941 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 19:08:32,942 INFO     [__main__] Processing user val
-2025-05-31 19:08:32,944 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-05-31 19:08:32,944 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-05-31 19:08:35,951 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 19:08:35,951 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 19:08:35,952 DEBUG    [core.slot_finder] login step – personal key
-2025-05-31 19:09:06,515 DEBUG    [core.gui_driver] Text 'Особистий ключ' not found within 8.00 seconds
-2025-05-31 19:09:56,314 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-05-31 19:09:56,427 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 19:09:56,427 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 19:09:56,428 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 19:09:56,429 INFO     [__main__] Processing user val
-2025-05-31 19:09:56,430 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-05-31 19:09:56,431 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-05-31 19:09:59,439 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 19:09:59,439 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 19:09:59,441 DEBUG    [core.slot_finder] login step – personal key
-2025-05-31 19:10:39,438 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-05-31 19:10:39,543 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 19:10:39,544 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 19:10:39,544 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 19:10:39,545 INFO     [__main__] Processing user val
-2025-05-31 19:10:39,546 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-05-31 19:10:39,547 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-05-31 19:10:42,554 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 19:10:42,554 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 19:10:42,555 DEBUG    [core.slot_finder] login step – personal key
-2025-05-31 19:30:48,947 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-05-31 19:30:49,057 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 19:30:49,058 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 19:30:49,058 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 19:30:49,059 INFO     [__main__] Processing user val
-2025-05-31 19:30:49,060 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-05-31 19:30:49,061 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-05-31 19:30:52,068 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 19:30:52,069 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 19:30:52,070 DEBUG    [core.slot_finder] login step – personal key
-2025-05-31 19:31:40,114 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: (1, 'Error opening data file C:\\PROGRAM FILES\\TESSERACT-OCR/ukr.traineddata Please make sure the TESSDATA_PREFIX environment variable is set to your "tessdata" directory. Failed loading language \'ukr\' Tesseract couldn\'t load any languages! Could not initialize tesseract.')
-2025-05-31 19:31:40,194 INFO     [__main__] User val re-queued
-2025-05-31 19:34:43,766 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-05-31 19:34:43,871 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 19:34:43,874 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 19:34:43,873 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 19:34:43,874 INFO     [__main__] Processing user val
-2025-05-31 19:34:43,876 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-05-31 19:34:43,877 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-05-31 19:34:46,883 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 19:34:46,884 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 19:34:46,885 DEBUG    [core.slot_finder] login step – personal key
-2025-05-31 19:35:12,959 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: (1, 'Error opening data file "C:\\Program Files\\Tesseract-OCR\\tessdata"/ukr.traineddata Please make sure the TESSDATA_PREFIX environment variable is set to your "tessdata" directory. Failed loading language \'ukr\' Tesseract couldn\'t load any languages! Could not initialize tesseract.')
-2025-05-31 19:35:13,035 INFO     [__main__] User val re-queued
-2025-05-31 19:37:11,429 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-05-31 19:37:11,539 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-05-31 19:37:11,540 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-05-31 19:37:11,540 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-05-31 19:37:11,541 INFO     [__main__] Processing user val
-2025-05-31 19:37:11,542 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-05-31 19:37:11,543 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-05-31 19:37:14,550 INFO     [core.slot_finder] Start SlotFinder for val
-2025-05-31 19:37:14,550 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-05-31 19:37:14,552 DEBUG    [core.slot_finder] login step – personal key
-2025-05-31 19:37:34,677 DEBUG    [core.gui_driver] Text 'Особистий ключ' not found within 8.00 seconds
-2025-06-01 04:42:42,226 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 04:42:42,406 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 04:42:42,407 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 04:42:42,408 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 04:42:42,409 INFO     [__main__] Processing user val
-2025-06-01 04:42:42,410 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 04:42:42,411 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 04:42:45,437 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 04:42:45,438 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 04:42:45,439 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 04:42:51,247 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: click_text() missing 1 required positional argument: 'timeout'
-2025-06-01 04:42:51,325 INFO     [__main__] User val re-queued
-2025-06-01 04:44:34,737 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 04:44:34,848 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 04:44:34,849 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 04:44:34,850 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 04:44:34,850 INFO     [__main__] Processing user val
-2025-06-01 04:44:34,852 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 04:44:34,852 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 04:44:37,858 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 04:44:37,859 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 04:44:37,860 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 04:47:55,742 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 04:47:55,845 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 04:47:55,846 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 04:47:55,847 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 04:47:55,848 INFO     [__main__] Processing user val
-2025-06-01 04:47:55,849 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 04:47:55,850 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 04:47:58,880 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 04:47:58,915 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 04:47:59,054 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 04:48:26,464 DEBUG    [core.gui_driver] Text 'Особистий ключ' not found within 6.00 seconds
-2025-06-01 04:48:41,821 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 04:48:41,928 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 04:48:41,929 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 04:48:41,930 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 04:48:41,930 INFO     [__main__] Processing user val
-2025-06-01 04:48:41,931 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 04:48:41,932 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 04:48:44,938 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 04:48:44,939 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 04:48:44,940 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 05:00:55,436 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 05:00:55,540 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 05:00:55,541 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 05:00:55,542 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 05:00:55,543 INFO     [__main__] Processing user val
-2025-06-01 05:00:55,545 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 05:00:55,546 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 05:00:58,553 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 05:00:58,553 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 05:00:58,554 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 05:01:17,925 DEBUG    [core.gui_driver] Text 'Особистий ключ' not found within 6.00 seconds
-2025-06-01 05:01:35,182 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 05:01:35,287 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 05:01:35,288 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 05:01:35,288 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 05:01:35,289 INFO     [__main__] Processing user val
-2025-06-01 05:01:35,290 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 05:01:35,291 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 05:01:38,298 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 05:01:38,298 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 05:01:38,299 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 05:02:25,680 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: (1, 'Error opening data file "C:\\Program Files\\Tesseract-OCR\\tessdata"/ukr.traineddata Please make sure the TESSDATA_PREFIX environment variable is set to your "tessdata" directory. Failed loading language \'ukr\' Tesseract couldn\'t load any languages! Could not initialize tesseract.')
-2025-06-01 05:02:25,753 INFO     [__main__] User val re-queued
-2025-06-01 05:03:57,953 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 05:03:58,056 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 05:03:58,057 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 05:03:58,058 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 05:03:58,058 INFO     [__main__] Processing user val
-2025-06-01 05:03:58,059 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 05:03:58,060 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 05:04:01,068 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 05:04:01,068 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 05:04:01,069 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 05:04:15,102 DEBUG    [core.gui_driver] Text 'Особистий ключ' not found within 6.00 seconds
-2025-06-01 05:04:30,383 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 05:04:30,488 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 05:04:30,489 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 05:04:30,490 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 05:04:30,490 INFO     [__main__] Processing user val
-2025-06-01 05:04:30,491 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 05:04:30,492 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 05:04:33,498 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 05:04:33,499 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 05:04:33,500 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 05:04:58,458 DEBUG    [core.gui_driver] Text 'Особистий ключ' not found within 6.00 seconds
-2025-06-01 05:04:58,459 WARNING  [core.slot_finder] personal key button not found – maybe already logged in
-2025-06-01 05:04:59,782 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: C:\prjs\consul\assets\ui_images\field_key_path.png
-2025-06-01 05:04:59,864 INFO     [__main__] User val re-queued
-2025-06-01 05:06:29,155 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 05:06:29,257 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 05:06:29,258 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 05:06:29,258 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 05:06:29,259 INFO     [__main__] Processing user val
-2025-06-01 05:06:29,260 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 05:06:29,261 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 05:06:32,268 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 05:06:32,268 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 05:06:32,269 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 05:07:28,567 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: (1, 'Error opening data file "C:\\Program Files\\Tesseract-OCR\\tessdata"/ukr.traineddata Please make sure the TESSDATA_PREFIX environment variable is set to your "tessdata" directory. Failed loading language \'ukr\' Tesseract couldn\'t load any languages! Could not initialize tesseract.')
-2025-06-01 05:07:28,649 INFO     [__main__] User val re-queued
-2025-06-01 05:10:03,535 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 05:10:03,660 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 05:10:03,661 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 05:10:03,662 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 05:10:03,662 INFO     [__main__] Processing user val
-2025-06-01 05:10:03,663 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 05:10:03,664 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 05:10:06,670 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 05:10:06,671 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 05:10:06,672 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 05:10:26,333 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: (1, 'Error opening data file "C:\\Program Files\\Tesseract-OCR\\tessdata\\"/ukr.traineddata Please make sure the TESSDATA_PREFIX environment variable is set to your "tessdata" directory. Failed loading language \'ukr\' Tesseract couldn\'t load any languages! Could not initialize tesseract.')
-2025-06-01 05:10:26,447 INFO     [__main__] User val re-queued
-2025-06-01 05:15:58,675 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 05:15:58,777 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 05:15:58,778 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 05:15:58,779 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 05:15:58,779 INFO     [__main__] Processing user val
-2025-06-01 05:15:58,781 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 05:15:58,781 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 05:16:01,788 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 05:16:01,789 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 05:16:01,790 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 05:16:19,355 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: (1, 'Error opening data file "C:/Program Files/Tesseract-OCR/tessdata/"/ukr.traineddata Please make sure the TESSDATA_PREFIX environment variable is set to your "tessdata" directory. Failed loading language \'ukr\' Tesseract couldn\'t load any languages! Could not initialize tesseract.')
-2025-06-01 05:16:19,446 INFO     [__main__] User val re-queued
-2025-06-01 05:17:23,817 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 05:17:23,922 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 05:17:23,923 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 05:17:23,924 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 05:17:23,924 INFO     [__main__] Processing user val
-2025-06-01 05:17:23,926 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 05:17:23,926 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 05:17:26,933 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 05:17:26,933 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 05:17:26,935 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 05:17:37,239 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: (1, 'Error opening data file C:/Program/ukr.traineddata Please make sure the TESSDATA_PREFIX environment variable is set to your "tessdata" directory. Failed loading language \'ukr\' Tesseract couldn\'t load any languages! Could not initialize tesseract.')
-2025-06-01 05:17:37,331 INFO     [__main__] User val re-queued
-2025-06-01 05:20:10,645 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 05:20:10,748 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 05:20:10,749 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 05:20:10,750 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 05:20:10,751 INFO     [__main__] Processing user val
-2025-06-01 05:20:10,752 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 05:20:10,752 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 05:20:13,759 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 05:20:13,760 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 05:20:13,761 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 05:20:24,427 DEBUG    [core.gui_driver] Text 'Особистий ключ' not found within 6.00 seconds
-2025-06-01 05:20:24,428 WARNING  [core.slot_finder] personal key button not found – maybe already logged in
-2025-06-01 05:20:25,767 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: C:\prjs\consul\assets\ui_images\field_key_path.png
-2025-06-01 05:20:25,878 INFO     [__main__] User val re-queued
-2025-06-01 05:21:06,285 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 05:21:06,395 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 05:21:06,396 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 05:21:06,396 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 05:21:06,397 INFO     [__main__] Processing user val
-2025-06-01 05:21:06,398 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 05:21:06,399 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 05:21:09,406 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 05:21:09,406 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 05:21:09,407 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 05:21:48,460 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 05:21:48,564 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 05:21:48,565 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 05:21:48,566 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 05:21:48,567 INFO     [__main__] Processing user val
-2025-06-01 05:21:48,568 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 05:21:48,569 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 05:21:51,575 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 05:21:51,575 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 05:21:51,577 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 05:22:39,043 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 05:22:39,148 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 05:22:39,148 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 05:22:39,149 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 05:22:39,150 INFO     [__main__] Processing user val
-2025-06-01 05:22:39,151 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 05:22:39,152 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 05:22:42,159 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 05:22:42,159 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 05:22:42,161 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 05:23:10,843 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 05:23:10,952 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 05:23:10,954 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 05:23:10,954 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 05:23:10,955 INFO     [__main__] Processing user val
-2025-06-01 05:23:10,957 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 05:23:10,957 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 05:23:13,963 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 05:23:13,963 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 05:23:13,965 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 05:24:17,939 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 05:24:18,043 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 05:24:18,044 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 05:24:18,044 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 05:24:18,045 INFO     [__main__] Processing user val
-2025-06-01 05:24:18,047 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 05:24:18,047 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 05:24:21,060 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 05:24:21,060 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 05:24:25,398 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 05:24:42,630 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: (1, 'Error opening data file "C:/Program Files/Tesseract-OCR/tessdata/"/ukr.traineddata Please make sure the TESSDATA_PREFIX environment variable is set to your "tessdata" directory. Failed loading language \'ukr\' Tesseract couldn\'t load any languages! Could not initialize tesseract.')
-2025-06-01 05:24:42,714 INFO     [__main__] User val re-queued
-2025-06-01 05:25:28,699 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 05:25:28,798 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 05:25:28,799 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 05:25:28,799 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 05:25:28,800 INFO     [__main__] Processing user val
-2025-06-01 05:25:28,801 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 05:25:28,802 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 05:25:31,810 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 05:25:31,810 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 05:25:38,504 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 05:25:46,146 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: (1, 'Error opening data file C:/Program\\ukr.traineddata Please make sure the TESSDATA_PREFIX environment variable is set to your "tessdata" directory. Failed loading language \'ukr\' Tesseract couldn\'t load any languages! Could not initialize tesseract.')
-2025-06-01 05:25:46,230 INFO     [__main__] User val re-queued
-2025-06-01 05:26:42,401 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 05:26:42,514 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 05:26:42,515 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 05:26:42,516 INFO     [__main__] Processing user val
-2025-06-01 05:26:42,517 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 05:26:42,518 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 05:26:45,525 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 05:26:45,525 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 05:26:48,298 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 05:26:55,811 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: (1, 'Error opening data file C:\\Program/ukr.traineddata Please make sure the TESSDATA_PREFIX environment variable is set to your "tessdata" directory. Failed loading language \'ukr\' Tesseract couldn\'t load any languages! Could not initialize tesseract.')
-2025-06-01 05:26:55,924 INFO     [__main__] User val re-queued
-2025-06-01 05:28:43,781 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 05:28:43,884 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 05:28:43,885 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 05:28:43,886 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 05:28:43,886 INFO     [__main__] Processing user val
-2025-06-01 05:28:43,888 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 05:28:43,889 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 05:28:46,896 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 05:28:46,896 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 05:28:49,597 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 05:28:58,858 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: (1, 'Error opening data file \'C:/Program Files/Tesseract-OCR/tessdata\'/ukr.traineddata Please make sure the TESSDATA_PREFIX environment variable is set to your "tessdata" directory. Failed loading language \'ukr\' Tesseract couldn\'t load any languages! Could not initialize tesseract.')
-2025-06-01 05:28:58,970 INFO     [__main__] User val re-queued
-2025-06-01 05:30:46,968 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 05:30:47,069 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 05:30:47,070 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 05:30:47,071 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 05:30:47,072 INFO     [__main__] Processing user val
-2025-06-01 05:30:47,072 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 05:30:47,073 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 05:30:50,080 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 05:30:50,080 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 05:30:51,728 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 05:31:00,279 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: (1, 'Error opening data file C:\\Program Files\\Tesseract-OCR/ukr.traineddata Please make sure the TESSDATA_PREFIX environment variable is set to your "tessdata" directory. Failed loading language \'ukr\' Tesseract couldn\'t load any languages! Could not initialize tesseract.')
-2025-06-01 05:31:00,366 INFO     [__main__] User val re-queued
-2025-06-01 05:32:33,264 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 05:32:33,374 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 05:32:33,376 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 05:32:33,377 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 05:32:33,378 INFO     [__main__] Processing user val
-2025-06-01 05:32:33,379 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 05:32:33,379 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 05:32:36,385 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 05:32:36,386 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 05:32:39,438 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 05:44:49,822 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 05:44:49,933 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 05:44:49,934 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 05:44:49,934 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 05:44:49,935 INFO     [__main__] Processing user val
-2025-06-01 05:44:49,936 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 05:44:49,937 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 05:44:52,944 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 05:44:52,944 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 05:45:00,422 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 05:45:01,381 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: (1, 'Error opening data file C:\\Program Files\\Tesseract-OCR/ukr.traineddata Please make sure the TESSDATA_PREFIX environment variable is set to your "tessdata" directory. Failed loading language \'ukr\' Tesseract couldn\'t load any languages! Could not initialize tesseract.')
-2025-06-01 05:45:01,474 INFO     [__main__] User val re-queued
-2025-06-01 05:46:19,527 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 05:46:19,630 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 05:46:19,631 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 05:46:19,632 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 05:46:19,633 INFO     [__main__] Processing user val
-2025-06-01 05:46:19,634 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 05:46:19,634 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 05:46:22,641 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 05:46:22,641 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 05:46:25,476 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 05:48:25,154 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 05:48:25,257 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 05:48:25,258 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 05:48:25,259 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 05:48:25,260 INFO     [__main__] Processing user val
-2025-06-01 05:48:25,261 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 05:48:25,261 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 05:48:28,268 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 05:48:28,268 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 05:48:31,555 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 05:50:47,795 DEBUG    [core.gui_driver] Found phrase 'Особистий ключ' at local (146,56), clicking global (-1174,576)
-2025-06-01 05:51:42,200 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 05:51:42,317 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 05:51:42,318 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 05:51:42,319 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 05:51:42,320 INFO     [__main__] Processing user val
-2025-06-01 05:51:42,322 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 05:51:42,322 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 05:51:45,330 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 05:51:45,330 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 05:51:49,427 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 05:51:59,408 DEBUG    [core.gui_driver] Found phrase 'Особистий ключ' at local (146,56), clicking global (-1174,576)
-2025-06-01 05:53:26,776 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 05:53:26,888 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 05:53:26,888 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 05:53:26,889 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 05:53:26,890 INFO     [__main__] Processing user val
-2025-06-01 05:53:26,891 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 05:53:26,892 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 05:53:29,898 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 05:53:29,899 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 05:53:29,900 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 05:53:37,725 DEBUG    [core.gui_driver] Found phrase 'Особистий ключ' at local (146,56), clicking global (-1174,476)
-2025-06-01 08:36:43,458 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 08:36:44,518 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 08:36:44,519 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 08:36:44,520 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 08:36:44,520 INFO     [__main__] Processing user val
-2025-06-01 08:36:44,522 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 08:36:44,522 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 08:36:47,529 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 08:36:47,529 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 08:36:47,530 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 08:37:01,980 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: R"C:/PROGRAM FILES/TESSERACT-OCR/TESSERACT.EXE" is not installed or it's not in your PATH. See README file for more information.
-2025-06-01 08:37:02,256 INFO     [__main__] User val re-queued
-2025-06-01 08:38:53,135 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 08:38:53,238 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 08:38:53,239 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 08:38:53,240 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 08:38:53,241 INFO     [__main__] Processing user val
-2025-06-01 08:38:53,242 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 08:38:53,243 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 08:38:56,250 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 08:38:56,251 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 08:38:56,252 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 08:39:01,974 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: r"C:/Program Files/Tesseract-OCR/tesseract.exe" is not installed or it's not in your PATH. See README file for more information.
-2025-06-01 08:39:02,360 INFO     [__main__] User val re-queued
-2025-06-01 08:40:36,748 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 08:40:36,856 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 08:40:36,857 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 08:40:36,858 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 08:40:36,858 INFO     [__main__] Processing user val
-2025-06-01 08:40:36,860 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 08:40:36,860 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 08:40:39,866 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 08:40:39,866 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 08:40:39,867 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 08:40:49,209 DEBUG    [core.gui_driver] Found phrase 'Особистий ключ' at local (146,56), clicking global (-1174,476)
-2025-06-01 08:41:02,541 DEBUG    [core.gui_driver] Text 'Оберіть ключ на своєму носієві' not found within 6.00 seconds
-2025-06-01 08:41:54,030 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 08:41:54,143 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 08:41:54,144 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 08:41:54,145 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 08:41:54,145 INFO     [__main__] Processing user val
-2025-06-01 08:41:54,147 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 08:41:54,147 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 08:41:57,153 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 08:41:57,154 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 08:41:57,155 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 08:42:15,165 DEBUG    [core.gui_driver] Found phrase 'Особистий ключ' at local (146,56), clicking global (-1174,476)
-2025-06-01 08:42:30,747 DEBUG    [core.gui_driver] Found phrase 'Оберіть ключ на своєму носієві' at local (260,102), clicking global (-960,522)
-2025-06-01 10:44:18,407 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 10:44:18,660 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 10:44:18,662 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 10:44:18,665 INFO     [__main__] Processing user val
-2025-06-01 10:44:18,665 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 10:44:18,667 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 10:44:18,668 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 10:44:21,674 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 10:44:21,675 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 10:44:21,678 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 10:44:26,234 DEBUG    [core.gui_driver] Found phrase 'Особистий ключ' at local (146,56), clicking global (-1174,476)
-2025-06-01 10:44:35,643 DEBUG    [core.gui_driver] Found phrase 'Оберіть ключ на своєму носієві' at local (260,102), clicking global (-960,522)
-2025-06-01 10:46:02,361 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 10:46:02,482 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 10:46:02,482 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 10:46:02,483 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 10:46:02,484 INFO     [__main__] Processing user val
-2025-06-01 10:46:02,485 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 10:46:02,486 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 10:46:05,493 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 10:46:05,493 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 10:46:05,494 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 10:46:08,053 DEBUG    [core.gui_driver] Found phrase 'Особистий ключ' at local (146,56), clicking global (-1174,476)
-2025-06-01 10:46:17,552 DEBUG    [core.gui_driver] Found phrase 'Оберіть ключ на своєму носієві' at local (260,102), clicking global (-960,522)
-2025-06-01 10:47:47,003 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 10:47:47,118 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 10:47:47,119 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 10:47:47,119 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 10:47:47,120 INFO     [__main__] Processing user val
-2025-06-01 10:47:47,121 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 10:47:47,122 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 10:47:50,128 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 10:47:50,128 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 10:47:50,129 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 10:47:53,762 DEBUG    [core.gui_driver] Found phrase 'Особистий ключ' at local (146,56), clicking global (-1174,476)
-2025-06-01 10:48:02,997 DEBUG    [core.gui_driver] Found phrase 'Оберіть ключ на своєму носієві' at local (260,102), clicking global (-960,522)
-2025-06-01 10:50:38,522 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 10:50:38,636 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 10:50:38,637 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 10:50:38,638 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 10:50:38,638 INFO     [__main__] Processing user val
-2025-06-01 10:50:38,640 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 10:50:38,640 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 10:50:41,647 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 10:50:41,648 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 10:50:41,649 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 10:50:44,920 DEBUG    [core.gui_driver] Found phrase 'Особистий ключ' at local (146,56), clicking global (-1174,476)
-2025-06-01 10:50:54,021 DEBUG    [core.gui_driver] Found phrase 'Оберіть ключ на своєму носієві' at local (260,102), clicking global (-960,522)
-2025-06-01 11:01:03,431 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 11:01:03,544 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 11:01:03,545 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 11:01:03,546 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 11:01:03,546 INFO     [__main__] Processing user val
-2025-06-01 11:01:03,547 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 11:01:03,548 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 11:01:06,555 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 11:01:06,556 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 11:01:06,557 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 11:01:09,147 DEBUG    [core.gui_driver] Found phrase 'Особистий ключ' at local (146,56), clicking global (-1174,476)
-2025-06-01 11:01:18,469 DEBUG    [core.gui_driver] Found phrase 'Оберіть ключ на своєму носієві' at local (260,102), clicking global (-960,522)
-2025-06-01 11:02:26,378 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 11:02:26,520 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 11:02:26,522 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 11:02:26,523 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 11:02:26,524 INFO     [__main__] Processing user val
-2025-06-01 11:02:26,525 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 11:02:26,525 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 11:02:29,531 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 11:02:29,532 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 11:02:29,533 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 11:02:32,557 DEBUG    [core.gui_driver] Found phrase 'Особистий ключ' at local (146,56), clicking global (-1174,476)
-2025-06-01 11:02:41,780 DEBUG    [core.gui_driver] Found phrase 'Оберіть ключ на своєму носієві' at local (260,102), clicking global (-960,522)
-2025-06-01 11:03:11,955 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 11:03:12,065 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 11:03:12,066 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 11:03:12,067 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 11:03:12,068 INFO     [__main__] Processing user val
-2025-06-01 11:03:12,068 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 11:03:12,069 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 11:03:15,075 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 11:03:15,076 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 11:03:15,077 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 11:03:17,661 DEBUG    [core.gui_driver] Found phrase 'Особистий ключ' at local (146,56), clicking global (-1174,476)
-2025-06-01 11:03:27,434 DEBUG    [core.gui_driver] Found phrase 'Оберіть ключ на своєму носієві' at local (260,102), clicking global (-960,522)
-2025-06-01 11:06:10,519 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 11:06:10,635 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 11:06:10,636 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 11:06:10,637 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 11:06:10,638 INFO     [__main__] Processing user val
-2025-06-01 11:06:10,639 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 11:06:10,640 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 11:06:13,647 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 11:06:13,647 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 11:06:13,648 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 11:06:17,862 DEBUG    [core.gui_driver] Found phrase 'Особистий ключ' at local (146,56), clicking global (-1174,476)
-2025-06-01 11:06:26,815 DEBUG    [core.gui_driver] Found phrase 'Оберіть ключ на своєму носієві' at local (260,102), clicking global (-960,522)
-2025-06-01 11:06:58,094 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 11:06:58,215 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 11:06:58,216 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 11:06:58,217 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 11:06:58,217 INFO     [__main__] Processing user val
-2025-06-01 11:06:58,219 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 11:06:58,219 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 11:07:01,227 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 11:07:01,227 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 11:07:01,228 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 11:07:03,836 DEBUG    [core.gui_driver] Found phrase 'Особистий ключ' at local (146,56), clicking global (-1174,476)
-2025-06-01 11:07:12,734 DEBUG    [core.gui_driver] Found phrase 'Оберіть ключ на своєму носієві' at local (260,102), clicking global (-960,522)
-2025-06-01 11:08:41,196 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 11:08:41,311 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 11:08:41,311 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 11:08:41,311 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 11:08:41,312 INFO     [__main__] Processing user val
-2025-06-01 11:08:44,320 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 11:08:44,320 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 11:16:27,645 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 11:16:27,757 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 11:16:27,758 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 11:16:27,759 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 11:16:27,760 INFO     [__main__] Processing user val
-2025-06-01 11:16:30,767 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 11:16:30,768 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 11:16:30,916 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: r"C:/Program Files/Tesseract-OCR/tesseract.exe" is not installed or it's not in your PATH. See README file for more information.
-2025-06-01 11:16:31,182 INFO     [__main__] User val re-queued
-2025-06-01 11:40:17,397 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 11:40:17,505 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 11:40:17,506 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 11:40:17,507 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 11:40:17,508 INFO     [__main__] Processing user val
-2025-06-01 11:40:17,509 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 11:40:17,510 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 11:40:20,516 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 11:40:20,516 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 11:40:20,674 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: name '_is_login' is not defined
-2025-06-01 11:40:20,840 INFO     [__main__] User val re-queued
-2025-06-01 11:41:28,207 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 11:41:28,317 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 11:41:28,319 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 11:41:28,319 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 11:41:28,320 INFO     [__main__] Processing user val
-2025-06-01 11:41:28,321 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 11:41:28,322 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 11:41:31,330 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 11:41:31,331 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 11:41:31,332 DEBUG    [core.slot_finder] check is login
-2025-06-01 11:41:31,501 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: 'heigth'
-2025-06-01 11:41:31,644 INFO     [__main__] User val re-queued
-2025-06-01 11:43:04,213 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 11:43:04,318 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 11:43:04,319 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 11:43:04,320 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 11:43:04,320 INFO     [__main__] Processing user val
-2025-06-01 11:43:04,321 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 11:43:04,322 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 11:43:07,328 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 11:43:07,329 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 11:43:07,330 DEBUG    [core.slot_finder] check is login
-2025-06-01 11:43:14,519 DEBUG    [core.gui_driver] Text 'Вітаємо' not found within 6.00 seconds
-2025-06-01 11:43:34,361 ERROR    [core.slot_finder] not logged in – welcome banner not found
-2025-06-01 11:43:40,863 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 11:43:41,877 DEBUG    [core.gui_driver] Found phrase 'Особистий ключ' at local (146,56), clicking global (-1174,476)
-2025-06-01 11:43:48,157 DEBUG    [core.gui_driver] Found phrase 'Оберіть ключ на своєму носієві' at local (260,102), clicking global (-960,522)
-2025-06-01 11:46:31,767 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 11:46:31,876 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 11:46:31,877 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 11:46:31,878 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 11:46:31,879 INFO     [__main__] Processing user val
-2025-06-01 11:46:31,880 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 11:46:31,880 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 11:46:34,887 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 11:46:34,887 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 11:46:34,888 DEBUG    [core.slot_finder] check is login
-2025-06-01 11:46:42,031 DEBUG    [core.gui_driver] Text 'Вітаємо' not found within 6.00 seconds
-2025-06-01 11:46:42,032 ERROR    [core.slot_finder] not logged in – welcome banner not found
-2025-06-01 11:46:42,033 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 11:46:51,421 DEBUG    [core.gui_driver] Text 'Особистий ключ' not found within 6.00 seconds
-2025-06-01 11:46:51,571 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – personal login button not found
-2025-06-01 11:47:02,084 DEBUG    [core.gui_driver] Text 'Оберіть ключ на своєму носієві' not found within 6.00 seconds
-2025-06-01 11:47:02,266 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – personal select key button not found
-2025-06-01 11:47:14,817 DEBUG    [core.slot_finder] check is login
-2025-06-01 11:50:24,473 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 11:50:24,576 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 11:50:24,578 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 11:50:24,577 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 11:50:24,578 INFO     [__main__] Processing user val
-2025-06-01 11:50:24,580 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 11:50:24,580 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 11:50:27,587 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 11:50:27,587 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 11:50:27,589 DEBUG    [core.slot_finder] check is login
-2025-06-01 11:50:42,092 DEBUG    [core.gui_driver] Text 'Вітаємо' not found within 6.00 seconds
-2025-06-01 11:50:42,093 ERROR    [core.slot_finder] not logged in – welcome banner not found
-2025-06-01 11:50:42,093 DEBUG    [core.slot_finder] login step – personal key
-2025-06-01 11:50:49,184 DEBUG    [core.gui_driver] Text 'Особистий ключ' not found within 6.00 seconds
-2025-06-01 11:50:49,335 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – personal login button not found
-2025-06-01 11:50:56,656 DEBUG    [core.gui_driver] Text 'Оберіть ключ на своєму носієві' not found within 6.00 seconds
-2025-06-01 11:50:56,807 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – personal select key button not found
-2025-06-01 11:51:15,534 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 11:51:15,638 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 11:51:15,639 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 11:51:15,639 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 11:51:15,640 INFO     [__main__] Processing user val
-2025-06-01 11:51:15,641 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 11:51:15,642 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 11:51:18,648 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 11:51:18,649 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 11:51:18,650 DEBUG    [core.slot_finder] check is login
-2025-06-01 11:56:52,646 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 11:56:52,756 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 11:56:52,757 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 11:56:52,757 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 11:56:52,758 INFO     [__main__] Processing user val
-2025-06-01 11:56:52,759 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 11:56:52,760 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 11:56:55,767 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 11:56:55,767 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 11:56:55,768 DEBUG    [core.slot_finder] check is login
-2025-06-01 11:56:55,926 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: flip_focus_rect_on_screen() missing 1 required positional argument: 'scope'
-2025-06-01 11:56:56,192 INFO     [__main__] User val re-queued
-2025-06-01 11:58:23,689 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-01 11:58:23,821 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-01 11:58:23,820 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-01 11:58:23,825 INFO     [__main__] Processing user val
-2025-06-01 11:58:23,827 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-01 11:58:23,831 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-01 11:58:23,833 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-01 11:58:26,868 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-01 11:58:26,869 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-01 11:58:26,870 DEBUG    [core.slot_finder] check is login
-2025-06-01 11:58:30,541 DEBUG    [core.gui_driver] Found phrase 'вітаємо.' within timeout 6.00 seconds
-2025-06-01 11:58:30,541 DEBUG    [core.slot_finder] open visit wizard
-2025-06-01 11:58:30,687 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: C:\prjs\consul\assets\ui_images\btn_visit.png
-2025-06-01 11:58:30,975 INFO     [__main__] User val re-queued
-2025-06-02 13:42:01,893 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-02 13:42:02,944 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-02 13:42:02,945 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-02 13:42:02,949 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-02 13:42:02,950 INFO     [__main__] Processing user val
-2025-06-02 13:42:02,951 DEBUG    [utils.profile_manager] Reusing persistent profile for val
-2025-06-02 13:42:02,951 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
-2025-06-02 13:42:05,958 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-02 13:42:05,958 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-02 13:42:05,959 DEBUG    [core.slot_finder] check is login
-2025-06-02 13:42:18,489 DEBUG    [core.gui_driver] None of texts '['Вітаємо', 'Вітаємо.', 'Вітаємо,']' found within 6.00 seconds
-2025-06-02 13:42:18,490 ERROR    [core.slot_finder] not logged in – welcome banner not found
-2025-06-02 13:42:18,491 DEBUG    [core.slot_finder] login step – personal key
-2025-06-02 13:42:26,041 DEBUG    [core.gui_driver] Found phrase 'Особистий ключ' at local (146,56), clicking global (-1174,476)
-2025-06-02 13:42:35,294 DEBUG    [core.gui_driver] Found phrase 'Оберіть ключ на своєму носієві' at local (260,102), clicking global (-960,522)
-2025-06-02 13:42:51,785 DEBUG    [core.slot_finder] check is login
-2025-06-02 13:43:04,396 DEBUG    [core.gui_driver] None of texts '['Вітаємо', 'Вітаємо.', 'Вітаємо,']' found within 6.00 seconds
-2025-06-02 13:43:04,397 ERROR    [core.slot_finder] not logged in – welcome banner not found
-2025-06-02 13:43:04,601 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Error login
-2025-06-02 13:43:04,603 DEBUG    [core.slot_finder] open visit wizard
-2025-06-02 13:43:12,551 DEBUG    [core.gui_driver] Text 'Запис на візит' not found within 6.00 seconds
-2025-06-02 13:43:12,722 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – btn visit wizard not found
-2025-06-02 13:43:13,087 INFO     [__main__] User val re-queued
-2025-06-02 13:50:01,325 INFO     [__main__] Received signal 2 – setting STOP event
-2025-06-02 13:50:03,212 INFO     [__main__] Stop flag received – shutting down…
-2025-06-02 13:50:03,234 INFO     [bot_io.config_watcher] ConfigWatcher stopped
-2025-06-02 13:50:03,236 INFO     [server.tcp_server] Shutting down TCP control server …
-2025-06-02 13:54:47,794 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-02 13:54:47,990 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-02 13:54:47,992 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-02 13:54:47,997 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-02 13:54:48,000 INFO     [__main__] Processing user val
-2025-06-02 13:54:51,010 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-02 13:54:51,011 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-02 13:54:57,434 ERROR    [core.slot_finder] not logged in – welcome banner not found
-2025-06-02 13:55:08,259 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: 'WindowsPath' object is not iterable
-2025-06-02 13:55:08,852 INFO     [__main__] User val re-queued
-2025-06-02 13:56:46,828 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-02 13:56:47,081 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-02 13:56:47,082 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-02 13:56:47,086 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-02 13:56:47,086 INFO     [__main__] Processing user val
-2025-06-02 13:56:50,094 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-02 13:56:50,094 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-02 13:56:56,492 ERROR    [core.slot_finder] not logged in – welcome banner not found
-2025-06-02 13:57:29,496 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: 'WindowsPath' object is not iterable
-2025-06-02 13:57:29,626 INFO     [__main__] User val re-queued
-2025-06-02 13:58:12,935 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
-2025-06-02 13:58:13,126 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
-2025-06-02 13:58:13,127 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
-2025-06-02 13:58:13,132 INFO     [__main__] === Bot started. Users in queue: 1 ===
-2025-06-02 13:58:13,133 INFO     [__main__] Processing user val
-2025-06-02 13:58:16,142 INFO     [core.slot_finder] Start SlotFinder for val
-2025-06-02 13:58:16,142 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
-2025-06-02 13:58:22,582 ERROR    [core.slot_finder] not logged in – welcome banner not found
-2025-06-02 13:58:32,915 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: 'WindowsPath' object is not iterable
-2025-06-02 13:58:33,456 INFO     [__main__] User val re-queued
-2025-06-02 15:21:09,124 INFO     [__main__] Received signal 2 – setting STOP event
-2025-06-02 15:21:09,327 INFO     [__main__] Received signal 2 – setting STOP event
-2025-06-02 15:21:10,470 INFO     [__main__] Stop flag received – shutting down…
-2025-06-02 15:21:10,597 INFO     [bot_io.config_watcher] ConfigWatcher stopped
-2025-06-02 15:21:10,599 INFO     [server.tcp_server] Shutting down TCP control server …
+2025-06-02 22:10:00,603 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-02 22:10:00,814 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-02 22:10:00,815 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-02 22:10:00,819 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-02 22:10:00,820 INFO     [__main__] Processing user val
+2025-06-02 22:10:00,822 DEBUG    [utils.profile_manager] Reusing persistent profile for val
+2025-06-02 22:10:00,825 DEBUG    [core.gui_driver] Run Chrome at 1920x1080+-1920+0: ['C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', '--user-data-dir=C:\\prjs\\consul\\data\\chrome_template\\profiles\\val', '--new-window', '--window-size=1920,1080', '--window-position=-1920,0', 'https://e-consul.gov.ua/']
+2025-06-02 22:10:03,833 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-02 22:10:03,833 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-02 22:10:03,834 DEBUG    [core.slot_finder] check is login
+2025-06-02 22:10:07,757 DEBUG    [core.gui_driver] Found phrase 'вітаємо.' within timeout 6.00 seconds
+2025-06-02 22:10:07,757 DEBUG    [core.slot_finder] open visit wizard
+2025-06-02 22:10:10,659 DEBUG    [core.gui_driver] Found phrase 'Запис на візит' at local (62,28), clicking global (-1298,128)
+2025-06-02 22:10:24,567 DEBUG    [core.gui_driver] Found phrase 'Записатись на візит' at local (201,29), clicking global (-1579,329)
+2025-06-02 22:10:34,778 DEBUG    [core.slot_finder] fill step 1 – personal data
+2025-06-02 22:10:40,779 DEBUG    [core.gui_driver] Found phrase 'день' at local (113,84), clicking global (-1707,584)
+2025-06-02 22:10:49,926 DEBUG    [core.gui_driver] Found phrase 'місяць' at local (143,84), clicking global (-1617,584)
+2025-06-02 22:10:58,325 DEBUG    [core.gui_driver] Found phrase 'травня' at local (119,272), clicking global (-1601,772)
+2025-06-02 22:11:06,312 DEBUG    [core.gui_driver] Found phrase 'рік' at local (23,84), clicking global (-1417,584)
+2025-06-02 22:11:15,750 DEBUG    [core.gui_driver] Found phrase 'Чоловіча' at local (239,318), clicking global (-1491,718)
+2025-06-02 22:11:31,702 DEBUG    [core.gui_driver] Text 'Далі' not found within 6.00 seconds
+2025-06-02 22:11:31,899 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – button Next after gender missing
+2025-06-02 22:14:23,563 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-02 22:14:23,798 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-02 22:14:23,799 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-02 22:14:23,803 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-02 22:14:23,804 INFO     [__main__] Processing user val
+2025-06-02 22:14:26,813 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-02 22:14:26,814 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-02 22:15:22,503 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – button Next after gender missing
+2025-06-02 22:17:36,400 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-02 22:17:36,561 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-02 22:17:36,565 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-02 22:17:36,565 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-02 22:17:36,567 INFO     [__main__] Processing user val
+2025-06-02 22:17:39,578 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-02 22:17:39,580 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-02 22:18:35,871 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – button Next after gender missing
+2025-06-02 22:20:38,910 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-02 22:20:39,317 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-02 22:20:39,318 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-02 22:20:39,322 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-02 22:20:39,322 INFO     [__main__] Processing user val
+2025-06-02 22:20:42,330 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-02 22:20:42,330 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-02 22:21:37,823 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – button Next after gender missing
+2025-06-02 22:24:32,933 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-02 22:24:33,303 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-02 22:24:33,304 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-02 22:24:33,308 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-02 22:24:33,309 INFO     [__main__] Processing user val
+2025-06-02 22:24:36,317 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-02 22:24:36,318 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-02 22:25:32,143 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – button Next after gender missing
+2025-06-02 22:27:06,304 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: C:\prjs\consul\assets\ui_images\field_consulate.png
+2025-06-02 22:27:06,524 INFO     [__main__] User val re-queued
+2025-06-03 12:50:28,400 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 12:50:28,656 WARNING  [bot_io.yaml_loader] Skip invalid config val.yaml: Missing required fields: service
+2025-06-03 12:50:28,657 ERROR    [__main__] Failed to load configs: No valid user configurations found.
+2025-06-03 12:51:33,422 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 12:51:33,558 WARNING  [bot_io.yaml_loader] Skip invalid config val.yaml: Missing required fields: service
+2025-06-03 12:51:33,559 ERROR    [__main__] Failed to load configs: No valid user configurations found.
+2025-06-03 13:01:04,255 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 13:01:04,405 WARNING  [bot_io.yaml_loader] Skip invalid config val.yaml: 'patronymic'
+2025-06-03 13:01:04,405 ERROR    [__main__] Failed to load configs: No valid user configurations found.
+2025-06-03 13:02:03,421 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 13:02:47,815 WARNING  [bot_io.yaml_loader] Skip invalid config val.yaml: name 'service' is not defined
+2025-06-03 13:02:47,816 ERROR    [__main__] Failed to load configs: No valid user configurations found.
+2025-06-03 13:03:29,913 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 13:03:30,057 WARNING  [bot_io.yaml_loader] Skip invalid config val.yaml: UserConfig.__init__() got an unexpected keyword argument 'service'. Did you mean 'services'?
+2025-06-03 13:03:30,058 ERROR    [__main__] Failed to load configs: No valid user configurations found.
+2025-06-03 13:04:35,920 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 13:04:36,067 WARNING  [bot_io.yaml_loader] Skip invalid config val.yaml: UserConfig.__init__() missing 1 required positional argument: 'middle_name'
+2025-06-03 13:04:36,068 ERROR    [__main__] Failed to load configs: No valid user configurations found.
+2025-06-03 13:05:23,890 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 13:05:24,051 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 13:05:24,051 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 13:05:24,052 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 13:05:24,053 INFO     [__main__] Processing user val
+2025-06-03 13:05:27,061 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 13:05:27,061 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 13:05:33,095 ERROR    [core.slot_finder] not logged in – welcome banner not found
+2025-06-03 13:06:16,224 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: SlotFinder.fill_data_personal() takes 2 positional arguments but 3 were given
+2025-06-03 13:06:16,613 INFO     [__main__] User val re-queued
+2025-06-03 13:07:22,644 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 13:07:22,787 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 13:07:22,788 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 13:07:22,792 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 13:07:22,792 INFO     [__main__] Processing user val
+2025-06-03 13:07:25,800 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 13:07:25,800 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 13:08:21,008 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – button Next after gender missing
+2025-06-03 13:10:06,150 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 13:10:06,296 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 13:10:06,297 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 13:10:06,300 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 13:10:06,301 INFO     [__main__] Processing user val
+2025-06-03 13:10:09,309 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 13:10:09,309 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 13:11:05,053 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – button Next after gender missing
+2025-06-03 13:17:09,076 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 13:17:09,270 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 13:17:09,270 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 13:17:09,275 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 13:17:09,276 INFO     [__main__] Processing user val
+2025-06-03 13:17:12,283 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 13:17:12,284 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 13:18:08,265 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – button Next after gender missing
+2025-06-03 13:20:52,801 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 13:20:52,959 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 13:20:52,960 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 13:20:52,963 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 13:20:52,964 INFO     [__main__] Processing user val
+2025-06-03 13:20:55,978 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 13:20:55,978 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 13:21:52,084 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – button Next after gender missing
+2025-06-03 13:22:47,039 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – button image Next after type cons missing
+2025-06-03 13:22:47,179 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – check_consulates failed
+2025-06-03 13:22:47,272 INFO     [__main__] User val re-queued
+2025-06-03 13:26:10,804 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 13:26:10,962 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 13:26:10,963 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 13:26:10,967 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 13:26:10,968 INFO     [__main__] Processing user val
+2025-06-03 13:26:13,976 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 13:26:13,976 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 13:27:09,583 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – button Next after gender missing
+2025-06-03 13:30:37,121 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 13:30:37,273 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 13:30:37,274 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 13:30:37,278 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 13:30:37,279 INFO     [__main__] Processing user val
+2025-06-03 13:30:40,287 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 13:30:40,288 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 13:31:35,785 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – button Next after gender missing
+2025-06-03 13:32:15,623 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: SlotFinder.check_consular_service() takes 2 positional arguments but 3 were given
+2025-06-03 13:32:15,966 INFO     [__main__] User val re-queued
+2025-06-03 13:33:01,833 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 13:33:02,049 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 13:33:02,049 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 13:33:02,056 INFO     [__main__] Processing user val
+2025-06-03 13:33:02,056 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 13:33:05,064 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 13:33:05,064 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 13:34:00,140 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – button Next after gender missing
+2025-06-03 13:34:30,169 ERROR    [core.slot_finder] not is appointment for a visit
+2025-06-03 13:34:37,592 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: SlotFinder.check_consular_service() takes 2 positional arguments but 3 were given
+2025-06-03 13:34:37,938 INFO     [__main__] User val re-queued
+2025-06-03 13:39:03,117 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 13:39:03,294 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 13:39:03,295 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 13:39:03,299 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 13:39:03,300 INFO     [__main__] Processing user val
+2025-06-03 13:39:06,307 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 13:39:06,308 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 13:39:13,056 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – field country missing
+2025-06-03 13:43:31,790 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 13:43:31,999 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 13:43:32,000 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 13:43:32,004 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 13:43:32,006 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 13:43:32,010 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 13:43:38,732 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – field country missing
+2025-06-03 13:44:08,508 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 13:44:08,686 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 13:44:08,687 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 13:44:08,692 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 13:44:08,693 INFO     [__main__] Processing user val
+2025-06-03 13:44:08,693 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 13:44:08,694 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 13:52:38,343 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 13:52:38,643 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 13:52:38,644 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 13:52:38,649 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 13:52:38,650 INFO     [__main__] Processing user val
+2025-06-03 13:52:38,650 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 13:52:38,650 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 13:52:45,014 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – field country missing
+2025-06-03 13:53:00,126 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 13:53:00,271 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 13:53:00,273 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 13:53:00,277 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 13:53:00,278 INFO     [__main__] Processing user val
+2025-06-03 13:53:00,278 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 13:53:00,279 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 13:56:27,893 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 13:56:28,041 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 13:56:28,042 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 13:56:28,048 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 13:56:28,048 INFO     [__main__] Processing user val
+2025-06-03 13:56:28,049 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 13:56:28,049 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 14:06:59,017 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 14:06:59,206 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 14:06:59,207 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 14:06:59,211 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 14:06:59,212 INFO     [__main__] Processing user val
+2025-06-03 14:06:59,212 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 14:06:59,213 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 14:07:05,699 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – field country missing
+2025-06-03 14:07:26,487 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 14:07:26,632 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 14:07:26,633 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 14:07:26,637 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 14:07:26,638 INFO     [__main__] Processing user val
+2025-06-03 14:07:26,639 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 14:07:26,639 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 14:07:46,456 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – button image Next after type cons missing
+2025-06-03 14:08:54,591 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 14:08:54,791 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 14:08:54,793 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 14:08:54,798 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 14:08:54,800 INFO     [__main__] Processing user val
+2025-06-03 14:08:54,800 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 14:08:54,801 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 14:09:20,215 ERROR    [core.slot_finder] not is appointment for a visit
+2025-06-03 14:10:41,643 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 14:10:41,829 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 14:10:41,830 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 14:10:41,834 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 14:10:41,835 INFO     [__main__] Processing user val
+2025-06-03 14:10:41,835 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 14:10:41,835 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 14:10:48,275 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – field country missing
+2025-06-03 14:11:04,749 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 14:11:04,890 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 14:11:04,891 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 14:11:04,896 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 14:11:04,899 INFO     [__main__] Processing user val
+2025-06-03 14:11:04,899 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 14:11:04,900 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 14:19:28,808 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 14:19:29,003 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 14:19:29,008 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 14:19:29,009 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 14:19:29,010 INFO     [__main__] Processing user val
+2025-06-03 14:19:29,011 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 14:19:29,011 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 14:19:42,665 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: name 'user' is not defined
+2025-06-03 14:19:42,668 INFO     [__main__] User val re-queued
+2025-06-03 15:12:41,106 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 15:12:41,312 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 15:12:41,313 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 15:12:41,318 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 15:12:41,319 INFO     [__main__] Processing user val
+2025-06-03 15:12:41,320 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 15:12:41,320 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 15:47:19,432 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 15:47:19,579 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 15:47:19,581 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 15:47:19,585 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 15:47:19,586 INFO     [__main__] Processing user val
+2025-06-03 15:47:19,587 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 15:47:19,587 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 15:48:26,458 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: C:\prjs\consul\assets\ui_images\field_key_pass.png
+2025-06-03 15:48:26,473 INFO     [__main__] User val re-queued
+2025-06-03 15:49:02,333 INFO     [__main__] Received signal 2 – setting STOP event
+2025-06-03 15:49:02,493 INFO     [__main__] Stop flag received – shutting down…
+2025-06-03 15:49:02,558 INFO     [bot_io.config_watcher] ConfigWatcher stopped
+2025-06-03 15:49:02,560 INFO     [server.tcp_server] Shutting down TCP control server …
+2025-06-03 15:49:11,320 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 15:49:11,505 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 15:49:11,506 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 15:49:11,513 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 15:49:11,513 INFO     [__main__] Processing user val
+2025-06-03 15:49:11,514 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 15:49:11,515 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 15:49:21,837 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: C:\prjs\consul\assets\ui_images\field_key_pass.png
+2025-06-03 15:49:21,839 INFO     [__main__] User val re-queued
+2025-06-03 15:50:06,303 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 15:50:06,500 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 15:50:06,502 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 15:50:06,506 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 15:50:06,507 INFO     [__main__] Processing user val
+2025-06-03 15:50:06,507 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 15:50:06,508 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 15:50:17,734 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: C:\prjs\consul\assets\ui_images\field_key_pass.png
+2025-06-03 15:50:17,736 INFO     [__main__] User val re-queued
+2025-06-03 15:51:19,499 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 15:51:19,636 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 15:51:19,637 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 15:51:19,642 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 15:51:19,643 INFO     [__main__] Processing user val
+2025-06-03 15:51:19,643 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 15:51:25,480 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 15:58:08,805 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 15:58:08,944 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 15:58:08,948 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 15:58:08,950 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 15:58:08,951 INFO     [__main__] Processing user val
+2025-06-03 15:58:08,951 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 15:59:53,066 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 16:00:00,385 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: C:\prjs\consul\assets\ui_images\field_key_pass.png
+2025-06-03 16:00:00,387 INFO     [__main__] User val re-queued
+2025-06-03 16:39:13,934 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 16:39:14,107 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 16:39:14,110 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 16:39:14,115 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 16:39:14,117 INFO     [__main__] Processing user val
+2025-06-03 16:39:14,117 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 16:39:29,511 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 16:39:36,174 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – field country missing
+2025-06-03 16:39:38,452 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: C:\prjs\consul\assets\ui_images\field_key_pass.png
+2025-06-03 16:39:38,464 INFO     [__main__] User val re-queued
+2025-06-03 16:40:16,672 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 16:40:16,899 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 16:40:16,906 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 16:40:16,907 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 16:40:16,911 INFO     [__main__] Processing user val
+2025-06-03 16:40:16,954 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 16:40:24,279 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 16:41:07,459 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 16:41:07,623 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 16:41:07,623 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 16:41:07,630 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 16:41:07,631 INFO     [__main__] Processing user val
+2025-06-03 16:41:07,632 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 16:41:12,070 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 16:41:29,989 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – field country missing
+2025-06-03 16:41:32,059 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: C:\prjs\consul\assets\ui_images\field_key_pass.png
+2025-06-03 16:41:32,062 INFO     [__main__] User val re-queued
+2025-06-03 16:42:59,151 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 16:42:59,373 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 16:42:59,374 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 16:42:59,381 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 16:42:59,382 INFO     [__main__] Processing user val
+2025-06-03 16:42:59,382 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 16:43:14,614 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 16:43:20,964 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – field country missing
+2025-06-03 16:43:23,027 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: C:\prjs\consul\assets\ui_images\field_key_pass.png
+2025-06-03 16:43:23,030 INFO     [__main__] User val re-queued
+2025-06-03 16:44:05,867 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 16:44:06,027 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 16:44:06,031 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 16:44:06,038 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 16:44:06,040 INFO     [__main__] Processing user val
+2025-06-03 16:44:06,040 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 16:44:06,041 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 16:45:16,102 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 16:45:16,269 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 16:45:16,271 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 16:45:16,278 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 16:45:16,279 INFO     [__main__] Processing user val
+2025-06-03 16:45:16,279 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 16:45:16,280 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 16:46:07,302 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 16:46:07,510 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 16:46:07,512 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 16:46:07,518 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 16:46:07,519 INFO     [__main__] Processing user val
+2025-06-03 16:46:07,519 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 16:46:07,519 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 16:46:33,541 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 16:46:33,767 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 16:46:33,768 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 16:46:33,772 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 16:46:33,773 INFO     [__main__] Processing user val
+2025-06-03 16:46:33,774 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 16:46:33,774 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 16:46:49,176 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: C:\prjs\consul\assets\ui_images\field_key_pass.png
+2025-06-03 16:46:49,190 INFO     [__main__] User val re-queued
+2025-06-03 16:46:51,692 INFO     [__main__] Received signal 2 – setting STOP event
+2025-06-03 16:46:53,217 INFO     [__main__] Stop flag received – shutting down…
+2025-06-03 16:46:53,321 INFO     [bot_io.config_watcher] ConfigWatcher stopped
+2025-06-03 16:46:53,323 INFO     [server.tcp_server] Shutting down TCP control server …
+2025-06-03 16:54:54,956 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 16:54:55,189 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 16:54:55,190 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 16:54:55,195 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 16:54:55,196 INFO     [__main__] Processing user val
+2025-06-03 16:54:55,196 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 16:54:55,196 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 16:55:08,934 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: C:\prjs\consul\assets\ui_images\field_key_pass.png
+2025-06-03 16:55:08,938 INFO     [__main__] User val re-queued
+2025-06-03 17:24:31,824 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 17:24:31,980 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 17:24:31,981 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 17:24:31,986 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 17:24:31,986 INFO     [__main__] Processing user val
+2025-06-03 17:24:31,987 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 17:24:31,987 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 17:24:34,314 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: C:\prjs\consul\assets\ui_images\field_key_pass.png
+2025-06-03 17:24:34,319 INFO     [__main__] User val re-queued
+2025-06-03 17:26:40,341 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 17:26:40,537 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 17:26:40,541 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 17:26:40,542 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 17:26:40,543 INFO     [__main__] Processing user val
+2025-06-03 17:26:40,544 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 17:26:40,544 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 17:26:42,835 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: C:\prjs\consul\assets\ui_images\field_key_pass.png
+2025-06-03 17:26:42,856 INFO     [__main__] User val re-queued
+2025-06-03 17:27:13,126 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 17:27:13,264 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 17:27:13,265 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 17:27:13,270 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 17:27:13,271 INFO     [__main__] Processing user val
+2025-06-03 17:27:13,271 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 17:27:13,272 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 17:27:15,530 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: C:\prjs\consul\assets\ui_images\field_key_pass.png
+2025-06-03 17:27:15,533 INFO     [__main__] User val re-queued
+2025-06-03 17:28:11,920 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 17:28:12,063 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 17:28:12,065 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 17:28:12,070 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 17:28:12,071 INFO     [__main__] Processing user val
+2025-06-03 17:28:12,072 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 17:28:20,017 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 17:30:29,834 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 17:30:29,978 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 17:30:29,979 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 17:30:29,985 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 17:30:29,986 INFO     [__main__] Processing user val
+2025-06-03 17:30:29,986 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 17:30:29,987 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 17:30:32,279 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: C:\prjs\consul\assets\ui_images\field_key_pass.png
+2025-06-03 17:30:32,281 INFO     [__main__] User val re-queued
+2025-06-03 17:32:09,452 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 17:32:09,606 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 17:32:09,608 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 17:32:09,614 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 17:32:09,615 INFO     [__main__] Processing user val
+2025-06-03 17:32:09,615 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 17:32:09,616 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 17:32:16,577 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: C:\prjs\consul\assets\ui_images\field_key_pass.png
+2025-06-03 17:32:16,580 INFO     [__main__] User val re-queued
+2025-06-03 17:35:01,292 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 17:35:01,640 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 17:35:01,642 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 17:35:01,648 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 17:35:01,648 INFO     [__main__] Processing user val
+2025-06-03 17:35:01,650 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 17:35:01,650 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 17:35:09,694 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – birthdate field day missing
+2025-06-03 17:35:16,054 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – field country missing
+2025-06-03 17:35:16,199 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – check_consulates failed
+2025-06-03 17:35:16,201 INFO     [__main__] User val re-queued
+2025-06-03 17:35:18,554 INFO     [__main__] Received signal 2 – setting STOP event
+2025-06-03 17:35:18,777 INFO     [__main__] Received signal 2 – setting STOP event
+2025-06-03 17:35:20,218 INFO     [__main__] Stop flag received – shutting down…
+2025-06-03 17:35:20,361 INFO     [bot_io.config_watcher] ConfigWatcher stopped
+2025-06-03 17:35:20,364 INFO     [server.tcp_server] Shutting down TCP control server …
+2025-06-03 17:37:01,762 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 17:37:01,973 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 17:37:01,974 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 17:37:01,975 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 17:37:01,976 INFO     [__main__] Processing user val
+2025-06-03 17:37:01,976 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 17:37:01,977 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 17:37:10,249 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – birthdate field day missing
+2025-06-03 17:37:16,885 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – field country missing
+2025-06-03 17:37:17,038 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – check_consulates failed
+2025-06-03 17:37:17,041 INFO     [__main__] User val re-queued
+2025-06-03 17:39:14,099 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 17:39:14,331 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 17:39:14,332 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 17:39:14,337 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 17:39:14,339 INFO     [__main__] Processing user val
+2025-06-03 17:39:17,348 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 17:39:17,348 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 17:39:23,775 ERROR    [core.slot_finder] not logged in – welcome banner not found
+2025-06-03 17:40:41,906 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – button Next after gender missing
+2025-06-03 17:41:14,056 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: C:\prjs\consul\assets\ui_images\field_key_pass.png
+2025-06-03 17:41:14,684 INFO     [__main__] User val re-queued
+2025-06-03 17:46:05,572 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 17:46:05,802 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 17:46:05,803 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 17:46:05,809 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 17:46:05,810 INFO     [__main__] Processing user val
+2025-06-03 17:46:08,819 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 17:46:08,819 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 17:47:30,995 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: C:\prjs\consul\assets\ui_images\field_key_pass.png
+2025-06-03 17:50:28,208 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 17:50:28,361 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 17:50:28,362 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 17:50:28,367 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 17:50:28,368 INFO     [__main__] Processing user val
+2025-06-03 17:50:31,376 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 17:50:31,376 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 17:51:47,634 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: C:\prjs\consul\assets\ui_images\field_key_pass.png
+2025-06-03 17:51:48,071 INFO     [__main__] User val re-queued
+2025-06-03 17:54:10,788 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 17:54:10,999 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 17:54:11,000 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 17:54:11,006 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 17:54:11,007 INFO     [__main__] Processing user val
+2025-06-03 17:54:14,016 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 17:54:14,016 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>
+2025-06-03 17:55:29,393 ERROR    [core.specialized_hooks] ❌ ПОМИЛКА – Exception in SlotFinder: C:\prjs\consul\assets\ui_images\field_key_pass.png
+2025-06-03 17:55:30,088 INFO     [__main__] User val re-queued
+2025-06-03 17:58:16,452 INFO     [core.gui_driver] Using MSS monitor #2: offset (-1920,0), size 1920x1080
+2025-06-03 17:58:16,615 INFO     [bot_io.config_watcher] ConfigWatcher started for C:\prjs\consul\data\users_cfg
+2025-06-03 17:58:16,616 INFO     [server.tcp_server] TCP control server listening on 0.0.0.0:4567
+2025-06-03 17:58:16,620 INFO     [__main__] === Bot started. Users in queue: 1 ===
+2025-06-03 17:58:16,621 INFO     [__main__] Processing user val
+2025-06-03 17:58:19,628 INFO     [core.slot_finder] Start SlotFinder for val
+2025-06-03 17:58:19,629 INFO     [core.specialized_hooks] ▶ Перехід до користувача: <b>val</b>

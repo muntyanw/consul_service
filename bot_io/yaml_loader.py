@@ -58,11 +58,13 @@ class UserConfig:
 
     country: str
     consulates: Sequence[str]
-    service: str
+    services: Sequence[str]
 
     surname: Optional[str]
     name: Optional[str]
-    patronymic: Optional[str]           # None → «для себе» / missing patronymic
+    middle_name: Optional[str]
+    
+    for_myself: Optional[str]           # None → «для себе» / missing for_myself
     
     source_file: _pl.Path = field(repr=False, compare=False)
 
@@ -97,7 +99,7 @@ class YAMLLoader:
         "gender",
         "country",
         "consulates",
-        "service",
+        "services",
     }
 
     def __init__(self, users_dir: _pl.Path, keys_base: _pl.Path | None = None):
@@ -174,13 +176,20 @@ class YAMLLoader:
         if not isinstance(cons, list) or not cons:
             raise ConfigError("consulates must be a non-empty list")
         consulates: list[str] = [str(i).strip() for i in cons]
-        service = str(raw["service"]).strip()
+        
+        servs = raw["services"]
+        if not isinstance(servs, list) or not servs:
+            raise ConfigError("services must be a non-empty list")
+        services: list[str] = [str(i).strip() for i in servs]
 
         # --- client name ------------------------------------------------
         cn = raw.get("client_name", {}) or {}
         surname = cn.get("surname")
         name = cn.get("name")
-        patronymic = cn.get("patronymic")
+        middle_name = cn.get("middle_name")
+        
+        for_myself = str(raw["for_myself"]).strip()
+        
 
         # --- date restrictions -----------------------------------------
         min_date = None
@@ -207,10 +216,11 @@ class YAMLLoader:
             gender=gender,
             country=country,
             consulates=consulates,
-            service=service,
+            services=services,
             surname=surname,
             name=name,
-            patronymic=patronymic,
+            middle_name=middle_name,
+            for_myself=for_myself,
             min_date=min_date,
             relative_days=rel,
             source_file=path,

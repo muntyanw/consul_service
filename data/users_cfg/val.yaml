@@ -1,13 +1,14 @@
-   key_path: "pb_2790320694.jks"
-   key_issuer: ""
-   key_password: "gAAAAABoObN_HLGndTZHjxWjE7NAePEfRX6RZ_ZOpwjE4jygw6zKFYruZCXCf7PJQZynXvywmTx6FqPVDxF1jNlMZD6RqIr5KA=="
-   birthdate: "1976-05-24"
-   gender: "Male"
-   country: "Канада"
-   consulates: ["Генеральне Консульство України в Едмонтоні", "Генеральне Консульство України в Торонто", "Посольство України в Канаді"]
-   service: "Оформлення закордонного паспорта"
-   client_name:
-     surname: "Мунтян"
-     name: "Валерій"
-     patronymic: null      # ← means «для себе»
-   min_date: "2025-07-01"  # or `days_from_now: 30`
+key_path: "pb_2790320694.jks"
+key_issuer: ""
+key_password: "gAAAAABoObN_HLGndTZHjxWjE7NAePEfRX6RZ_ZOpwjE4jygw6zKFYruZCXCf7PJQZynXvywmTx6FqPVDxF1jNlMZD6RqIr5KA=="
+birthdate: "1976-05-24"
+gender: "Male"
+country: "Канада"
+consulates: ["Генеральне Консульство України в Едмонтоні", "Генеральне Консульство України в Торонто", "Посольство України в Канаді"]
+services: ["Витребування документа","Вчинення морських протестів","Оформлення закордонного паспорта"]
+client_name:
+  surname: "Мунтян"
+  name: "Валерій"
+  middle_name: "Валерійович"  
+for_myself: true      
+min_date: "2025-07-01"  # or `days_from_now: 30`
