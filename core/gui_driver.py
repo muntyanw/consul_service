@@ -18,6 +18,9 @@ import subprocess
 import time
 from pathlib import Path
 from typing import Final, Iterator, Tuple
+import datetime as _dt
+from datetime import date, datetime
+import re
 
 import cv2
 import numpy as np
@@ -575,6 +578,52 @@ def replace_similar_chars(word: str) -> str:
     }
     return ''.join(char_map.get(c, c) for c in word)
 
+def read_text(
+    lang: str,
+    scope: tuple[int, int, int, int] = None,
+    is_debug: bool = False
+) -> bool:
+    """
+    OCR-based read text
+    
+    """
+    
+    scr_bgr = screen(scope, is_debug = is_debug)
+    
+    os.environ['TESSDATA_PREFIX'] = os.path.normpath(TESSDATA_PREFIX)
+    pytesseract.pytesseract.tesseract_cmd = r"C:/Program Files/Tesseract-OCR/tesseract.exe"
+
+    data = pytesseract.image_to_data(
+        scr_bgr, lang=lang, output_type=pytesseract.Output.DICT
+    )
+
+    texts = [t.strip().lower() for t in data["text"]]
+    return texts
+
+def get_first_date(text_list) -> date:
+    date_pattern = r'\b\d{2}\.\d{2}\.\d{4}\b'
+    for text in text_list:
+        match = re.search(date_pattern, text)
+        if match:
+            date_str = match.group()
+            return _dt.strptime(date_str, '%d.%m.%Y').date()
+    return None
+
+def read_first_date(
+    lang: str,
+    scope: tuple[int, int, int, int] = None,
+    is_debug: bool = False
+) -> date:
+    """
+    OCR-based read text
+    
+    """
+
+    texts = read_text(lang, scope, is_debug)
+    dt = get_first_date(texts)
+    
+    return dt
+
 def click_text(
     query: str,
     timeout: float,
@@ -588,6 +637,46 @@ def click_text(
     OCR-based search: найти текст `query` на экране (в пределах MON_X..MON_W, MON_Y..MON_H)
     и кликнуть его центр.
     Возвращает True, если удалось найти и кликнуть, иначе False по истечении timeout.
+
+    Параметры:
+    -----------
+    query : str
+        Подстрока (без учёта регистра), которую ищем среди распознанных слов.
+    timeout : float
+        Максимальное время (в секундах) на попытки поиска.
+    lang : str
+        Язык Tesseract (например, "eng", "rus", "ukr").
+    conf_threshold : float
+        Минимальный порог доверия (0.0–1.0) для распознанных слов.
+    padding : tuple[int, int, int, int], optional
+        Смещение (left, bottom, right, top) для сужения области скриншота.
+    """
+    
+    pos = find_text(query, timeout, lang, conf_threshold, scope, plus_y, is_debug)
+    
+    if pos:
+        abs_x, abs_y = pos
+        human_move_and_click(abs_x, abs_y + plus_y)
+        return True
+
+    time.sleep(0.2)
+
+    LOGGER.debug("Text '%s' not found within %.2f seconds", query, timeout)
+    return False
+
+def find_text(
+    query: str,
+    timeout: float,
+    lang: str,
+    conf_threshold: float,
+    scope: tuple[int, int, int, int] = None,
+    plus_y: int = 0,
+    is_debug: bool = False
+) -> tuple[int, int]:
+    """
+    OCR-based search: найти текст `query` на экране (в пределах MON_X..MON_W, MON_Y..MON_H)
+    
+    Возвращает x, y, если удалось найти, иначе None по истечении timeout.
 
     Параметры:
     -----------
@@ -658,84 +747,12 @@ def click_text(
                     "Found phrase '%s' at local (%d,%d), clicking global (%d,%d)",
                     query, center_x_rel, center_y_rel, abs_x, abs_y
                 )
-                human_move_and_click(abs_x, abs_y + plus_y)
-                return True
+                return abs_x, abs_y + plus_y
 
         time.sleep(0.2)
 
     LOGGER.debug("Text '%s' not found within %.2f seconds", query, timeout)
-    return False
-
-def find_text(
-    query: str,
-    timeout: float,
-    lang: str,
-    conf_threshold: float,
-    scope: tuple[int, int, int, int] = None,
-    is_debug: bool = False
-) -> bool:
-    """
-    OCR-based search: найти текст `query` на экране (в пределах MON_X..MON_W, MON_Y..MON_H).
-    Возвращает True, если удалось найти, иначе False по истечении timeout.
-
-    Параметры:
-    -----------
-    query : str
-        Подстрока (без учёта регистра), которую ищем среди распознанных слов.
-    timeout : float
-        Максимальное время (в секундах) на попытки поиска.
-    lang : str
-        Язык Tesseract (например, "eng", "rus", "ukr").
-    conf_threshold : float
-        Минимальный порог доверия (0.0–1.0) для распознанных слов.
-    scope : tuple[int, int, int, int], optional
-        Область поиска (left, bottom, right, top) для сужения области скриншота.
-    """
-    deadline = time.perf_counter() + timeout
-
-    query_words = query.lower().split()
-    n_words = len(query_words)
-
-    while time.perf_counter() < deadline:
-        
-        scr_bgr = screen(scope, is_debug = is_debug)
-
-        os.environ['TESSDATA_PREFIX'] = os.path.normpath(TESSDATA_PREFIX)
-        pytesseract.pytesseract.tesseract_cmd = r"C:/Program Files/Tesseract-OCR/tesseract.exe"
-
-        data = pytesseract.image_to_data(
-            scr_bgr, lang=lang, output_type=pytesseract.Output.DICT
-        )
-
-        texts = [t.strip().lower() for t in data["text"]]
-        confs = []
-        for c in data.get("conf", []):
-            try:
-                confs.append(float(c) / 100.0)
-            except Exception:
-                confs.append(0.0)
-
-        n_boxes = len(texts)
-
-        for i in range(n_boxes - n_words + 1):
-            window = texts[i:i + n_words]
-            window_confs = confs[i:i + n_words]
-
-            if any(not w for w in window):
-                continue
-            if any(conf < conf_threshold for conf in window_confs):
-                continue
-
-            if query_words in window:
-                LOGGER.debug(
-                    "Found phrase '%s' within timeout %.2f seconds", query, timeout
-                )
-                return True
-
-        time.sleep(0.2)
-
-    LOGGER.debug("Text '%s' not found within %.2f seconds", query, timeout)
-    return False
+    return None
 
 def find_text_any(
     queries: Iterable[str],
@@ -821,7 +838,6 @@ def contrlScroll(amount:int):
     time.sleep(0.05)
     # Отпускаем Ctrl
     pag.keyUp('ctrl') 
-    
     
 def remove_green_background(src_bgr: np.ndarray) -> np.ndarray:
     """
@@ -926,3 +942,56 @@ def preprocess_for_ocr(src_bgr: np.ndarray) -> np.ndarray:
         C=2             # константа, вычитаемая из среднего
     )
     return bw
+
+def find_first_free_slot_in_day_week(scope: tuple[int, int, int, int] = None,
+                is_debug: bool = False) -> tuple[int, int] | None:
+        """
+        Находит на входном BGR-изображении первый свободный (синий) слот и возвращает
+        координаты его верхнего левого угла (x, y). Если синих прямоугольников не найдено, возвращает None.
+        
+        Алгоритм:
+        1. Конвертируем BGR → HSV, чтобы изолировать «голубой» цвет.
+        2. Маскированием по диапазону HSV получаем бинарную маску для синего.
+        3. Применяем морфологические операции, чтобы убрать шум и сгладить контур.
+        4. Находим контуры в полученной маске, вычисляем ограничивающие прямоугольники (boundingRect).
+        5. Сортируем все найденные boundingRect по (y, затем x), чтобы получить «первый» слева сверху.
+        6. Возвращаем координаты (x, y) этого прямоугольника.
+        """
+        
+        image_bgr = screen(scope, is_debug=is_debug)
+        
+        # 1) Конвертируем в HSV
+        hsv = cv2.cvtColor(image_bgr, cv2.COLOR_BGR2HSV)
+
+        # 2) Диапазон голубого (в HSV) — можно подкорректировать под конкретный оттенок
+        #    Здесь взято приблизительно для «светло-голубых» прямоугольников.
+        lower_blue = np.array([ 90,  50,  50])  # H=90°, S=50, V=50
+        upper_blue = np.array([140, 255, 255])  # H=140°, S=255, V=255
+        mask_blue = cv2.inRange(hsv, lower_blue, upper_blue)
+
+        # 3) Морфология: убираем мелкие шумы, закрываем дыры внутри прямоугольников
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
+        mask_clean = cv2.morphologyEx(mask_blue, cv2.MORPH_CLOSE, kernel, iterations=2)
+        mask_clean = cv2.morphologyEx(mask_clean, cv2.MORPH_OPEN, kernel, iterations=1)
+
+        # 4) Находим контуры
+        contours, _ = cv2.findContours(mask_clean, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+        # 5) Собираем boundingRect для каждого контура, фильтруем слишком маленькие области
+        rects = []
+        for cnt in contours:
+            x, y, w, h = cv2.boundingRect(cnt)
+            # Отсекаем мелкие шумовые области. Предполагаем, что реальные слоты имеют
+            # ширину и высоту минимум 30 пикселей (можно увеличить, если слоты крупнее).
+            if w >= 30 and h >= 15:
+                rects.append((x, y, w, h))
+
+        if not rects:
+            return None
+
+        # 6) Сортируем по y (возрастающая), затем по x
+        rects_sorted = sorted(rects, key=lambda r: (r[1], r[0]))
+        first_rect = rects_sorted[0]
+        x0, y0, w0, h0 = first_rect
+
+        return (x0 + scope[0], y0 + scope[1])

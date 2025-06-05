@@ -22,7 +22,7 @@ from __future__ import annotations
 import os
 import re
 import datetime as _dt
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 import time
 from pathlib import Path
 from typing import Sequence
@@ -71,6 +71,7 @@ LOGGER = setup_logger(__name__)
 # Constants – names of PNG templates (must exist in assets/)
 # ---------------------------------------------------------------------------
 IMG_BTN_DALI = "but_dali.png"
+IMG_BTN_CONFIRM = "but_confirm.png"
 FIELD_CHECK = "check.png"
 
 BTN_LOGIN = "btn_login.png"
@@ -96,6 +97,8 @@ LBL_NO_SLOTS_ALL = "lbl_no_slots_all.png"
 BTN_NEXT_DAY = "btn_next_day.png"
 SLOT_ANY_TIME = "slot_any.png"  # условный шаблон «07:40»
 
+WEEK_DAYS = ["понеділок","вівторок","середа","четвер","п'ятниця","субота","неділя"]
+
 # ---------------------------------------------------------------------------
 # # SlotFinder implementation
 # ---------------------------------------------------------------------------
@@ -119,6 +122,7 @@ class SlotFinder:
             _next_user(user.alias)
             
             self.find_free_slot_week(datetime.strptime("02.06.2025", "%d.%m.%Y").date())
+            #self.find_free_slot_days(user, "02.06.2025", datetime.strptime("02.06.2025", "%d.%m.%Y").date())
             
             
             if not self._login(user):
@@ -132,6 +136,9 @@ class SlotFinder:
             scr = gd.take_screenshot()
             _error_hook(f"Exception in SlotFinder: {exc}", scr)
             return False
+        
+    def found_and_confirm_slot(self, user: UserConfig, time_slot: str):
+        pass
 
     # ------------------------------------------------------------------
     # Heloers
@@ -527,7 +534,11 @@ class SlotFinder:
 
         return results
     
-    def find_free_slot_week(self, date_min_week: date):
+    def find_first_free_slot_in_day_week():
+        
+        pass
+    
+    def find_free_slot_week(self, user: UserConfig):
         
         time.sleep(self.fast)
         gd.click(12, 200)
@@ -542,10 +553,51 @@ class SlotFinder:
         if not gd.click_text("Показати щe", 
             timeout = 6, lang="ukr", 
             conf_threshold=0.6, 
-            scope=(170, 620, 540, 820), plus_y=-20, is_debug=True):
+            scope=(170, 620, 540, 820), plus_y=-20, is_debug=False):
             
             pass
         
+        dt = gd.read_first_date("ukr", scope = (170,100, 450, 160), is_debug=True)
+        
+        y_min = 140
+        y_max = 750
+        
+        number_day = 1
+        while dt and dt <= user.min_date:
+            pos_first_free =  gd.find_first_free_slot_in_day_week(scope = (160, y_min, 780, y_max), is_debug=True)
+            if pos_first_free:
+                x, y = pos_first_free
+                time_slot = gd.read_text(x, y, x + 120, y + 40)
+                gd.click(x, y, x + 60, y + 20)
+                time.sleep(self.fast)
+                gd.scroll(-900)
+       
+                if not gd.click_image(IMG_BTN_CONFIRM, scope=(376, 720, 560, 900), plus_y=20):
+                        _error_hook("button CONFIRM slot missing", gd.take_screenshot())
+                        return False
+                    
+                self.found_and_confirm_slot(user, time_slot)
+                return True
+            
+            number_day += 1
+            next_day = dt + timedelta(days=1)
+            next2_day = dt + timedelta(days=2)
+            
+            stop = False
+            while stop:
+                gd.scroll(-300)
+                if number_day < 4:
+                    LOGGER.debug("поиск дня недели после слкдующего для того чтобы определить промежуток с слотами")
+                    if not gd.click_text(WEEK_DAYS[], 
+                        timeout = 6, lang="ukr", 
+                        conf_threshold=0.6, 
+                        scope=(170, 100, 330, 1030), is_debug=True):
+                        _error_hook("field i_no_robot", gd.take_screenshot())
+                        return False
+                else:
+                    LOGGER.debug("это уже был четверг и не надо искать суботу, надо искать кнопку")
+                
+            
         
         pass
     
@@ -563,7 +615,58 @@ class SlotFinder:
         
         time.sleep(self.fast)
         
-        self.find_free_slot_week(date_min_week)
+        self.find_free_slot_week(user)
+        
+        
+        pass
+    
+    def find_free_slot_days(self, user: UserConfig, date_min_week_str: str, date_min_week: date):
+        
+        time.sleep(self.fast)
+        gd.scroll(900)
+        
+        gd.click(1200, 546)
+        
+        time.sleep(self.fast)
+        gd.scroll(-300)
+        gd.scroll(-300)
+        
+        current_date = gd.read_first_date("ukr", scope = (170,100, 450, 160), is_debug=True)
+        
+        time.sleep(self.fast)
+        gd.scroll(-300)
+        time.sleep(self.fast)
+        gd.scroll(-300)
+        gd.scroll(-200)
+        
+        if not gd.click_text("Показати щe", 
+            timeout = 6, lang="ukr", 
+            conf_threshold=0.6, 
+            scope=(170, 620, 540, 820), plus_y=-20, is_debug=False):
+            
+            pass
+        
+        dt = gd.read_first_date("ukr", scope = (170,100, 450, 160), is_debug=True)
+        
+        if dt and dt <= user.min_date:
+            pos_first_free =  gd.find_first_free_slot_in_day_week(scope = (160, 140, 780, 750), is_debug=True)
+            if pos_first_free:
+                x, y = pos_first_free
+                time_slot = gd.read_text(x, y, x + 120, y + 40)
+                gd.click(x, y, x + 60, y + 20)
+                time.sleep(self.fast)
+                gd.scroll(-900)
+       
+                if not gd.click_image(IMG_BTN_CONFIRM, scope=(376, 720, 560, 900), plus_y=20):
+                        _error_hook("button CONFIRM slot missing", gd.take_screenshot())
+                        return False
+                    
+                self.found_and_confirm_slot(user, time_slot)
+                return True
+
+            
+                
+                
         
         
         pass
