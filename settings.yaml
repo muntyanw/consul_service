@@ -1,0 +1,52 @@
+# Global configuration for e‑consul booking bot
+
+# ---------------------------------------------
+
+# All paths are **project‑relative** unless absolute.
+
+# Adjust to your environment before running `python manager.py`.
+
+# Directory that contains user YAML configs
+
+users_dir: "data/users_cfg"
+
+# Base directory for electronic key files (used when key_path is relative)
+
+keys_dir: "data/keys"
+
+ui_images: "assets/ui_images"
+
+# Template Chrome profile prepared manually once (zoom 90 %, no pop‑ups)
+
+chrome_template: "data/chrome_template/profile"
+chrome_templates: "data/chrome_template/profiles" #if keep_profiles is true
+keep_profiles: true  # Whether to keep Chrome profiles after use
+
+# HTML log output directory (can be overridden via env HTML_LOG_DIR)
+
+html_log_dir: "data/html_log"
+
+# TCP server port; change if 4567 is already occupied
+
+control_port: 4567
+
+# Monitor resolution expected by GUI driver (for sanity check)
+
+monitor_width: 1920
+monitor_height: 1080
+monitor_index: 2
+
+#-------------------------------------------------------------------
+log_level: "debug" # "prod" # #   # "debug" #
+
+tessdata_prefix: r"C:/Program Files/Tesseract-OCR/tessdata"
+tesseract_cmd: r"C:/Program Files/Tesseract-OCR/tesseract.exe"
+
+check_empty_template_path:  "check_empty.png"
+check_checked_template_path:  "check_checked.png"
+
+visit_check_day_template_path:  "visit_check_day.png"
+visit_check_week_template_path:  "visit_check_week.png"
+visit_check_month_template_path:  "visit_check_month.png"
+
+

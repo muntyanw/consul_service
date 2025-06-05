@@ -1,0 +1,28 @@
+# Игнорировать все .log-файлы
+*.log
+
+__pycache__/
+.vscode/
+
+# Игнорировать всю папку
+data/chrome_template
+data/html_log
+data/keys
+data/profiles
+data/users_cfg
+
+# Игнорировать все .pyc в любом месте
+**/*.pyc
+
+# Игнорировать папку виртуального окружения
+venv/
+.venv/
+
+# Игнорировать системные файлы (Windows, macOS)
+Thumbs.db
+.DS_Store
+
+
+# git rm -r --cached .
+# git add .
+# git commit -m "Применил .gitignore к уже отслеживаемым файлам"
