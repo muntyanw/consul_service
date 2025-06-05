@@ -556,12 +556,32 @@ def chrome_session(user_alias: str, url: str = "https://e-consul.gov.ua/") -> It
             except TimeoutExpired:
                 proc.kill()
 
+def replace_similar_chars(word: str) -> str:
+    char_map = {
+        'e': 'е',  # англ e → укр е
+        'E': 'Е',  # англ E → укр Е
+        'i': 'і',  # англ i → укр і (по необходимости)
+        'I': 'І',  # англ I → укр І
+        'a': 'а',  # англ a → укр а
+        'A': 'А',  # англ A → укр А
+        'o': 'о',  # англ o → укр о
+        'O': 'О',  # англ O → укр О
+        'c': 'с',  # англ c → укр с
+        'C': 'С',  # англ C → укр С
+        'p': 'р',  # англ p → укр р
+        'P': 'Р',  # англ P → укр Р
+        'x': 'х',  # англ x → укр х
+        'X': 'Х',  # англ X → укр Х
+    }
+    return ''.join(char_map.get(c, c) for c in word)
+
 def click_text(
     query: str,
     timeout: float,
     lang: str,
     conf_threshold: float,
     scope: tuple[int, int, int, int] = None,
+    plus_y: int = 0,
     is_debug: bool = False
 ) -> bool:
     """
@@ -612,6 +632,9 @@ def click_text(
         for i in range(n_boxes - n_words + 1):
             window = texts[i:i + n_words]
             window_confs = confs[i:i + n_words]
+            
+            window = [replace_similar_chars(w) for w in window]
+            query_words = [replace_similar_chars(w) for w in query_words]
 
             if any(not w for w in window):
                 continue
@@ -635,7 +658,7 @@ def click_text(
                     "Found phrase '%s' at local (%d,%d), clicking global (%d,%d)",
                     query, center_x_rel, center_y_rel, abs_x, abs_y
                 )
-                human_move_and_click(abs_x, abs_y)
+                human_move_and_click(abs_x, abs_y + plus_y)
                 return True
 
         time.sleep(0.2)

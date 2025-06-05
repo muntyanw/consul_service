@@ -22,6 +22,7 @@ from __future__ import annotations
 import os
 import re
 import datetime as _dt
+from datetime import date, datetime
 import time
 from pathlib import Path
 from typing import Sequence
@@ -117,7 +118,7 @@ class SlotFinder:
 
             _next_user(user.alias)
             
-            self.find_free_slot_month()
+            self.find_free_slot_week(datetime.strptime("02.06.2025", "%d.%m.%Y").date())
             
             
             if not self._login(user):
@@ -526,13 +527,60 @@ class SlotFinder:
 
         return results
     
-    def find_free_slot_month(self):
+    def find_free_slot_week(self, date_min_week: date):
+        
+        time.sleep(self.fast)
+        gd.click(12, 200)
+        time.sleep(self.fast)
+        gd.scroll(900)
+        time.sleep(self.fast)
+        gd.scroll(-300)
+        time.sleep(self.fast)
+        gd.scroll(-300)
+        gd.scroll(-200)
+        
+        if not gd.click_text("Показати щe", 
+            timeout = 6, lang="ukr", 
+            conf_threshold=0.6, 
+            scope=(170, 620, 540, 820), plus_y=-20, is_debug=True):
+            
+            pass
+        
+        
+        pass
+    
+    def find_free_slot_weeks(self, user: UserConfig, date_min_week_str: str, date_min_week: date):
+        
+        gd.scroll(-900)
+        
+        if not gd.click_text(date_min_week_str, 
+            timeout = 6, lang="ukr", 
+            conf_threshold=0.6, 
+            scope=(160, 160, 300, 270), is_debug=False):
+            
+            _error_hook("not found date_min_week", gd.take_screenshot())
+            return False
+        
+        time.sleep(self.fast)
+        
+        self.find_free_slot_week(date_min_week)
+        
+        
+        pass
+    
+    def find_free_slot_month(self, user: UserConfig):
         gd.scroll(-800)
         time.sleep(self.slow)
         
-        month_data = self.extract_slots_info(is_debug = True)
+        month_data = self.extract_slots_info(is_debug = False)
         
-        for week in 
+        for week_data in month_data:
+            date_min_week_str, date_max_week_str, count_slots = week_data
+            date_min_week = datetime.strptime(date_min_week_str, "%d.%m.%Y").date()
+            if count_slots > 0 and user.min_date >= date_min_week:
+                time.sleep(self.slow)
+                self.find_free_slot_weeks(user, date_min_week_str, date_min_week)
+
         
         time.sleep(1)
         
