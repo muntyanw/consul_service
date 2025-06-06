@@ -85,6 +85,28 @@ def _get_monitor_region(scope) -> dict:
 # ---------------------------------------------------------------------------
 # Public helpers
 # ---------------------------------------------------------------------------
+
+def arrays_fuzzy_equal(window: List[str], query_words: List[str]) -> bool:
+    """
+    Считает два массива «равными», если они одинаковой длины, и для каждой позиции i:
+      window[i] является подстрокой query_words[i] или query_words[i] является подстрокой window[i].
+
+    Пример:
+      window        = ["понеділок",      "09:00-09:15",    "запис"]
+      query_words   = ["понеділок-день", "09:00-09:15 доп", "записано"]
+
+      arrays_fuzzy_equal(window, query_words) => True
+    """
+    if len(window) != len(query_words):
+        return False
+
+    for w, q in zip(window, query_words):
+        # Проверяем, что хотя бы один из элементов является подстрокой другого
+        if not (w in q or q in w):
+            return False
+
+    return True
+
 def launch_chrome(profile_dir: Path, url: str = "https://e-consul.gov.ua/") -> subprocess.Popen:
     """
     Launch Chrome at 1920×1080 on the monitor matching TARGET_RES (или primary).
@@ -661,7 +683,6 @@ def click_text(
 
     time.sleep(0.2)
 
-    LOGGER.debug("Text '%s' not found within %.2f seconds", query, timeout)
     return False
 
 def find_text(
@@ -695,6 +716,8 @@ def find_text(
 
     # Разбиваем query на слова для поиска последовательности
     query_words = query.lower().split()
+    query_words = [replace_similar_chars(w) for w in query_words]
+    
     n_words = len(query_words)
 
     while time.perf_counter() < deadline:
@@ -709,28 +732,28 @@ def find_text(
         )
 
         texts = [t.strip().lower() for t in data["text"]]
-        confs = []
-        for c in data.get("conf", []):
-            try:
-                confs.append(float(c) / 100.0)
-            except Exception:
-                confs.append(0.0)
+        # confs = []
+        # for c in data.get("conf", []):
+        #     try:
+        #         confs.append(float(c) / 100.0)
+        #     except Exception:
+        #         confs.append(0.0)
 
         n_boxes = len(texts)
 
         for i in range(n_boxes - n_words + 1):
             window = texts[i:i + n_words]
-            window_confs = confs[i:i + n_words]
+            #window_confs = confs[i:i + n_words]
             
             window = [replace_similar_chars(w) for w in window]
-            query_words = [replace_similar_chars(w) for w in query_words]
+            
 
-            if any(not w for w in window):
-                continue
-            if any(conf < conf_threshold for conf in window_confs):
-                continue
+            # if any(not w for w in window):
+            #     continue
+            # if any(conf < conf_threshold for conf in window_confs):
+            #     continue
 
-            if window == query_words:
+            if arrays_fuzzy_equal(window, query_words):
                 # Рассчитываем общий прямоугольник для всей последовательности
                 x_left = min(int(data["left"][j]) for j in range(i, i + n_words))
                 y_top = min(int(data["top"][j]) for j in range(i, i + n_words))
@@ -756,11 +779,12 @@ def find_text(
 
 def find_text_any(
     queries: Iterable[str],
-    timeout: float,
     lang: str,
     conf_threshold: float,
+    count: int = 1,
     scope: tuple[int, int, int, int] = None,
-    is_debug: bool = False
+    is_debug: bool = False,
+    process_for_read = False
 ) -> bool:
     """
     Ищет любой из текстов из `queries` на экране.
@@ -769,13 +793,13 @@ def find_text_any(
     queries : список или кортеж строк для поиска.
     Остальные параметры как в find_text.
     """
-    deadline = time.perf_counter() + timeout
     # Для оптимизации разобьём все query на списки слов заранее
     queries_words = [q.lower().split() for q in queries]
 
-    while time.perf_counter() < deadline:
-        
-        scr_bgr = screen(scope, is_debug = is_debug)
+    count_attempt = 0
+    while count_attempt < count:
+        count_attempt += 1
+        scr_bgr = screen(scope = scope, process_for_read = process_for_read, is_debug = is_debug)
 
         os.environ['TESSDATA_PREFIX'] = os.path.normpath(TESSDATA_PREFIX)
         pytesseract.pytesseract.tesseract_cmd = r"C:/Program Files/Tesseract-OCR/tesseract.exe"
@@ -784,36 +808,55 @@ def find_text_any(
             scr_bgr, lang=lang, output_type=pytesseract.Output.DICT
         )
 
-        texts = [t.strip().lower() for t in data["text"]]
-        confs = []
-        for c in data.get("conf", []):
-            try:
-                confs.append(float(c) / 100.0)
-            except Exception:
-                confs.append(0.0)
+        texts = [t.strip().lower() for t in data["text"] if t.strip() != ""]
+        LOGGER.debug(f"found texts {texts}")
+        # confs = []
+        # for c in data.get("conf", []):
+        #     try:
+        #         confs.append(float(c) / 100.0)
+        #     except Exception:
+        #         confs.append(0.0)
 
         n_boxes = len(texts)
-
+        
         for query_words in queries_words:
+            query_words = [replace_similar_chars(w) for w in query_words]
+            
             n_words = len(query_words)
             for i in range(n_boxes - n_words + 1):
                 window = texts[i:i + n_words]
-                window_confs = confs[i:i + n_words]
+                #window_confs = confs[i:i + n_words]
+                
+                window = [replace_similar_chars(w) for w in window]
+                
 
-                if any(not w for w in window):
-                    continue
-                if any(conf < conf_threshold for conf in window_confs):
-                    continue
+                # if any(not w for w in window):
+                #     continue
+                # if any(conf < conf_threshold for conf in window_confs):
+                #     continue
 
-                if window == query_words:
+                if arrays_fuzzy_equal(window, query_words):
+                    # Рассчитываем общий прямоугольник для всей последовательности
+                    x_left = min(int(data["left"][j]) for j in range(i, i + n_words))
+                    y_top = min(int(data["top"][j]) for j in range(i, i + n_words))
+                    x_right = max(int(data["left"][j]) + int(data["width"][j]) for j in range(i, i + n_words))
+                    y_bottom = max(int(data["top"][j]) + int(data["height"][j]) for j in range(i, i + n_words))
+
+                    center_x_rel = (x_left + x_right) // 2
+                    center_y_rel = (y_top + y_bottom) // 2
+
+                    abs_x = MON_X + center_x_rel + scope[0]
+                    abs_y = MON_Y + center_y_rel + scope[1]
+                    
                     LOGGER.debug(
-                        "Found phrase '%s' within timeout %.2f seconds", ' '.join(query_words), timeout
+                        f"Found phrase {queries} within count {count_attempt} attempt"
                     )
-                    return True
+                    
+                    return abs_x, abs_y
 
         time.sleep(0.2)
 
-    LOGGER.debug("None of texts '%s' found within %.2f seconds", queries, timeout)
+    LOGGER.debug(f"None of texts '{queries}' found within {count_attempt} attempt")
     return False
 
 def cursor_move_to(

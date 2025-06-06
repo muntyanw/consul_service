@@ -1,0 +1,3 @@
+robocopy "C:\prjs\consul" "C:\GDrive\consul" /MIR /XD "data/chrome_template" "html_log" "keys" "profiles" "users_cfg" "dist" "build" "bin" "target" "out" ".idea/libraries" ".gradle" ".mvn" ".vscode" "__pycache__" ".venv" "env" "venv" ".tox" ".pytest_cache" /XF "*.class" "*.jar" "*.war" "*.ear" "*.iml" "*.log" "*.tmp" "*.cache" "*.db" "*.pyc" "*.pyo" "*.egg-info" "*.project.lock" /XF "*.generated" "*.prefs" "*.whl" /R:1 /W:1
+
+pause

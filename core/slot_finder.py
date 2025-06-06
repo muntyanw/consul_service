@@ -121,7 +121,7 @@ class SlotFinder:
 
             _next_user(user.alias)
             
-            self.find_free_slot_week(datetime.strptime("02.06.2025", "%d.%m.%Y").date())
+            self.find_free_slot_week(user, datetime.strptime("22.09.2025", "%d.%m.%Y").date())
             #self.find_free_slot_days(user, "02.06.2025", datetime.strptime("02.06.2025", "%d.%m.%Y").date())
             
             
@@ -458,7 +458,6 @@ class SlotFinder:
 
         return t
 
-
     def normalize_tokens(self, tokens: List[str]) -> List[str]:
         """
         Применяет normalize_date_token ко всем токенам в списке.
@@ -534,37 +533,10 @@ class SlotFinder:
 
         return results
     
-    def find_first_free_slot_in_day_week():
+    def find_first_free_slot_in_day_week(self, user: UserConfig, dt: date, scope: tuple[int, int, int, int] = None) ->bool:
         
-        pass
-    
-    def find_free_slot_week(self, user: UserConfig):
-        
-        time.sleep(self.fast)
-        gd.click(12, 200)
-        time.sleep(self.fast)
-        gd.scroll(900)
-        time.sleep(self.fast)
-        gd.scroll(-300)
-        time.sleep(self.fast)
-        gd.scroll(-300)
-        gd.scroll(-200)
-        
-        if not gd.click_text("Показати щe", 
-            timeout = 6, lang="ukr", 
-            conf_threshold=0.6, 
-            scope=(170, 620, 540, 820), plus_y=-20, is_debug=False):
-            
-            pass
-        
-        dt = gd.read_first_date("ukr", scope = (170,100, 450, 160), is_debug=True)
-        
-        y_min = 140
-        y_max = 750
-        
-        number_day = 1
-        while dt and dt <= user.min_date:
-            pos_first_free =  gd.find_first_free_slot_in_day_week(scope = (160, y_min, 780, y_max), is_debug=True)
+        if dt and dt <= user.min_date:
+            pos_first_free =  gd.find_first_free_slot_in_day_week(scope, is_debug=True)
             if pos_first_free:
                 x, y = pos_first_free
                 time_slot = gd.read_text(x, y, x + 120, y + 40)
@@ -578,29 +550,99 @@ class SlotFinder:
                     
                 self.found_and_confirm_slot(user, time_slot)
                 return True
-            
-            number_day += 1
-            next_day = dt + timedelta(days=1)
-            next2_day = dt + timedelta(days=2)
-            
-            stop = False
-            while stop:
-                gd.scroll(-300)
-                if number_day < 4:
-                    LOGGER.debug("поиск дня недели после слкдующего для того чтобы определить промежуток с слотами")
-                    if not gd.click_text(WEEK_DAYS[], 
-                        timeout = 6, lang="ukr", 
-                        conf_threshold=0.6, 
-                        scope=(170, 100, 330, 1030), is_debug=True):
-                        _error_hook("field i_no_robot", gd.take_screenshot())
-                        return False
-                else:
-                    LOGGER.debug("это уже был четверг и не надо искать суботу, надо искать кнопку")
-                
-            
         
         pass
     
+    def find_next_day_in_week(self, number_day: int) -> tuple[int, int]|None:
+        stop = False
+        while not stop:
+            y_min = 0
+            y_max = 0
+            
+            if not gd.click_text("Показати ще", 
+                timeout = 6, lang="ukr", 
+                conf_threshold=0.6, 
+                scope=(170, 100, 400, 1030), is_debug=False):
+                pass
+            else:
+                time.sleep(self.fast)
+
+            gd.scroll(-300)
+            if number_day < 4:
+                LOGGER.debug(f"поиск {WEEK_DAYS[number_day + 1]} того чтобы определить промежуток с слотами")
+                pos = gd.find_text_any([WEEK_DAYS[number_day + 1], WEEK_DAYS[number_day + 1] + ","], 
+                        count = 3, lang="ukr", 
+                        conf_threshold=0.6, 
+                        scope=(170, 100, 330, 1130), is_debug=False)
+                
+                if pos:
+                    x, y = pos
+                    y_max = y - 20
+                        
+                    
+                else:
+                    LOGGER.debug(f"не найдена {WEEK_DAYS[number_day + 1]}")
+                    
+            else:
+                LOGGER.debug("это уже был четверг и не надо искать суботу, надо искать кнопку")
+                pos = gd.find_image(IMG_BTN_CONFIRM, scope=(376, 660, 560, 990))
+                
+                if pos:
+                    x, y = pos
+                    y_max = y - 20
+                    
+                    
+            if y_max > 0:    
+                
+                LOGGER.debug(f"найдена {WEEK_DAYS[number_day + 1]}, будем искать {WEEK_DAYS[number_day]}")
+                
+                pos = gd.find_text_any([WEEK_DAYS[number_day], WEEK_DAYS[number_day] + ","], 
+                    count = 3, lang="ukr", 
+                    conf_threshold=0.6, 
+                    scope=(170, 10, 330, 1000), is_debug=False)
+                
+                if pos:
+                        x, y = pos
+                        y_min = y + 20
+                        stop = True
+                        LOGGER.debug(f"найдена {WEEK_DAYS[number_day]}, скролл окончен, можно искать слоты")
+                else:
+                    _error_hook(f"не найдена {WEEK_DAYS[number_day]}", gd.take_screenshot())
+                    return None
+                
+        LOGGER.debug(f"найдены границы {WEEK_DAYS[number_day]} - y_min:{y_min} y_max:{y_max}, скролл окончен, можно искать слоты")
+        return y_min, y_max
+
+    
+    def find_free_slot_week(self, user: UserConfig, date_min_week: date)->bool|None:
+        
+        time.sleep(self.fast)
+        gd.click(12, 200)
+        time.sleep(self.fast)
+        gd.scroll(2000)
+        
+        dt = date_min_week
+        is_found = False
+        
+        y_min = 140
+        y_max = 750
+        
+        for number_day, day in enumerate(WEEK_DAYS, start=0):
+            if day == "субота":
+                break
+            
+            dt = dt + timedelta(days=number_day-1)
+        
+           
+            if self.find_next_day_in_week(number_day) == None:
+                return None # is error from find days in weeks
+            
+            if False: #gd.find_first_free_slot_in_day_week(user, dt, scope = (160, y_min, 780, y_max)):
+                is_found = True
+                break
+            
+        return is_found
+                
     def find_free_slot_weeks(self, user: UserConfig, date_min_week_str: str, date_min_week: date):
         
         gd.scroll(-900)
@@ -615,7 +657,7 @@ class SlotFinder:
         
         time.sleep(self.fast)
         
-        self.find_free_slot_week(user)
+        self.find_free_slot_week(user, date_min_week)
         
         
         pass
