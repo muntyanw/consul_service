@@ -33,6 +33,7 @@ import mss.tools
 import ctypes
 from ctypes import wintypes
 from typing import Iterable
+from difflib import SequenceMatcher
 
 from utils.logger import setup_logger
 from utils.profile_manager import prepare_profile
@@ -65,6 +66,10 @@ with mss.mss() as sct:
         MON_X, MON_Y, MON_W, MON_H = mon["left"], mon["top"], mon["width"], mon["height"]
         LOGGER.warning("monitor_index=%d is invalid, using primary monitor #%d", MONITOR_INDEX, 1)
 
+def pause(amount):
+    LOGGER.debug(f"pause {amount} second")
+    time.sleep(amount)
+    
 def _get_monitor_region(scope) -> dict:
     if scope != None:
         left, bottom, right, top = scope
@@ -86,23 +91,31 @@ def _get_monitor_region(scope) -> dict:
 # Public helpers
 # ---------------------------------------------------------------------------
 
-def arrays_fuzzy_equal(window: List[str], query_words: List[str]) -> bool:
+def arrays_fuzzy_equal(window: List[str], query_words: List[str], threshold: float = 0.7) -> bool:
     """
     Считает два массива «равными», если они одинаковой длины, и для каждой позиции i:
-      window[i] является подстрокой query_words[i] или query_words[i] является подстрокой window[i].
+      отношение похожести (SequenceMatcher) на строках w[i] и q[i] ≥ threshold.
+    Пустые строки считаются непохожими на непустые (только обе пустые → похожесть = 1.0).
 
-    Пример:
-      window        = ["понеділок",      "09:00-09:15",    "запис"]
-      query_words   = ["понеділок-день", "09:00-09:15 доп", "записано"]
-
-      arrays_fuzzy_equal(window, query_words) => True
+    :param window:      первый список строк
+    :param query_words: второй список строк
+    :param threshold:   минимальный порог похожести (по умолчанию 0.7)
+    :return: True, если все парные строковые элементы похожи ≥ threshold
     """
     if len(window) != len(query_words):
         return False
 
     for w, q in zip(window, query_words):
-        # Проверяем, что хотя бы один из элементов является подстрокой другого
-        if not (w in q or q in w):
+        # Если обе строки пустые, считаем их идентичными
+        if not w and not q:
+            continue
+
+        # Если одна пустая, а вторая нет → похожесть 0
+        if not w or not q:
+            return False
+
+        ratio = SequenceMatcher(None, w, q).ratio()
+        if ratio < threshold:
             return False
 
     return True
@@ -219,8 +232,8 @@ def find_image(name: str, timeout: float = 8.0, confidence: float = 0.7,
         LOGGER.debug(f"pos: {pos}")
         if pos:
             LOGGER.debug("return pos image")
-            abs_x = MON_X + pos[0]
-            abs_y = MON_Y + pos[1] 
+            abs_x = MON_X + pos[0] + scope[0]
+            abs_y = MON_Y + pos[1]  + scope[1]
             return (abs_x, abs_y) 
 
     return False
@@ -240,7 +253,7 @@ def click_image(name: str, timeout: float = 8.0, confidence: float = 0.7,
         abs_x, abs_y = result_find
         if abs_x is not None and abs_y is not None:
             human_move_and_click(abs_x, abs_y + plus_y)
-            time.sleep(0.1)
+            pause(0.1)
             return True
         
 
@@ -252,7 +265,7 @@ def type_text(text: str, interval: Tuple[float, float] = (0.05, 0.12)) -> None:
     """
     for ch in text:
         pag.typewrite(ch)
-        time.sleep(random.uniform(*interval))
+        pause(random.uniform(*interval))
 
 def take_screenshot() -> Path:
     """
@@ -299,7 +312,7 @@ def _detect_chrome() -> Path:
 
 def scroll(amount: int = 100) -> None:
         pag.scroll(amount) 
-        time.sleep(0.01) 
+        pause(0.01) 
 
 def screen(scope: tuple[int, int, int, int] = None, is_debug: bool = False,
            process_for_read:bool = False):
@@ -315,7 +328,7 @@ def screen(scope: tuple[int, int, int, int] = None, is_debug: bool = False,
         
     if is_debug:
         show_image(scr_bgr)
-        time.sleep(0.5)
+        pause(0.5)
             
     return scr_bgr
 
@@ -461,7 +474,7 @@ def _human_move(x: int, y: int, duration: Tuple[float, float] = (0.4, 0.9)) -> N
     for t in np.linspace(0, 1, steps):
         bx, by = _bezier_point(anchors, t)
         pag.moveTo(bx, by, duration=0)
-        time.sleep(0.001)
+        pause(0.001)
 
     pag.moveTo(x, y, duration=random.uniform(*duration))
 
@@ -571,7 +584,7 @@ def chrome_session(user_alias: str, url: str = "https://e-consul.gov.ua/") -> It
     """
     with prepare_profile(user_alias) as prof_dir:
         proc = launch_chrome(prof_dir, url)
-        time.sleep(3)
+        pause(3)
         try:
             yield proc
         finally:
@@ -681,7 +694,7 @@ def click_text(
         human_move_and_click(abs_x, abs_y + plus_y)
         return True
 
-    time.sleep(0.2)
+    pause(0.2)
 
     return False
 
@@ -772,10 +785,18 @@ def find_text(
                 )
                 return abs_x, abs_y + plus_y
 
-        time.sleep(0.2)
+        pause(0.2)
 
     LOGGER.debug("Text '%s' not found within %.2f seconds", query, timeout)
     return None
+
+import os
+import pytesseract
+from pytesseract import Output
+from typing import Iterable
+import logging
+
+LOGGER = logging.getLogger(__name__)
 
 def find_text_any(
     queries: Iterable[str],
@@ -784,80 +805,105 @@ def find_text_any(
     count: int = 1,
     scope: tuple[int, int, int, int] = None,
     is_debug: bool = False,
-    process_for_read = False
-) -> bool:
+    process_for_read: bool = False
+) -> tuple[int, int] | bool:
     """
-    Ищет любой из текстов из `queries` на экране.
-    Возвращает True, если найден хотя бы один, иначе False.
+    Ищет любой из текстов из `queries` на экране. Возвращает координаты (abs_x, abs_y)
+    центра первого найденного совпадения, иначе False.
 
-    queries : список или кортеж строк для поиска.
-    Остальные параметры как в find_text.
+    :param queries:        список строк для поиска
+    :param lang:           язык для Tesseract ('ukr+eng' и т.п.)
+    :param conf_threshold: порог уверенности (0.0–1.0), ниже которого слова пропускаются
+    :param count:          число попыток сканирования экрана (с паузой между ними)
+    :param scope:          (x, y, w, h) – область экрана для OCR (если None, весь экран)
+    :param is_debug:       флаг детального логирования и вывода отладочных картинок
+    :param process_for_read: если True, `screen()` выполнит предварительную обработку для лучшего OCR
     """
-    # Для оптимизации разобьём все query на списки слов заранее
+    # Подготовка: разбиваем каждый query на список слов в нижнем регистре
     queries_words = [q.lower().split() for q in queries]
 
-    count_attempt = 0
-    while count_attempt < count:
-        count_attempt += 1
-        scr_bgr = screen(scope = scope, process_for_read = process_for_read, is_debug = is_debug)
+    attempts = 0
+    while attempts < count:
+        attempts += 1
 
+        # 1) Делаем скрин указанной области (screen уже учитывает MON_X/MON_Y внутри)
+        scr_bgr = screen(scope=scope, process_for_read=process_for_read, is_debug=is_debug)
+
+        # 2) Настраиваем путь для Tesseract, если необходимо
         os.environ['TESSDATA_PREFIX'] = os.path.normpath(TESSDATA_PREFIX)
         pytesseract.pytesseract.tesseract_cmd = r"C:/Program Files/Tesseract-OCR/tesseract.exe"
 
+        # 3) Запускаем OCR
         data = pytesseract.image_to_data(
-            scr_bgr, lang=lang, output_type=pytesseract.Output.DICT
+            scr_bgr,
+            lang=lang,
+            output_type=Output.DICT
         )
 
-        texts = [t.strip().lower() for t in data["text"] if t.strip() != ""]
-        LOGGER.debug(f"found texts {texts}")
-        # confs = []
-        # for c in data.get("conf", []):
-        #     try:
-        #         confs.append(float(c) / 100.0)
-        #     except Exception:
-        #         confs.append(0.0)
+        # 4) Собираем массив распознанных слов и их конфиденвностей
+        texts = []
+        confs = []
+        n_boxes = len(data["text"])
+        for i in range(n_boxes):
+            txt = data["text"][i].strip().lower()
+            try:
+                conf = float(data["conf"][i]) / 100.0
+            except Exception:
+                conf = 0.0
+            texts.append(txt)
+            confs.append(conf)
 
-        n_boxes = len(texts)
-        
+        if is_debug:
+            LOGGER.debug(f"OCR texts: {texts}")
+            LOGGER.debug(f"OCR confs: {confs}")
+
+        # 5) Перебираем каждую последовательность слов из queries_words
         for query_words in queries_words:
-            query_words = [replace_similar_chars(w) for w in query_words]
-            
-            n_words = len(query_words)
-            for i in range(n_boxes - n_words + 1):
-                window = texts[i:i + n_words]
-                #window_confs = confs[i:i + n_words]
-                
-                window = [replace_similar_chars(w) for w in window]
-                
+            # Нормализуем каждый токен в query
+            normalized_query = [replace_similar_chars(w) for w in query_words]
+            n_words = len(normalized_query)
 
-                # if any(not w for w in window):
-                #     continue
-                # if any(conf < conf_threshold for conf in window_confs):
-                #     continue
+            # Сдвиг по всем возможным позициям в тексте
+            for i in range(0, n_boxes - n_words + 1):
+                window = texts[i : i + n_words]
+                window_confs = confs[i : i + n_words]
 
-                if arrays_fuzzy_equal(window, query_words):
-                    # Рассчитываем общий прямоугольник для всей последовательности
+                # 5.1) Пропускаем, если хоть одно слово из окна слишком низкой уверенности
+                if any(c < conf_threshold for c in window_confs):
+                    continue
+
+                # 5.2) Нормализуем каждое слово в окне
+                normalized_window = [replace_similar_chars(w) for w in window]
+
+                # 5.3) Сравниваем через fuzzy (≥70% или порог внутри arrays_fuzzy_equal)
+                if arrays_fuzzy_equal(normalized_window, normalized_query):
+                    # 6) Вычисляем bounding box для всей последовательности
                     x_left = min(int(data["left"][j]) for j in range(i, i + n_words))
                     y_top = min(int(data["top"][j]) for j in range(i, i + n_words))
                     x_right = max(int(data["left"][j]) + int(data["width"][j]) for j in range(i, i + n_words))
                     y_bottom = max(int(data["top"][j]) + int(data["height"][j]) for j in range(i, i + n_words))
 
+                    # Центр внутри обрезанного изображения (scope)
                     center_x_rel = (x_left + x_right) // 2
                     center_y_rel = (y_top + y_bottom) // 2
 
-                    abs_x = MON_X + center_x_rel + scope[0]
-                    abs_y = MON_Y + center_y_rel + scope[1]
-                    
-                    LOGGER.debug(
-                        f"Found phrase {queries} within count {count_attempt} attempt"
-                    )
-                    
+                    # 7) Преобразуем в абсолютные координаты
+                    scope_left, scope_top = (scope[0], scope[1]) if scope is not None else (0, 0)
+                    abs_x = MON_X + scope_left + center_x_rel
+                    abs_y = MON_Y + scope_top  + center_y_rel
+
+                    if is_debug:
+                        LOGGER.debug(f"Found '{' '.join(query_words)}' at attempt {attempts}, " +
+                                     f"rel=({center_x_rel},{center_y_rel}), abs=({abs_x},{abs_y})")
+
                     return abs_x, abs_y
 
-        time.sleep(0.2)
+        # 8) Пауза перед следующей попыткой
+        pause(0.2)
 
-    LOGGER.debug(f"None of texts '{queries}' found within {count_attempt} attempt")
+    LOGGER.debug(f"None of texts {queries} found after {attempts} attempts")
     return False
+
 
 def cursor_move_to(
     x: int = 500,
@@ -869,16 +915,16 @@ def cursor_move_to(
     human_move_and_click(x, y)
 
 def contrlScroll(amount:int):
-    time.sleep(1)
+    pause(1)
     # Нажимаем Ctrl и удерживаем
     pag.keyDown('ctrl')
-    time.sleep(0.05)
+    pause(0.05)
 
     # Прокручиваем колёсико вверх (положительное значение)
     # Чем больше число, тем сильнее «клик» колёсика
     pag.scroll(amount)
 
-    time.sleep(0.05)
+    pause(0.05)
     # Отпускаем Ctrl
     pag.keyUp('ctrl') 
     

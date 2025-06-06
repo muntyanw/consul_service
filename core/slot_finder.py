@@ -73,6 +73,7 @@ LOGGER = setup_logger(__name__)
 IMG_BTN_DALI = "but_dali.png"
 IMG_BTN_CONFIRM = "but_confirm.png"
 FIELD_CHECK = "check.png"
+IMG_BTN_COMEBACK = "comeback.png"
 
 BTN_LOGIN = "btn_login.png"
 WELCOME_BANNER = "banner_welcome.png"
@@ -197,22 +198,22 @@ class SlotFinder:
             _error_hook("field country missing", gd.take_screenshot())
             return False
         
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         
         pyperclip.copy(country)
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         pag.hotkey('ctrl', 'v')
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         pag.press('enter')
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         pag.press('tab')
         
         pyperclip.copy(cons)
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         pag.hotkey('ctrl', 'v')
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         pag.press('enter')
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         #pag.press('enter')
         
         pag.press('tab')
@@ -225,14 +226,14 @@ class SlotFinder:
         #        _error_hook("button image Next after type cons missing", gd.take_screenshot())
         #        return False
             
-        time.sleep(self.slow)
+        gd.pause(self.slow)
         
         if not self.is_appointment_visit():
             gd.scroll(-800)
             if not gd.click_image(IMG_BTN_DALI, scope=(376, 720, 560, 900), plus_y= 20):
                 _error_hook("button image Next after type cons missing", gd.take_screenshot())
                 
-                time.sleep(self.slow)
+                gd.pause(self.slow)
                  
                 return False
         
@@ -241,16 +242,16 @@ class SlotFinder:
     def check_consular_service(self, consular_service:str, for_myself: bool)-> bool:
         gd.scroll(-800)
         
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         pag.press('tab')
         pag.press('tab')
         
         pyperclip.copy(consular_service)
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         pag.hotkey('ctrl', 'v')
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         pag.press('enter')
-        time.sleep(self.fast)
+        gd.pause(self.fast)
                 
         
         if for_myself:
@@ -289,14 +290,14 @@ class SlotFinder:
                 LOGGER.debug("check for children checked")
         
                 
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         
         LOGGER.debug("click Dali")
         if not gd.click_image(name = IMG_BTN_DALI, scope=(370, 740, 570, 840)):
             _error_hook("button image Next after type cons missing", gd.take_screenshot())
             return False
         
-        # time.sleep(8)
+        # gd.pause(8)
     
         # if not self.is_page_find_slots():
         #     gd.scroll(-800)
@@ -305,16 +306,16 @@ class SlotFinder:
                 
         #         return False
             
-        #     time.sleep(8)
+        #     gd.pause(8)
         
         return True
 
     def fill_data_personal(self, user: UserConfig) -> bool:
         LOGGER.debug("fill step 1 – personal data")
 
-        time.sleep(self.slow)
+        gd.pause(self.slow)
         gd.scroll(-900)  
-        time.sleep(self.fast)
+        gd.pause(self.fast)
             
         if not gd.click_text("день", 
                             timeout = 6, lang="ukr", 
@@ -325,7 +326,7 @@ class SlotFinder:
             
         day_number = user.birthdate.strftime("%d") 
         gd.type_text(day_number)
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         
         if not gd.click_text("місяць", 
                         timeout = 6, lang="ukr", 
@@ -334,7 +335,7 @@ class SlotFinder:
             _error_hook("birthdate field month missing", gd.take_screenshot())
             return False
         
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         
         formatted = format_date(user.birthdate, format='d MMMM', locale='uk')
         month_in_genitive = formatted.split()[1]
@@ -365,12 +366,12 @@ class SlotFinder:
             _error_hook("birthdate field year missing", gd.take_screenshot())
             return False
         
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         
         year = user.birthdate.year
         gd.type_text(str(year))
         
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         
         if user.gender == "Male":
             if not gd.click_text("Чоловіча", 
@@ -387,7 +388,7 @@ class SlotFinder:
                 _error_hook("gender field missing", gd.take_screenshot())
                 return False
             
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         
         LOGGER.debug("Find and click Dali")
         if not gd.click_image(IMG_BTN_DALI, scope=(190, 760, 500, 860), is_debug=False, multiscale=False):
@@ -398,7 +399,7 @@ class SlotFinder:
         # pag.press('enter')
         
             
-        time.sleep(6)
+        gd.pause(6)
       
     def is_not_free_time(self) -> bool:
         gd.scroll(-800) 
@@ -420,7 +421,7 @@ class SlotFinder:
                 
                 LOGGER.debug(f"attempt {count}")            
                 count += 1
-                time.sleep(6)
+                gd.pause(6)
         
         if count < 10:
             return True
@@ -437,7 +438,7 @@ class SlotFinder:
                                           scope=(1140,430,1340,560), is_debug=True):
             gd.click(1280, 480)
                 
-        time.sleep(self.slow)
+        gd.pause(self.slow)
         gd.human_move(1480, 480)
     
     def normalize_date_token(self, tok: str) -> str:
@@ -541,7 +542,7 @@ class SlotFinder:
                 x, y = pos_first_free
                 time_slot = gd.read_text(x, y, x + 120, y + 40)
                 gd.click(x, y, x + 60, y + 20)
-                time.sleep(self.fast)
+                gd.pause(self.fast)
                 gd.scroll(-900)
        
                 if not gd.click_image(IMG_BTN_CONFIRM, scope=(376, 720, 560, 900), plus_y=20):
@@ -565,15 +566,17 @@ class SlotFinder:
                 scope=(170, 100, 400, 1030), is_debug=False):
                 pass
             else:
-                time.sleep(self.fast)
+                gd.pause(self.fast)
 
-            gd.scroll(-300)
+            gd.scroll(-200)
+            gd.pause(self.slow)
+            
             if number_day < 4:
                 LOGGER.debug(f"поиск {WEEK_DAYS[number_day + 1]} того чтобы определить промежуток с слотами")
                 pos = gd.find_text_any([WEEK_DAYS[number_day + 1], WEEK_DAYS[number_day + 1] + ","], 
-                        count = 3, lang="ukr", 
-                        conf_threshold=0.6, 
-                        scope=(170, 100, 330, 1130), is_debug=False)
+                        count = 1, lang="ukr", 
+                        conf_threshold=0.3, 
+                        scope=(170, 0, 330, 1130), is_debug=False)
                 
                 if pos:
                     x, y = pos
@@ -585,11 +588,11 @@ class SlotFinder:
                     
             else:
                 LOGGER.debug("это уже был четверг и не надо искать суботу, надо искать кнопку")
-                pos = gd.find_image(IMG_BTN_CONFIRM, scope=(376, 660, 560, 990))
+                pos = gd.find_image(IMG_BTN_CONFIRM, scope=(170, 660, 760, 990))
                 
                 if pos:
                     x, y = pos
-                    y_max = y - 20
+                    y_max = y
                     
                     
             if y_max > 0:    
@@ -597,13 +600,13 @@ class SlotFinder:
                 LOGGER.debug(f"найдена {WEEK_DAYS[number_day + 1]}, будем искать {WEEK_DAYS[number_day]}")
                 
                 pos = gd.find_text_any([WEEK_DAYS[number_day], WEEK_DAYS[number_day] + ","], 
-                    count = 3, lang="ukr", 
-                    conf_threshold=0.6, 
+                    count = 1, lang="ukr", 
+                    conf_threshold=0.3, 
                     scope=(170, 10, 330, 1000), is_debug=False)
                 
                 if pos:
                         x, y = pos
-                        y_min = y + 20
+                        y_min = y
                         stop = True
                         LOGGER.debug(f"найдена {WEEK_DAYS[number_day]}, скролл окончен, можно искать слоты")
                 else:
@@ -616,9 +619,9 @@ class SlotFinder:
     
     def find_free_slot_week(self, user: UserConfig, date_min_week: date)->bool|None:
         
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         gd.click(12, 200)
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         gd.scroll(2000)
         
         dt = date_min_week
@@ -655,7 +658,7 @@ class SlotFinder:
             _error_hook("not found date_min_week", gd.take_screenshot())
             return False
         
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         
         self.find_free_slot_week(user, date_min_week)
         
@@ -664,20 +667,20 @@ class SlotFinder:
     
     def find_free_slot_days(self, user: UserConfig, date_min_week_str: str, date_min_week: date):
         
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         gd.scroll(900)
         
         gd.click(1200, 546)
         
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         gd.scroll(-300)
         gd.scroll(-300)
         
         current_date = gd.read_first_date("ukr", scope = (170,100, 450, 160), is_debug=True)
         
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         gd.scroll(-300)
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         gd.scroll(-300)
         gd.scroll(-200)
         
@@ -696,7 +699,7 @@ class SlotFinder:
                 x, y = pos_first_free
                 time_slot = gd.read_text(x, y, x + 120, y + 40)
                 gd.click(x, y, x + 60, y + 20)
-                time.sleep(self.fast)
+                gd.pause(self.fast)
                 gd.scroll(-900)
        
                 if not gd.click_image(IMG_BTN_CONFIRM, scope=(376, 720, 560, 900), plus_y=20):
@@ -715,7 +718,7 @@ class SlotFinder:
     
     def find_free_slot_month(self, user: UserConfig):
         gd.scroll(-800)
-        time.sleep(self.slow)
+        gd.pause(self.slow)
         
         month_data = self.extract_slots_info(is_debug = False)
         
@@ -723,11 +726,11 @@ class SlotFinder:
             date_min_week_str, date_max_week_str, count_slots = week_data
             date_min_week = datetime.strptime(date_min_week_str, "%d.%m.%Y").date()
             if count_slots > 0 and user.min_date >= date_min_week:
-                time.sleep(self.slow)
+                gd.pause(self.slow)
                 self.find_free_slot_weeks(user, date_min_week_str, date_min_week)
 
         
-        time.sleep(1)
+        gd.pause(1)
         
     # ------------------------------------------------------------------
     # Internal steps
@@ -747,7 +750,7 @@ class SlotFinder:
             
             _error_hook("personal login button not found", gd.take_screenshot())
             
-        time.sleep(self.slow)
+        gd.pause(self.slow)
         
         if not gd.click_text("Оберіть ключ на своєму носієві", 
                              timeout = 6, lang="ukr", conf_threshold=0.6, 
@@ -755,23 +758,23 @@ class SlotFinder:
             
             _error_hook("personal select key button not found", gd.take_screenshot())
         
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         pyperclip.copy(user.key_path)
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         pag.hotkey('ctrl', 'v')
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         pag.press('enter')
-        time.sleep(self.fast)
+        gd.pause(self.fast)
                 
         #вставка пароля
         pyperclip.copy(user.key_password)
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         pag.hotkey('ctrl', 'v')
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         pag.press('enter')
-        time.sleep(self.fast)
+        gd.pause(self.fast)
         
-        time.sleep(8)
+        gd.pause(8)
 
         if self._is_login():
             return True 
@@ -793,7 +796,7 @@ class SlotFinder:
                     _error_hook("btn visit wizard not found", gd.take_screenshot())
                     return False
                 
-        time.sleep(6)
+        gd.pause(6)
         
         if not gd.click_text("Записатись на візит", 
                              timeout = 6, lang="ukr", 
@@ -802,7 +805,7 @@ class SlotFinder:
                     _error_hook("btn visit wizard 2 not found", gd.take_screenshot())
                     return False
                 
-        time.sleep(6)
+        gd.pause(6)
 
         return True
    
@@ -872,7 +875,7 @@ class SlotFinder:
                 _slot_found(user.country, user.consulates[0], user.service, slot_date, "time???", gd.take_screenshot())
                 if slot_date >= earliest:
                     pag.press("enter")  # подтвердить дату
-                    time.sleep(1)
+                    gd.pause(1)
                     # captcha «я не робот» придётся заверять вручную или RU‑Captcha API
                     _slot_obtained(user.alias, slot_date, "time???", gd.take_screenshot())
                     return True
