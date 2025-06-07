@@ -13,7 +13,12 @@ API, яке використовують інші модулі
 -----------------------------------
 * ``next_user_hook(alias)``
 * ``slot_found_hook(country, consulate, service, date, time, screenshot)``
-* ``slot_obtained_hook(alias, date, time, screenshot)``
+* ``# The `slot_obtained_hook` function is a specialized function in the code that is called when a
+# slot has been successfully obtained or booked for a user. It logs a success message indicating
+# that a slot has been reserved for a specific user at a particular date and time. Additionally,
+# it adds this information to the HTML log with a success level and optionally includes a
+# screenshot of the booking process.
+slot_obtained_hook(alias, date, time, screenshot)``
 * ``error_hook(text, screenshot)``
 
 Якщо в майбутньому знадобиться більш складна інтеграція (наприклад, Telegram

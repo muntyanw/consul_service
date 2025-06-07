@@ -43,6 +43,9 @@ from project_config import (LOG_LEVEL, TEMPLATE_DIR,
                             TESSDATA_PREFIX, CHECK_EMPTY_TEMPLATE_PATH,
                             CHECK_CHECKED_TEMPLATE_PATH)
 
+from pytesseract import Output
+import logging
+
 LOGGER = setup_logger(__name__)
 pag.FAILSAFE = True  # оставить возможность «движения мыши в угол для экстренной остановки»
 
@@ -232,8 +235,8 @@ def find_image(name: str, timeout: float = 8.0, confidence: float = 0.7,
         LOGGER.debug(f"pos: {pos}")
         if pos:
             LOGGER.debug("return pos image")
-            abs_x = MON_X + pos[0] + scope[0]
-            abs_y = MON_Y + pos[1]  + scope[1]
+            abs_x = MON_X + pos[0]
+            abs_y = MON_Y + pos[1]
             return (abs_x, abs_y) 
 
     return False
@@ -253,7 +256,7 @@ def click_image(name: str, timeout: float = 8.0, confidence: float = 0.7,
         abs_x, abs_y = result_find
         if abs_x is not None and abs_y is not None:
             human_move_and_click(abs_x, abs_y + plus_y)
-            pause(0.1)
+            time.sleep(0.1)
             return True
         
 
@@ -265,7 +268,7 @@ def type_text(text: str, interval: Tuple[float, float] = (0.05, 0.12)) -> None:
     """
     for ch in text:
         pag.typewrite(ch)
-        pause(random.uniform(*interval))
+        time.sleep(random.uniform(*interval))
 
 def take_screenshot() -> Path:
     """
@@ -312,7 +315,7 @@ def _detect_chrome() -> Path:
 
 def scroll(amount: int = 100) -> None:
         pag.scroll(amount) 
-        pause(0.01) 
+        time.sleep(0.01) 
 
 def screen(scope: tuple[int, int, int, int] = None, is_debug: bool = False,
            process_for_read:bool = False):
@@ -328,7 +331,7 @@ def screen(scope: tuple[int, int, int, int] = None, is_debug: bool = False,
         
     if is_debug:
         show_image(scr_bgr)
-        pause(0.5)
+        time.sleep(0.5)
             
     return scr_bgr
 
@@ -474,7 +477,7 @@ def _human_move(x: int, y: int, duration: Tuple[float, float] = (0.4, 0.9)) -> N
     for t in np.linspace(0, 1, steps):
         bx, by = _bezier_point(anchors, t)
         pag.moveTo(bx, by, duration=0)
-        pause(0.001)
+        time.sleep(0.001)
 
     pag.moveTo(x, y, duration=random.uniform(*duration))
 
@@ -584,7 +587,7 @@ def chrome_session(user_alias: str, url: str = "https://e-consul.gov.ua/") -> It
     """
     with prepare_profile(user_alias) as prof_dir:
         proc = launch_chrome(prof_dir, url)
-        pause(3)
+        time.sleep(3)
         try:
             yield proc
         finally:
@@ -633,6 +636,7 @@ def read_text(
     )
 
     texts = [t.strip().lower() for t in data["text"]]
+    LOGGER.debug(f"texts: {texts}")
     return texts
 
 def get_first_date(text_list) -> date:
@@ -661,9 +665,9 @@ def read_first_date(
 
 def click_text(
     query: str,
-    timeout: float,
     lang: str,
     conf_threshold: float,
+    count_attempt_find: int = 1,
     scope: tuple[int, int, int, int] = None,
     plus_y: int = 0,
     is_debug: bool = False
@@ -686,23 +690,26 @@ def click_text(
     padding : tuple[int, int, int, int], optional
         Смещение (left, bottom, right, top) для сужения области скриншота.
     """
+    LOGGER.debug(f"find and click {query}")
     
-    pos = find_text(query, timeout, lang, conf_threshold, scope, plus_y, is_debug)
+    pos = find_text(query=query, lang=lang, conf_threshold=conf_threshold, 
+                    count=count_attempt_find, scope=scope, plus_y = plus_y, 
+                    is_debug=is_debug)
     
     if pos:
         abs_x, abs_y = pos
         human_move_and_click(abs_x, abs_y + plus_y)
         return True
 
-    pause(0.2)
+    time.sleep(0.2)
 
     return False
 
 def find_text(
     query: str,
-    timeout: float,
     lang: str,
     conf_threshold: float,
+    count: int = 1,
     scope: tuple[int, int, int, int] = None,
     plus_y: int = 0,
     is_debug: bool = False
@@ -725,7 +732,6 @@ def find_text(
     padding : tuple[int, int, int, int], optional
         Смещение (left, bottom, right, top) для сужения области скриншота.
     """
-    deadline = time.perf_counter() + timeout
 
     # Разбиваем query на слова для поиска последовательности
     query_words = query.lower().split()
@@ -733,7 +739,9 @@ def find_text(
     
     n_words = len(query_words)
 
-    while time.perf_counter() < deadline:
+    attempts = 0
+    while attempts < count:
+        attempts += 1
         
         scr_bgr = screen(scope, is_debug = is_debug)
         
@@ -745,27 +753,14 @@ def find_text(
         )
 
         texts = [t.strip().lower() for t in data["text"]]
-        # confs = []
-        # for c in data.get("conf", []):
-        #     try:
-        #         confs.append(float(c) / 100.0)
-        #     except Exception:
-        #         confs.append(0.0)
 
         n_boxes = len(texts)
 
         for i in range(n_boxes - n_words + 1):
             window = texts[i:i + n_words]
-            #window_confs = confs[i:i + n_words]
             
             window = [replace_similar_chars(w) for w in window]
             
-
-            # if any(not w for w in window):
-            #     continue
-            # if any(conf < conf_threshold for conf in window_confs):
-            #     continue
-
             if arrays_fuzzy_equal(window, query_words):
                 # Рассчитываем общий прямоугольник для всей последовательности
                 x_left = min(int(data["left"][j]) for j in range(i, i + n_words))
@@ -780,23 +775,14 @@ def find_text(
                 abs_y = MON_Y + center_y_rel + scope[1]
 
                 LOGGER.debug(
-                    "Found phrase '%s' at local (%d,%d), clicking global (%d,%d)",
-                    query, center_x_rel, center_y_rel, abs_x, abs_y
+                    f"Found phrase '{query}' at local ({center_x_rel},{center_y_rel}), clicking global ({abs_x},{abs_y})"
                 )
                 return abs_x, abs_y + plus_y
 
-        pause(0.2)
+        time.sleep(0.2)
 
-    LOGGER.debug("Text '%s' not found within %.2f seconds", query, timeout)
+    LOGGER.debug(f"Text '{query}' not found within {attempts} attempt")
     return None
-
-import os
-import pytesseract
-from pytesseract import Output
-from typing import Iterable
-import logging
-
-LOGGER = logging.getLogger(__name__)
 
 def find_text_any(
     queries: Iterable[str],
@@ -846,16 +832,17 @@ def find_text_any(
         n_boxes = len(data["text"])
         for i in range(n_boxes):
             txt = data["text"][i].strip().lower()
-            try:
-                conf = float(data["conf"][i]) / 100.0
-            except Exception:
-                conf = 0.0
+            #try:
+            #    conf = float(data["conf"][i]) / 100.0
+            #except Exception:
+            #    conf = 0.0
+            #if txt != "":
             texts.append(txt)
-            confs.append(conf)
+            #confs.append(conf)
 
-        if is_debug:
-            LOGGER.debug(f"OCR texts: {texts}")
-            LOGGER.debug(f"OCR confs: {confs}")
+        #if is_debug:
+        LOGGER.debug(f"OCR texts: {[w for w in texts if w != ""]}")
+            #LOGGER.debug(f"OCR confs: {confs}")
 
         # 5) Перебираем каждую последовательность слов из queries_words
         for query_words in queries_words:
@@ -866,11 +853,11 @@ def find_text_any(
             # Сдвиг по всем возможным позициям в тексте
             for i in range(0, n_boxes - n_words + 1):
                 window = texts[i : i + n_words]
-                window_confs = confs[i : i + n_words]
+                #window_confs = confs[i : i + n_words]
 
                 # 5.1) Пропускаем, если хоть одно слово из окна слишком низкой уверенности
-                if any(c < conf_threshold for c in window_confs):
-                    continue
+                #if any(c < conf_threshold for c in window_confs):
+                #    continue
 
                 # 5.2) Нормализуем каждое слово в окне
                 normalized_window = [replace_similar_chars(w) for w in window]
@@ -899,11 +886,10 @@ def find_text_any(
                     return abs_x, abs_y
 
         # 8) Пауза перед следующей попыткой
-        pause(0.2)
+        time.sleep(0.2)
 
     LOGGER.debug(f"None of texts {queries} found after {attempts} attempts")
     return False
-
 
 def cursor_move_to(
     x: int = 500,
@@ -915,16 +901,16 @@ def cursor_move_to(
     human_move_and_click(x, y)
 
 def contrlScroll(amount:int):
-    pause(1)
+    time.sleep(1)
     # Нажимаем Ctrl и удерживаем
     pag.keyDown('ctrl')
-    pause(0.05)
+    time.sleep(0.05)
 
     # Прокручиваем колёсико вверх (положительное значение)
     # Чем больше число, тем сильнее «клик» колёсика
     pag.scroll(amount)
 
-    pause(0.05)
+    time.sleep(0.05)
     # Отпускаем Ctrl
     pag.keyUp('ctrl') 
     
@@ -1032,55 +1018,51 @@ def preprocess_for_ocr(src_bgr: np.ndarray) -> np.ndarray:
     )
     return bw
 
-def find_first_free_slot_in_day_week(scope: tuple[int, int, int, int] = None,
-                is_debug: bool = False) -> tuple[int, int] | None:
-        """
-        Находит на входном BGR-изображении первый свободный (синий) слот и возвращает
-        координаты его верхнего левого угла (x, y). Если синих прямоугольников не найдено, возвращает None.
-        
-        Алгоритм:
-        1. Конвертируем BGR → HSV, чтобы изолировать «голубой» цвет.
-        2. Маскированием по диапазону HSV получаем бинарную маску для синего.
-        3. Применяем морфологические операции, чтобы убрать шум и сгладить контур.
-        4. Находим контуры в полученной маске, вычисляем ограничивающие прямоугольники (boundingRect).
-        5. Сортируем все найденные boundingRect по (y, затем x), чтобы получить «первый» слева сверху.
-        6. Возвращаем координаты (x, y) этого прямоугольника.
-        """
-        
-        image_bgr = screen(scope, is_debug=is_debug)
-        
-        # 1) Конвертируем в HSV
-        hsv = cv2.cvtColor(image_bgr, cv2.COLOR_BGR2HSV)
+def find_first_free_slot_in_day_week(scope: tuple[int,int,int,int],
+                                     is_debug: bool = False
+                                    ) -> tuple[int,int] | None:
 
-        # 2) Диапазон голубого (в HSV) — можно подкорректировать под конкретный оттенок
-        #    Здесь взято приблизительно для «светло-голубых» прямоугольников.
-        lower_blue = np.array([ 90,  50,  50])  # H=90°, S=50, V=50
-        upper_blue = np.array([140, 255, 255])  # H=140°, S=255, V=255
-        mask_blue = cv2.inRange(hsv, lower_blue, upper_blue)
+    # 1) Захват экрана
+    with mss.mss() as sct:
+        monitor = _get_monitor_region(scope)
+        img = sct.grab(monitor)
+        arr = np.array(img)[..., :3]           # BGRA → BGR
+        hsv = cv2.cvtColor(arr, cv2.COLOR_BGR2HSV)
 
-        # 3) Морфология: убираем мелкие шумы, закрываем дыры внутри прямоугольников
-        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
-        mask_clean = cv2.morphologyEx(mask_blue, cv2.MORPH_CLOSE, kernel, iterations=2)
-        mask_clean = cv2.morphologyEx(mask_clean, cv2.MORPH_OPEN, kernel, iterations=1)
+    if is_debug:
+        show_image(arr, title="bgr")
+        show_image(hsv, title="hsv")
+        time.sleep(0.5)
 
-        # 4) Находим контуры
-        contours, _ = cv2.findContours(mask_clean, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    # 2) Подправленные пороги (отладьте вручную!)
+    lower_blue = np.array([100,  60, 150])
+    upper_blue = np.array([125, 255, 255])
+    mask_blue  = cv2.inRange(hsv, lower_blue, upper_blue)
 
-        # 5) Собираем boundingRect для каждого контура, фильтруем слишком маленькие области
-        rects = []
-        for cnt in contours:
-            x, y, w, h = cv2.boundingRect(cnt)
-            # Отсекаем мелкие шумовые области. Предполагаем, что реальные слоты имеют
-            # ширину и высоту минимум 30 пикселей (можно увеличить, если слоты крупнее).
-            if w >= 30 and h >= 15:
-                rects.append((x, y, w, h))
+    # 3) Морфология
+    kernel     = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
+    mask_clean = cv2.morphologyEx(mask_blue, cv2.MORPH_CLOSE, kernel, iterations=2)
+    mask_clean = cv2.morphologyEx(mask_clean, cv2.MORPH_OPEN,  kernel, iterations=1)
 
-        if not rects:
-            return None
+    if is_debug:
+        show_image(mask_blue,  title="raw blue mask")
+        show_image(mask_clean, title="clean blue mask")
+        time.sleep(0.5)
 
-        # 6) Сортируем по y (возрастающая), затем по x
-        rects_sorted = sorted(rects, key=lambda r: (r[1], r[0]))
-        first_rect = rects_sorted[0]
-        x0, y0, w0, h0 = first_rect
+    # 4) Контуры и фильтрация
+    contours, _ = cv2.findContours(mask_clean, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    rects = []
+    for cnt in contours:
+        x, y, w, h = cv2.boundingRect(cnt)
+        if w >= 30 and h >= 15:
+            rects.append((x, y, w, h))
 
-        return (x0 + scope[0], y0 + scope[1])
+    if not rects:
+        return None
+
+    # 5) Сортировка «сверху–влево»
+    rects.sort(key=lambda r: (r[1], r[0]))
+    x, y, w, h = rects[0]
+
+    # 6) Возвращаем абсолютные координаты
+    return (x + scope[0], y + scope[1])
