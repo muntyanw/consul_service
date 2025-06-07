@@ -532,7 +532,7 @@ class SlotFinder:
                 x, y = pos_first_free
                 time_slot = gd.read_text("ukr", scope = (x, y, x + 120, y + 40))
                 LOGGER.debug(f"найден свободный слот {time_slot}")
-                gd.click(x, y, x + 60, y + 20)
+                gd.click(x + 60, y + 20)
                 gd.pause(self.fast)
                 gd.scroll(-3000)
        

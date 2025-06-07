@@ -1022,47 +1022,60 @@ def find_first_free_slot_in_day_week(scope: tuple[int,int,int,int],
                                      is_debug: bool = False
                                     ) -> tuple[int,int] | None:
 
-    # 1) Захват экрана
+    # 1) Захват экрана + конверсия BGRA→BGR→HSV
     with mss.mss() as sct:
-        monitor = _get_monitor_region(scope)
-        img = sct.grab(monitor)
-        arr = np.array(img)[..., :3]           # BGRA → BGR
-        hsv = cv2.cvtColor(arr, cv2.COLOR_BGR2HSV)
+        mon = _get_monitor_region(scope)
+        img = sct.grab(mon)
+        bgr = np.array(img)[..., :3]
+        hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV)
 
     if is_debug:
-        show_image(arr, title="bgr")
-        show_image(hsv, title="hsv")
+        show_image(bgr)
+        show_image(hsv)
         time.sleep(0.5)
 
-    # 2) Подправленные пороги (отладьте вручную!)
-    lower_blue = np.array([100,  60, 150])
-    upper_blue = np.array([125, 255, 255])
-    mask_blue  = cv2.inRange(hsv, lower_blue, upper_blue)
+    # 2) Маска для голубого (границы берите из отладки HSV)
+    lower_blue = np.array([ 90,  30, 150])
+    upper_blue = np.array([120, 255, 255])
+    mask_blue = cv2.inRange(hsv, lower_blue, upper_blue)
+    mask_blue = cv2.GaussianBlur(mask_blue, (5,5), 0)
 
-    # 3) Морфология
-    kernel     = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
+    # 3) Морфология для очистки
+    kernel     = cv2.getStructuringElement(cv2.MORPH_RECT, (5,5))
     mask_clean = cv2.morphologyEx(mask_blue, cv2.MORPH_CLOSE, kernel, iterations=2)
     mask_clean = cv2.morphologyEx(mask_clean, cv2.MORPH_OPEN,  kernel, iterations=1)
 
     if is_debug:
-        show_image(mask_blue,  title="raw blue mask")
-        show_image(mask_clean, title="clean blue mask")
+        show_image(mask_blue)
+        show_image(mask_clean)
         time.sleep(0.5)
 
-    # 4) Контуры и фильтрация
-    contours, _ = cv2.findContours(mask_clean, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    rects = []
-    for cnt in contours:
+    # 4) Ищем все контуры и сразу же фильтруем по площади и «насколько голубой» они внутри
+    cnts, _ = cv2.findContours(mask_clean, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    blue_rects = []
+    for cnt in cnts:
         x, y, w, h = cv2.boundingRect(cnt)
-        if w >= 30 and h >= 15:
-            rects.append((x, y, w, h))
+        if w < 30 or h < 15:
+            continue
 
-    if not rects:
+        # посчитаем долю белых пикселей в первичной mask_blue внутри этого прямоугольника
+        patch_mask = mask_blue[y:y+h, x:x+w]
+        blue_ratio = patch_mask.sum() / 255 / (w*h)
+
+        # дополнительно проверим, что внутри действительно цвет насыщен (чтобы не схватить
+        # светло-серый артефакт)
+        patch_hsv = hsv[y:y+h, x:x+w]
+        mean_s = float(patch_hsv[...,1].mean())
+
+        # берем только те, где хотя бы 30% пикселей попало в маску И средняя насыщенность > 20
+        if blue_ratio > 0.3 and mean_s > 20:
+            blue_rects.append((x, y, w, h))
+
+    if not blue_rects:
         return None
 
-    # 5) Сортировка «сверху–влево»
-    rects.sort(key=lambda r: (r[1], r[0]))
-    x, y, w, h = rects[0]
+    # 5) Сортируем «сверху–влево» и возвращаем первую голубую
+    blue_rects.sort(key=lambda r: (r[1], r[0]))
+    x0, y0, _, _ = blue_rects[0]
+    return (x0 + scope[0], y0 + scope[1])
 
-    # 6) Возвращаем абсолютные координаты
-    return (x + scope[0], y + scope[1])
