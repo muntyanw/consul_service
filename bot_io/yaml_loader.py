@@ -70,6 +70,9 @@ class UserConfig:
 
     min_date: Optional[_dt.date] = None  # absolute floor date
     relative_days: Optional[int] = None  # days from *now*
+    
+    booked_services: set[tuple[str, str, str]] = field(default_factory=set, repr=False, compare=False)
+
 
     
 
@@ -206,6 +209,14 @@ class YAMLLoader:
                     raise ValueError
             except (TypeError, ValueError):
                 raise ConfigError("days_from_now must be non-negative int")
+            
+        booked = raw.get("booked_slots", {})
+        booked_services = {
+            (country, cons, s["name"])
+            for country, cons_data in booked.items()
+            for cons, services in cons_data.items()
+            for s in services
+}
 
         return UserConfig(
             alias=alias,
@@ -224,6 +235,7 @@ class YAMLLoader:
             min_date=min_date,
             relative_days=rel,
             source_file=path,
+            booked_services=booked_services
         )
 
     # ------------------------------------------------------------------
@@ -241,6 +253,22 @@ class YAMLLoader:
             )
         f = Fernet(key.encode())
         return f.decrypt(token.encode()).decode("utf-8")
+    
+    def record_booked_slot(self, user: UserConfig, consulate: str, service: str, date: str, time_: str) -> None:
+        path = user.source_file
+        with path.open("r", encoding="utf-8") as fh:
+            raw = yaml.safe_load(fh) or {}
+
+        booked = raw.get("booked_slots", {})
+        booked.setdefault(user.country, {}).setdefault(consulate, []).append({
+            "name": service,
+            "date": date,
+            "time": time_,
+        })
+        raw["booked_slots"] = booked
+
+        with path.open("w", encoding="utf-8") as fh:
+            yaml.safe_dump(raw, fh, allow_unicode=True)
 
 
 # ---------------------------------------------------------------------------

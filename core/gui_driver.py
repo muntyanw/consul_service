@@ -108,20 +108,42 @@ def arrays_fuzzy_equal(window: List[str], query_words: List[str], threshold: flo
     if len(window) != len(query_words):
         return False
 
+    count_equal = 0
+    
     for w, q in zip(window, query_words):
         # Если обе строки пустые, считаем их идентичными
         if not w and not q:
+            count_equal += 1
             continue
 
         # Если одна пустая, а вторая нет → похожесть 0
         if not w or not q:
-            return False
+            continue
 
         ratio = SequenceMatcher(None, w, q).ratio()
-        if ratio < threshold:
-            return False
+        if ratio >= threshold:
+            count_equal += 1
 
-    return True
+    return count_equal/len(window) >= threshold
+
+def arrays_fuzzy_equal_as_one_str(window: List[str], query_words: List[str], threshold: float = 0.7) -> bool:
+    """
+    Преобразует два массива в строки и сравнивает их
+    
+    :param window:      первый список строк
+    :param query_words: второй список строк
+    :param threshold:   минимальный порог похожести (по умолчанию 0.7)
+    :return: True, если все парные строковые элементы похожи ≥ threshold
+    """
+    if len(window) != len(query_words):
+        return False
+
+    str_window = "".join(window)
+    str_query_words = "".join(query_words)
+
+    ratio = SequenceMatcher(None, str_window, str_query_words).ratio()
+    
+    return ratio >= threshold
 
 def launch_chrome(profile_dir: Path, url: str = "https://e-consul.gov.ua/") -> subprocess.Popen:
     """
@@ -761,7 +783,7 @@ def find_text(
             
             window = [replace_similar_chars(w) for w in window]
             
-            if arrays_fuzzy_equal(window, query_words):
+            if arrays_fuzzy_equal_as_one_str(window, query_words):
                 # Рассчитываем общий прямоугольник для всей последовательности
                 x_left = min(int(data["left"][j]) for j in range(i, i + n_words))
                 y_top = min(int(data["top"][j]) for j in range(i, i + n_words))

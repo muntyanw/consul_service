@@ -31,8 +31,11 @@ from bot_io.yaml_loader import UserConfig, YAMLLoader, ConfigError
 from server.tcp_server import ControlServer, PAUSE_EVT, STOP_EVT
 from utils.logger import setup_logger
 from project_config import USERS_DIR, KEYS_DIR, LOG_LEVEL
+from core.slot_finder import free_slots
+
 
 LOGGER = setup_logger(__name__)
+
 
 # ---------------------------------------------------------------------------
 # Helper container – thread-safe queue wrapper
@@ -149,6 +152,12 @@ def main() -> None:
             time.sleep(0.5)
             continue
 
+        with queue._lock:
+            priority_users = [u for u in list(queue._dq) if free_slots.has_match(u)]
+            for u in priority_users:
+                queue._dq.remove(u)
+                queue._dq.appendleft(u)
+                
         user = queue.pop_left()
         if not user:
             time.sleep(2)

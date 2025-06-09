@@ -33,7 +33,7 @@ import pyperclip
 
 from core import gui_driver as gd
 from utils.logger import setup_logger
-from bot_io.yaml_loader import UserConfig
+from bot_io.yaml_loader import UserConfig, YAMLLoader
 from project_config import (LOG_LEVEL, USERS_DIR,
                             VISIT_CHECK_DAY_TEMPLATE_PATH, VISIT_CHECK_WEEK_TEMPLATE_PATH,
                             VISIT_CHECK_MONTH_TEMPLATE_PATH)
@@ -42,6 +42,7 @@ from datetime import datetime
 from babel.dates import format_date
 
 from utils.logger import setup_logger
+from core.free_slot_db import FreeSlotRegistry
 
 
 try:
@@ -74,6 +75,7 @@ IMG_BTN_DALI = "but_dali.png"
 IMG_BTN_CONFIRM = "but_confirm.png"
 FIELD_CHECK = "check.png"
 IMG_BTN_COMEBACK = "comeback.png"
+IMG_BTN_ITS_CLEAR = "its_clear.png"
 
 BTN_LOGIN = "btn_login.png"
 WELCOME_BANNER = "banner_welcome.png"
@@ -106,6 +108,8 @@ MONTHS = ["січень", "лютий", "березень", "квітень", "�
 # ---------------------------------------------------------------------------
 LOGGER = setup_logger(__name__)
 
+free_slots = FreeSlotRegistry()
+
 class SlotFinder:
     """Encapsulates wizard navigation and calendar scanning."""
     
@@ -123,7 +127,8 @@ class SlotFinder:
             _next_user(user.alias)
             
             #self._find_slots(user)
-            self.find_free_slot_months(user)
+            #self.i_no_robot(True)
+            #self.find_free_slot_months(user, "Посольство України в Австралії", "Витребування документа")
             
             if not self._login(user):
                 return False
@@ -148,6 +153,17 @@ class SlotFinder:
                                 scope=(270, 240, 540, 300)):
                 
                 LOGGER.error("not logged in – welcome banner not found")
+                return False
+            return True
+        
+    def is_success_blocked_slot(self) -> bool:
+            LOGGER.debug("check success_blocked_slot")
+            if not gd.find_text("ми обробляємо", 
+                                count = 1, lang="ukr", 
+                                conf_threshold=0.6, 
+                                scope=(610, 440, 1300, 580)):
+                
+                LOGGER.error("not success_blocked_slot")
                 return False
             return True
     
@@ -175,13 +191,15 @@ class SlotFinder:
             return False
         return True
         
-    def i_no_robot(self) -> bool:
+    def i_no_robot(self, is_debug: bool = False) -> bool:
         if not gd.click_text("Я не робот", 
             lang="ukr", 
             conf_threshold=0.6, 
-            scope=(800, 570, 1100, 620), is_debug=True):
-            _error_hook("field i_no_robot", gd.take_screenshot())
-            return False
+            scope=(800, 540, 1100, 620), is_debug=is_debug):
+            
+                _error_hook("field i_no_robot missing", gd.take_screenshot())
+                return False
+        return True
         
     def check_consulates(self, country: str, cons: str) -> bool:
         gd.scroll(-800)
@@ -190,6 +208,7 @@ class SlotFinder:
             lang="ukr", 
             conf_threshold=0.6, 
             scope=(170, 640, 360, 680)):
+            
             _error_hook("field country missing", gd.take_screenshot())
             return False
         
@@ -245,7 +264,7 @@ class SlotFinder:
         
         if for_myself:
             LOGGER.debug("find check for myself")
-            is_checked = gd.detect_checkbox_type_from_frame(scope=(180, 610, 220, 650), is_debug=True)
+            is_checked = gd.detect_checkbox_type_from_frame(scope=(180, 610, 220, 650), is_debug=False)
             if is_checked == "none":
                 _error_hook("field check consulate for myself missing", gd.take_screenshot())
                 return False
@@ -261,7 +280,7 @@ class SlotFinder:
 
         else:
             LOGGER.debug("find check for children")
-            is_checked = gd.detect_checkbox_type_from_frame(scope=(180, 675, 220, 720), is_debug=True)
+            is_checked = gd.detect_checkbox_type_from_frame(scope=(180, 675, 220, 720), is_debug=False)
             if is_checked == "none":
                 _error_hook("field check consulate for myself missing", gd.take_screenshot())
                 return False
@@ -423,7 +442,7 @@ class SlotFinder:
         
         if VISIT_CHECK_MONTH_TEMPLATE_PATH != gd.detect_image_from_frame(
             [VISIT_CHECK_DAY_TEMPLATE_PATH, VISIT_CHECK_WEEK_TEMPLATE_PATH,VISIT_CHECK_MONTH_TEMPLATE_PATH],
-            scope=(1140,430,1340,560), is_debug=True):
+            scope=(1140,430,1340,560), is_debug=False):
             
             gd.click(1280, 480)
                 
@@ -524,23 +543,47 @@ class SlotFinder:
         LOGGER.debug(f"results: {results}")
         return results
     
-    def find_first_free_slot_in_day_week(self, user: UserConfig, dt: date, scope: tuple[int, int, int, int] = None) ->bool:
+    def find_first_free_slot_in_day_week(self, user: UserConfig, consulate:str, service:str, dt: date, scope: tuple[int, int, int, int] = None) ->bool|None:
         
         if dt and dt <= user.min_date:
-            pos_first_free =  gd.find_first_free_slot_in_day_week(scope, is_debug=True)
+            pos_first_free =  gd.find_first_free_slot_in_day_week(scope, is_debug=False)
             if pos_first_free:
                 x, y = pos_first_free
                 time_slot = gd.read_text("ukr", scope = (x, y, x + 120, y + 40))
                 LOGGER.debug(f"найден свободный слот {time_slot}")
+                
+                _slot_found(user, time_slot)
+                
                 gd.click(x + 60, y + 20)
                 gd.pause(self.fast)
                 gd.scroll(-3000)
        
-                if not gd.click_image(IMG_BTN_CONFIRM, scope=(376, 720, 560, 900), plus_y=20):
+                if not gd.click_image(IMG_BTN_CONFIRM, scope=(376, 720, 640, 900), plus_y=20):
                         _error_hook("button CONFIRM slot missing", gd.take_screenshot())
-                        return False
+                        return None
                     
-                _slot_found(user, time_slot)
+                gd.pause(self.slow)
+                
+                if not self.i_no_robot():
+                    
+                    return False
+                
+                gd.pause(self.slow)
+                
+                if not self.is_success_blocked_slot():
+                    _error_hook("no blocked slot", gd.take_screenshot())
+                    return None
+                
+                if not gd.click_image(IMG_BTN_ITS_CLEAR, scope=(800, 650, 1100, 750)):
+                        _error_hook("button ITS CLEAR after blocked slot missing", gd.take_screenshot())
+                        return None
+                
+                YAMLLoader.record_booked_slot(user, consulate, service, dt, time, time_slot)
+                free_slots.remove(user.country, consulate, service, date)
+                
+                _slot_obtained(user, time_slot)
+                
+                
                 return True
             
             else:
@@ -612,7 +655,7 @@ class SlotFinder:
         LOGGER.debug(f"найдены границы {WEEK_DAYS[number_day]} - y_min:{y_min} y_max:{y_max}, скролл окончен, можно искать слоты")
         return y_min, y_max
     
-    def find_free_slot_week(self, user: UserConfig, date_min_week_str:str, date_min_week: date)->bool|None:
+    def find_free_slot_week(self, user: UserConfig, consulate:str, service:str, date_min_week_str:str, date_min_week: date)->bool|None:
         
         gd.click(20,200)
         gd.scroll(-2000)
@@ -638,22 +681,31 @@ class SlotFinder:
         y_min = 140
         y_max = 750
         
-        for number_day, day in enumerate(WEEK_DAYS, start=0):
+        # если это первая неделя от сейчас то первый день доступный для бронирования может быть не понедельник, а следующий от сегодня
+        start = 0
+        now = datetime.now().date()
+        if date_min_week <= now:
+            start = now.day - date_min_week.day + 1
+        
+        for number_day, day in enumerate(WEEK_DAYS, start=start):
             if day == "субота":
                 break
             
             dt = dt + timedelta(days=number_day-1)
            
-            if self.find_next_day_in_week(number_day) == None:
+            pos = self.find_next_day_in_week(number_day)
+            if pos != None:
+                y_min, y_max = pos
+            else:
                 return None # is error from find days in weeks
             
-            if self.find_first_free_slot_in_day_week(user, dt, scope = (160, y_min, 780, y_max)):
+            if self.find_first_free_slot_in_day_week(user, consulate, service, dt, scope = (160, y_min, 780, y_max)):
                 is_found = True
                 break
             
         return is_found
     
-    def  find_free_slot_month(self, user: UserConfig) -> bool:
+    def  find_free_slot_month(self, user: UserConfig, consulate:str, service:str) -> bool:
         
         LOGGER.debug("start find free slot in month")
         
@@ -666,12 +718,14 @@ class SlotFinder:
             date_min_week_str, date_max_week_str, count_slots = week_data
             date_min_week = datetime.strptime(date_min_week_str, "%d.%m.%Y").date()
             if count_slots > 0 and user.min_date >= date_min_week:
+                
+                free_slots.add(user.country, consulate, service, date_min_week_str)
                 gd.pause(self.slow)
-                is_found = self.find_free_slot_week(user, date_min_week_str, date_min_week)
+                is_found = self.find_free_slot_week(user, consulate, service, date_min_week_str, date_min_week)
                 
         return is_found
     
-    def find_free_slot_months(self, user: UserConfig) -> bool:
+    def find_free_slot_months(self, user: UserConfig, consulate:str, service:str) -> bool:
         
         gd.click(20, 200)
         
@@ -688,7 +742,7 @@ class SlotFinder:
         is_found = False
         while not is_found or end_year:
             
-            is_found = self.find_free_slot_month(user)
+            is_found = self.find_free_slot_month(user, consulate, service)
             
             if is_found:
                 break
@@ -708,7 +762,7 @@ class SlotFinder:
                 if not gd.click_text(current_month_name, 
                     lang="ukr", 
                     conf_threshold=0.6, 
-                    scope=(300, 500, 1000, 640), is_debug=True):
+                    scope=(300, 500, 1000, 640), is_debug=False):
                 
                     _error_hook(f"not find button month {current_month_name}", gd.take_screenshot())
             
@@ -796,10 +850,11 @@ class SlotFinder:
     # ------------------------------------------------------------------
     def _find_slots(self, user: UserConfig) -> bool:
         
-        self.fill_data_personal(user)
-        
         for consular_service in user.services:
             for cons in user.consulates:
+                
+                self.fill_data_personal(user)
+                
                 if self.check_consulates(user.country, cons):
                     if self.check_consular_service(consular_service, user.for_myself):
                         LOGGER.debug("Start wait find free slots")
@@ -810,7 +865,7 @@ class SlotFinder:
                         LOGGER.debug("Check is_page_find_slots")
                         if self.is_page_find_slots():
                             LOGGER.debug("is page find slots")
-                            is_found = self.find_free_slot_months()
+                            is_found = self.find_free_slot_months(cons, consular_service)
                             
                         else:
                             _error_hook("open page find slots failed", gd.take_screenshot())
