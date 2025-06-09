@@ -164,8 +164,8 @@ def main() -> None:
             continue
 
         LOGGER.info("Processing user %s", user.alias)
-        #with chrome_session(user.alias):
-        booked = finder.work(user)
+        with chrome_session(user.alias):
+            booked = finder.work(user)
 
         if booked:
             LOGGER.info("User %s completed – removed from queue", user.alias)

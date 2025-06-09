@@ -12,7 +12,7 @@ users_dir: "data/users_cfg"
 
 # Base directory for electronic key files (used when key_path is relative)
 
-keys_dir: "data/keys"
+keys_dir: "keys"
 
 ui_images: "assets/ui_images"
 

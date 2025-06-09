@@ -34,6 +34,8 @@ from typing import Optional
 from bot_io.html_logger import html_log
 from utils.logger import setup_logger
 
+import traceback
+
 LOGGER = setup_logger(__name__)
 
 # ---------------------------------------------------------------------------
@@ -54,16 +56,17 @@ def next_user_hook(alias: str) -> None:
 
 
 def slot_found_hook(
+    alias: str,
     country: str,
     consulate: str,
     service: str,
-    date: _dt.date,
+    dt: _dt.date,
     time_: str,
     screenshot: Optional[Path] = None,
 ) -> None:
     msg = (
         f"‎🕓 Знайдено слот – {country} / {consulate} / {service} – "
-        f"<b>{date} {time_}</b>"
+        f"<b>{dt} {time_}</b>"
     )
     LOGGER.info(msg)
     html_log.add(msg, level="info", screenshot=screenshot)
@@ -71,16 +74,25 @@ def slot_found_hook(
 
 def slot_obtained_hook(
     alias: str,
-    date: _dt.date,
+    country: str,
+    consulate: str,
+    service: str,
+    dt: _dt.date,
     time_: str,
-    screenshot: Optional[Path] = None,
+    screenshot: Optional[Path] = None
 ) -> None:
-    msg = f"✅ Слот заброньовано для <b>{alias}</b> – {date} {time_}"
+    msg = f"✅ Слот {country} - {consulate} - {service} - {dt} - {time_} заброньовано для <b>{alias}</b>"
     LOGGER.info(msg)
     html_log.add(msg, level="success", screenshot=screenshot)
 
 
 def error_hook(text: str, screenshot: Optional[Path] = None) -> None:
-    msg = f"❌ ПОМИЛКА – {text}"
+    # Получаем стек вызовов
+    tb = traceback.extract_stack()[:-1]  # убираем текущий вызов hook'а
+    last = tb[-1] if tb else None
+
+    location = f"{last.filename}:{last.lineno}" if last else "unknown location"
+    msg = f"❌ ПОМИЛКА – {text} (в файлі {location})"
+
     LOGGER.error(msg)
     html_log.add(msg, level="error", screenshot=screenshot)

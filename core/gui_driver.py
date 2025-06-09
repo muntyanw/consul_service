@@ -147,6 +147,23 @@ def arrays_fuzzy_equal_as_one_str(window: List[str], query_words: List[str], thr
 
 def launch_chrome(profile_dir: Path, url: str = "https://e-consul.gov.ua/") -> subprocess.Popen:
     """
+    The function `launch_chrome` launches Chrome with specified profile directory, window size, and
+    position on the screen.
+    
+    :param profile_dir: The `profile_dir` parameter in the `launch_chrome` function is expected to be a
+    `Path` object representing the directory where Chrome will store user profile data. This directory
+    will be used as the user data directory for the Chrome instance being launched
+    :type profile_dir: Path
+    :param url: The `url` parameter in the `launch_chrome` function is a string that represents the URL
+    of the website you want to open in the Chrome browser. In the provided code snippet, the default URL
+    is set to "https://e-consul.gov.ua/", but you can pass a different URL, defaults to
+    https://e-consul.gov.ua/
+    :type url: str (optional)
+    :return: The function `launch_chrome` returns a `subprocess.Popen` object, which represents a
+    process that has been launched to run the Chrome browser with specific parameters such as window
+    size, position, and URL.
+    """
+    """
     Launch Chrome at 1920×1080 on the monitor matching TARGET_RES (или primary).
     """
     chrome_path = _detect_chrome()
@@ -158,16 +175,16 @@ def launch_chrome(profile_dir: Path, url: str = "https://e-consul.gov.ua/") -> s
         str(chrome_path),
         f"--user-data-dir={profile_dir}",
         "--new-window",
-        f"--window-size={width},{height}",
-        f"--window-position={offset_x},{offset_y}",
+        "--start-maximized",
+        #f"--window-size={width},{height}",
+        #f"--window-position={offset_x},{offset_y}",
         url,
     ]
     LOGGER.debug("Run Chrome at %dx%d+%d+%d: %s", width, height, offset_x, offset_y, cmd)
     return subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 def detect_checkbox_type_from_frame(scope: tuple[int, int, int, int] = None,
-                is_debug: bool = False,
-                threshold: float = 0.8) -> str:
+                is_debug: bool = False) -> str:
     """
         frame_bgr: кадр экрана (numpy.ndarray в формате BGR)
         empty_template_path: путь до шаблона пустого квадратика
@@ -181,29 +198,37 @@ def detect_checkbox_type_from_frame(scope: tuple[int, int, int, int] = None,
     """
     frame_bgr = screen(scope)
     
-    # Конвертируем скрин в оттенки серого
-    gray_frame = cv2.cvtColor(frame_bgr, cv2.COLOR_BGR2GRAY)
+    if is_debug:
+        show_image(frame_bgr)
+        time.sleep(0.5)
+    
 
     # Загружаем оба шаблона сразу в градациях серого
-    templ_empty = cv2.imread(TEMPLATE_DIR / CHECK_EMPTY_TEMPLATE_PATH, cv2.IMREAD_GRAYSCALE)
-    templ_checked = cv2.imread(TEMPLATE_DIR / CHECK_CHECKED_TEMPLATE_PATH, cv2.IMREAD_GRAYSCALE)
+    templ_empty = cv2.imread(str(TEMPLATE_DIR / CHECK_EMPTY_TEMPLATE_PATH))
+    
+    templ_checked = cv2.imread(str(TEMPLATE_DIR / CHECK_CHECKED_TEMPLATE_PATH))
+    
     if templ_empty is None:
         raise FileNotFoundError(f"Не найден шаблон «пустой» по пути {TEMPLATE_DIR / CHECK_EMPTY_TEMPLATE_PATH}")
     if templ_checked is None:
         raise FileNotFoundError(f"Не найден шаблон «с галочкой» по пути {TEMPLATE_DIR / CHECK_CHECKED_TEMPLATE_PATH}")
 
+    if is_debug:
+        show_image(templ_empty)
+        time.sleep(0.5)
+        show_image(templ_checked)
+        time.sleep(0.5)
+    
     # 1) Поиск пустого квадратика
-    res_empty = cv2.matchTemplate(gray_frame, templ_empty, cv2.TM_CCOEFF_NORMED)
+    res_empty = cv2.matchTemplate(frame_bgr, templ_empty, cv2.TM_CCOEFF_NORMED)
     _, max_val_empty, _, _ = cv2.minMaxLoc(res_empty)
 
     # 2) Поиск квадратика с галочкой
-    res_checked = cv2.matchTemplate(gray_frame, templ_checked, cv2.TM_CCOEFF_NORMED)
+    res_checked = cv2.matchTemplate(frame_bgr, templ_checked, cv2.TM_CCOEFF_NORMED)
     _, max_val_checked, _, _ = cv2.minMaxLoc(res_checked)
 
     # Если ни один из шаблонов не превысил threshold → «ничего не найдено»
-    LOGGER.debug(f"threshold: {threshold}, max_val_empty: {max_val_empty}, max_val_checked: {max_val_checked}")
-    if max_val_empty < threshold and max_val_checked < threshold:
-        return "none"
+    LOGGER.debug(f"max_val_empty: {max_val_empty}, max_val_checked: {max_val_checked}")
 
     # Если оба выше порога, смотрим, у кого коэффициент больший
     if max_val_checked >= max_val_empty:
@@ -246,8 +271,10 @@ def find_image(name: str, timeout: float = 8.0, confidence: float = 0.7,
         raise FileNotFoundError(path)
 
     deadline = time.perf_counter() + timeout
+    
+    LOGGER.debug("Start locate image")
+    
     while time.perf_counter() < deadline:
-        LOGGER.debug("Start locate image")
         
         if not multiscale:
             pos = _locate(path, confidence, scope=scope, is_debug=is_debug)
@@ -599,6 +626,7 @@ def draw_monitor_region_on_screen(color: tuple[int,int,int] = (0, 0, 255), thick
 # Convenience context: launch Chrome + ensure cleanup
 # ---------------------------------------------------------------------------
 from subprocess import Popen, TimeoutExpired  # noqa: E402
+from core.gui_driver import pause
 
 @contextmanager
 def chrome_session(user_alias: str, url: str = "https://e-consul.gov.ua/") -> Iterator[Popen]:
@@ -688,7 +716,6 @@ def read_first_date(
 def click_text(
     query: str,
     lang: str,
-    conf_threshold: float,
     count_attempt_find: int = 1,
     scope: tuple[int, int, int, int] = None,
     plus_y: int = 0,
@@ -714,9 +741,8 @@ def click_text(
     """
     LOGGER.debug(f"find and click {query}")
     
-    pos = find_text(query=query, lang=lang, conf_threshold=conf_threshold, 
-                    count=count_attempt_find, scope=scope, plus_y = plus_y, 
-                    is_debug=is_debug)
+    pos = find_text(query=query, lang=lang, count=count_attempt_find, 
+                    scope=scope, plus_y = plus_y, is_debug=is_debug)
     
     if pos:
         abs_x, abs_y = pos
@@ -730,8 +756,8 @@ def click_text(
 def find_text(
     query: str,
     lang: str,
-    conf_threshold: float,
     count: int = 1,
+    pause_attempt: int = 2,
     scope: tuple[int, int, int, int] = None,
     plus_y: int = 0,
     is_debug: bool = False
@@ -801,7 +827,7 @@ def find_text(
                 )
                 return abs_x, abs_y + plus_y
 
-        time.sleep(0.2)
+        pause(pause_attempt)
 
     LOGGER.debug(f"Text '{query}' not found within {attempts} attempt")
     return None
@@ -811,6 +837,7 @@ def find_text_any(
     lang: str,
     conf_threshold: float,
     count: int = 1,
+    pause_attempt_sec:int = 2,
     scope: tuple[int, int, int, int] = None,
     is_debug: bool = False,
     process_for_read: bool = False
@@ -906,6 +933,8 @@ def find_text_any(
                                      f"rel=({center_x_rel},{center_y_rel}), abs=({abs_x},{abs_y})")
 
                     return abs_x, abs_y
+                
+        pause(pause_attempt_sec)
 
         # 8) Пауза перед следующей попыткой
         time.sleep(0.2)
