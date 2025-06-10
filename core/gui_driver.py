@@ -145,7 +145,7 @@ def arrays_fuzzy_equal_as_one_str(window: List[str], query_words: List[str], thr
     
     return ratio >= threshold
 
-def launch_chrome(profile_dir: Path, url: str = "https://e-consul.gov.ua/") -> subprocess.Popen:
+def launch_chrome(profile_dir: Path, url: str = "https://e-consul.gov.ua/messages") -> subprocess.Popen:
     """
     The function `launch_chrome` launches Chrome with specified profile directory, window size, and
     position on the screen.
@@ -508,7 +508,7 @@ def _locate_multiscale(
 
     return (x_center_abs, y_center_abs)
 
-def _human_move(x: int, y: int, duration: Tuple[float, float] = (0.4, 0.9)) -> None:
+def _human_move(x: int, y: int, duration: Tuple[float, float] = (0.1, 0.2)) -> None:
     """
     Передать абсолютные глобальные координаты (x, y) и выполнить плавное движение
     “по-человечески”. Используется Bezier-кривая + небольшие случайные паузы.
@@ -522,11 +522,11 @@ def _human_move(x: int, y: int, duration: Tuple[float, float] = (0.4, 0.9)) -> N
         _rand_near(x, y, 100),
         (x, y),
     ]
-    steps = 30
+    steps = 10
     for t in np.linspace(0, 1, steps):
         bx, by = _bezier_point(anchors, t)
         pag.moveTo(bx, by, duration=0)
-        time.sleep(0.001)
+        time.sleep(0.0001)
 
     pag.moveTo(x, y, duration=random.uniform(*duration))
 
@@ -540,6 +540,12 @@ def human_move_and_click(x: int, y: int, duration: Tuple[float, float] = (0.4, 0
 
 def human_move(x: int, y: int, duration: Tuple[float, float] = (0.4, 0.9)):
     x = MON_X + x
+    _human_move(x, y, duration)
+    
+def human_move_diff(diff_x: int, diff_y: int, duration: Tuple[float, float] = (0.4, 0.9)):
+    x, y = pag.position()
+    x = x + diff_x
+    y = y + diff_y
     _human_move(x, y, duration)
     
 def click(x: int, y: int, duration: Tuple[float, float] = (0.4, 0.9)):
@@ -629,7 +635,7 @@ from subprocess import Popen, TimeoutExpired  # noqa: E402
 from core.gui_driver import pause
 
 @contextmanager
-def chrome_session(user_alias: str, url: str = "https://e-consul.gov.ua/") -> Iterator[Popen]:
+def chrome_session(user_alias: str, url: str = "https://e-consul.gov.ua/messages") -> Iterator[Popen]:
     """
     Context manager: берет в работу профиль (temp или persistent) через ProfileManager,
     стартует Chrome в нужной области экрана, отдаёт Popen, а по выходу завершает и/или
@@ -714,9 +720,10 @@ def read_first_date(
     return dt
 
 def click_text(
-    query: str,
+    query: str|Iterable[str],
     lang: str,
     count_attempt_find: int = 1,
+    pause_attempt: int = 2,
     scope: tuple[int, int, int, int] = None,
     plus_y: int = 0,
     is_debug: bool = False
@@ -741,8 +748,17 @@ def click_text(
     """
     LOGGER.debug(f"find and click {query}")
     
-    pos = find_text(query=query, lang=lang, count=count_attempt_find, 
-                    scope=scope, plus_y = plus_y, is_debug=is_debug)
+    pos = None
+    
+    if isinstance(query, str):
+        pos = find_text(query=query, lang=lang, count=count_attempt_find, 
+                    pause_attempt = pause_attempt, scope=scope, plus_y = plus_y, is_debug=is_debug)
+        
+    elif isinstance(query, Iterable):
+        pos = find_text_any(queries=query, lang=lang, count=count_attempt_find, 
+                    pause_attempt_sec = pause_attempt, scope=scope, is_debug=is_debug)
+    else:
+        print("click_text error value query")
     
     if pos:
         abs_x, abs_y = pos
@@ -835,7 +851,6 @@ def find_text(
 def find_text_any(
     queries: Iterable[str],
     lang: str,
-    conf_threshold: float,
     count: int = 1,
     pause_attempt_sec:int = 2,
     scope: tuple[int, int, int, int] = None,
@@ -1130,3 +1145,7 @@ def find_first_free_slot_in_day_week(scope: tuple[int,int,int,int],
     x0, y0, _, _ = blue_rects[0]
     return (x0 + scope[0], y0 + scope[1])
 
+def reload_page():
+    LOGGER.debug("reload page")
+    click(94,40)
+    pause(2)

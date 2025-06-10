@@ -74,8 +74,6 @@ class UserConfig:
     booked_services: set[tuple[str, str, str]] = field(default_factory=set, repr=False, compare=False)
 
 
-    
-
     # ---------------------------------------------------------------------
     # Helper API
     # ---------------------------------------------------------------------
@@ -254,7 +252,8 @@ class YAMLLoader:
         f = Fernet(key.encode())
         return f.decrypt(token.encode()).decode("utf-8")
     
-    def record_booked_slot(self, user: UserConfig, consulate: str, service: str, date: str, time_: str) -> None:
+    @staticmethod
+    def record_booked_slot(user: UserConfig, consulate: str, service: str, dt: str, time_: str) -> None:
         path = user.source_file
         with path.open("r", encoding="utf-8") as fh:
             raw = yaml.safe_load(fh) or {}
@@ -262,13 +261,29 @@ class YAMLLoader:
         booked = raw.get("booked_slots", {})
         booked.setdefault(user.country, {}).setdefault(consulate, []).append({
             "name": service,
-            "date": date,
+            "date": dt,
             "time": time_,
         })
         raw["booked_slots"] = booked
 
         with path.open("w", encoding="utf-8") as fh:
             yaml.safe_dump(raw, fh, allow_unicode=True)
+    
+    @staticmethod        
+    def has_pending_services(user: UserConfig) -> bool:
+        """
+        Return True if the user has services that have not yet been booked.
+        """
+        for consulate in user.consulates:
+            for service in user.services:
+                if user.country not in user.booked_services:
+                    return True
+                if consulate not in user.booked_services[user.country]:
+                    return True
+                if service not in user.booked_services[user.country][consulate]:
+                    return True
+                
+        return False
 
 
 # ---------------------------------------------------------------------------

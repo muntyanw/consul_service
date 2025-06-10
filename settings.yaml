@@ -36,6 +36,8 @@ monitor_width: 1920
 monitor_height: 1080
 monitor_index: 2
 
+#human_move_mouse_steps = 10
+
 #-------------------------------------------------------------------
 log_level: "debug" # "prod" # #   # "debug" #
 
