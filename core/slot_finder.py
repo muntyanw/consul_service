@@ -77,6 +77,7 @@ FIELD_CHECK = "check.png"
 IMG_BTN_COMEBACK = "comeback.png"
 IMG_BTN_ITS_CLEAR = "its_clear.png"
 IMG_BTN_RELOAD_PAGE = "reload_page.png"
+IMG_BTN_MAKE_APPOINT_VISIT = "make_appoint_visit.png"
 
 WEEK_DAYS = ["понеділок","вівторок","середа","четвер","п'ятниця","субота","неділя"]
 MONTHS = ["січень", "лютий", "березень", "квітень", "травень", "червень", "липень", "серпень", "вересень", "жовтень", "листопад", "грудень"]
@@ -124,9 +125,10 @@ class SlotFinder:
     
     def _is_login(self) -> bool:
             LOGGER.debug("check is login")
+            gd.scroll(-2000)
             if not gd.find_text_any(["Вітаємо", "Вітаємо.", "Вітаємо,"], 
                                 count = 2, lang="ukr", 
-                                scope=(270, 240, 540, 300)):
+                                scope=(240, 220, 540, 340)):
                 
                 LOGGER.error("not logged in – welcome banner not found")
                 return False
@@ -166,6 +168,9 @@ class SlotFinder:
             
             LOGGER.error("not is appointment for a visit")
             return False
+        
+        LOGGER.debug("yes - is page find slots")
+        gd.pause(self.slow)
         return True
         
     def i_no_robot(self, is_debug: bool = False) -> bool:
@@ -248,14 +253,15 @@ class SlotFinder:
                 _error_hook("field check consulate for myself missing", gd.take_screenshot())
                 return False
         
-        gd.human_move_diff(0, -20)
-        
+        gd.pause(self.slow)
+        #d.human_move_diff(0, -20)
+        #gd.pause(self.slow)
         pyperclip.copy(consular_service)
         gd.pause(self.fast)
         pag.hotkey('ctrl', 'v')
-        gd.pause(self.fast)
-        pag.press('enter')
         gd.pause(self.slow)
+        gd.pause(self.slow)
+        pag.press('enter')
         gd.pause(self.slow)
         gd.pause(self.slow)
         
@@ -347,13 +353,14 @@ class SlotFinder:
                         scope=(200, 500, 500, 1160)):
             
             #если месяц не найден скролим список и ищем опять
-            gd._human_move(280, 600)
-            
+            gd.human_move_diff(0, 60)
+            gd.pause(self.fast)
             gd.scroll(-100)
+            gd.pause(self.slow)
                 
             if not gd.click_text(month_in_genitive, 
                 lang="ukr", 
-                scope=(200, 500, 500, 1160)):
+                scope=(200, 500, 500, 1160), is_debug=False):
     
                 _error_hook("birthdate field number month missing", gd.take_screenshot())
                 return False
@@ -408,15 +415,21 @@ class SlotFinder:
                 return False
             
     def wait_process_find_free_slots(self) -> bool:
+        
+        LOGGER.debug("Start wait find free slots")
+        gd.pause(self.slow)
         gd.scroll(-800) 
         count = 0
         
-        while count < 10 and gd.click_text("Відбувається пошук активних", 
+        while count < 12 and None != gd.find_text("Відбувається пошук активних", 
                 lang="ukr", 
-                scope=(160, 490, 1100, 620)):
+                scope=(160, 490, 1100, 620), is_debug=False):
                 
                 LOGGER.debug(f"attempt {count}")            
                 count += 1
+                gd.pause(self.slow)
+                gd.pause(self.slow)
+                gd.pause(self.slow)
                 gd.pause(self.slow)
                 gd.pause(self.slow)
                 gd.pause(self.slow)
@@ -426,11 +439,10 @@ class SlotFinder:
         
         return False
 
-    def click_wisard_month(self) -> bool:
-        gd.scroll(800)
-    
     def select_type_show_slots_month(self):
         LOGGER.debug("select type show slots month")
+        
+        gd.click(20, 480)
         gd.scroll(800)
         
         if VISIT_CHECK_MONTH_TEMPLATE_PATH != gd.detect_image_from_frame(
@@ -512,17 +524,26 @@ class SlotFinder:
         """
         
         LOGGER.debug(f"start extract_slots_info")
-        gd.contrlScroll(300)
-        gd.contrlScroll(300)
-        gd.contrlScroll(300)
         
+        gd.click(20, 200)
+        
+        gd.contrlScroll(300)
+        gd.pause(self.slow)
+        gd.contrlScroll(300)
+        gd.pause(self.slow)
+        gd.contrlScroll(300)
+        gd.pause(self.slow)
+        gd.pause(self.slow)
         pytesseract.pytesseract.tesseract_cmd = r"C:/Program Files/Tesseract-OCR/tesseract.exe"
         
         image_bgr = gd.screen(scope = (100,180,470,1020), is_debug=is_debug, process_for_read = True)
         
         gd.contrlScroll(-300)
+        gd.pause(self.slow)
         gd.contrlScroll(-300)
+        gd.pause(self.slow)
         gd.contrlScroll(-300)
+        gd.pause(self.slow)
         
         # 1) Получаем данные OCR (каждое слово + координаты)
         #    output_type=DICT вернёт словарь со списками для каждого атрибута
@@ -704,6 +725,8 @@ class SlotFinder:
         
         month_data = self.extract_slots_info(is_debug = False)
         
+        is_found = False
+         
         for week_data in month_data:
             date_min_week_str, date_max_week_str, count_slots = week_data
             date_min_week = datetime.strptime(date_min_week_str, "%d.%m.%Y").date()
@@ -721,8 +744,9 @@ class SlotFinder:
     def find_free_slot_months(self, user: UserConfig, consulate:str, service:str) -> bool:
         
         gd.click(20, 200)
-        
+        gd.pause(self.fast)
         gd.scroll(2000)
+        gd.pause(self.fast)
         
         end_year = False
         self.select_type_show_slots_month()
@@ -835,20 +859,17 @@ class SlotFinder:
         gd.pause(self.slow)
         gd.pause(self.slow)
         
-        if not gd.click_text("Записатись на візит", 
-                             lang="ukr", 
-                             scope=(140, 300, 1200, 360)):
-            
+        if not gd.click_image(name = IMG_BTN_MAKE_APPOINT_VISIT, 
+                            confidence = 0.5,
+                            scope=(140, 280, 540, 360)):
             
             gd.reload_page()
             
             gd.pause(self.slow)
             
-            if not gd.click_text("Записатись на візит", 
-                            count_attempt_find=2,
-                            pause_attempt=4,
-                            lang="ukr", 
-                            scope=(140, 300, 1200, 360)):
+            if not gd.click_image(name = IMG_BTN_MAKE_APPOINT_VISIT, 
+                            confidence = 0.5,
+                            scope=(140, 280, 540, 360)):
             
                 _error_hook("btn visit wizard 2 not found", gd.take_screenshot())
                 return False
@@ -871,14 +892,12 @@ class SlotFinder:
                 if self.check_consulates(user.country, cons):
                     if self.check_consular_service(consular_service, user.for_myself):
                         
-                        LOGGER.debug("Start wait find free slots")
-                        if not self.wait_process_find_free_slots():
-                            _error_hook("error open page find slot", gd.take_screenshot())
-                            return False
-                        
-                        LOGGER.debug("Check is_page_find_slots")
                         if self.is_page_find_slots():
-                            LOGGER.debug("is page find slots")
+                            
+                            if not self.wait_process_find_free_slots():
+                                _error_hook("error open page find slot", gd.take_screenshot())
+                                return False
+                            
                             is_found = self.find_free_slot_months(user, cons, consular_service)
                             
                             if is_found == None:

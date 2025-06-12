@@ -968,17 +968,17 @@ def cursor_move_to(
 
 def contrlScroll(amount:int):
     time.sleep(1)
-    # Нажимаем Ctrl и удерживаем
+    
     pag.keyDown('ctrl')
-    time.sleep(0.05)
+    time.sleep(0.1)
 
-    # Прокручиваем колёсико вверх (положительное значение)
-    # Чем больше число, тем сильнее «клик» колёсика
     pag.scroll(amount)
 
-    time.sleep(0.05)
+    time.sleep(1)
     # Отпускаем Ctrl
-    pag.keyUp('ctrl') 
+    pag.keyUp('ctrl')
+    
+    time.sleep(1) 
     
 def remove_green_background(src_bgr: np.ndarray) -> np.ndarray:
     """

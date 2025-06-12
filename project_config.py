@@ -1,14 +1,26 @@
 # project_config.py
-
 from __future__ import annotations
+
+import sys
 import yaml
 from pathlib import Path
 from typing import Any, Dict
 
+def resource_path(filename: str) -> Path:
+    """
+    Возвращает абсолютный путь к ресурсу, который работает как в .py, так и в .exe (PyInstaller).
+    """
+    if hasattr(sys, "_MEIPASS"):
+        # если исполняется как .exe
+        return Path(sys._MEIPASS) / filename
+    else:
+        # обычный путь при запуске из .py
+        return Path(__file__).resolve().parent / filename
+
 # -------------------------------------------------------------------
 # 1) Определяем путь до settings.yaml (корень проекта)
 # -------------------------------------------------------------------
-_SETTINGS_PATH = Path(__file__).resolve().parent / "settings.yaml"
+_SETTINGS_PATH = resource_path("settings.yaml")
 
 # -------------------------------------------------------------------
 # 2) Загружаем YAML-данные при импорте (одно чтение)
