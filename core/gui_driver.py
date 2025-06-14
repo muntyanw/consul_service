@@ -768,7 +768,7 @@ def click_text(
     if pos:
         abs_x, abs_y = pos
         human_move_and_click(abs_x, abs_y + plus_y)
-        return True
+        return pos
 
     time.sleep(0.2)
 
@@ -802,6 +802,7 @@ def find_text(
         Смещение (left, bottom, right, top) для сужения области скриншота.
     """
 
+    LOGGER.debug(f"start find trxt: {query}")
     # Разбиваем query на слова для поиска последовательности
     query_words = query.lower().split()
     query_words = [replace_similar_chars(w) for w in query_words]

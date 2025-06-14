@@ -78,6 +78,7 @@ IMG_BTN_COMEBACK = "comeback.png"
 IMG_BTN_ITS_CLEAR = "its_clear.png"
 IMG_BTN_RELOAD_PAGE = "reload_page.png"
 IMG_BTN_MAKE_APPOINT_VISIT = "make_appoint_visit.png"
+IMG_BTN_QUEUE = "queue.png"
 
 WEEK_DAYS = ["понеділок","вівторок","середа","четвер","п'ятниця","субота","неділя"]
 MONTHS = ["січень", "лютий", "березень", "квітень", "травень", "червень", "липень", "серпень", "вересень", "жовтень", "листопад", "грудень"]
@@ -241,30 +242,38 @@ class SlotFinder:
         
         gd.scroll(-2000)
         
-        gd.pause(self.fast)
+        gd.pause(self.slow)
         #pag.press('tab')
         #pag.press('tab')
         
-        if not gd.click_text("Виберіть послугу", 
+        pos = gd.click_text("Виберіть послугу", 
                 count_attempt_find=2,
                 pause_attempt=4,
                 lang="ukr", 
-                scope=(130, 470, 390, 550)):
+                scope=(130, 470, 390, 550))
+        if not pos:
                 
                 _error_hook("field check consulate for myself missing", gd.take_screenshot())
                 return False
         
+        
         gd.pause(self.slow)
-        #d.human_move_diff(0, -20)
+        x, y = pos
+        
+        gd.pause(self.fast)
+        #gd.human_move_diff(0, -30)
         #gd.pause(self.slow)
+        LOGGER.debug(f"copy to clipboard {consular_service}")
         pyperclip.copy(consular_service)
+        gd.click(x, y)
         gd.pause(self.fast)
         pag.hotkey('ctrl', 'v')
         gd.pause(self.slow)
         gd.pause(self.slow)
+        LOGGER.debug(f"press enter")
         pag.press('enter')
-        gd.pause(self.slow)
-        gd.pause(self.slow)
+        gd.pause(self.s_slow)
+        gd.pause(self.s_slow)
         
         if for_myself:
             LOGGER.debug("find check for myself")
@@ -416,29 +425,39 @@ class SlotFinder:
                 _error_hook("gender field missing", gd.take_screenshot())
                 return False
             
-    def wait_process_find_free_slots(self) -> bool:
+    def wait_process_find_free_slots(self) -> bool|None:
         
         LOGGER.debug("Start wait find free slots")
-        gd.pause(self.slow)
+        gd.pause(self.s_slow)
         gd.scroll(-800) 
         count = 0
         
-        while count < 12 and None != gd.find_text("Відбувається пошук активних", 
+        while count < 20:
+            LOGGER.debug(f"attempt {count}")            
+            count += 1
+            
+            if gd.find_text("На жаль", 
                 lang="ukr", 
                 scope=(160, 490, 1100, 620), is_debug=False):
                 
-                LOGGER.debug(f"attempt {count}")            
-                count += 1
-                gd.pause(self.slow)
-                gd.pause(self.slow)
-                gd.pause(self.slow)
-                gd.pause(self.slow)
-                gd.pause(self.slow)
-                gd.pause(self.slow)
-        
-        if count < 10:
-            return True
-        
+                LOGGER.debug(f"No free slots - exit")
+                return None
+            
+            if gd.find_image(IMG_BTN_QUEUE, scope=(370, 720, 780, 830)):
+                LOGGER.debug(f"No free slots - exit")
+                return None
+            
+            if not gd.find_text("Відбувається пошук активних", 
+                lang="ukr", 
+                scope=(160, 490, 1100, 620), is_debug=False):
+            
+                return True
+            
+            gd.pause(self.s_slow)
+            gd.pause(self.s_slow)
+            gd.pause(self.s_slow)
+            
+               
         return False
 
     def select_type_show_slots_month(self):
@@ -626,7 +645,10 @@ class SlotFinder:
             if not gd.click_text("Показати ще", 
                 lang="ukr", 
                 scope=(170, 100, 400, 1030), is_debug=False):
-                pass
+                
+                gd.pause(self.fast)
+                gd.human_move_diff(-60,0)
+                
             else:
                 #gd.click(12, 400)
                 gd.pause(self.fast)
@@ -820,9 +842,10 @@ class SlotFinder:
                              count_attempt_find=4,
                              pause_attempt=4,
                              lang="ukr", 
-                             scope=(600, 420, 940, 520)):
+                             scope=(600, 420, 940, 720), is_debug=False):
             
             _error_hook("personal login button not found", gd.take_screenshot())
+            return False
             
         gd.pause(self.slow)
         gd.pause(self.slow)
@@ -874,11 +897,19 @@ class SlotFinder:
                              lang="ukr", 
                              scope=(560, 100, 690, 160)):
                     _error_hook("btn visit wizard not found", gd.take_screenshot())
-                    return False
+                    
+                    gd.pause(self.s_slow)
+                    gd.pause(self.s_slow)
+                    
+                    if not gd.click_text("Запис на візит", 
+                            lang="ukr", 
+                            scope=(560, 100, 690, 160)):
+                        
+                        _error_hook("btn visit wizard not found", gd.take_screenshot())
+                        return False
                 
-        gd.pause(self.slow)
-        gd.pause(self.slow)
-        gd.pause(self.slow)
+        gd.pause(self.s_slow)
+        gd.pause(self.s_slow)
         gd.pause(self.slow)
         gd.pause(self.slow)
         
@@ -889,12 +920,13 @@ class SlotFinder:
             
             gd.reload_page()
             
-            gd.pause(self.slow)
+            gd.pause(self.s_slow)
+            gd.pause(self.s_slow)
             
             if not gd.click_image(name = IMG_BTN_MAKE_APPOINT_VISIT, 
                             confidence = 0.5,
                             plus_y=-40,
-                            scope=(140, 280, 540, 360)):
+                            scope=(140, 280, 540, 360), is_debug=False):
             
                 _error_hook("btn visit wizard 2 not found", gd.take_screenshot())
                 return False
@@ -922,9 +954,20 @@ class SlotFinder:
                         
                         if self.is_page_find_slots():
                             
-                            if not self.wait_process_find_free_slots():
-                                _error_hook("error open page find slot", gd.take_screenshot())
-                                return False
+                            result_wait = self.wait_process_find_free_slots() 
+                            if result_wait == None:
+                                break
+                            
+                            if not result_wait:
+                                gd.reload_page()
+                                
+                                result_wait = self.wait_process_find_free_slots() 
+                                if result_wait == None:
+                                    break
+                            
+                                if not result_wait:
+                                    _error_hook("error open page find slot", gd.take_screenshot())
+                                    return False
                             
                             is_found = self.find_free_slot_months(user, cons, consular_service)
                             
@@ -939,11 +982,9 @@ class SlotFinder:
                     else:
                         _error_hook("check consular service failed", gd.take_screenshot())
                         return False
-                    
                 
                 else:
                     _error_hook("check_consulates failed", gd.take_screenshot())
                     return False
-
       
         return is_found
