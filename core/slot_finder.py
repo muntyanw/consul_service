@@ -94,9 +94,10 @@ class SlotFinder:
     
     slots_found = []
 
-    def __init__(self, fast_delay: float = 0.4, slow_delay: float = 1.2):
+    def __init__(self, fast_delay: float = 0.4, slow_delay: float = 1.2, s_slow_delay: float = 4.8):
         self.fast = fast_delay  # small waits between field fills
         self.slow = slow_delay  # waits for page loads
+        self.s_slow = s_slow_delay  # waits for page loads
 
     # ------------------------------------------------------------------
     def work(self, user: UserConfig) -> bool:  # noqa: C901 (complexity OK here)
@@ -107,10 +108,6 @@ class SlotFinder:
             
             if not self._login(user):
                 return False
-            
-            if not self._open_visit_wizard():
-                #return False
-                pass
             
             return self._find_slots(user)
         
@@ -125,10 +122,13 @@ class SlotFinder:
     
     def _is_login(self) -> bool:
             LOGGER.debug("check is login")
-            gd.scroll(-2000)
+            gd.scroll(2000)
+            gd.pause(self.slow)
             if not gd.find_text_any(["Вітаємо", "Вітаємо.", "Вітаємо,"], 
-                                count = 2, lang="ukr", 
-                                scope=(240, 220, 540, 340)):
+                                count = 2, 
+                                pause_attempt_sec=4,
+                                lang="ukr", 
+                                scope=(240, 220, 540, 340), is_debug=False):
                 
                 LOGGER.error("not logged in – welcome banner not found")
                 return False
@@ -148,6 +148,7 @@ class SlotFinder:
     
     def is_appointment_visit(self):
         gd.scroll(-800)
+        gd.pause(self.slow)
         LOGGER.debug("check is appointment for a visit")
         if not gd.find_text_any(["Запис на візит"], 
                             count = 3, lang="ukr", 
@@ -173,13 +174,13 @@ class SlotFinder:
         gd.pause(self.slow)
         return True
         
-    def i_no_robot(self, is_debug: bool = False) -> bool:
+    def i_no_robot(self, count_attempt_find:int = 4, is_debug: bool = False) -> bool:
         gd.pause(self.slow)
-        if not gd.click_text(["Я не", "я неробот"], 
-            count_attempt_find=4,
+        if not gd.click_text(["Я не", "я неробот", "янеробот"], 
+            count_attempt_find=count_attempt_find,
             pause_attempt = 4,
             lang="ukr", 
-            scope=(730, 400, 1300, 790), is_debug=is_debug):
+            scope=(730, 554, 1300, 790), is_debug=is_debug):
             
                 _error_hook("field i_no_robot missing", gd.take_screenshot())
                 return False
@@ -338,8 +339,9 @@ class SlotFinder:
         gd.pause(self.fast)
         
         if not gd.click_text("місяць", 
+                        count_attempt_find=2,
                         lang="ukr", 
-                        scope=(160, 500, 400, 700)):
+                        scope=(260, 520, 400, 570), is_debug=False):
             _error_hook("birthdate field month missing", gd.take_screenshot())
             return False
         
@@ -572,14 +574,20 @@ class SlotFinder:
                 gd.pause(self.fast)
                 gd.scroll(-3000)
        
-                if not gd.click_image(IMG_BTN_CONFIRM, scope=(376, 720, 640, 900), plus_y=20):
+                if not gd.click_image(IMG_BTN_CONFIRM, confidence=0.6, scope=(376, 720, 640, 900), plus_y=20):
                         _error_hook("button CONFIRM slot missing", gd.take_screenshot())
                         return None
                     
                 gd.pause(self.slow)
                 
-                if not self.i_no_robot(is_debug=False):
-                    return None
+                if not self.i_no_robot(count_attempt_find=1, is_debug=False):
+                    
+                    if not gd.click_image(IMG_BTN_CONFIRM, confidence=0.6, scope=(376, 720, 640, 900), plus_y=20):
+                        _error_hook("button CONFIRM slot missing", gd.take_screenshot())
+                        return None
+                    
+                    if not self.i_no_robot(is_debug=False):
+                        return None
                 
                 gd.pause(self.slow)
                 
@@ -757,7 +765,7 @@ class SlotFinder:
         current_month_number = MONTHS.index(current_month_name) + 1
         
         is_found = False
-        while not is_found or end_year:
+        while not is_found and not end_year:
             
             is_found = self.find_free_slot_month(user, consulate, service)
             
@@ -766,14 +774,19 @@ class SlotFinder:
             
             self.select_type_show_slots_month()
             
-            #slider months to right
+            gd.pause(self.s_slow)
+            
             gd.click(1290, 640)
+            
+            gd.pause(self.s_slow)
+            
+            LOGGER.debug(f"end_year: {end_year}")
+            LOGGER.debug(f"Select next month: {current_month_name}")
+            
+            gd.pause(self.slow)
             
             current_month_number += 1
             current_month_name = MONTHS[current_month_number - 1]
-            
-            #грудня на сайті нема
-            end_year = (current_month_number == 12)
             
             if not end_year:
                 if not gd.click_text(current_month_name, 
@@ -781,8 +794,14 @@ class SlotFinder:
                     scope=(300, 500, 1000, 640), is_debug=False):
                 
                     _error_hook(f"not find button month {current_month_name}", gd.take_screenshot())
+                    
+            gd.pause(self.s_slow)
+            gd.pause(self.s_slow)
             
+            #грудня на сайті нема
+            end_year = (current_month_number == 11)
             
+            gd.pause(self.s_slow)
             
         return is_found
         
@@ -798,11 +817,14 @@ class SlotFinder:
         LOGGER.debug("login step – personal key")
         
         if not gd.click_text("Особистий ключ", 
+                             count_attempt_find=4,
+                             pause_attempt=4,
                              lang="ukr", 
                              scope=(600, 420, 940, 520)):
             
             _error_hook("personal login button not found", gd.take_screenshot())
             
+        gd.pause(self.slow)
         gd.pause(self.slow)
         
         if not gd.click_text("Оберіть ключ на своєму носієві", 
@@ -811,22 +833,22 @@ class SlotFinder:
             
             _error_hook("personal select key button not found", gd.take_screenshot())
         
-        gd.pause(self.fast)
+        gd.pause(self.slow)
         LOGGER.debug(f"user.key_path: {user.key_path}")
         pyperclip.copy(user.key_path)
-        gd.pause(self.fast)
+        gd.pause(self.slow)
         pag.hotkey('ctrl', 'v')
-        gd.pause(self.fast)
+        gd.pause(self.slow)
         pag.press('enter')
-        gd.pause(self.fast)
+        gd.pause(self.slow)
                 
         LOGGER.debug(f"paste pass")
         pyperclip.copy(user.key_password)
-        gd.pause(self.fast)
+        gd.pause(self.slow)
         pag.hotkey('ctrl', 'v')
-        gd.pause(self.fast)
+        gd.pause(self.slow)
         pag.press('enter')
-        gd.pause(self.fast)
+        gd.pause(self.slow)
         
         gd.pause(self.slow)
         gd.pause(self.slow)
@@ -842,7 +864,7 @@ class SlotFinder:
         return False
 
     # ------------------------------------------------------------------
-    def _open_visit_wizard(self) -> bool:
+    def open_visit_wizard(self) -> bool:
         
         LOGGER.debug("open visit wizard")
         
@@ -858,10 +880,12 @@ class SlotFinder:
         gd.pause(self.slow)
         gd.pause(self.slow)
         gd.pause(self.slow)
+        gd.pause(self.slow)
         
         if not gd.click_image(name = IMG_BTN_MAKE_APPOINT_VISIT, 
                             confidence = 0.5,
-                            scope=(140, 280, 540, 360)):
+                            plus_y=-40,
+                            scope=(140, 280, 540, 360), is_debug=False):
             
             gd.reload_page()
             
@@ -869,6 +893,7 @@ class SlotFinder:
             
             if not gd.click_image(name = IMG_BTN_MAKE_APPOINT_VISIT, 
                             confidence = 0.5,
+                            plus_y=-40,
                             scope=(140, 280, 540, 360)):
             
                 _error_hook("btn visit wizard 2 not found", gd.take_screenshot())
@@ -886,6 +911,9 @@ class SlotFinder:
         
         for consular_service in user.services:
             for cons in user.consulates:
+                
+                if not self.open_visit_wizard():
+                    return False
                 
                 self.fill_data_personal(user)
                 

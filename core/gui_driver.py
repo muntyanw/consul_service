@@ -272,7 +272,7 @@ def find_image(name: str, timeout: float = 8.0, confidence: float = 0.7,
 
     deadline = time.perf_counter() + timeout
     
-    LOGGER.debug("Start locate image")
+    LOGGER.debug(f"Start locate image {name}")
     
     while time.perf_counter() < deadline:
         
@@ -281,13 +281,13 @@ def find_image(name: str, timeout: float = 8.0, confidence: float = 0.7,
         else:
             pos = _locate_multiscale(path, confidence, scope=scope, is_debug=is_debug)
             
-        LOGGER.debug(f"pos: {pos}")
         if pos:
-            LOGGER.debug("return pos image")
+            LOGGER.debug(f"return image: {name} pos: {pos}")
             abs_x = MON_X + pos[0]
             abs_y = MON_Y + pos[1]
             return (abs_x, abs_y) 
 
+    LOGGER.debug(f"image {name} not found")
     return False
 
 def click_image(name: str, timeout: float = 8.0, confidence: float = 0.7,
@@ -304,6 +304,7 @@ def click_image(name: str, timeout: float = 8.0, confidence: float = 0.7,
     if result_find:
         abs_x, abs_y = result_find
         if abs_x is not None and abs_y is not None:
+            
             human_move_and_click(abs_x, abs_y + plus_y)
             time.sleep(0.1)
             return True
@@ -513,6 +514,8 @@ def _human_move(x: int, y: int, duration: Tuple[float, float] = (0.1, 0.2)) -> N
     Передать абсолютные глобальные координаты (x, y) и выполнить плавное движение
     “по-человечески”. Используется Bezier-кривая + небольшие случайные паузы.
     """
+    LOGGER.debug(f"Start human move to x: {x}, y: {y}")
+    
     cx, cy = pag.position()  # текущая абсолютная позиция мыши
 
     # Точки для кривой Безье: старт → 2 случайные опоры → цель
@@ -536,6 +539,8 @@ def human_move_and_click(x: int, y: int, duration: Tuple[float, float] = (0.4, 0
     “по-человечески” + клик. Используется Bezier-кривая + небольшие случайные паузы.
     """
     _human_move(x, y, duration)
+    
+    LOGGER.debug("click")
     pag.click()
 
 def human_move(x: int, y: int, duration: Tuple[float, float] = (0.4, 0.9)):
@@ -817,6 +822,8 @@ def find_text(
         )
 
         texts = [t.strip().lower() for t in data["text"]]
+        
+        LOGGER.debug(f"OCR texts: {[w for w in texts if w != ""]}")
 
         n_boxes = len(texts)
 
@@ -927,7 +934,7 @@ def find_text_any(
                 normalized_window = [replace_similar_chars(w) for w in window]
 
                 # 5.3) Сравниваем через fuzzy (≥70% или порог внутри arrays_fuzzy_equal)
-                if arrays_fuzzy_equal(normalized_window, normalized_query):
+                if arrays_fuzzy_equal_as_one_str(normalized_window, normalized_query):
                     # 6) Вычисляем bounding box для всей последовательности
                     x_left = min(int(data["left"][j]) for j in range(i, i + n_words))
                     y_top = min(int(data["top"][j]) for j in range(i, i + n_words))
@@ -1147,5 +1154,5 @@ def find_first_free_slot_in_day_week(scope: tuple[int,int,int,int],
 
 def reload_page():
     LOGGER.debug("reload page")
-    click(94,40)
+    click(94,46)
     pause(2)

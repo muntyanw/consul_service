@@ -21,7 +21,7 @@ Calling ``setup_logger(__name__)`` many times is safe – существующи
 очищаются, повторной конфигурации не будет.
 """
 from __future__ import annotations
-
+import sys
 import logging
 import os
 from logging.handlers import RotatingFileHandler
@@ -29,7 +29,20 @@ from pathlib import Path
 from typing import Final
 from project_config import LOG_LEVEL
 
-__all__ = ["setup_logger"]
+def get_log_path() -> Path:
+    if getattr(sys, 'frozen', False):  # если запущен из .exe
+        base_dir = Path(sys.executable).parent
+    else:
+        base_dir = Path(__file__).resolve().parent.parent  # каталог проекта в режиме разработки
+
+    log_file = os.getenv("LOG_FILE", "app.log")  # имя файла лога по умолчанию
+    log_path = Path(log_file)
+
+    if not log_path.is_absolute():
+        log_path = base_dir / log_path
+
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    return log_path
 
 
 def setup_logger(name: str) -> logging.Logger:  # noqa: D401 – imperative style
@@ -53,9 +66,7 @@ def setup_logger(name: str) -> logging.Logger:  # noqa: D401 – imperative styl
     logger.addHandler(console)
 
     # --- Rotating file handler ---------------------------------------
-    raw_path: str = os.getenv("LOG_FILE", "data/app.log")
-    base_dir: Path = Path(__file__).resolve().parent.parent  # project root
-    log_path: Path = Path(raw_path) if Path(raw_path).is_absolute() else base_dir / raw_path
+    log_path = get_log_path()
     log_path.parent.mkdir(parents=True, exist_ok=True)
 
     file_handler = RotatingFileHandler(
