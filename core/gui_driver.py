@@ -46,6 +46,11 @@ from project_config import (LOG_LEVEL, TEMPLATE_DIR,
 from pytesseract import Output
 import logging
 
+import win32gui
+import win32con
+import win32api
+import threading
+
 LOGGER = setup_logger(__name__)
 pag.FAILSAFE = True  # оставить возможность «движения мыши в угол для экстренной остановки»
 
@@ -294,18 +299,20 @@ def click_image(name: str, timeout: float = 8.0, confidence: float = 0.7,
                 scope: tuple[int, int, int, int] = None,
                 plus_y: int = 0,
                 is_debug: bool = False,
-                multiscale: bool = False) -> bool:
+                multiscale: bool = False,
+                count_click: int = 1) -> bool:
     """
     Найти PNG-шаблон на экране (в пределах целевого монитора) и кликнуть его центр.
     Возвращает True, если кликнули, False если не найдено за timeout секунд.
     """
-    LOGGER.debug("Start find image")
+    LOGGER.debug(f"Start find image {name}")
     result_find = find_image(name, timeout, confidence, scope, is_debug, multiscale)
     if result_find:
+        LOGGER.debug(f"Foud image {name}")
         abs_x, abs_y = result_find
         if abs_x is not None and abs_y is not None:
             
-            human_move_and_click(abs_x, abs_y + plus_y)
+            human_move_and_click(abs_x, abs_y + plus_y, count_click=count_click)
             time.sleep(0.1)
             return True
         
@@ -406,10 +413,10 @@ def _locate(template_path: Path, confidence: float,
     res = cv2.matchTemplate(scr_bgr, templ, cv2.TM_CCOEFF_NORMED)
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
     
-    LOGGER.debug(f"max_val: {max_val}, confidence: {confidence}")
+    #LOGGER.debug(f"max_val: {max_val}, confidence: {confidence}")
     
     if max_val < confidence or max_loc is None:
-        LOGGER.debug("image not found")
+        #LOGGER.debug("image not found")
         return None
     
     y_loc, x_loc = max_loc  # top-left внутри локальной (0..MON_W,0..MON_H)
@@ -533,15 +540,78 @@ def _human_move(x: int, y: int, duration: Tuple[float, float] = (0.1, 0.2)) -> N
 
     pag.moveTo(x, y, duration=random.uniform(*duration))
 
-def human_move_and_click(x: int, y: int, duration: Tuple[float, float] = (0.4, 0.9)) -> None:
+def draw_click_circle(x, y, radius=20, duration=0.2):
+    class_name = "ClickCircleClass"
+
+    def wnd_proc(hwnd, msg, wparam, lparam):
+        if msg == win32con.WM_PAINT:
+            hdc, ps = win32gui.BeginPaint(hwnd)
+            brush = win32gui.CreateSolidBrush(win32api.RGB(255, 0, 0))
+            win32gui.SelectObject(hdc, brush)
+            win32gui.Ellipse(hdc, 0, 0, radius * 2, radius * 2)
+            win32gui.EndPaint(hwnd, ps)
+            return 0
+        return win32gui.DefWindowProc(hwnd, msg, wparam, lparam)
+
+    hInstance = win32api.GetModuleHandle(None)
+    wnd_class = win32gui.WNDCLASS()
+    wnd_class.lpfnWndProc = wnd_proc
+    wnd_class.lpszClassName = class_name
+    wnd_class.hInstance = hInstance
+    wnd_class.hCursor = win32gui.LoadCursor(None, win32con.IDC_ARROW)
+    wnd_class.hbrBackground = win32con.COLOR_WINDOW + 1
+    wnd_class.style = win32con.CS_HREDRAW | win32con.CS_VREDRAW
+
+    try:
+        win32gui.RegisterClass(wnd_class)
+    except win32gui.error:
+        pass  # Класс уже зарегистрирован
+
+    hwnd = win32gui.CreateWindowEx(
+        win32con.WS_EX_LAYERED | win32con.WS_EX_TOPMOST | win32con.WS_EX_TOOLWINDOW,
+        class_name,
+        None,
+        win32con.WS_POPUP,
+        x - radius, y - radius,
+        radius * 2, radius * 2,
+        None, None, hInstance, None
+    )
+
+    win32gui.SetLayeredWindowAttributes(hwnd, 0, 180, win32con.LWA_ALPHA)
+    win32gui.ShowWindow(hwnd, win32con.SW_SHOW)
+    win32gui.UpdateWindow(hwnd)
+
+    # Ждём duration секунд, потом закрываем окно
+    time.sleep(duration)
+    win32gui.DestroyWindow(hwnd)
+    
+def human_move_and_click(x: int, y: int, duration: Tuple[float, float] = (0.4, 0.9),
+                         count_click: int = 1) -> None:
     """
     Передать абсолютные глобальные координаты (x, y) и выполнить плавное движение
     “по-человечески” + клик. Используется Bezier-кривая + небольшие случайные паузы.
     """
     _human_move(x, y, duration)
     
-    LOGGER.debug("click")
-    pag.click()
+    for i in range(0, count_click, 1):
+        LOGGER.debug(f"click x: {x} y: {y}")
+        draw_click_circle(x,y)
+        pag.click()
+        pause(0.4)
+        
+def human_move_and_click_diff(x: int, y: int, duration: Tuple[float, float] = (0.4, 0.9),
+                         count_click: int = 1) -> None:
+    """
+    Передать абсолютные глобальные координаты (x, y) и выполнить плавное движение
+    “по-человечески” + клик. Используется Bezier-кривая + небольшие случайные паузы.
+    """
+    x, y = human_move_diff(x, y, duration)
+    
+    for i in range(0, count_click, 1):
+        LOGGER.debug(f"click x: {x} y: {y}")
+        draw_click_circle(x,y)
+        pag.click()
+        pause(0.4)
 
 def human_move(x: int, y: int, duration: Tuple[float, float] = (0.4, 0.9)):
     x = MON_X + x
@@ -552,10 +622,15 @@ def human_move_diff(diff_x: int, diff_y: int, duration: Tuple[float, float] = (0
     x = x + diff_x
     y = y + diff_y
     _human_move(x, y, duration)
+    return x, y
     
 def click(x: int, y: int, duration: Tuple[float, float] = (0.4, 0.9)):
     x = MON_X + x
     human_move_and_click(x, y) 
+    
+def click_diff(x: int, y: int, duration: Tuple[float, float] = (0.4, 0.9)):
+    x = MON_X + x
+    human_move_and_click_diff(x, y)
     
 def _bezier_point(pts: list[Tuple[int, int]], t: float) -> Tuple[int, int]:
     """
@@ -751,7 +826,7 @@ def click_text(
     padding : tuple[int, int, int, int], optional
         Смещение (left, bottom, right, top) для сужения области скриншота.
     """
-    LOGGER.debug(f"find and click {query}")
+    LOGGER.debug(f"find and click {query},scope: {scope}")
     
     pos = None
     
@@ -802,7 +877,7 @@ def find_text(
         Смещение (left, bottom, right, top) для сужения области скриншота.
     """
 
-    LOGGER.debug(f"start find trxt: {query}")
+    LOGGER.debug(f"start find text: {query}")
     # Разбиваем query на слова для поиска последовательности
     query_words = query.lower().split()
     query_words = [replace_similar_chars(w) for w in query_words]

@@ -43,6 +43,7 @@ from babel.dates import format_date
 
 from utils.logger import setup_logger
 from core.free_slot_db import FreeSlotRegistry
+from core.gui_driver import find_text, pause
 
 
 try:
@@ -187,9 +188,12 @@ class SlotFinder:
                 return False
         return True
         
-    def check_consulates(self, country: str, cons: str) -> bool:
+    def check_consulates(self, country: str, cons: str) -> bool|None:
         
         LOGGER.debug(f"Start fill consulates {country}, {cons}")
+        
+        if not self.is_page_select_place_visit():
+            return None
         
         gd.scroll(-800)
          
@@ -257,18 +261,17 @@ class SlotFinder:
                 return False
         
         
-        gd.pause(self.slow)
-        x, y = pos
+        #gd.pause(self.slow)
+        #x, y = pos
         
         gd.pause(self.fast)
         #gd.human_move_diff(0, -30)
         #gd.pause(self.slow)
         LOGGER.debug(f"copy to clipboard {consular_service}")
         pyperclip.copy(consular_service)
-        gd.click(x, y)
+        #gd.click(x, y)
         gd.pause(self.fast)
         pag.hotkey('ctrl', 'v')
-        gd.pause(self.slow)
         gd.pause(self.slow)
         LOGGER.debug(f"press enter")
         pag.press('enter')
@@ -324,7 +327,8 @@ class SlotFinder:
         gd.pause(self.slow)
         gd.scroll(-2000)  
         gd.pause(self.fast)
-            
+        gd.click(20,200)
+        
         if not gd.click_text("день", 
                             lang="ukr",
                             count_attempt_find=4,
@@ -418,14 +422,170 @@ class SlotFinder:
         return True
       
     def is_not_free_time(self) -> bool:
-        gd.scroll(-800) 
+        gd.scroll(-2000) 
         if not gd.click_text("зараз немає вільного часу", 
                 lang="ukr", 
                 scope=(160, 490, 1100, 620)):
                 _error_hook("gender field missing", gd.take_screenshot())
                 return False
             
-    def wait_process_find_free_slots(self) -> bool|None:
+    def is_page_select_place_visit(self):
+        LOGGER.error("check is place visit from select country")
+        gd.pause(self.fast)
+        gd.click(20, 200)
+        gd.scroll(-2000)
+        gd.pause(self.slow)
+        if not gd.find_text("Місце візиту", 
+                                count = 2, 
+                                pause_attempt=4,
+                                lang="ukr", 
+                                scope=(160, 210, 500, 510), is_debug=False):
+                
+                LOGGER.error("is not place visit from select country")
+                return False
+            
+        return True
+    
+    def is_page_select_service(self):
+        LOGGER.error("check is page select service")
+        gd.scroll(-2000)
+        if not gd.find_text("Консульська послуга", 
+                                count = 2, 
+                                pause_attempt=4,
+                                lang="ukr", 
+                                scope=(160, 410, 730, 510), is_debug=False):
+                
+                LOGGER.error("is not place visit from select country")
+                return False
+            
+        return True
+    
+    def back_to_select_country(self, country: str) -> bool:
+        
+        LOGGER.debug(f"back_to_select_country")
+        
+        gd.scroll(2000)
+        
+        gd.pause(self.fast)
+        
+        result = False
+        
+        if not gd.click_image(IMG_BTN_COMEBACK, scope=(175, 740, 380, 900), confidence=0.5,
+                              count_click=1,
+                              plus_y=30,
+                              is_debug=False):
+            
+            LOGGER.debug(f"button comback missing")
+            gd.scroll(2000)
+            
+            gd.pause(self.s_slow)
+            gd.pause(self.s_slow)
+            gd.click_image(IMG_BTN_COMEBACK, scope=(175, 740, 380, 900), confidence=0.5,
+                                count_click=1,
+                                plus_y=30,
+                                is_debug=False)
+            
+        gd.pause(self.s_slow)
+        gd.pause(self.s_slow)
+        gd.pause(self.s_slow)
+        if not self.is_page_select_place_visit():
+            gd.pause(self.fast)
+            gd.scroll(2000)
+            
+            gd.pause(self.s_slow)
+            if not gd.click_image(IMG_BTN_COMEBACK, scope=(175, 740, 380, 900), confidence=0.5, 
+                                  count_click=1,
+                                  plus_y=30,
+                                  is_debug=False):
+                LOGGER.debug(f"button comback missing")
+                return False
+            
+        gd.pause(self.s_slow)
+        gd.pause(self.s_slow)
+        if not self.is_page_select_place_visit():
+            
+            gd.scroll(2000)
+            if not gd.click_image(IMG_BTN_COMEBACK, scope=(175, 740, 380, 900), confidence=0.5):
+                LOGGER.debug(f"button comback missing")
+                
+            gd.pause(self.slow)
+            if not self.is_page_select_place_visit():
+                _error_hook("back_to_select_country fault", gd.take_screenshot())
+                return False
+
+        gd.scroll(-2000)
+            
+        gd.pause(self.s_slow)
+        pos = gd.click_text(country, 
+            count_attempt_find=2,
+            pause_attempt=4,
+            lang="ukr", 
+            scope=(130, 550, 340, 610), is_debug=False)
+        
+        gd.pause(self.fast)
+        pag.press('delete')
+        gd.pause(self.fast)
+        gd.click_diff(-200,200)
+        gd.pause(self.fast)
+        
+        gd.scroll(2000)
+        
+        return True
+            
+            
+    def back_to_select_service(self, service: str) -> bool:
+        
+        LOGGER.debug(f"No free slots - back_to_select_service")
+        gd.scroll(-2000)                    
+        if not gd.click_image(IMG_BTN_COMEBACK, scope=(175, 600, 380, 820), confidence=0.5, is_debug=False):
+            
+            LOGGER.debug(f"button comback missing")
+            
+            gd.scroll(-2000)                    
+            if not gd.click_image(IMG_BTN_COMEBACK, scope=(175, 600, 380, 820), confidence=0.5, is_debug=False):
+                
+                LOGGER.debug(f"button comback missing")
+                
+                return False
+            
+        gd.pause(self.slow)
+        if not self.is_page_select_service():
+            
+            if not gd.click_image(IMG_BTN_COMEBACK, scope=(175, 600, 380, 780), confidence=0.5, is_debug=False):
+                LOGGER.debug(f"button comback missing")
+                
+            gd.pause(self.slow)
+            if not self.is_page_select_service():
+                _error_hook("back_to_select_service fault", gd.take_screenshot())
+                return False
+        
+        gd.pause(self.s_slow)
+        pos = gd.click_text(service, 
+            count_attempt_find=2,
+            pause_attempt=4,
+            lang="ukr", 
+            scope=(130, 470, 390, 550))
+        
+        gd.pause(self.fast)
+        LOGGER.debug(f"delete")
+        pag.press('delete')
+        gd.pause(self.fast)
+        gd.click_diff(-200,200)
+        gd.pause(self.fast)
+        
+        return True
+        
+        
+    def to_back(self, country:str, service: str) -> bool:
+        
+        if self.back_to_select_service(service):
+        
+            return self.back_to_select_country(country)
+        else:
+            return False
+        
+            
+    def wait_process_find_free_slots(self, country:str, service:str) -> bool|None:
         
         LOGGER.debug("Start wait find free slots")
         gd.pause(self.s_slow)
@@ -440,17 +600,20 @@ class SlotFinder:
                 lang="ukr", 
                 scope=(160, 490, 1100, 620), is_debug=False):
                 
-                LOGGER.debug(f"No free slots - exit")
-                return None
-            
-            if gd.find_image(IMG_BTN_QUEUE, scope=(370, 720, 780, 830)):
-                LOGGER.debug(f"No free slots - exit")
+                self.to_back(country, service)
                 return None
             
             if not gd.find_text("Відбувається пошук активних", 
                 lang="ukr", 
                 scope=(160, 490, 1100, 620), is_debug=False):
-            
+                
+                if gd.find_text("На жаль", 
+                    lang="ukr", 
+                    scope=(160, 490, 1100, 620), is_debug=False):
+                    
+                    self.to_back(country, service)
+                    return None
+                
                 return True
             
             gd.pause(self.s_slow)
@@ -941,50 +1104,50 @@ class SlotFinder:
     # ------------------------------------------------------------------
     def _find_slots(self, user: UserConfig) -> bool:
         
-        for consular_service in user.services:
-            for cons in user.consulates:
-                
-                if not self.open_visit_wizard():
+        if not self.open_visit_wizard():
                     return False
                 
-                self.fill_data_personal(user)
+        self.fill_data_personal(user)
+        
+        for consular_service in user.services:
+            for cons in user.consulates:
                 
                 if self.check_consulates(user.country, cons):
                     if self.check_consular_service(consular_service, user.for_myself):
                         
                         if self.is_page_find_slots():
                             
-                            result_wait = self.wait_process_find_free_slots() 
+                            result_wait = self.wait_process_find_free_slots(user.country, consular_service) 
                             if result_wait == None:
                                 break
                             
                             if not result_wait:
                                 gd.reload_page()
                                 
-                                result_wait = self.wait_process_find_free_slots() 
+                                result_wait = self.wait_process_find_free_slots(user.country, consular_service) 
                                 if result_wait == None:
                                     break
                             
                                 if not result_wait:
                                     _error_hook("error open page find slot", gd.take_screenshot())
-                                    return False
+                                    break
                             
                             is_found = self.find_free_slot_months(user, cons, consular_service)
                             
                             if is_found == None:
                                 LOGGER.debug("find_free_slot_months exit with error")
-                                return None
+                                break
                             
                         else:
                             _error_hook("open page find slots failed", gd.take_screenshot())
-                            return False
+                            break
                             
                     else:
                         _error_hook("check consular service failed", gd.take_screenshot())
-                        return False
+                        break
                 
                 else:
                     _error_hook("check_consulates failed", gd.take_screenshot())
-                    return False
+                    break
       
         return is_found

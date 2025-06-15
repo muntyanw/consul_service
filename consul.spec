@@ -5,8 +5,16 @@ a = Analysis(
     ['consul.py'],
     pathex=[],
     binaries=[],
-    datas=[('settings.yaml', '.'), ('project_config.py', '.')],
-    hiddenimports=[],
+    datas=[
+        ('settings.yaml', '.'),
+        ('project_config.py', '.')
+    ],
+    hiddenimports=[
+        'win32gui',
+        'win32api',
+        'win32con',
+        'win32com.client',
+    ],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
