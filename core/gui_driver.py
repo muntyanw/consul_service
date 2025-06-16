@@ -50,6 +50,7 @@ import win32gui
 import win32con
 import win32api
 import threading
+import win32process
 
 LOGGER = setup_logger(__name__)
 pag.FAILSAFE = True  # оставить возможность «движения мыши в угол для экстренной остановки»
@@ -183,6 +184,7 @@ def launch_chrome(profile_dir: Path, url: str = "https://e-consul.gov.ua/message
         "--start-maximized",
         #f"--window-size={width},{height}",
         #f"--window-position={offset_x},{offset_y}",
+        #f"--force-page-scale-factor=1",
         url,
     ]
     LOGGER.debug("Run Chrome at %dx%d+%d+%d: %s", width, height, offset_x, offset_y, cmd)
@@ -1232,3 +1234,44 @@ def reload_page():
     LOGGER.debug("reload page")
     click(94,46)
     pause(2)
+
+
+def get_current_layout() -> int:
+    """
+    Получает текущий язык ввода активного окна.
+    Возвращает low word layout code (например, 0x409 для EN-US).
+    """
+    hwnd = win32gui.GetForegroundWindow()
+    thread_id, _ = win32process.GetWindowThreadProcessId(hwnd)
+    layout = win32api.GetKeyboardLayout(thread_id)
+    return layout & 0xFFFF
+
+
+def ensure_layout(target: str = "en", max_attempts: int = 5) -> bool:
+    """
+    Гарантирует, что раскладка клавиатуры установлена в нужный язык.
+    Поддерживает 'en' (английский) и 'ru' (русский).
+    Возвращает True, если удалось установить раскладку, иначе False.
+    """
+    lang_codes = {
+        "en": 0x0409,  # English (US)
+        "ru": 0x0419,  # Russian
+        # можно добавить другие
+    }
+
+    desired_code = lang_codes.get(target.lower())
+    if not desired_code:
+        raise ValueError(f"Unsupported language code: {target}")
+
+    for attempt in range(max_attempts):
+        current = get_current_layout()
+        if current == desired_code:
+            return True
+
+        # Переключаем Alt+Shift
+        pag.keyDown('altleft')
+        pag.press('shift')
+        pag.keyUp('altleft')
+        time.sleep(0.3)
+
+    return get_current_layout() == desired_code

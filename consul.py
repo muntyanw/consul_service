@@ -8,7 +8,7 @@ from collections import deque
 from pathlib import Path
 from typing import Dict, Optional
 
-from core.gui_driver import chrome_session
+from core.gui_driver import chrome_session, ensure_layout
 from core.slot_finder import SlotFinder, free_slots
 from bot_io.config_watcher import ChangeEvent, ChangeKind, ConfigWatcher
 from bot_io.yaml_loader import UserConfig, YAMLLoader, ConfigError
@@ -85,6 +85,12 @@ def _install_signal_handlers() -> None:
         signal.signal(s, _sig_handler)
 
 def main() -> None:
+    
+    if ensure_layout("en"):
+        LOGGER.debug("✅ Раскладка успешно переключена на EN")
+    else:
+        LOGGER.debug("❌ Не удалось переключить раскладку")
+    
     users_dir = USERS_DIR
     keys_base = KEYS_DIR
 
