@@ -280,6 +280,8 @@ class YAMLLoader:
         - status="booked": добавляет дату и время в список booked
         - status="unavailable": записывает статус и comment
         """
+        
+        LOGGER.debug(f"record_service_status {status}")
         base = user.source_file.parent
         path = base / user.source_file.name
         raw: dict = yaml.safe_load(path.read_text(encoding="utf-8")) or {}

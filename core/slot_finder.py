@@ -25,7 +25,7 @@ import datetime as _dt
 from datetime import date, datetime, timedelta
 import time
 from pathlib import Path
-from typing import Sequence
+from typing import Sequence, Literal
 import pytesseract
 
 import pyautogui as pag
@@ -111,6 +111,8 @@ class SlotFinder:
                 return False
             
             _next_user(user.alias)
+            
+            LOGGER.debug(f"user: {user}")
             
             if STOP_EVT.is_set():
                 return False
@@ -223,8 +225,8 @@ class SlotFinder:
         if not self.is_page_select_place_visit():
             return None
         
-        gd.scroll(-800)
-         
+        gd.scroll(-2000)
+
         if not gd.click_text("Країна", 
             count_attempt_find=2,
             lang="ukr", 
@@ -257,14 +259,15 @@ class SlotFinder:
         
         gd.pause(self.slow)
         
+        if not gd.click_image(IMG_BTN_DALI, scope=(376, 720, 560, 900), plus_y= 20):
+            
+            _error_hook("button image Next after type cons missing", gd.take_screenshot())
+            return False
+        
         if not self.is_appointment_visit():
-            gd.scroll(-800)
-            if not gd.click_image(IMG_BTN_DALI, scope=(376, 720, 560, 900), plus_y= 20):
-                _error_hook("button image Next after type cons missing", gd.take_screenshot())
-                
-                gd.pause(self.slow)
-                 
-                return False
+            
+            self.clear_country(country)
+            return self.check_consulates(country, cons)
         
         return True
         
@@ -541,6 +544,12 @@ class SlotFinder:
                 _error_hook("back_to_select_country fault", gd.take_screenshot())
                 return False
 
+        self.clear_country(country)
+        
+        return True
+    
+    def clear_country(self, country):
+        
         gd.scroll(-2000)
             
         gd.pause(self.s_slow)
@@ -558,7 +567,6 @@ class SlotFinder:
         
         gd.scroll(2000)
         
-        return True
             
             
     def back_to_select_service(self, service: str) -> bool:
@@ -1089,7 +1097,30 @@ class SlotFinder:
         _error_hook("Error login", gd.take_screenshot())
         return False
 
-    # ------------------------------------------------------------------
+    def wait_process_check(self) -> bool|None:
+        
+        LOGGER.debug("Start wait check")
+        gd.scroll(-2000) 
+        
+        count = 0
+        
+        while count < 20:
+            LOGGER.debug(f"attempt {count}")            
+            count += 1
+            
+            if not gd.find_text("Зачекайте", 
+                lang="ukr", 
+                scope=(160, 200, 600, 620), is_debug=False):
+                
+                return True
+            
+            gd.pause(self.s_slow)
+            gd.pause(self.s_slow)
+            gd.pause(self.s_slow)
+            
+               
+        return False
+    
     def open_visit_wizard(self) -> bool:
         
         LOGGER.debug("open visit wizard")
@@ -1113,8 +1144,9 @@ class SlotFinder:
                 
         gd.pause(self.s_slow)
         gd.pause(self.s_slow)
-        gd.pause(self.slow)
-        gd.pause(self.slow)
+        
+        if not self.wait_process_check():
+            return False
         
         if not gd.click_image(name = IMG_BTN_MAKE_APPOINT_VISIT, 
                             confidence = 0.5,
@@ -1140,6 +1172,39 @@ class SlotFinder:
         gd.pause(self.slow)
 
         return True
+    
+    def get_service_status(
+        self,
+        user: UserConfig,
+        consulate: str,
+        service: str
+    ) -> Literal["booked", "unavailable", "pending"]:
+        """
+        Возвращает статус конкретной услуги для пользователя:
+        - "booked"      — услуга уже успешно забронирована
+        - "unavailable" — услуга помечена как недоступная
+        - "pending"     — услуга ещё не обрабатывалась
+
+        Параметры:
+        user     — объект UserConfig
+        country  — название страны
+        consulate— название консульства в этой стране
+        service  — код или имя услуги
+
+        Статус берётся из user.service_status, который загружается из поля status в YAML.
+        """
+        info = (
+            user.service_status
+                .get(user.country, {})
+                .get(consulate, {})
+                .get(service, {})
+        )
+        st = info.get("status")
+        if st == "booked":
+            return "booked"
+        if st == "unavailable":
+            return "unavailable"
+        return "pending"
    
     # ------------------------------------------------------------------
     def _find_slots(self, user: UserConfig) -> bool:
@@ -1157,6 +1222,18 @@ class SlotFinder:
                 if STOP_EVT.is_set():
                     return False
                 
+                
+                status = self.get_service_status(user, cons, consular_service)
+                if status == "booked":
+                    LOGGER.info(f"Уже забронировано {cons} - {consular_service}")
+                    continue
+                elif status == "unavailable":
+                    LOGGER.info(f"Недоступно {cons} - {consular_service}")
+                    continue
+                else:
+                    LOGGER.info(f"Start booked {cons} - {consular_service}")
+                
+                
                 if self.check_consulates(user.country, cons):
                     if STOP_EVT.is_set():
                         return False
@@ -1171,7 +1248,7 @@ class SlotFinder:
                             
                             result_wait = self.wait_process_find_free_slots(user, cons, consular_service) 
                             if result_wait == None:
-                                break
+                                continue
                             
                             if STOP_EVT.is_set():
                                 return False
@@ -1181,28 +1258,28 @@ class SlotFinder:
                                 
                                 result_wait = self.wait_process_find_free_slots(user, cons, consular_service) 
                                 if result_wait == None:
-                                    break
+                                    continue
                             
                                 if not result_wait:
                                     _error_hook("error open page find slot", gd.take_screenshot())
-                                    break
+                                    continue
                             
                             is_found = self.find_free_slot_months(user, cons, consular_service)
                             
                             if is_found == None:
                                 LOGGER.debug("find_free_slot_months exit with error")
-                                break
+                                continue
                             
                         else:
                             _error_hook("open page find slots failed", gd.take_screenshot())
-                            break
+                            continue
                             
                     else:
                         _error_hook("check consular service failed", gd.take_screenshot())
-                        break
+                        continue
                 
                 else:
                     _error_hook("check_consulates failed", gd.take_screenshot())
-                    break
+                    continue
       
         return is_found
