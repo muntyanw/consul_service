@@ -17,7 +17,7 @@ import datetime as _dt
 from utils.logger import setup_logger
 import pathlib as _pl
 from dataclasses import dataclass, field
-from typing import List, Optional, Sequence
+from typing import List, Optional, Sequence, Tuple, Dict, Any
 
 import yaml  # PyYAML
 from cryptography.fernet import Fernet, InvalidToken
@@ -71,7 +71,8 @@ class UserConfig:
     min_date: Optional[_dt.date] = None  # absolute floor date
     relative_days: Optional[int] = None  # days from *now*
     
-    booked_services: set[tuple[str, str, str]] = field(default_factory=set, repr=False, compare=False)
+    booked_services: set[Tuple[str, str, str]] = field(default_factory=set, repr=False)
+    service_status: Dict[str, Dict[str, Dict[str, Dict[str, List[str] | str]]]] = field(default_factory=dict)
 
 
     # ---------------------------------------------------------------------
@@ -111,11 +112,6 @@ class YAMLLoader:
     # Public API
     # ------------------------------------------------------------------
     def load(self) -> List[UserConfig]:
-        """Load and validate every ``*.yaml`` file in *users_dir*.
-
-        Invalid files are logged as warnings and ignored; at least one valid
-        config must remain, otherwise :class:`ConfigError` is raised.
-        """
         if not self.users_dir.is_dir():
             raise ConfigError(f"Config directory does not exist: {self.users_dir}")
 
@@ -208,13 +204,14 @@ class YAMLLoader:
             except (TypeError, ValueError):
                 raise ConfigError("days_from_now must be non-negative int")
             
-        booked = raw.get("booked_slots", {})
-        booked_services = {
-            (country, cons, s["name"])
-            for country, cons_data in booked.items()
-            for cons, services in cons_data.items()
-            for s in services
-}
+        status: Dict[str, Dict[str, Dict[str, Any]]] = raw.get("status", {})
+            
+        booked_services: set[tuple[str, str, str]] = set()
+        for country, cons_map in status.items():
+            for cons, srv_map in cons_map.items():
+                for srv, info in srv_map.items():
+                    if info.get("status") == "booked" and info.get("booked"):
+                        booked_services.add((country, cons, srv))
 
         return UserConfig(
             alias=alias,
@@ -233,7 +230,8 @@ class YAMLLoader:
             min_date=min_date,
             relative_days=rel,
             source_file=path,
-            booked_services=booked_services
+            booked_services=booked_services,
+            service_status=status
         )
 
     # ------------------------------------------------------------------
@@ -252,38 +250,56 @@ class YAMLLoader:
         f = Fernet(key.encode())
         return f.decrypt(token.encode()).decode("utf-8")
     
-    @staticmethod
-    def record_booked_slot(user: UserConfig, consulate: str, service: str, dt: str, time_: str) -> None:
-        path = user.source_file
-        with path.open("r", encoding="utf-8") as fh:
-            raw = yaml.safe_load(fh) or {}
-
-        booked = raw.get("booked_slots", {})
-        booked.setdefault(user.country, {}).setdefault(consulate, []).append({
-            "name": service,
-            "date": dt,
-            "time": time_,
-        })
-        raw["booked_slots"] = booked
-
-        with path.open("w", encoding="utf-8") as fh:
-            yaml.safe_dump(raw, fh, allow_unicode=True)
     
     @staticmethod        
     def has_pending_services(user: UserConfig) -> bool:
         """
-        Return True if the user has services that have not yet been booked.
+        True, если у пользователя есть услуги,
+        ещё не забронированные и не помеченные unavailable.
         """
-        for consulate in user.consulates:
-            for service in user.services:
-                if user.country not in user.booked_services:
+        for cons in user.consulates:
+            for srv in user.services:
+                info = user.service_status.get(user.country, {}) \
+                        .get(cons, {}) \
+                        .get(srv, {})
+                if info.get("status") not in ("booked", "unavailable"):
                     return True
-                if consulate not in user.booked_services[user.country]:
-                    return True
-                if service not in user.booked_services[user.country][consulate]:
-                    return True
-                
         return False
+    
+    def record_service_status(
+        user: UserConfig,
+        consulate: str,
+        service: str,
+        status: str,              # "booked" или "unavailable"
+        date: str | None = None,
+        time_: str | None = None,
+        comment: str = "",
+    ) -> None:
+        """
+        Записывает в YAML:
+        - status="booked": добавляет дату и время в список booked
+        - status="unavailable": записывает статус и comment
+        """
+        base = user.source_file.parent
+        path = base / user.source_file.name
+        raw: dict = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+
+        raw.setdefault("status", {})
+        raw["status"].setdefault(user.country, {})
+        raw["status"][user.country].setdefault(consulate, {})
+        entry = raw["status"][user.country][consulate].setdefault(service, {})
+
+        entry["status"] = status
+        if status == "booked":
+            if not date or not time_:
+                raise ValueError("Booked requires date and time")
+            entry.setdefault("booked", []).append(f"{date} {time_}")
+            user.booked_services.add((user.country, consulate, service))
+        else:  # unavailable
+            if comment:
+                entry["comment"] = comment
+
+        path.write_text(yaml.safe_dump(raw, allow_unicode=True, sort_keys=False), encoding="utf-8")
 
 
 # ---------------------------------------------------------------------------

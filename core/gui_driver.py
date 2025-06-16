@@ -300,6 +300,7 @@ def find_image(name: str, timeout: float = 8.0, confidence: float = 0.7,
 def click_image(name: str, timeout: float = 8.0, confidence: float = 0.7,
                 scope: tuple[int, int, int, int] = None,
                 plus_y: int = 0,
+                plus_x: int = 0,
                 is_debug: bool = False,
                 multiscale: bool = False,
                 count_click: int = 1) -> bool:
@@ -314,7 +315,7 @@ def click_image(name: str, timeout: float = 8.0, confidence: float = 0.7,
         abs_x, abs_y = result_find
         if abs_x is not None and abs_y is not None:
             
-            human_move_and_click(abs_x, abs_y + plus_y, count_click=count_click)
+            human_move_and_click(abs_x + plus_x, abs_y + plus_y, count_click=count_click)
             time.sleep(0.1)
             return True
         
@@ -548,7 +549,7 @@ def draw_click_circle(x, y, radius=20, duration=0.2):
     def wnd_proc(hwnd, msg, wparam, lparam):
         if msg == win32con.WM_PAINT:
             hdc, ps = win32gui.BeginPaint(hwnd)
-            brush = win32gui.CreateSolidBrush(win32api.RGB(255, 0, 0))
+            brush = win32gui.CreateSolidBrush(win32api.RGB(0, 0, 255))
             win32gui.SelectObject(hdc, brush)
             win32gui.Ellipse(hdc, 0, 0, radius * 2, radius * 2)
             win32gui.EndPaint(hwnd, ps)

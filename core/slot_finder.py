@@ -44,6 +44,7 @@ from babel.dates import format_date
 from utils.logger import setup_logger
 from core.free_slot_db import FreeSlotRegistry
 from core.gui_driver import find_text, pause
+from server.tcp_server import ControlServer, PAUSE_EVT, STOP_EVT
 
 
 try:
@@ -106,9 +107,18 @@ class SlotFinder:
         """Return *True* if slot booked, else *False* (user remains)."""
         LOGGER.debug("Start SlotFinder for %s", user.alias)
         try:
+            if STOP_EVT.is_set():
+                return False
+            
             _next_user(user.alias)
             
+            if STOP_EVT.is_set():
+                return False
+            
             if not self._login(user):
+                return False
+            
+            if STOP_EVT.is_set():
                 return False
             
             return self._find_slots(user)
@@ -159,6 +169,24 @@ class SlotFinder:
             LOGGER.error("not is appointment for a visit")
             return False
         return True
+    
+    def is_not_available_service(self):
+        gd.scroll(800)
+        LOGGER.debug("check if is not available service")
+        gd.pause(self.slow)
+        if not gd.find_text_any(["для отримання"], 
+                            count = 10,
+                            pause_attempt_sec=6,
+                            lang="ukr", 
+                            scope=(150, 740, 630, 820)):
+            
+            LOGGER.error("not found message - is not available service")
+            return False
+        
+        LOGGER.debug("yes - is page find slots")
+        
+        return True
+    
     
     def is_page_find_slots(self) -> bool:
         gd.scroll(800)
@@ -453,7 +481,7 @@ class SlotFinder:
                                 count = 2, 
                                 pause_attempt=4,
                                 lang="ukr", 
-                                scope=(160, 410, 730, 510), is_debug=False):
+                                scope=(160, 300, 730, 510), is_debug=False):
                 
                 LOGGER.error("is not place visit from select country")
                 return False
@@ -536,22 +564,26 @@ class SlotFinder:
     def back_to_select_service(self, service: str) -> bool:
         
         LOGGER.debug(f"No free slots - back_to_select_service")
+        gd.pause(self.slow)
         gd.scroll(-2000)                    
-        if not gd.click_image(IMG_BTN_COMEBACK, scope=(175, 600, 380, 820), confidence=0.5, is_debug=False):
+        if not gd.click_image(IMG_BTN_COMEBACK, 
+                              scope=(175, 600, 380, 820), 
+                              confidence=0.5, 
+                              plus_y=70,
+                              plus_x=-70,
+                              is_debug=False):
             
             LOGGER.debug(f"button comback missing")
-            
-            gd.scroll(-2000)                    
-            if not gd.click_image(IMG_BTN_COMEBACK, scope=(175, 600, 380, 820), confidence=0.5, is_debug=False):
-                
-                LOGGER.debug(f"button comback missing")
-                
-                return False
             
         gd.pause(self.slow)
         if not self.is_page_select_service():
             
-            if not gd.click_image(IMG_BTN_COMEBACK, scope=(175, 600, 380, 780), confidence=0.5, is_debug=False):
+            if not gd.click_image(IMG_BTN_COMEBACK, 
+                              scope=(175, 600, 380, 820), 
+                              plus_y=70,
+                              plus_x=-70,
+                              confidence=0.5, 
+                              is_debug=False):
                 LOGGER.debug(f"button comback missing")
                 
             gd.pause(self.slow)
@@ -585,11 +617,16 @@ class SlotFinder:
             return False
         
             
-    def wait_process_find_free_slots(self, country:str, service:str) -> bool|None:
+    def wait_process_find_free_slots(self, user: UserConfig, consulate: str, service:str) -> bool|None:
         
         LOGGER.debug("Start wait find free slots")
+        gd.scroll(-2000) 
+        
         gd.pause(self.s_slow)
-        gd.scroll(-800) 
+        if self.is_not_available_service():
+            YAMLLoader.record_service_status(user, consulate, service, status="unavailable", comment="Сервіс недоступний")
+            return None
+        
         count = 0
         
         while count < 20:
@@ -598,18 +635,19 @@ class SlotFinder:
             
             if gd.find_text("На жаль", 
                 lang="ukr", 
-                scope=(160, 490, 1100, 620), is_debug=False):
+                scope=(160, 400, 1000, 620), is_debug=False):
                 
-                self.to_back(country, service)
+                YAMLLoader.record_service_status(user, consulate, service, status="unavailable", comment="На жаль немає вільних слотів")
+                self.to_back(user.country, service)
                 return None
             
-            if not gd.find_text("Відбувається пошук активних", 
+            if not gd.find_text("пошук активних", 
                 lang="ukr", 
-                scope=(160, 490, 1100, 620), is_debug=False):
+                scope=(160, 400, 1000, 620), is_debug=False):
                 
                 if gd.find_text("На жаль", 
                     lang="ukr", 
-                    scope=(160, 490, 1100, 620), is_debug=False):
+                    scope=(160, 400, 1000, 620), is_debug=False):
                     
                     self.to_back(country, service)
                     return None
@@ -782,7 +820,7 @@ class SlotFinder:
                         _error_hook("button ITS CLEAR after blocked slot missing", gd.take_screenshot())
                         return None
                 
-                YAMLLoader.record_booked_slot(user, consulate, service, dt, time_slot)
+                YAMLLoader.record_service_status(user, consulate, service, status="booked", date=dt, time_=time_slot)
                 free_slots.remove(user.country, consulate, service, dt)
                 
                 _slot_obtained(user.alias, user.country, consulate, service, dt, time_slot)
@@ -1022,7 +1060,9 @@ class SlotFinder:
         gd.pause(self.slow)
         LOGGER.debug(f"user.key_path: {user.key_path}")
         pyperclip.copy(user.key_path)
-        gd.pause(self.slow)
+        gd.pause(self.fast)
+        pyperclip.copy(user.key_path)
+        gd.pause(self.fast)
         pag.hotkey('ctrl', 'v')
         gd.pause(self.slow)
         pag.press('enter')
@@ -1104,6 +1144,8 @@ class SlotFinder:
     # ------------------------------------------------------------------
     def _find_slots(self, user: UserConfig) -> bool:
         
+        is_found = False
+        
         if not self.open_visit_wizard():
                     return False
                 
@@ -1112,19 +1154,32 @@ class SlotFinder:
         for consular_service in user.services:
             for cons in user.consulates:
                 
+                if STOP_EVT.is_set():
+                    return False
+                
                 if self.check_consulates(user.country, cons):
+                    if STOP_EVT.is_set():
+                        return False
                     if self.check_consular_service(consular_service, user.for_myself):
                         
                         if self.is_page_find_slots():
                             
-                            result_wait = self.wait_process_find_free_slots(user.country, consular_service) 
+                            if STOP_EVT.is_set():
+                                return False
+                            
+                            #self.to_back(user.country, consular_service)
+                            
+                            result_wait = self.wait_process_find_free_slots(user, cons, consular_service) 
                             if result_wait == None:
                                 break
+                            
+                            if STOP_EVT.is_set():
+                                return False
                             
                             if not result_wait:
                                 gd.reload_page()
                                 
-                                result_wait = self.wait_process_find_free_slots(user.country, consular_service) 
+                                result_wait = self.wait_process_find_free_slots(user, cons, consular_service) 
                                 if result_wait == None:
                                     break
                             
