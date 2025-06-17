@@ -162,4 +162,7 @@ All tests are self‑contained and require no GUI.
 
 ---
 
+## 6  Compile
+PS C:\prjs\consul> pyinstaller consul.spec
+
 © 2025 — MIT License
