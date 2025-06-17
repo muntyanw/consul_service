@@ -43,7 +43,7 @@ from typing import Dict, Tuple, List
 
 from utils.logger import setup_logger
 from core.free_slot_db import FreeSlotRegistry
-from core.gui_driver import find_text, pause
+from core.gui_driver import find_text, pause, reload_page
 from server.tcp_server import ControlServer, PAUSE_EVT, STOP_EVT
 
 
@@ -117,8 +117,18 @@ class SlotFinder:
             if STOP_EVT.is_set():
                 return False
             
+            gd.reload_page()
+            gd.pause(self.s_slow)
+            gd.pause(self.s_slow)
+            
             if not self._login(user):
-                return False
+                
+                gd.reload_page()
+                gd.pause(self.s_slow)
+                gd.pause(self.s_slow)
+                
+                if not self._login(user):
+                    return False
             
             if STOP_EVT.is_set():
                 return False
@@ -161,7 +171,7 @@ class SlotFinder:
             return True
     
     def is_appointment_visit(self):
-        gd.scroll(-800)
+        gd.scroll(-2000)
         gd.pause(self.slow)
         LOGGER.debug("check is appointment for a visit")
         if not gd.find_text_any(["Запис на візит"], 
@@ -170,6 +180,8 @@ class SlotFinder:
             
             LOGGER.error("not is appointment for a visit")
             return False
+        
+        LOGGER.error("is rely appointment for a visit")
         return True
     
     def is_not_available_service(self):
@@ -193,8 +205,22 @@ class SlotFinder:
     def is_page_find_slots(self) -> bool:
         gd.scroll(800)
         LOGGER.debug("check is find slots")
+        gd.pause(self.s_slow)
+        gd.pause(self.s_slow)
+        result_find = gd.find_text_any(["Дата та час візиту"], 
+                            count = 4,
+                            pause_attempt_sec=6,
+                            lang="ukr", 
+                            scope=(160, 320, 650, 490))
+        
+        if result_find == None:
+            gd.reload_page()
+            gd.pause(self.s_slow)    
+            gd.pause(self.s_slow)    
+            
+            
         if not gd.find_text_any(["Дата та час візиту"], 
-                            count = 10,
+                            count = 4,
                             pause_attempt_sec=6,
                             lang="ukr", 
                             scope=(160, 320, 650, 490)):
@@ -246,23 +272,24 @@ class SlotFinder:
         pag.press('tab')
         
         pyperclip.copy(cons)
-        gd.pause(self.fast)
+        gd.pause(self.slow)
         pag.hotkey('ctrl', 'v')
-        gd.pause(self.fast)
+        gd.pause(self.slow)
         pag.press('enter')
-        gd.pause(self.fast)
-        #pag.press('enter')
-        
-        pag.press('tab')
-        pag.press('tab')
-        pag.press('enter')
-        
         gd.pause(self.slow)
         
-        if not gd.click_image(IMG_BTN_DALI, scope=(376, 720, 560, 900), plus_y= 50, plus_x=-30):
+        pag.press('tab')
+        gd.pause(self.fast)
+        pag.press('tab')
+        gd.pause(self.fast)
+        pag.press('enter')
+        gd.pause(self.slow)
+        gd.pause(self.slow)
+        
+        # if not gd.click_image(IMG_BTN_DALI, scope=(376, 720, 560, 900), plus_y= 50, plus_x=-30):
             
-            _error_hook("button image Next after type cons missing", gd.take_screenshot())
-            return False
+        #     _error_hook("button image Next after type cons missing", gd.take_screenshot())
+        #     return False
         
         if not self.is_appointment_visit():
             
@@ -278,29 +305,20 @@ class SlotFinder:
         gd.scroll(-2000)
         
         gd.pause(self.slow)
-        #pag.press('tab')
-        #pag.press('tab')
         
         pos = gd.click_text("Виберіть послугу", 
                 count_attempt_find=2,
                 pause_attempt=4,
                 lang="ukr", 
-                scope=(130, 470, 390, 550))
+                scope=(130, 470, 390, 550), is_debug=False)
         if not pos:
                 
                 _error_hook("field check consulate for myself missing", gd.take_screenshot())
                 return False
         
-        
-        #gd.pause(self.slow)
-        #x, y = pos
-        
         gd.pause(self.fast)
-        #gd.human_move_diff(0, -30)
-        #gd.pause(self.slow)
         LOGGER.debug(f"copy to clipboard {consular_service}")
         pyperclip.copy(consular_service)
-        #gd.click(x, y)
         gd.pause(self.fast)
         pag.hotkey('ctrl', 'v')
         gd.pause(self.slow)
@@ -354,6 +372,9 @@ class SlotFinder:
 
     def fill_data_personal(self, user: UserConfig) -> bool:
         LOGGER.debug("fill step 1 – personal data")
+        
+        if STOP_EVT.is_set():
+            return False
 
         gd.pause(self.slow)
         gd.scroll(-2000)  
@@ -378,6 +399,10 @@ class SlotFinder:
                 
                     _error_hook("birthdate field day missing", gd.take_screenshot())
                     return False
+                
+        if STOP_EVT.is_set():
+            return False
+
                 
         day_number = user.birthdate.strftime("%d") 
         gd.type_text(day_number)
@@ -426,6 +451,9 @@ class SlotFinder:
         
         gd.pause(self.fast)
         
+        if STOP_EVT.is_set():
+            return False
+        
         if user.gender == "Male":
             if not gd.click_text("Чоловіча", 
                     lang="ukr", 
@@ -440,6 +468,9 @@ class SlotFinder:
                 return False
             
         gd.pause(self.fast)
+        
+        if STOP_EVT.is_set():
+            return False
         
         LOGGER.debug("Find and click Dali")
         if not gd.click_image(IMG_BTN_DALI, scope=(190, 760, 500, 860), 
@@ -468,13 +499,26 @@ class SlotFinder:
         gd.scroll(-2000)
         gd.pause(self.slow)
         if not gd.find_text("Місце візиту", 
-                                count = 2, 
+                                count = 1, 
+                                pause_attempt=4,
+                                lang="ukr", 
+                                scope=(160, 210, 500, 510), is_debug=False):
+            
+                gd.reload_page()
+                gd.pause(self.s_slow)
+                gd.pause(self.s_slow)
+                
+                gd.scroll(-2000)
+                gd.pause(self.fast)
+                
+                if not gd.find_text("Місце візиту", 
+                                count = 1, 
                                 pause_attempt=4,
                                 lang="ukr", 
                                 scope=(160, 210, 500, 510), is_debug=False):
                 
-                LOGGER.error("is not place visit from select country")
-                return False
+                    LOGGER.error("is not place visit from select country")
+                    return False
             
         return True
     
@@ -670,7 +714,7 @@ class SlotFinder:
         LOGGER.debug("select type show slots month")
         
         gd.click(20, 480)
-        gd.scroll(800)
+        gd.scroll(2000)
         
         if VISIT_CHECK_MONTH_TEMPLATE_PATH != gd.detect_image_from_frame(
             [VISIT_CHECK_DAY_TEMPLATE_PATH, VISIT_CHECK_WEEK_TEMPLATE_PATH,VISIT_CHECK_MONTH_TEMPLATE_PATH],
@@ -678,8 +722,9 @@ class SlotFinder:
             
             gd.click(1280, 480)
                 
-        gd.pause(self.slow)
+        gd.pause(self.s_slow)
         gd.human_move(1480, 480)
+        gd.pause(self.s_slow)
         
     def normalize_date_token(self, tok: str) -> str:
         """
@@ -719,23 +764,26 @@ class SlotFinder:
         n = len(tokens)
 
         while i < n:
-            if i + 2 < n and date_re.match(tokens[i]) and tokens[i+1] == '-' and date_re.match(tokens[i+2]):
-                start_date = tokens[i]
-                end_date = tokens[i+2]
+            if (i + 2 < n 
+                and date_re.match(tokens[i])
+                and tokens[i+1] == "-"
+                and date_re.match(tokens[i+2])
+                ):
+                    start_date, end_date = tokens[i], tokens[i+2]
+                    # ищём число после диапазона
+                    j = i + 3
+                    while j < n:
+                        tok = tokens[j].strip()
+                        if tok.isdigit():
+                            slots_count = int(tok)
+                            break
+                        j += 1
+                    else:
+                        slots_count = None
 
-                # Ищём следующее чисто цифровое значение
-                j = i + 3
-                slots_count = None
-                while j < n:
-                    tok = tokens[j].strip()
-                    if tok.isdigit():
-                        slots_count = int(tok)
-                        i = j
-                        break
-                    j += 1
-
-                if slots_count is not None:
-                    result.append((start_date, end_date, slots_count))
+                    if slots_count is not None:
+                        result.append((start_date, end_date, slots_count))
+            
             i += 1
 
         return result
@@ -780,6 +828,7 @@ class SlotFinder:
             output_type=pytesseract.Output.DICT
         )
 
+        LOGGER.debug(f"parse_date_slots ocr texts: {ocr_data["text"]}")
         results =  self.parse_date_slots(ocr_data["text"])      
         LOGGER.debug(f"results parse_date_slots: {results}")
         return results
@@ -809,10 +858,10 @@ class SlotFinder:
                     
                     if not gd.click_image(IMG_BTN_CONFIRM, confidence=0.6, scope=(376, 720, 640, 900), plus_y=20):
                         _error_hook("button CONFIRM slot missing", gd.take_screenshot())
-                        return None
+                        pass
                     
                     if not self.i_no_robot(is_debug=False):
-                        return None
+                        pass
                 
                 gd.pause(self.slow)
                 
@@ -995,7 +1044,16 @@ class SlotFinder:
         
         text_button_month = gd.read_text("ukr", scope = (180, 520, 320, 610), 
                                          is_debug=False)
-        current_month_name = [t.strip().lower() for t in text_button_month if t != ""][0]
+        
+        month_names = [t.strip().lower()
+               for t in text_button_month
+               if t.strip().lower() in MONTHS]
+        
+        if not month_names:
+            LOGGER.debug(f"Not found months")
+            return False
+            
+        current_month_name = month_names[0]
         current_month_number = MONTHS.index(current_month_name) + 1
         
         is_found = False
@@ -1084,7 +1142,9 @@ class SlotFinder:
                 
         LOGGER.debug(f"paste pass")
         pyperclip.copy(user.key_password)
-        gd.pause(self.slow)
+        gd.pause(self.fast)
+        pyperclip.copy(user.key_password)
+        gd.pause(self.fast)
         pag.hotkey('ctrl', 'v')
         gd.pause(self.slow)
         pag.press('enter')
@@ -1131,12 +1191,21 @@ class SlotFinder:
         
         LOGGER.debug("Check servise not available")
         gd.scroll(-2000) 
-        
-        if gd.find_text("Сервіс недоступний", 
+        gd.pause(self.fast)
+        attempt = 0
+        while attempt <=10 and gd.find_text("Сервіс недоступний", 
             lang="ukr", 
             scope=(40, 100, 600, 720), is_debug=False):
             
-            return True
+            gd.human_move_diff(400, 300)
+            gd.pause(self.fast)
+            attempt += 1
+            gd.pause(self.s_slow)
+            
+            gd.reload_page()
+            
+            gd.pause(self.s_slow)
+            gd.pause(self.s_slow)
         
         return False
     
@@ -1150,6 +1219,8 @@ class SlotFinder:
                              lang="ukr", 
                              scope=(560, 100, 690, 160), is_debug=False):
                     _error_hook("btn visit wizard not found", gd.take_screenshot())
+                    
+                    gd.reload_page()
                     
                     gd.pause(self.s_slow)
                     gd.pause(self.s_slow)
@@ -1166,6 +1237,7 @@ class SlotFinder:
         
         if not self.wait_process_check():
             return False
+        
         
         if self.is_servise_not_available():
             return False
@@ -1207,7 +1279,7 @@ class SlotFinder:
         
         if not self.open_visit_wizard():
                     return False
-                
+
         if self.is_servise_not_available():
             return False
                 

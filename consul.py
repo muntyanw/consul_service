@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-import os
+import sys
 import signal
 import threading
 import time
@@ -112,41 +112,46 @@ def main() -> None:
     finder = SlotFinder()
     LOGGER.info("=== Bot started. Users in queue: %d ===", len(queue._dq))
 
-    while not STOP_EVT.is_set():
-        if PAUSE_EVT.is_set():
-            time.sleep(0.5)
-            continue
+    try:
+        while not STOP_EVT.is_set():
+            if PAUSE_EVT.is_set():
+                time.sleep(0.5)
+                continue
 
-        with queue._lock:
-            # приоритизация пользователей по доступным слотам
-            priority_users = [u for u in list(queue._dq) if free_slots.has_match(u)]
-            for u in priority_users:
-                queue._dq.remove(u)
-                queue._dq.appendleft(u)
+            with queue._lock:
+                # приоритизация пользователей по доступным слотам
+                priority_users = [u for u in list(queue._dq) if free_slots.has_match(u)]
+                for u in priority_users:
+                    queue._dq.remove(u)
+                    queue._dq.appendleft(u)
 
-        user = queue.pop_left()
-        if not user:
-            time.sleep(2)
-            continue
+            user = queue.pop_left()
+            if not user:
+                time.sleep(2)
+                continue
 
-        if not loader.has_pending_services(user):
-            LOGGER.info("User %s has no pending services, skipping", user.alias)
-            continue
+            if not loader.has_pending_services(user):
+                LOGGER.info("User %s has no pending services, skipping", user.alias)
+                continue
 
-        LOGGER.info("Processing user %s", user.alias)
-        with chrome_session(user.alias):
-            booked = finder.work(user)
+            LOGGER.info("Processing user %s", user.alias)
+            with chrome_session(user.alias):
+                booked = finder.work(user)
 
-        if booked:
-            LOGGER.info("User %s completed – removed from queue", user.alias)
-            queue.remove(user.alias)
-        else:
-            queue.append(user)
-            LOGGER.info("User %s re-queued", user.alias)
+            if booked:
+                LOGGER.info("User %s completed – removed from queue", user.alias)
+                queue.remove(user.alias)
+            else:
+                queue.append(user)
+                LOGGER.info("User %s re-queued", user.alias)
 
-    LOGGER.info("Stop flag received – shutting down…")
-    watcher.close()
-    ctrl_srv.shutdown()
+    
+    finally:
+        LOGGER.info("Stop flag received – shutting down…")
+        watcher.close()
+        ctrl_srv.shutdown()
+        LOGGER.info("Exiting process.")
+        sys.exit(0)
 
 if __name__ == "__main__":
     main()

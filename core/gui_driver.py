@@ -775,7 +775,7 @@ def read_text(
     )
 
     texts = [t.strip().lower() for t in data["text"]]
-    LOGGER.debug(f"texts: {texts}")
+    LOGGER.debug(f"read texts: {texts}")
     return texts
 
 def get_first_date(text_list) -> date:
@@ -902,7 +902,11 @@ def find_text(
 
         texts = [t.strip().lower() for t in data["text"]]
         
-        LOGGER.debug(f"OCR texts: {[w for w in texts if w != ""]}")
+        ocr_texts = [w for w in texts if w != ""]
+        LOGGER.debug(f"OCR texts: {ocr_texts}")
+        
+        if len(ocr_texts) == 0 and attempts == count:
+            return None
 
         n_boxes = len(texts)
 
@@ -942,7 +946,7 @@ def find_text_any(
     scope: tuple[int, int, int, int] = None,
     is_debug: bool = False,
     process_for_read: bool = False
-) -> tuple[int, int] | bool:
+) -> tuple[int, int] | bool | None:
     """
     Ищет любой из текстов из `queries` на экране. Возвращает координаты (abs_x, abs_y)
     центра первого найденного совпадения, иначе False.
@@ -980,6 +984,7 @@ def find_text_any(
         texts = []
         confs = []
         n_boxes = len(data["text"])
+        
         for i in range(n_boxes):
             txt = data["text"][i].strip().lower()
             #try:
@@ -990,9 +995,10 @@ def find_text_any(
             texts.append(txt)
             #confs.append(conf)
 
-        #if is_debug:
-        LOGGER.debug(f"OCR texts: {[w for w in texts if w != ""]}")
-            #LOGGER.debug(f"OCR confs: {confs}")
+        ocr_texts = [w for w in texts if w != ""]
+        LOGGER.debug(f"OCR texts: {ocr_texts}")
+        if len(ocr_texts) == 0 and attempts == count:
+            return None
 
         # 5) Перебираем каждую последовательность слов из queries_words
         for query_words in queries_words:
@@ -1233,7 +1239,7 @@ def find_first_free_slot_in_day_week(scope: tuple[int,int,int,int],
 
 def reload_page():
     LOGGER.debug("reload page")
-    click(92,42)
+    click(92,50)
     pause(2)
     human_move_diff(0, 70)
 
