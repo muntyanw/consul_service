@@ -25,7 +25,6 @@ import datetime as _dt
 from datetime import date, datetime, timedelta
 import time
 from pathlib import Path
-from typing import Sequence, Literal
 import pytesseract
 
 import pyautogui as pag
@@ -40,6 +39,7 @@ from project_config import (LOG_LEVEL, USERS_DIR,
 
 from datetime import datetime
 from babel.dates import format_date
+from typing import Dict, Tuple, List
 
 from utils.logger import setup_logger
 from core.free_slot_db import FreeSlotRegistry
@@ -177,7 +177,7 @@ class SlotFinder:
         LOGGER.debug("check if is not available service")
         gd.pause(self.slow)
         if not gd.find_text_any(["для отримання"], 
-                            count = 10,
+                            count = 2,
                             pause_attempt_sec=6,
                             lang="ukr", 
                             scope=(150, 740, 630, 820)):
@@ -259,7 +259,7 @@ class SlotFinder:
         
         gd.pause(self.slow)
         
-        if not gd.click_image(IMG_BTN_DALI, scope=(376, 720, 560, 900), plus_y= 20):
+        if not gd.click_image(IMG_BTN_DALI, scope=(376, 720, 560, 900), plus_y= 50, plus_x=-30):
             
             _error_hook("button image Next after type cons missing", gd.take_screenshot())
             return False
@@ -359,6 +359,7 @@ class SlotFinder:
         gd.scroll(-2000)  
         gd.pause(self.fast)
         gd.click(20,200)
+        gd.scroll(-2000)  
         
         if not gd.click_text("день", 
                             lang="ukr",
@@ -566,8 +567,6 @@ class SlotFinder:
         gd.pause(self.fast)
         
         gd.scroll(2000)
-        
-            
             
     def back_to_select_service(self, service: str) -> bool:
         
@@ -615,7 +614,6 @@ class SlotFinder:
         
         return True
         
-        
     def to_back(self, country:str, service: str) -> bool:
         
         if self.back_to_select_service(service):
@@ -623,7 +621,6 @@ class SlotFinder:
             return self.back_to_select_country(country)
         else:
             return False
-        
             
     def wait_process_find_free_slots(self, user: UserConfig, consulate: str, service:str) -> bool|None:
         
@@ -784,7 +781,7 @@ class SlotFinder:
         )
 
         results =  self.parse_date_slots(ocr_data["text"])      
-        LOGGER.debug(f"results: {results}")
+        LOGGER.debug(f"results parse_date_slots: {results}")
         return results
     
     def find_first_free_slot_in_day_week(self, user: UserConfig, consulate:str, service:str, dt: date, scope: tuple[int, int, int, int] = None) ->bool|None:
@@ -936,6 +933,10 @@ class SlotFinder:
             start = now.day - date_min_week.day + 1
         
         for number_day, day in enumerate(WEEK_DAYS, start=start):
+            
+            if STOP_EVT.is_set():
+                    return False
+            
             if day == "субота":
                 break
             
@@ -967,6 +968,8 @@ class SlotFinder:
         is_found = False
          
         for week_data in month_data:
+            if STOP_EVT.is_set():
+                    return False
             date_min_week_str, date_max_week_str, count_slots = week_data
             date_min_week = datetime.strptime(date_min_week_str, "%d.%m.%Y").date()
             if count_slots > 0 and user.min_date >= date_min_week:
@@ -997,6 +1000,9 @@ class SlotFinder:
         
         is_found = False
         while not is_found and not end_year:
+            
+            if STOP_EVT.is_set():
+                    return False
             
             is_found = self.find_free_slot_month(user, consulate, service)
             
@@ -1121,6 +1127,19 @@ class SlotFinder:
                
         return False
     
+    def is_servise_not_available(self) -> bool|None:
+        
+        LOGGER.debug("Check servise not available")
+        gd.scroll(-2000) 
+        
+        if gd.find_text("Сервіс недоступний", 
+            lang="ukr", 
+            scope=(40, 100, 600, 720), is_debug=False):
+            
+            return True
+        
+        return False
+    
     def open_visit_wizard(self) -> bool:
         
         LOGGER.debug("open visit wizard")
@@ -1129,7 +1148,7 @@ class SlotFinder:
         
         if not gd.click_text("Запис на візит", 
                              lang="ukr", 
-                             scope=(560, 100, 690, 160)):
+                             scope=(560, 100, 690, 160), is_debug=False):
                     _error_hook("btn visit wizard not found", gd.take_screenshot())
                     
                     gd.pause(self.s_slow)
@@ -1148,6 +1167,11 @@ class SlotFinder:
         if not self.wait_process_check():
             return False
         
+        if self.is_servise_not_available():
+            return False
+        
+        gd.scroll(2000) 
+        
         if not gd.click_image(name = IMG_BTN_MAKE_APPOINT_VISIT, 
                             confidence = 0.5,
                             plus_y=-40,
@@ -1161,58 +1185,31 @@ class SlotFinder:
             if not gd.click_image(name = IMG_BTN_MAKE_APPOINT_VISIT, 
                             confidence = 0.5,
                             plus_y=-40,
-                            scope=(140, 280, 540, 360), is_debug=False):
+                            scope=(140, 240, 540, 360), is_debug=False):
             
                 _error_hook("btn visit wizard 2 not found", gd.take_screenshot())
                 return False
             
         gd.pause(self.slow)
         gd.pause(self.slow)
+        
+        if self.is_servise_not_available():
+            return False
+        
         gd.pause(self.slow)
         gd.pause(self.slow)
 
         return True
-    
-    def get_service_status(
-        self,
-        user: UserConfig,
-        consulate: str,
-        service: str
-    ) -> Literal["booked", "unavailable", "pending"]:
-        """
-        Возвращает статус конкретной услуги для пользователя:
-        - "booked"      — услуга уже успешно забронирована
-        - "unavailable" — услуга помечена как недоступная
-        - "pending"     — услуга ещё не обрабатывалась
-
-        Параметры:
-        user     — объект UserConfig
-        country  — название страны
-        consulate— название консульства в этой стране
-        service  — код или имя услуги
-
-        Статус берётся из user.service_status, который загружается из поля status в YAML.
-        """
-        info = (
-            user.service_status
-                .get(user.country, {})
-                .get(consulate, {})
-                .get(service, {})
-        )
-        st = info.get("status")
-        if st == "booked":
-            return "booked"
-        if st == "unavailable":
-            return "unavailable"
-        return "pending"
    
-    # ------------------------------------------------------------------
     def _find_slots(self, user: UserConfig) -> bool:
         
         is_found = False
         
         if not self.open_visit_wizard():
                     return False
+                
+        if self.is_servise_not_available():
+            return False
                 
         self.fill_data_personal(user)
         
@@ -1222,8 +1219,7 @@ class SlotFinder:
                 if STOP_EVT.is_set():
                     return False
                 
-                
-                status = self.get_service_status(user, cons, consular_service)
+                status = user.get_service_status(cons, consular_service)
                 if status == "booked":
                     LOGGER.info(f"Уже забронировано {cons} - {consular_service}")
                     continue

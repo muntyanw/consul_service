@@ -17,7 +17,7 @@ import datetime as _dt
 from utils.logger import setup_logger
 import pathlib as _pl
 from dataclasses import dataclass, field
-from typing import List, Optional, Sequence, Tuple, Dict, Any
+from typing import List, Optional, Sequence, Tuple, Dict, Any, Literal
 
 import yaml  # PyYAML
 from cryptography.fernet import Fernet, InvalidToken
@@ -87,6 +87,38 @@ class UserConfig:
             return (_dt.date.today() + _dt.timedelta(days=self.relative_days))
         # If both are None – today is acceptable
         return _dt.date.today()
+    
+    def get_service_status(
+        self,
+        consulate: str,
+        service: str
+    ) -> Literal["booked", "unavailable", "pending"]:
+        """
+        Возвращает статус конкретной услуги для пользователя:
+        - "booked"      — услуга уже успешно забронирована
+        - "unavailable" — услуга помечена как недоступная
+        - "pending"     — услуга ещё не обрабатывалась
+
+        Параметры:
+        user     — объект UserConfig
+        country  — название страны
+        consulate— название консульства в этой стране
+        service  — код или имя услуги
+
+        Статус берётся из user.service_status, который загружается из поля status в YAML.
+        """
+        info = (
+            self.service_status
+                .get(self.country, {})
+                .get(consulate, {})
+                .get(service, {})
+        )
+        st = info.get("status")
+        if st == "booked":
+            return "booked"
+        if st == "unavailable":
+            return "unavailable"
+        return "pending"
 
 
 # ---------------------------------------------------------------------------

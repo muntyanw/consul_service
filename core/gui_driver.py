@@ -1233,8 +1233,9 @@ def find_first_free_slot_in_day_week(scope: tuple[int,int,int,int],
 
 def reload_page():
     LOGGER.debug("reload page")
-    click(94,46)
+    click(92,42)
     pause(2)
+    human_move_diff(0, 70)
 
 
 def get_current_layout() -> int:
