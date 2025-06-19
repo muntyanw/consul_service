@@ -16,7 +16,13 @@ project/
 │  Tests.py                ← unit‑tests (pytest or `python Tests.py`)
 │
 ├─ assets/                 ← PNG templates for GUI matching (100 % zoom)
-├─ users_cfg/              ← one *.yaml per user (see sample below)
+├─ data/
+       users_cfg/          ← one *.yaml per user (see sample below)
+       chrome_template/    ← files chrome as template from new users
+       html_log/           ← info with photo about events process
+       profiles/           ← each user have self context chrome
+
+
 ├─ keys/                   ← electronic key files (if relative paths are used)
 │
 ├─ core/
